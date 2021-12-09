@@ -1,0 +1,29 @@
+.addCocktail {
+  background-color: #0077b6;
+  padding: 4rem;
+  margin: 3rem auto;
+  width: 50%;
+}
+
+.addCocktail form {
+  display: flex;
+  flex-direction: column;
+}
+
+.addCocktail input {
+  padding: 1.5rem;
+  margin: 1.5rem;
+  border-radius: 40px;
+  font-size: 2rem;
+  outline: none;
+  border: none;
+}
+
+.addCocktail button {
+  padding: 1rem;
+  font-size: 1.5rem;
+  width: 50%;
+  margin: 2rem auto;
+  border-radius: 5px;
+  border: none;
+}

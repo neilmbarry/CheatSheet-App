@@ -1,0 +1,11 @@
+.input {
+  border: 3px solid #90e1ef6b;
+  border-radius: 9px;
+  padding: 8px;
+  margin: 5px;
+}
+
+.input button {
+  margin: 5px;
+  /* color: red; */
+}

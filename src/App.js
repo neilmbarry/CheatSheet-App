@@ -1,24 +1,68 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import NavigationBar from "./components/Navigation/NavigationBar";
+import { Route } from "react-router-dom";
+import AddCocktail from "./components/AddCocktail/AddCocktail";
+import { useState, useEffect } from "react";
+import CocktailItem from "./components/CocktailItem/CocktailItem";
+import CocktailInfo from "./components/CocktailInfo/CocktailInfo";
+import { useSelector } from "react-redux";
 
 function App() {
+  console.log("App rendered");
+  const cocktailsDatabase = useSelector((state) => state.cocktails);
+
+  console.log(cocktailsDatabase);
+  // const [cocktails, setCocktails] = useState(DUMMY_DATA);
+  const removeCocktailHandler = (id) => {
+    // const updatedCocktails = cocktails.filter((cocktail) => {
+    //   return cocktail.id !== id;
+    // });
+    // setCocktails(updatedCocktails);
+    return;
+  };
+  const cocktailsList = cocktailsDatabase.map((item) => {
+    return (
+      <CocktailItem
+        cocktailInfo={item}
+        key={item.name}
+        onRemoveCocktail={removeCocktailHandler}
+      />
+    );
+  });
+  const addCocktailHandler = (cocktailItem) => {
+    // console.log("here");
+    // setCocktails((prevList) => {
+    //   const newList = prevList.slice();
+    //   newList.push(cocktailItem);
+    //   return newList;
+    // });
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <NavigationBar>
+        <Route path="/add-cocktail">
+          <AddCocktail onAddCocktail={addCocktailHandler} />
+        </Route>
+        <Route path="/login">Login / Signup</Route>
+        <Route path="/cocktails/:id">
+          Cocktail Info
+          <CocktailInfo cocktailInfo={{}} />
+        </Route>
+        <Route path="/" exact>
+          {cocktailsList}
+          {/* <CocktailItem
+            cocktailInfo={{
+              name: "Old Fashioned",
+              type: "Sprit Forward",
+              glass: "Rocks",
+              ingredients: "Bourbon, Bitters, Sugar",
+              image:
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/15-09-26-RalfR-WLC-0084.jpg/1200px-15-09-26-RalfR-WLC-0084.jpg",
+            }}
+          /> */}
+        </Route>
+      </NavigationBar>
+    </>
   );
 }
 

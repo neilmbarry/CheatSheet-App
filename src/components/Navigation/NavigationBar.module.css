@@ -1,0 +1,18 @@
+.nav {
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+  background-color: #90e0ef;
+  align-items: center;
+  color: aliceblue;
+}
+
+.navButton {
+  padding: 1.5rem;
+  border-radius: 500px;
+  background-color: #0096c7;
+  border: none;
+  box-shadow: 2px 3px 7px rgba(17, 17, 17, 0.283);
+  font-size: 1.5rem;
+  color: aliceblue;
+}
