@@ -11,9 +11,7 @@ const CocktailInfo = (props) => {
   console.log(history.location.pathname);
   console.log(history);
   console.log(params.id);
-  const cocktailInfo = cocktails.find((item) => {
-    if (item.id === +params.id) return item;
-  });
+  const cocktailInfo = cocktails.find((item) => item.id === +params.id);
   console.log(cocktailInfo);
   return (
     <Card>

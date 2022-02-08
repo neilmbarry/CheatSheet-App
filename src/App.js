@@ -6,12 +6,14 @@ import { useState, useEffect } from "react";
 import CocktailItem from "./components/CocktailItem/CocktailItem";
 import CocktailInfo from "./components/CocktailInfo/CocktailInfo";
 import { useSelector } from "react-redux";
+import Login from "./components/Login/Login";
 
 function App() {
   console.log("App rendered");
-  const cocktailsDatabase = useSelector((state) => state.cocktails);
+  const [cocktailsDatabase, setCocktailDatabase] = useState([]);
+  // const cocktailsDatabase = useSelector((state) => state.cocktails);
 
-  console.log(cocktailsDatabase);
+  // console.log(cocktailsDatabase);
   // const [cocktails, setCocktails] = useState(DUMMY_DATA);
   const removeCocktailHandler = (id) => {
     // const updatedCocktails = cocktails.filter((cocktail) => {
@@ -20,6 +22,13 @@ function App() {
     // setCocktails(updatedCocktails);
     return;
   };
+
+  // Below is just a test to see if I can implement the fetch API
+
+  // ------ END OF TEST ------ //
+
+  console.log(cocktailsDatabase);
+
   const cocktailsList = cocktailsDatabase.map((item) => {
     return (
       <CocktailItem
@@ -29,6 +38,7 @@ function App() {
       />
     );
   });
+
   const addCocktailHandler = (cocktailItem) => {
     // console.log("here");
     // setCocktails((prevList) => {
@@ -37,29 +47,38 @@ function App() {
     //   return newList;
     // });
   };
+
+  useEffect(
+    fetch("http://127.0.0.1:8000/api/v1/cocktails", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setCocktailDatabase(data.cocktails);
+        console.log(data.cocktails);
+      })
+      .catch((err) => console.log(err)),
+    []
+  );
+
   return (
     <>
       <NavigationBar>
         <Route path="/add-cocktail">
           <AddCocktail onAddCocktail={addCocktailHandler} />
         </Route>
-        <Route path="/login">Login / Signup</Route>
+        <Route path="/login">
+          <Login />
+        </Route>
         <Route path="/cocktails/:id">
           Cocktail Info
           <CocktailInfo cocktailInfo={{}} />
         </Route>
         <Route path="/" exact>
           {cocktailsList}
-          {/* <CocktailItem
-            cocktailInfo={{
-              name: "Old Fashioned",
-              type: "Sprit Forward",
-              glass: "Rocks",
-              ingredients: "Bourbon, Bitters, Sugar",
-              image:
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/15-09-26-RalfR-WLC-0084.jpg/1200px-15-09-26-RalfR-WLC-0084.jpg",
-            }}
-          /> */}
         </Route>
       </NavigationBar>
     </>
