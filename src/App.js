@@ -7,7 +7,7 @@ import CocktailItem from './components/CocktailItem/CocktailItem';
 import CocktailInfo from './components/CocktailInfo/CocktailInfo';
 import Login from './components/Login/Login';
 import Spinner from './components/UI/Spinner';
-// import { motion } from 'framer-motion';
+import { motion } from 'framer-motion/dist/es/index';
 
 function App() {
   console.log('App rendered');
@@ -56,8 +56,14 @@ function App() {
         </Route>
         <Route path="/" exact>
           {isLoading ? <Spinner /> : null}
-          <div>{cocktailsList}</div>
-          {/* <motion.div>{cocktailsList}</motion.div> */}
+
+          <motion.div layout>
+            {cocktailsDatabase.map((cocktail) => {
+              return (
+                <CocktailItem cocktailInfo={cocktail} key={cocktail.name} />
+              );
+            })}
+          </motion.div>
         </Route>
       </NavigationBar>
     </>
