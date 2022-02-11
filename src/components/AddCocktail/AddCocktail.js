@@ -1,8 +1,8 @@
-import React, { useState, useRef } from "react";
-import Card from "../UI/Card";
-import classes from "./AddCocktail.module.css";
-import IngredientForm from "./IngredientForm/IngredientForm";
-import { useDispatch } from "react-redux";
+import React, { useRef } from 'react';
+import Card from '../UI/Card';
+import classes from './AddCocktail.module.css';
+import IngredientForm from './IngredientForm/IngredientForm';
+import { useDispatch } from 'react-redux';
 
 const AddCocktail = (props) => {
   const dispatch = useDispatch();
@@ -15,15 +15,15 @@ const AddCocktail = (props) => {
 
       id: cocktailName.current.value,
       image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/15-09-26-RalfR-WLC-0084.jpg/1200px-15-09-26-RalfR-WLC-0084.jpg",
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/15-09-26-RalfR-WLC-0084.jpg/1200px-15-09-26-RalfR-WLC-0084.jpg',
     };
     console.log(cocktailInfo);
     // props.onAddCocktail(cocktailInfo);
     dispatch({
-      type: "ADD_COCKTAIL",
+      type: 'ADD_COCKTAIL',
       cocktailInfo: {
-        name: "Neil",
-        glass: "piss",
+        name: 'Neil',
+        glass: 'piss',
       },
     });
   };

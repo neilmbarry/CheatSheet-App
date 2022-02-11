@@ -5,6 +5,7 @@
   background-color: #90e0ef;
   align-items: center;
   color: aliceblue;
+  position: sticky;
 }
 
 .navButton {

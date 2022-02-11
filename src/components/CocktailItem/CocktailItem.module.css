@@ -5,11 +5,16 @@
   margin: 3rem auto;
   font-size: 2.5rem;
   color: rgb(74, 74, 74);
+  transition: all ease 0.3s;
+}
+
+.cocktailItem:hover {
+  transform: translateY(-4px);
 }
 
 .imageContainer {
   width: 25%;
-  margin: 5px;
+  margin: 2px;
   border-radius: 9px;
   overflow: hidden;
 }

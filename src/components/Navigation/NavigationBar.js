@@ -1,15 +1,15 @@
-import React from "react";
-import Button from "../UI/Button";
-import NavigationSearch from "./NavigationSearch";
-import classes from "./NavigationBar.module.css";
-import { Link } from "react-router-dom";
+import React from 'react';
+import Button from '../UI/Button';
+import NavigationSearch from './NavigationSearch';
+import classes from './NavigationBar.module.css';
+import { Link } from 'react-router-dom';
 
 const NavigationBar = (props) => {
   return (
     <>
       <nav className={classes.nav}>
         <Link to="/">
-          <button className={classes.navButton}>HOME</button>
+          <Button className={classes.navButton}>HOME</Button>
         </Link>
         <NavigationSearch />
         <Link to="/add-cocktail">
