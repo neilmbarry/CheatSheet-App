@@ -3,13 +3,14 @@
   border-radius: 7px;
   margin-right: 1rem;
   font-size: 1.5rem;
+  color: white;
   /* font-weight: bold; */
 }
 
 .glass {
-  background-color: aquamarine;
+  background-color: #0096c7;
 }
 
 .cocktail {
-  background-color: mediumseagreen;
+  background-color: #0077b6;
 }

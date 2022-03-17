@@ -2,27 +2,23 @@
   display: flex;
   background-color: #90e0ef;
   width: 80%;
-  margin: 3rem auto;
+
   font-size: 2.5rem;
   transition: all ease 0.3s;
 }
 
 .cocktailItem:hover {
-  transform: translateY(-4px);
+  /* transform: translateY(-4px); */
+  transform: scale(1.02);
 }
 
 .imageContainer {
   width: 20rem;
+  min-width: 20rem;
   height: 20rem;
   margin: 2px;
   border-radius: 7px;
   overflow: hidden;
-}
-
-.imageContainer img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .textContainer {
@@ -31,25 +27,6 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-}
-
-.textContainer h3 {
-  font-size: 150%;
-  color: azure;
-  text-shadow: 2px 2px 6px black;
-}
-
-.textContainer h4 {
-  font-size: 100%;
-}
-
-.textContainer p {
-  font-size: 70%;
-}
-
-.textContainer a {
-  color: inherit;
-  text-decoration: none;
 }
 
 .iconContainer {

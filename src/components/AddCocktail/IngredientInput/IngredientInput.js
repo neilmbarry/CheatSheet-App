@@ -1,51 +1,53 @@
-import React, { useRef } from "react";
-import classes from "./IngredientInput.module.css";
+import React, { useRef } from 'react';
+import classes from './IngredientInput.module.css';
+import FormInput from '../../UI/FormInput';
+import FormDropdown from '../../UI/FormDropdown';
+import Button from '../../UI/Button';
 
-const IngredientInput = (props) => {
-  const ingNameRef = useRef();
-  const ingAmountRef = useRef();
-  const ingUnitRef = useRef();
-  const removeIngredientHandler = (e) => {
-    e.preventDefault();
-    props.removeIngredient();
+const IngredientInput = ({ name, brand, quantity, unit, removeIngredient }) => {
+  const removeIngredientHandler = () => {
+    removeIngredient();
   };
+
   const ingredientChangeHandler = () => {
-    props.ingredientUpdater(
-      ingNameRef.current.value,
-      ingAmountRef.current.value,
-      ingUnitRef.current.value,
-      props.id
-    );
+    return;
   };
 
   return (
-    <div className={classes.input}>
-      <input
+    <div className={classes.ingredient}>
+      <FormInput
         type="text"
-        ref={ingNameRef}
-        onChange={ingredientChangeHandler}
-        value={props.name}
+        value={name}
+        placeholder="Type (e.g. Gin)"
+        changeHandler={ingredientChangeHandler}
+      />
+      <FormInput
+        type="text"
+        value={brand}
+        placeholder="Brand (Optional)"
+        changeHandler={ingredientChangeHandler}
       />
 
-      <input
+      <FormInput
         type="number"
         min="0"
-        ref={ingAmountRef}
-        onChange={ingredientChangeHandler}
-        value={props.quantity}
+        value={quantity}
+        placeholder="1"
+        changeHandler={ingredientChangeHandler}
       />
-      <select
+      <FormDropdown options={['ml', 'oz', 'dash']} selected={unit} />
+      {/* <select
         name=""
         id=""
         ref={ingUnitRef}
-        onChange={ingredientChangeHandler}
+     
         value={props.unit}
       >
         <option value="ml">ml</option>
         <option value="oz">oz</option>
         <option value="dash">dash</option>
-      </select>
-      <button onClick={removeIngredientHandler}>X</button>
+      </select> */}
+      <Button onClick={removeIngredientHandler}></Button>
     </div>
   );
 };

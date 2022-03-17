@@ -3,6 +3,8 @@ import Card from '../UI/Card';
 // import { useHistory } from 'react-router';
 import { useParams } from 'react-router';
 import Spinner from '../UI/Spinner';
+import classes from './CocktailInfo.module.css';
+import TypeIcon from '../UI/TypeIcon';
 
 const CocktailInfo = (props) => {
   const [cocktailInfo, setCocktailInfo] = useState();
@@ -28,14 +30,32 @@ const CocktailInfo = (props) => {
   console.log(cocktailInfo);
   console.log(cocktailInfo[0]);
   console.log(cocktailInfo[0].name);
+  const ingredients = cocktailInfo[0].recipe.map((elem) => {
+    return (
+      <p key={elem.ingredient}>
+        {elem.quantity + elem.unit} of {elem.ingredient}
+      </p>
+    );
+  });
+
+  console.log(ingredients);
   return (
-    <Card>
-      <h2>{cocktailInfo[0].name}</h2>
-      <h4>{cocktailInfo[0].glassType}</h4>
-      <h4>{cocktailInfo[0].method}</h4>
-      <p>{cocktailInfo[0].cocktailType}</p>
-      <p>{}</p>
-    </Card>
+    <div className={classes.container}>
+      <Card classes={classes.card}>
+        <div className={classes.image_container}>
+          <img src={cocktailInfo[0].image} alt="" />
+        </div>
+
+        <h3>{cocktailInfo[0].name}</h3>
+        <div className={classes.iconContainer}>
+          <TypeIcon type="glass" name={cocktailInfo[0].glassType} />
+          <TypeIcon type="cocktail" name={cocktailInfo[0].cocktailType} />
+        </div>
+        {ingredients}
+        <h5>Garnish: {cocktailInfo[0].garnish}</h5>
+        <h5 className={classes.method}>{cocktailInfo[0].method}</h5>
+      </Card>
+    </div>
   );
 };
 export default CocktailInfo;

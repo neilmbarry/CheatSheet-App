@@ -7,7 +7,8 @@ import CocktailItem from './components/CocktailItem/CocktailItem';
 import CocktailInfo from './components/CocktailInfo/CocktailInfo';
 import Login from './components/Login/Login';
 import Spinner from './components/UI/Spinner';
-import { motion } from 'framer-motion/dist/es/index';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { motion } from 'framer-motion/dist/es/index';
 
 function App() {
   console.log('App rendered');
@@ -56,14 +57,13 @@ function App() {
         </Route>
         <Route path="/" exact>
           {isLoading ? <Spinner /> : null}
+          {/* <i className="fa-solid fa-heart"></i> */}
+          {/* <FontAwesomeIcon icon="fa-solid fa-heart" /> */}
+          {/* <motion.div layout> */}
 
-          <motion.div layout>
-            {cocktailsDatabase.map((cocktail) => {
-              return (
-                <CocktailItem cocktailInfo={cocktail} key={cocktail.name} />
-              );
-            })}
-          </motion.div>
+          {cocktailsDatabase.map((cocktail) => {
+            return <CocktailItem cocktailInfo={cocktail} key={cocktail.name} />;
+          })}
         </Route>
       </NavigationBar>
     </>
