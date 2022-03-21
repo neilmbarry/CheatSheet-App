@@ -1,25 +1,19 @@
 import React from 'react';
 import classes from './FormDropdown.module.css';
 
-const FormDropdown = (props) => {
-  const selected = props.selected;
-  const newOptions = [...props.options];
-  const options = newOptions.map((option) => {
-    const selected = props.selected === option;
-    if (selected) {
-      return (
-        <option key={option} defaultValue={option}>
-          {option}
-        </option>
-      );
-    }
+const FormDropdown = ({ options, selected }) => {
+  const optionsList = options.map((option) => {
     return (
       <option key={option} value={option}>
         {option}
       </option>
     );
   });
-  return <select className={classes.input}>{options}</select>;
+  return (
+    <select className={classes.input} defaultValue={selected}>
+      {optionsList}
+    </select>
+  );
 };
 
 export default FormDropdown;

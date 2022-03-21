@@ -1,0 +1,30 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main h2 {
+  margin: 0.5rem;
+}
+
+.main h5 {
+  margin: 0.6rem;
+}
+
+.ratings h3 {
+  margin: 0 1rem;
+  font-size: 2.9rem;
+}
+
+.smaller {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.ratings {
+  display: flex;
+  align-items: center;
+  /* background-color: red; */
+}

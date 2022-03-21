@@ -9,6 +9,7 @@
   border-radius: 0;
   border: 1px solid grey;
   border-right: none;
+  text-align: center;
 }
 
 .ingredient input:first-child {

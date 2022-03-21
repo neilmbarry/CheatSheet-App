@@ -1,19 +1,45 @@
 .nav {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 1rem;
-  background-color: #90e0ef;
+  background-color: #000000;
   align-items: center;
   color: aliceblue;
   position: sticky;
 }
 
+.nav button {
+  background-color: #383838;
+
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0 1rem;
+}
+
+.yellow {
+  color: rgb(255, 218, 8);
+  font-weight: 500;
+}
+
+.navLeft {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: right;
+}
+
 .navButton {
-  padding: 1.5rem;
-  border-radius: 500px;
-  background-color: #0096c7;
-  border: none;
-  box-shadow: 2px 3px 7px rgba(17, 17, 17, 0.283);
-  font-size: 1.5rem;
-  color: aliceblue;
+  font-size: 2rem;
+  padding: 0.7rem 1rem;
+  margin-right: 1rem;
+  border: white solid 2px;
+  border-radius: 20px 3px 28px 3px;
+  font-weight: 400;
+  /* text-transform: capitalize; */
 }

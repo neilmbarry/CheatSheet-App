@@ -1,5 +1,5 @@
 .addCocktail {
-  background-color: #0077b6;
+  background-color: #61869b;
   /* padding: 4rem; */
   margin: 3rem auto;
   width: 60%;
@@ -25,7 +25,7 @@
 .ingredients,
 .description,
 .recipe {
-  background-color: steelblue;
+  background-color: rgb(74, 102, 124);
   color: #fff;
   padding: 0.5rem;
   border-radius: 7px;
@@ -52,6 +52,17 @@
   grid-area: desc;
 }
 
+.description input {
+  text-align: center;
+}
+
+/* .description input:nth-child(2) {
+
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+} */
+
 .recipe {
   grid-area: rec;
   display: flex;
@@ -62,4 +73,11 @@
 .dropdown {
   display: flex;
   justify-content: space-around;
+  /* gap: 1rem; */
+  align-items: center;
+}
+
+.submit button {
+  background-color: rgb(6, 187, 127);
+  /* color: black; */
 }

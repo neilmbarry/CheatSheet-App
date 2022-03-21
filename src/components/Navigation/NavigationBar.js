@@ -8,16 +8,23 @@ const NavigationBar = (props) => {
   return (
     <>
       <nav className={classes.nav}>
-        <Link to="/">
-          <Button className={classes.navButton}>HOME</Button>
-        </Link>
-        <NavigationSearch />
-        <Link to="/add-cocktail">
-          <Button>+ Add Cocktail</Button>
-        </Link>
-        <Link to="/login">
-          <Button>Login / Sign Up</Button>
-        </Link>
+        <div className={classes.navLeft}>
+          <Link to="/">
+            <h4 className={classes.navButton}>
+              <span className={classes.other}>C</span>S'
+            </h4>
+          </Link>
+          <NavigationSearch />
+        </div>
+        <div className={classes.navRight}>
+          <Link to="/add-cocktail">
+            <Button>+ Add</Button>
+          </Link>
+          <Link to="/login">
+            <Button>Faves</Button>
+          </Link>
+          <Button className={classes.yellow}>Profile</Button>
+        </div>
 
         {/* <Settings /> */}
       </nav>

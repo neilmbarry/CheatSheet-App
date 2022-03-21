@@ -9,7 +9,7 @@ const FormInput = (props) => {
         placeholder={props.placeholder || '-placeholder-'}
         onChange={props.changeHandler}
         className={classes.input}
-        value={props.value}
+        defaultValue={props.value}
       />
     </>
   );

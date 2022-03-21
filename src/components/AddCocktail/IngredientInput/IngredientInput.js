@@ -1,10 +1,10 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import classes from './IngredientInput.module.css';
 import FormInput from '../../UI/FormInput';
 import FormDropdown from '../../UI/FormDropdown';
 import Button from '../../UI/Button';
 
-const IngredientInput = ({ name, brand, quantity, unit, removeIngredient }) => {
+const IngredientInput = ({ ing, removeIngredient }) => {
   const removeIngredientHandler = () => {
     removeIngredient();
   };
@@ -17,25 +17,25 @@ const IngredientInput = ({ name, brand, quantity, unit, removeIngredient }) => {
     <div className={classes.ingredient}>
       <FormInput
         type="text"
-        value={name}
-        placeholder="Type (e.g. Gin)"
+        value={ing.brand}
+        placeholder="Brand (Optional)"
         changeHandler={ingredientChangeHandler}
       />
       <FormInput
         type="text"
-        value={brand}
-        placeholder="Brand (Optional)"
+        value={ing.name}
+        placeholder="Type (e.g. Gin)"
         changeHandler={ingredientChangeHandler}
       />
 
       <FormInput
         type="number"
         min="0"
-        value={quantity}
+        value={ing.quantity}
         placeholder="1"
         changeHandler={ingredientChangeHandler}
       />
-      <FormDropdown options={['ml', 'oz', 'dash']} selected={unit} />
+      <FormDropdown options={['ml', 'oz', 'dash']} selected={ing.unit} />
       {/* <select
         name=""
         id=""

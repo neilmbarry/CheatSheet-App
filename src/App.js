@@ -1,4 +1,4 @@
-import './App.css';
+import classes from './App.module.css';
 import NavigationBar from './components/Navigation/NavigationBar';
 import { Route } from 'react-router-dom';
 import AddCocktail from './components/AddCocktail/AddCocktail';
@@ -7,7 +7,8 @@ import CocktailItem from './components/CocktailItem/CocktailItem';
 import CocktailInfo from './components/CocktailInfo/CocktailInfo';
 import Login from './components/Login/Login';
 import Spinner from './components/UI/Spinner';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import CocktailGrid from './components/CocktailGrid/CocktailGrid';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { motion } from 'framer-motion/dist/es/index';
 
 function App() {
@@ -16,9 +17,9 @@ function App() {
   const [cocktailsDatabase, setCocktailDatabase] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const cocktailsList = cocktailsDatabase.map((item) => {
-    return <CocktailItem cocktailInfo={item} key={item.name} />;
-  });
+  // const cocktailsList = cocktailsDatabase.map((item) => {
+  //   return <CocktailItem cocktailInfo={item} key={item.name} />;
+  // });
 
   const fetchCocktails = () => {
     console.log('here');
@@ -44,7 +45,7 @@ function App() {
   // fetchInfo();
 
   return (
-    <>
+    <div className={classes.app}>
       <NavigationBar>
         <Route path="/add-cocktail">
           <AddCocktail />
@@ -61,12 +62,13 @@ function App() {
           {/* <FontAwesomeIcon icon="fa-solid fa-heart" /> */}
           {/* <motion.div layout> */}
 
-          {cocktailsDatabase.map((cocktail) => {
+          {/* {cocktailsDatabase.map((cocktail) => {
             return <CocktailItem cocktailInfo={cocktail} key={cocktail.name} />;
-          })}
+          })} */}
+          <CocktailGrid />
         </Route>
       </NavigationBar>
-    </>
+    </div>
   );
 }
 
