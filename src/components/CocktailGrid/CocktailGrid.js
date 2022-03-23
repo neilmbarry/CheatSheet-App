@@ -20,7 +20,15 @@ const CocktailGrid = () => {
       <div className={classes.pic}>
         <img src={photo} alt="" />
       </div>
-      <CocktailIngredients className={classes.ing} ings={[]} />
+      <CocktailIngredients
+        className={classes.ing}
+        ingredients={[
+          { ingredient: 'Bourbon', unit: 'ml', quantity: 22 },
+          { ingredient: 'Amaro Nonino', unit: 'ml', quantity: 22 },
+          { ingredient: 'Aperol', unit: 'ml', quantity: 22 },
+          { ingredient: 'Lemon Juice', unit: 'ml', quantity: 22 },
+        ]}
+      />
       <CocktailMethod className={classes.method} />
       <CocktailReviews className={classes.rev} />
     </div>

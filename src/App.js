@@ -68,6 +68,7 @@ function App() {
           <CocktailGrid />
         </Route>
       </NavigationBar>
+      {/* <NavigationBar></NavigationBar> */}
     </div>
   );
 }

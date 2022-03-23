@@ -16,6 +16,8 @@
 .ratings h3 {
   margin: 0 1rem;
   font-size: 2.9rem;
+  display: flex;
+  font-weight: 600;
 }
 
 .smaller {
