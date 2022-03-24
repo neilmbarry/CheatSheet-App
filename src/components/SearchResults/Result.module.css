@@ -1,0 +1,57 @@
+.main {
+  width: 100%;
+  height: 110px;
+  background-color: rgb(240, 240, 240);
+  display: flex;
+  border-bottom: 1px solid grey;
+  border-top: 0;
+  padding: 1rem;
+  transition: all ease 0.2s;
+  cursor: pointer;
+  position: relative;
+}
+
+.main h3,
+.main h6 {
+  /* margin-left: 0.8rem; */
+}
+
+.main:hover {
+  background-color: rgb(255, 255, 255);
+}
+
+.image {
+  border-radius: 100px;
+  overflow: hidden;
+  margin-right: 2rem;
+  height: 90px;
+  width: 90px;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+}
+
+.textBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.icon {
+  position: absolute;
+  right: 0;
+
+  font-size: 2rem;
+  padding: 1rem 1rem;
+  cursor: pointer;
+}
+
+.fav {
+  top: 0;
+}
+
+.edit {
+  bottom: 0;
+}

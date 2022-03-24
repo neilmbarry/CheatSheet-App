@@ -81,3 +81,11 @@
   background-color: rgb(6, 187, 127);
   /* color: black; */
 }
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  flex-direction: column;
+}

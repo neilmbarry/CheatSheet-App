@@ -5,9 +5,9 @@ import { faBarsProgress } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import Button from '../UI/Button';
 import { useRef } from 'react';
-import classes from './Login.module.css';
+import classes from './SignUp.module.css';
 
-const Login = (props) => {
+const SignUp = (props) => {
   const name = useRef();
   const email = useRef();
   const password = useRef();
@@ -45,8 +45,8 @@ const Login = (props) => {
   };
   return (
     <div className={classes.main}>
-      <h2>Log in to your account</h2>
-      <h6>Enter your email address and password to continue.</h6>
+      <h2>Create your account</h2>
+      <h6>Fill in the required fields to continue.</h6>
       <div className={classes.loginBox}>
         <div className={classes.labelContainer}>
           <label name="email">Email</label>
@@ -60,12 +60,20 @@ const Login = (props) => {
             className={classes.password}
           />
         </div>
-        <Button>Log In</Button>
+        <div className={classes.labelContainer}>
+          <label name="password">Confirm Password</label>
+          <input
+            type="password"
+            placeholder="Confirm your password"
+            className={classes.password}
+          />
+        </div>
+        <Button>Sign Up</Button>
         <div className={classes.orBreak}>
           <span>or</span>
         </div>
-        <Link to="/signUp">
-          <Button className={classes.lightButton}>Sign up</Button>
+        <Link to="/login">
+          <Button className={classes.lightButton}>Log in</Button>
         </Link>
       </div>
       {/* <label name="name">Name</label>
@@ -80,4 +88,4 @@ const Login = (props) => {
     </div>
   );
 };
-export default Login;
+export default SignUp;

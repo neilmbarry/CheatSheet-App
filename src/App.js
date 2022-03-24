@@ -6,20 +6,38 @@ import { useState, useEffect } from 'react';
 import CocktailItem from './components/CocktailItem/CocktailItem';
 import CocktailInfo from './components/CocktailInfo/CocktailInfo';
 import Login from './components/Login/Login';
+import SignUp from './components/SignUp/SignUp';
 import Spinner from './components/UI/Spinner';
 import CocktailGrid from './components/CocktailGrid/CocktailGrid';
+import SearchResults from './components/SearchResults/SearchResults';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { motion } from 'framer-motion/dist/es/index';
 
 function App() {
   console.log('App rendered');
 
+  const [showResults, setShowResults] = useState(false);
   const [cocktailsDatabase, setCocktailDatabase] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // const cocktailsList = cocktailsDatabase.map((item) => {
-  //   return <CocktailItem cocktailInfo={item} key={item.name} />;
-  // });
+  const toggleResults = (e) => {
+    console.log(e.target);
+    setShowResults((prevState) => !prevState);
+  };
+
+  const closeResults = (elem) => {
+    if (elem !== null) {
+      setShowResults(false);
+    }
+  };
+
+  const revealResults = () => {
+    setShowResults(true);
+  };
+
+  const cocktailsList = cocktailsDatabase.map((item) => {
+    return <CocktailItem cocktailInfo={item} key={item.name} />;
+  });
 
   const fetchCocktails = () => {
     console.log('here');
@@ -46,27 +64,34 @@ function App() {
 
   return (
     <div className={classes.app}>
-      <NavigationBar>
-        <Route path="/add-cocktail">
-          <AddCocktail />
-        </Route>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/cocktails/:slug">
-          <CocktailInfo />
-        </Route>
-        <Route path="/" exact>
-          {isLoading ? <Spinner /> : null}
-          {/* <i className="fa-solid fa-heart"></i> */}
-          {/* <FontAwesomeIcon icon="fa-solid fa-heart" /> */}
-          {/* <motion.div layout> */}
+      <NavigationBar
+        onSearchClick={revealResults}
+        onClick={closeResults}
+        onChange={revealResults}
+      >
+        <div className={classes.pageContainer}>
+          {showResults && (
+            <SearchResults results={[]} onClick={toggleResults}></SearchResults>
+          )}
 
-          {/* {cocktailsDatabase.map((cocktail) => {
-            return <CocktailItem cocktailInfo={cocktail} key={cocktail.name} />;
-          })} */}
-          <CocktailGrid />
-        </Route>
+          <Route path="/add-cocktail">
+            <AddCocktail />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/signUp">
+            <SignUp />
+          </Route>
+          <Route path="/cocktails/:slug">
+            <CocktailInfo />
+          </Route>
+          <Route path="/" exact>
+            {/* {isLoading ? <Spinner /> : null} */}
+            <CocktailGrid />
+            {/* {cocktailsList} */}
+          </Route>
+        </div>
       </NavigationBar>
       {/* <NavigationBar></NavigationBar> */}
     </div>

@@ -6,7 +6,7 @@ const CocktailTitle = ({ className, title, author, date, rating, reviews }) => {
   const classesList = `${classes.main} ${className}`;
   return (
     <div className={classesList}>
-      <h2>{title}</h2>
+      <h1>{title}</h1>
       <h4>by {author}</h4>
       <h5>{date}</h5>
       <div className={classes.ratings}>

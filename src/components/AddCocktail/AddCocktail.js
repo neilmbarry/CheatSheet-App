@@ -82,36 +82,42 @@ const AddCocktail = (props) => {
   ));
 
   return (
-    <Card classes={classes.addCocktail}>
-      <div className={classes.photo}>
-        Photo
-        <Button>Upload</Button>
+    <>
+      <div className={classes.main}>
+        <h2>Create a cocktail</h2>
+        <h6>Fill in required fields.</h6>
       </div>
-      <div className={classes.description}>
-        <FormInput type="text" placeholder="Cocktail Name" />
-        <FormInput type="text" placeholder="Author" />
-        <div className={classes.dropdown}>
-          <p>Glass:</p>
-          <FormDropdown options={['Rocks', 'Coupe']} changeHandler={null} />
-          <p>Taste:</p>
-          <FormDropdown options={['Citrusy', 'Boozy']} changeHandler={null} />
+      <Card classes={classes.addCocktail}>
+        <div className={classes.photo}>
+          Photo
+          <Button>Upload</Button>
         </div>
-      </div>
-      <div className={classes.ingredients}>
-        {ingredientsUI}
-        <Button onClick={addIngredientHandler}>Add Ingredient</Button>
-      </div>
-      <div className={classes.recipe}>
-        {recipeUI}
+        <div className={classes.description}>
+          <FormInput type="text" placeholder="Cocktail Name" />
+          <FormInput type="text" placeholder="Author" />
+          <div className={classes.dropdown}>
+            <p>Glass:</p>
+            <FormDropdown options={['Rocks', 'Coupe']} changeHandler={null} />
+            <p>Taste:</p>
+            <FormDropdown options={['Citrusy', 'Boozy']} changeHandler={null} />
+          </div>
+        </div>
+        <div className={classes.ingredients}>
+          {ingredientsUI}
+          <Button onClick={addIngredientHandler}>Add Ingredient</Button>
+        </div>
+        <div className={classes.recipe}>
+          {recipeUI}
 
-        <Button onClick={addRecipeHandler}>Add Step</Button>
-      </div>
+          <Button onClick={addRecipeHandler}>Add Step</Button>
+        </div>
 
-      <div></div>
-      <div className={classes.submit}>
-        <Button>Add Cocktail</Button>
-      </div>
-    </Card>
+        <div></div>
+        <div className={classes.submit}>
+          <Button>Add Cocktail</Button>
+        </div>
+      </Card>
+    </>
   );
 };
 
