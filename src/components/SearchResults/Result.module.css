@@ -3,10 +3,10 @@
   height: 110px;
   background-color: rgb(240, 240, 240);
   display: flex;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid rgb(207, 207, 207);
   border-top: 0;
   padding: 1rem;
-  transition: all ease 0.2s;
+  transition: all ease 0.3s;
   cursor: pointer;
   position: relative;
 }
@@ -18,6 +18,11 @@
 
 .main:hover {
   background-color: rgb(255, 255, 255);
+}
+
+.main:hover h3:nth-child(1) {
+  /* color: yellow;
+  text-shadow: 1px 1px 1px black; */
 }
 
 .image {
@@ -54,4 +59,11 @@
 
 .edit {
   bottom: 0;
+}
+
+.stars {
+  font-size: 1.5rem;
+  margin: 0 1rem;
+  /* color: grey; */
+  /* text-shadow: 1px 2px 2px black; */
 }

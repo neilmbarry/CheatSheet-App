@@ -6,6 +6,7 @@ import FormDropdown from '../UI/FormDropdown';
 import IngredientInput from './IngredientInput/IngredientInput';
 import RecipeInput from './RecipeInput/RecipeInput';
 import Button from '../UI/Button';
+import StarContainer from '../UI/StarContainer';
 
 const generateId = () => Math.floor(Math.random() * 100000 + 1);
 const DUMMY_INGS = [
@@ -86,6 +87,16 @@ const AddCocktail = (props) => {
       <div className={classes.main}>
         <h2>Create a cocktail</h2>
         <h6>Fill in required fields.</h6>
+        <StarContainer rating={3} />
+        <div className={classes.formContainer}>
+          <form action="">
+            <div className={classes.firstRow}>
+              <div className={classes.picture}></div>
+              <div className={classes.mainInfo}></div>
+            </div>
+            <div className={classes.secondRow}></div>
+          </form>
+        </div>
       </div>
       <Card classes={classes.addCocktail}>
         <div className={classes.photo}>

@@ -1,6 +1,12 @@
 import React from 'react';
 import classes from './CocktailTitle.module.css';
 import Star from '../../UI/Star';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faHeart as faHeartFull,
+  faStarHalfStroke,
+  faStar,
+} from '@fortawesome/free-solid-svg-icons';
 
 const CocktailTitle = ({ className, title, author, date, rating, reviews }) => {
   const classesList = `${classes.main} ${className}`;
@@ -11,11 +17,18 @@ const CocktailTitle = ({ className, title, author, date, rating, reviews }) => {
       <h5>{date}</h5>
       <div className={classes.ratings}>
         <h3>{rating}</h3>
+        <div className={classes.stars}>
+          <FontAwesomeIcon icon={faStar} />
+          <FontAwesomeIcon icon={faStar} />
+          <FontAwesomeIcon icon={faStar} />
+          <FontAwesomeIcon icon={faStar} />
+          <FontAwesomeIcon icon={faStarHalfStroke} />
+        </div>
+        {/* <Star />
         <Star />
         <Star />
         <Star />
-        <Star />
-        <Star />
+        <Star /> */}
         <h3>
           <span className={classes.smaller}>({reviews})</span>
         </h3>

@@ -5,7 +5,9 @@
   /* background-color: turquoise; */
   /* margin: 1rem; */
   grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: 3fr 2fr;
+  grid-template-rows: 3fr 5fr;
+  height: 700px;
+  overflow: scroll;
   /* grid-template-areas:
     'title title pic pic rev rev'
     'ing method method method rev rev'; */

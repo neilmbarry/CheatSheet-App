@@ -89,3 +89,25 @@
   padding: 2rem;
   flex-direction: column;
 }
+
+.formContainer {
+  width: 1000px;
+  padding: 2rem;
+  background-color: pink;
+  min-height: 500px;
+}
+
+.firstRow {
+  display: flex;
+  min-height: 100px;
+}
+
+.picture {
+  flex: 2;
+  background-color: powderblue;
+}
+
+.mainInfo {
+  flex: 3;
+  background-color: aqua;
+}

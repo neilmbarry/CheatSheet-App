@@ -50,6 +50,7 @@
 .options {
   display: flex;
   padding: 1rem;
+  /* background-color: rgb(214, 214, 214); */
   border-bottom: 1px solid grey;
   justify-content: space-between;
 }

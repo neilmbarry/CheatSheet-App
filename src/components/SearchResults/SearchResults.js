@@ -32,6 +32,7 @@ const SearchResults = ({ className, children, results, onClick }) => {
             rating={4.9}
             reviews={104}
             isAuthor={true}
+            fave={true}
           />
           <Result
             img={img1}
@@ -46,15 +47,16 @@ const SearchResults = ({ className, children, results, onClick }) => {
             name="Pink Lady"
             tags={['Citrusy', 'Gin', 'Flute']}
             rating={4.8}
-            reviews={133}
+            reviews={117}
             isAuthor={false}
+            fave={true}
           />
           <Result
             img={img2}
             name="Blackberry Shrub"
             tags={['Citrusy', 'Vodka', 'Coupe']}
             rating={5.0}
-            reviews={144}
+            reviews={109}
             isAuthor={true}
           />
           <Result

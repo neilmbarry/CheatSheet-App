@@ -31,3 +31,8 @@
   align-items: center;
   /* background-color: red; */
 }
+
+.stars {
+  font-size: 2rem;
+  margin: 0 1rem;
+}

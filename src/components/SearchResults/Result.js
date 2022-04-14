@@ -3,11 +3,25 @@ import classes from './Result.module.css';
 // import img from '../../img/paper.jpg';
 import Star from '../UI/Star';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
+import { faHeart, faPenToSquare } from '@fortawesome/free-regular-svg-icons';
+import {
+  faHeart as faHeartFull,
+  faStarHalfStroke,
+  faStar,
+} from '@fortawesome/free-solid-svg-icons';
+
 import { Link } from 'react-router-dom';
 
-const Result = ({ onClick, img, name, tags, rating, reviews, isAuthor }) => {
+const Result = ({
+  onClick,
+  img,
+  name,
+  tags,
+  rating,
+  reviews,
+  isAuthor,
+  fave,
+}) => {
   const tagsHTML = tags.join(' | ');
   return (
     <Link to="/">
@@ -20,16 +34,22 @@ const Result = ({ onClick, img, name, tags, rating, reviews, isAuthor }) => {
           <h6>{tagsHTML}</h6>
           <div className={classes.rating}>
             <h3>{rating.toFixed(1)}</h3>
-            <Star />
-            <Star />
-            <Star />
-            <Star />
-            <Star />
+            <div className={classes.stars}>
+              <FontAwesomeIcon icon={faStar} />
+              <FontAwesomeIcon icon={faStar} />
+              <FontAwesomeIcon icon={faStar} />
+              <FontAwesomeIcon icon={faStar} />
+              <FontAwesomeIcon icon={faStarHalfStroke} />
+            </div>
             <h4>({reviews})</h4>
           </div>
         </div>
         <div className={classes.icon + ' ' + classes.fav}>
-          <FontAwesomeIcon icon={faHeart} />
+          {fave ? (
+            <FontAwesomeIcon icon={faHeartFull} />
+          ) : (
+            <FontAwesomeIcon icon={faHeart} />
+          )}
         </div>
         <div className={classes.icon + ' ' + classes.edit}>
           {isAuthor && <FontAwesomeIcon icon={faPenToSquare} />}
