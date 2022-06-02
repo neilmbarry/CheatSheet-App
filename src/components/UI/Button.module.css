@@ -7,17 +7,24 @@
   background-color: #000;
   padding: 1.4rem 2.2rem;
   font-size: 1.2rem;
-  font-weight: bold;
+  font-weight: 400;
   color: white;
   border: none;
   /* box-shadow: 2px 3px 7px rgba(17, 17, 17, 0.283); */
   cursor: pointer;
   transition: all ease 0.4s;
+  border: 1px solid black;
 }
 
 .btn:hover {
   background-color: black;
   color: white;
+}
+
+.alt {
+  background-color: transparent;
+  color: black;
+  border: 1px solid black;
 }
 /*
 .btn:active {

@@ -1,13 +1,14 @@
 .cocktailGrid {
   display: grid;
-  width: 100%;
+  width: 80%;
+  max-width: 1400px;
   /* height: 600px; */
   /* background-color: turquoise; */
-  /* margin: 1rem; */
+  margin: 4rem auto;
   grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: 3fr 5fr;
-  height: 700px;
-  overflow: scroll;
+  grid-template-rows: 70vh 1fr;
+  /* height: 700px; */
+  /* overflow: scroll; */
   /* grid-template-areas:
     'title title pic pic rev rev'
     'ing method method method rev rev'; */
@@ -33,7 +34,8 @@
 
 .pic {
   grid-area: pic;
-  max-height: 90vh;
+  background-color: white;
+  /* max-height: 50vh; */
   /* width: 150%; */
 }
 
@@ -50,4 +52,13 @@
 .rev {
   grid-area: rev;
   background-color: #ebebeb;
+}
+
+.image {
+  /* border-radius: 50px; */
+  /* height: 90%; */
+  /* width: 70%; */
+  margin: auto;
+  /* clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); */
+  /* clip-path: polygon(20% 0, 100% 0%, 100% 100%, 0 100%); */
 }

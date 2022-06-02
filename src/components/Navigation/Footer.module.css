@@ -1,0 +1,25 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 0.5rem 2rem;
+  background-color: #000000;
+  align-items: center;
+  color: aliceblue;
+  position: sticky;
+  justify-content: center;
+}
+
+.title,
+.subtitle,
+.name {
+  margin: 0.4rem;
+}
+
+.icons {
+  font-size: 4rem;
+}
+
+.icons * {
+  margin: 0 1rem;
+}

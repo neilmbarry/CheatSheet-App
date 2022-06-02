@@ -10,6 +10,7 @@ import SignUp from './components/SignUp/SignUp';
 import Spinner from './components/UI/Spinner';
 import CocktailGrid from './components/CocktailGrid/CocktailGrid';
 import SearchResults from './components/SearchResults/SearchResults';
+import Footer from './components/Navigation/Footer';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { motion } from 'framer-motion/dist/es/index';
 
@@ -69,29 +70,34 @@ function App() {
         onClick={closeResults}
         onChange={revealResults}
       >
-        <div className={classes.pageContainer}>
-          {showResults && (
-            <SearchResults results={[]} onClick={toggleResults}></SearchResults>
-          )}
+        <Footer>
+          <div className={classes.pageContainer}>
+            {showResults && (
+              <SearchResults
+                results={[]}
+                onClick={toggleResults}
+              ></SearchResults>
+            )}
 
-          <Route path="/add-cocktail">
-            <AddCocktail />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/signUp">
-            <SignUp />
-          </Route>
-          <Route path="/cocktails/:slug">
-            <CocktailInfo />
-          </Route>
-          <Route path="/" exact>
-            {/* {isLoading ? <Spinner /> : null} */}
-            <CocktailGrid />
-            {/* {cocktailsList} */}
-          </Route>
-        </div>
+            <Route path="/add-cocktail">
+              <AddCocktail />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/signUp">
+              <SignUp />
+            </Route>
+            <Route path="/cocktails/:slug">
+              <CocktailInfo />
+            </Route>
+            <Route path="/" exact>
+              {/* {isLoading ? <Spinner /> : null} */}
+              <CocktailGrid />
+              {/* {cocktailsList} */}
+            </Route>
+          </div>
+        </Footer>
       </NavigationBar>
       {/* <NavigationBar></NavigationBar> */}
     </div>

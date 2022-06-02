@@ -18,7 +18,7 @@ const CocktailGrid = () => {
         reviews="102"
       />
       <div className={classes.pic}>
-        <img src={photo} alt="" />
+        <img src={photo} alt="" className={classes.image} />
       </div>
       <CocktailIngredients
         className={classes.ing}

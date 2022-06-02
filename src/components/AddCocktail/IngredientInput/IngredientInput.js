@@ -3,6 +3,8 @@ import classes from './IngredientInput.module.css';
 import FormInput from '../../UI/FormInput';
 import FormDropdown from '../../UI/FormDropdown';
 import Button from '../../UI/Button';
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const IngredientInput = ({ ing, removeIngredient }) => {
   const removeIngredientHandler = () => {
@@ -47,7 +49,9 @@ const IngredientInput = ({ ing, removeIngredient }) => {
         <option value="oz">oz</option>
         <option value="dash">dash</option>
       </select> */}
-      <Button onClick={removeIngredientHandler}></Button>
+      <div className={classes.close} onClick={removeIngredientHandler}>
+        <FontAwesomeIcon icon={faCircleXmark}></FontAwesomeIcon>
+      </div>
     </div>
   );
 };

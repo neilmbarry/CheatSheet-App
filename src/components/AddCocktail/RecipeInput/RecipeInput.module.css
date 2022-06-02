@@ -1,6 +1,7 @@
 .recipe {
   display: flex;
   width: 100%;
+  margin-bottom: 5px;
 }
 
 .recipe button {
@@ -14,16 +15,29 @@
 }
 
 .recipe input {
-  border-radius: 0 5px 5px 0;
+  /* border-radius: 0 5px 5px 0; */
+  /* margin-right: 5px; */
+}
+
+.close {
+  color: rgb(190, 190, 190);
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1rem;
+  cursor: pointer;
 }
 
 .step {
-  width: 6rem;
-  background-color: azure;
+  width: 4rem;
+  /* background-color: azure; */
+  border: 1px solid rgb(190, 190, 190);
   color: black;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 5px 0 0 5px;
-  border-right: 1px grey solid;
+  margin-right: 5px;
+  /* border-radius: 5px 0 0 5px;
+  border-right: 1px grey solid; */
 }

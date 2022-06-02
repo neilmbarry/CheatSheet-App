@@ -2,38 +2,52 @@
   display: flex;
   align-items: stretch;
   width: 100%;
+  margin-bottom: 5px;
 }
 
 .ingredient input {
   /* background-color: aquamarine; */
   border-radius: 0;
-  border: 1px solid grey;
-  border-right: none;
+  border: 1px solid rgb(190, 190, 190);
+  /* border-right: none; */
+  margin-right: 5px;
   text-align: center;
 }
 
 .ingredient input:first-child {
   /* background-color: aquamarine; */
-  border-radius: 5px 0 0 5px;
+  /* border-radius: 5px 0 0 5px; */
 }
 
 .ingredient input:nth-child(3) {
   width: 6rem;
 }
 
-.ingredient button {
-  background-color: rgb(255, 72, 72);
-  width: 2rem;
+.close {
+  /* background-color: transparent; */
+  /* width: 2rem; */
   /* width: 17rem;
   height: 7rem; */
-  padding: 1rem;
-  border-radius: 7px;
-  margin: auto 1rem;
+  /* padding: 1rem; */
+  /* border-radius: 7px; */
+  /* margin: auto 1rem; */
+  color: rgb(190, 190, 190);
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.close:hover {
+  color: rgb(255, 105, 105);
 }
 
 .ingredient select {
-  border-radius: 0 5px 5px 0;
-  border: 1px solid grey;
+  /* border-radius: 0 5px 5px 0;
+  border: 1px solid grey; */
   /* border-left: 0; */
 }
 

@@ -99,11 +99,19 @@ label {
 
 input {
   border: none;
-  border: 1px solid black;
+  border: 1px solid rgb(190, 190, 190);
   padding: 1rem;
   outline: none;
   font-weight: 300;
   width: 100%;
+}
+
+input:focus {
+  border: solid black 1px;
+}
+
+input:focus::placeholder {
+  color: transparent;
 }
 
 .pageContainer {

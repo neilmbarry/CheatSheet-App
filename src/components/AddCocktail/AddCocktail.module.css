@@ -91,10 +91,41 @@
 }
 
 .formContainer {
-  width: 1000px;
-  padding: 2rem;
-  background-color: pink;
-  min-height: 500px;
+  width: 60%;
+  max-width: 1000px;
+  padding: 1rem 3rem 3rem 3rem;
+  background-color: #ffffff;
+  margin: 3rem;
+}
+
+.labelContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.labelHalf {
+  margin-right: 1rem;
+}
+
+.labelGroup {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.addBtn {
+  padding: 0.5rem 0;
+  cursor: pointer;
+}
+
+.btnContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.btnContainer button {
+  margin-top: 1rem;
 }
 
 .firstRow {

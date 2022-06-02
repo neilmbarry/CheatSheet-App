@@ -30,10 +30,25 @@ const DUMMY_INGS = [
     id: generateId(),
   },
 ];
+const EMPTY_INGS = [
+  {
+    id: generateId(),
+  },
+  {
+    id: generateId(),
+  },
+  {
+    id: generateId(),
+  },
+];
 
 const AddCocktail = (props) => {
-  const [ingredients, setIngredients] = useState(DUMMY_INGS);
-  const [recipe, setRecipe] = useState([{ id: generateId() }]);
+  const [ingredients, setIngredients] = useState(EMPTY_INGS);
+  const [recipe, setRecipe] = useState([
+    { id: generateId() },
+    { id: generateId() },
+    { id: generateId() },
+  ]);
 
   const addIngredientHandler = () => {
     const updatedIngredients = [...ingredients, { id: generateId() }];
@@ -86,19 +101,73 @@ const AddCocktail = (props) => {
     <>
       <div className={classes.main}>
         <h2>Create a cocktail</h2>
-        <h6>Fill in required fields.</h6>
-        <StarContainer rating={3} />
+        <h6>Fill in required fields to add a cocktail.</h6>
+
         <div className={classes.formContainer}>
-          <form action="">
-            <div className={classes.firstRow}>
-              <div className={classes.picture}></div>
-              <div className={classes.mainInfo}></div>
+          <div className={classes.labelGroup}>
+            <div className={`${classes.labelContainer} ${classes.labelHalf}`}>
+              <label name="email">Cocktail Name</label>
+              <input type="email" placeholder="e.g. Paper Plane" />
             </div>
-            <div className={classes.secondRow}></div>
-          </form>
+            <div className={classes.labelContainer}>
+              <label name="password">Author</label>
+              <input
+                type="password"
+                placeholder="e.g. Neil Barry"
+                className={classes.password}
+              />
+            </div>
+          </div>
+          <div className={classes.labelContainer}>
+            <label name="password">Ingredients</label>
+            {/* <input
+              type="password"
+              placeholder="e.g. Neil Barry"
+              className={classes.password}
+            /> */}
+            {ingredientsUI}
+            <h6 className={classes.addBtn} onClick={addIngredientHandler}>
+              + Add another ingredient
+            </h6>
+          </div>
+          <div className={classes.labelContainer}>
+            <label name="password">Method</label>
+            {/* <input
+              type="password"
+              placeholder="e.g. Neil Barry"
+              className={classes.password}
+            /> */}
+            {recipeUI}
+            <h6 className={classes.addBtn} onClick={addRecipeHandler}>
+              + Add another step
+            </h6>
+          </div>
+          <div className={classes.labelGroup}>
+            <div className={`${classes.labelContainer} ${classes.labelHalf}`}>
+              <label name="email">Glass Type</label>
+              <input type="email" placeholder="e.g. Paper Plane" />
+            </div>
+            <div className={`${classes.labelContainer} ${classes.labelHalf}`}>
+              <label name="email">Taste</label>
+              <input type="email" placeholder="e.g. Paper Plane" />
+            </div>
+
+            <div className={classes.labelContainer}>
+              <label name="password">Photo</label>
+              <input
+                type="password"
+                placeholder="e.g. Neil Barry"
+                className={classes.password}
+              />
+            </div>
+          </div>
+          <div className={classes.btnContainer}>
+            <Button>Submit</Button>
+            <Button type="alt">Cancel</Button>
+          </div>
         </div>
       </div>
-      <Card classes={classes.addCocktail}>
+      {/* <Card classes={classes.addCocktail}>
         <div className={classes.photo}>
           Photo
           <Button>Upload</Button>
@@ -127,7 +196,7 @@ const AddCocktail = (props) => {
         <div className={classes.submit}>
           <Button>Add Cocktail</Button>
         </div>
-      </Card>
+      </Card> */}
     </>
   );
 };
