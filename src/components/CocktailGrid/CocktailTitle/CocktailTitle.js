@@ -1,9 +1,9 @@
 import React from 'react';
 import classes from './CocktailTitle.module.css';
-import Star from '../../UI/Star';
+// import Star from '../../UI/Star';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faHeart as faHeartFull,
+  // faHeart as faHeartFull,
   faStarHalfStroke,
   faStar,
 } from '@fortawesome/free-solid-svg-icons';

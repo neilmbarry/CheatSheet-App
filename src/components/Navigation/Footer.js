@@ -17,7 +17,7 @@ const Footer = ({ className, children }) => {
     <div className={classesList}>
       {children}
       <div className={classes.footer}>
-        <h3 className={classes.title}>Cheat\Sheet</h3>
+        <h3 className={classes.title}>CHEAT\SHEET</h3>
         <h5 className={classes.subtitle}>
           Recipes you want to make. Cooking advice that works. Restaurant
           recommendations you trust.

@@ -1,48 +1,48 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
-import { faBarsProgress } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+// import { faBarsProgress } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import Button from '../UI/Button';
-import { useRef } from 'react';
+// import { useRef } from 'react';
 import classes from './Login.module.css';
 
 const Login = (props) => {
-  const name = useRef();
-  const email = useRef();
-  const password = useRef();
-  const passwordConfirm = useRef();
+  // const name = useRef();
+  // const email = useRef();
+  // const password = useRef();
+  // const passwordConfirm = useRef();
 
-  const submitHandler = async (e) => {
-    e.preventDefault();
-    console.log(
-      email.current.value,
-      password.current.value,
-      passwordConfirm.current.value,
-      name.current.value
-    );
-    const body = JSON.stringify({
-      name: name.current.value,
-      email: email.current.value,
-      password: password.current.value,
-      passwordConfirm: passwordConfirm.current.value,
-    });
-    console.log(body);
-    try {
-      fetch('http://127.0.0.1:8000/api/v1/users/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body,
-      })
-        .then((res) => res.json())
-        .then((data) => console.log(data))
-        .catch((err) => console.log(err));
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const submitHandler = async (e) => {
+  //   e.preventDefault();
+  //   console.log(
+  //     email.current.value,
+  //     password.current.value,
+  //     passwordConfirm.current.value,
+  //     name.current.value
+  //   );
+  //   const body = JSON.stringify({
+  //     name: name.current.value,
+  //     email: email.current.value,
+  //     password: password.current.value,
+  //     passwordConfirm: passwordConfirm.current.value,
+  //   });
+  //   console.log(body);
+  //   try {
+  //     fetch('http://127.0.0.1:8000/api/v1/users/signup', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body,
+  //     })
+  //       .then((res) => res.json())
+  //       .then((data) => console.log(data))
+  //       .catch((err) => console.log(err));
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
   return (
     <div className={classes.main}>
       <h2>Log in to your account</h2>

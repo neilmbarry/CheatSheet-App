@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Result.module.css';
 // import img from '../../img/paper.jpg';
-import Star from '../UI/Star';
+// import Star from '../UI/Star';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import {

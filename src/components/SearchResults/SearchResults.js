@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classes from './SearchResults.module.css';
 import Result from './Result';
 import img from '../../img/paper.jpg';
@@ -8,7 +8,7 @@ import img3 from '../../img/cock3.jpg';
 import img4 from '../../img/cock4.jpg';
 
 const SearchResults = ({ className, children, results, onClick }) => {
-  const [isActive, setIsActive] = useState(false);
+  // const [isActive, setIsActive] = useState(false);
   const classesList = `${classes.main} ${className}`;
   return (
     <div className={classes.backdrop} onClick={onClick}>

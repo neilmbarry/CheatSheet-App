@@ -5,7 +5,7 @@ import classes from './NavigationBar.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+// import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
@@ -19,9 +19,9 @@ const NavigationBar = (props) => {
             onChange={props.onChange}
             onClick={props.onSearchClick}
           />
-          <Button onClick={(e) => props.onSearch(e)} className={classes.magni}>
+          <div onClick={(e) => props.onSearch(e)} className={classes.magni}>
             <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
-          </Button>
+          </div>
         </div>
         <Link to="/">
           <h4 className={classes.navButton}>
@@ -42,7 +42,7 @@ const NavigationBar = (props) => {
 
           <Link to="/login">
             <Button className={classes.yellow}>
-              Log in / Sign up
+              <h4>Log in / Sign up</h4>
               {/* <FontAwesomeIcon icon={faUser}/> */}
             </Button>
           </Link>

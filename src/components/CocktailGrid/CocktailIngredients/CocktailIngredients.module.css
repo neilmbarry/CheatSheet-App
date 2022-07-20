@@ -7,10 +7,12 @@
   padding: 1rem 0;
 
   border-bottom: 2px solid black;
+  margin-bottom: 1rem;
 }
 
 .main p {
-  padding: 1rem 0;
+  padding: 0.5rem 0;
+  text-align: center;
   margin-right: 1rem;
   display: inline-block;
 }

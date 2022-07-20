@@ -73,8 +73,8 @@ h5 {
 h6 {
   color: grey;
   text-transform: none;
-  font-size: 1.5rem;
-  font-weight: 400;
+  font-size: 1.7rem;
+  font-weight: 300;
 }
 p {
   font-size: 1.5rem;
@@ -104,6 +104,7 @@ input {
   outline: none;
   font-weight: 300;
   width: 100%;
+  font-size: 1.5rem;
 }
 
 input:focus {
@@ -116,4 +117,9 @@ input:focus::placeholder {
 
 .pageContainer {
   position: relative;
+  margin-top: 6rem;
+  /* background-color: greenyellow;
+  z-index: 10000;
+  width: 1999px;
+  height: 1000px; */
 }

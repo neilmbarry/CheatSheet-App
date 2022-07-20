@@ -10,6 +10,8 @@ const FormInput = (props) => {
         onChange={props.changeHandler}
         className={classes.input}
         defaultValue={props.value}
+        id={props.id}
+        min={props.min}
       />
     </>
   );

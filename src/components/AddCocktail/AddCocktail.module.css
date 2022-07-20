@@ -91,11 +91,14 @@
 }
 
 .formContainer {
-  width: 60%;
-  max-width: 1000px;
+  width: 95%;
+  max-width: 750px;
   padding: 1rem 3rem 3rem 3rem;
   background-color: #ffffff;
   margin: 3rem;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.171);
 }
 
 .labelContainer {
@@ -121,11 +124,16 @@
 
 .btnContainer {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
 }
 
 .btnContainer button {
   margin-top: 1rem;
+  flex: 1;
+}
+
+.btnContainer button:first-child {
+  margin-right: 10px;
 }
 
 .firstRow {
@@ -141,4 +149,70 @@
 .mainInfo {
   flex: 3;
   background-color: aqua;
+}
+
+.photoBox {
+  /* border: 1px solid rgb(190, 190, 190); */
+  height: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  /* background-color: hotpink; */
+}
+
+.photoBtns {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  /* width: 60%; */
+  flex: 2;
+}
+
+.photoImage {
+  background-color: rgb(228, 228, 228);
+  border-radius: 1000px;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 6rem;
+  color: rgb(151, 151, 151);
+}
+
+.photoContainer {
+  /* width: 40%; */
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem 0 1rem;
+}
+
+.photoButton {
+  padding: 1rem;
+  font-size: 1.5rem;
+  text-transform: capitalize;
+}
+
+.orBreak {
+  display: flex;
+  width: 100%;
+  margin: auto;
+  align-items: center;
+}
+
+.orBreak span {
+  padding: 0 2rem;
+  text-transform: lowercase;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.orBreak::before,
+.orBreak::after {
+  content: '';
+  flex: 1;
+  background-color: rgb(109, 109, 109);
+  height: 1px;
 }

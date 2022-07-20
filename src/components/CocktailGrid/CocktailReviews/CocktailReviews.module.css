@@ -8,6 +8,11 @@
 
   border-bottom: 2px solid black;
 }
+
+.main p:last-child {
+  border-bottom: 0px solid black;
+}
+
 .main p {
   padding: 1rem 0;
   margin-right: 1rem;

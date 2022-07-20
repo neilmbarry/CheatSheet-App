@@ -16,8 +16,12 @@
   margin: 0.4rem;
 }
 
+.name {
+  text-transform: uppercase;
+}
+
 .icons {
-  font-size: 4rem;
+  font-size: 3rem;
 }
 
 .icons * {

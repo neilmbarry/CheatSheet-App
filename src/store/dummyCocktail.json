@@ -1,0 +1,134 @@
+[
+  {
+    "_id": "61f6b73bca23b4c73253e638",
+    "name": "Daiquiri",
+    "flavour": "Citrus",
+    "glass": "Coupe",
+    "ingredients": [
+      {
+        "name": "White Rum",
+        "brand": "Havana 3yr",
+        "quantity": 2,
+        "unit": "oz",
+        "_id": "61f6b73bca23b4c73253e639"
+      },
+      {
+        "name": "Lime Juice",
+        "quantity": 0.75,
+        "unit": "oz",
+        "_id": "61f6b73bca23b4c73253e63a"
+      },
+      {
+        "name": "Sugar",
+        "quantity": 0.5,
+        "unit": "oz",
+        "_id": "61f6b73bca23b4c73253e63b"
+      }
+    ],
+    "garnish": "None",
+    "method": [
+      {
+        "value": "step 1"
+      },
+      {
+        "value": "step 2"
+      },
+      {
+        "value": "step 3"
+      }
+    ],
+    "slug": "daiquiri",
+    "ratingsAverage": 3.4,
+    "ratingsQuantity": 5,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Classic_Daiquiri_in_Cocktail_Glass.jpg",
+    "id": "61f6b73bca23b4c73253e638"
+  },
+  {
+    "_id": "61f6b73bca23b4c73253e638",
+    "name": "Daiquiri",
+    "flavour": "Citrus",
+    "glass": "Coupe",
+    "ingredients": [
+      {
+        "name": "White Rum",
+        "brand": "Havana 3yr",
+        "quantity": 2,
+        "unit": "oz",
+        "_id": "61f6b73bca23b4c73253e639"
+      },
+      {
+        "name": "Lime Juice",
+        "quantity": 0.75,
+        "unit": "oz",
+        "_id": "61f6b73bca23b4c73253e63a"
+      },
+      {
+        "name": "Sugar",
+        "quantity": 0.5,
+        "unit": "oz",
+        "_id": "61f6b73bca23b4c73253e63b"
+      }
+    ],
+    "garnish": "None",
+    "method": [
+      {
+        "value": "step 1"
+      },
+      {
+        "value": "step 2"
+      },
+      {
+        "value": "step 3"
+      }
+    ],
+    "slug": "daiquiri",
+    "ratingsAverage": 3.4,
+    "ratingsQuantity": 5,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Classic_Daiquiri_in_Cocktail_Glass.jpg",
+    "id": "61f6b73bca23b4c73253e638"
+  },
+  {
+    "_id": "61f6b73bca23b4c73253e638",
+    "name": "Daiquiri",
+    "flavour": "Citrus",
+    "glass": "Coupe",
+    "ingredients": [
+      {
+        "name": "White Rum",
+        "brand": "Havana 3yr",
+        "quantity": 2,
+        "unit": "oz",
+        "_id": "61f6b73bca23b4c73253e639"
+      },
+      {
+        "name": "Lime Juice",
+        "quantity": 0.75,
+        "unit": "oz",
+        "_id": "61f6b73bca23b4c73253e63a"
+      },
+      {
+        "name": "Sugar",
+        "quantity": 0.5,
+        "unit": "oz",
+        "_id": "61f6b73bca23b4c73253e63b"
+      }
+    ],
+    "garnish": "None",
+    "method": [
+      {
+        "value": "step 1"
+      },
+      {
+        "value": "step 2"
+      },
+      {
+        "value": "step 3"
+      }
+    ],
+    "slug": "daiquiri",
+    "ratingsAverage": 3.4,
+    "ratingsQuantity": 5,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Classic_Daiquiri_in_Cocktail_Glass.jpg",
+    "id": "61f6b73bca23b4c73253e638"
+  }
+]
