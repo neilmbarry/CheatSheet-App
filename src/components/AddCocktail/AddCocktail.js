@@ -9,6 +9,10 @@ import Button from '../UI/Button';
 // import StarContainer from '../UI/StarContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCocktail } from '@fortawesome/free-solid-svg-icons';
+import store from '../../store/store';
+import { addCocktail, deleteCocktail } from '../../store/cocktails';
+import Modal from '../UI/Modal';
+import PlaceHolderSelection from './PlaceHolderSelection';
 
 const generateId = () => Math.floor(Math.random() * 100000 + 1);
 // const DUMMY_INGS = [
@@ -35,9 +39,9 @@ const generateId = () => Math.floor(Math.random() * 100000 + 1);
 
 const AddCocktail = (props) => {
   const [ingredients, setIngredients] = useState([
-    { id: generateId() },
-    { id: generateId() },
-    { id: generateId() },
+    { id: generateId(), unit: 'ml' },
+    { id: generateId(), unit: 'ml' },
+    { id: generateId(), unit: 'ml' },
   ]);
   const [recipe, setRecipe] = useState([
     { id: generateId() },
@@ -46,12 +50,21 @@ const AddCocktail = (props) => {
   ]);
   const cocktailName = useRef();
   const authorName = useRef();
+  const [image, setImage] = useState();
   const glassType = useRef();
   const flavourType = useRef();
   const garnishType = useRef();
+  const [showImageModal, setShowImageModal] = useState(false);
+
+  const toggleImageModal = () => {
+    setShowImageModal((prev) => !prev);
+  };
 
   const addIngredientHandler = () => {
-    const updatedIngredients = [...ingredients, { id: generateId() }];
+    const updatedIngredients = [
+      ...ingredients,
+      { id: generateId(), unit: 'ml' },
+    ];
     setIngredients(updatedIngredients);
     return;
   };
@@ -113,8 +126,20 @@ const AddCocktail = (props) => {
       garnish: garnishType.current.value,
       ingredients,
       recipe,
+      image,
+      slug: cocktailName.current.value.split(' ').join(''),
     };
     console.log(cocktail);
+    store.dispatch(addCocktail(cocktail));
+  };
+
+  const logState = () => {
+    console.log(JSON.stringify(store.getState().cocktails.value.cocktails));
+  };
+
+  const submitPlaceHolderHandler = (pic) => {
+    toggleImageModal();
+    setImage(pic);
   };
 
   const ingredientsUI = ingredients.map((ing, i) => (
@@ -141,6 +166,14 @@ const AddCocktail = (props) => {
 
   return (
     <>
+      {showImageModal && (
+        <Modal onClose={toggleImageModal}>
+          <PlaceHolderSelection
+            onClose={toggleImageModal}
+            onSubmit={submitPlaceHolderHandler}
+          />
+        </Modal>
+      )}
       <div className={classes.main}>
         <h2>Create a cocktail</h2>
         <h6>Fill in required fields to add a cocktail.</h6>
@@ -171,13 +204,21 @@ const AddCocktail = (props) => {
                   <div className={classes.orBreak}>
                     <span>or</span>
                   </div>
-                  <Button type="alt" className={classes.photoButton}>
+                  <Button
+                    type="alt"
+                    className={classes.photoButton}
+                    onClick={toggleImageModal}
+                  >
                     Choose Placeholder
                   </Button>
                 </div>
                 <div className={classes.photoContainer}>
                   <div className={classes.photoImage}>
-                    <FontAwesomeIcon icon={faCocktail}></FontAwesomeIcon>
+                    {image ? (
+                      <img src={image} alt="none" />
+                    ) : (
+                      <FontAwesomeIcon icon={faCocktail}></FontAwesomeIcon>
+                    )}
                   </div>
                 </div>
               </div>
@@ -229,7 +270,9 @@ const AddCocktail = (props) => {
 
           <div className={classes.btnContainer}>
             <Button onClick={submitFormHandler}>Submit</Button>
-            <Button type="alt">Cancel</Button>
+            <Button type="alt" onClick={() => logState()}>
+              Log State
+            </Button>
           </div>
         </div>
       </div>

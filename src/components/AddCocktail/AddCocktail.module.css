@@ -93,11 +93,11 @@
 .formContainer {
   width: 95%;
   max-width: 750px;
-  padding: 1rem 3rem 3rem 3rem;
+  padding: 1rem 4rem 3rem 4rem;
   background-color: #ffffff;
   margin: 3rem;
-  border-radius: 15px;
   overflow: hidden;
+  /* border-radius: 15px; */
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.171);
 }
 
@@ -171,6 +171,7 @@
 .photoImage {
   background-color: rgb(228, 228, 228);
   border-radius: 1000px;
+  overflow: hidden;
   width: 120px;
   height: 120px;
   display: flex;

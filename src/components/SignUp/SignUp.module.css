@@ -19,6 +19,7 @@
   background-color: #ffffff;
   margin: 3rem;
   width: 40%;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.171);
 }
 
 .labelContainer {

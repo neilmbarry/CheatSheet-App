@@ -1,134 +1,119 @@
 [
   {
-    "_id": "61f6b73bca23b4c73253e638",
-    "name": "Daiquiri",
-    "flavour": "Citrus",
-    "glass": "Coupe",
+    "name": "Pina Colada",
+    "author": "Nigel Thorneberry",
+    "glass": "Tall",
+    "flavour": "Creamy",
+    "garnish": "Cherry",
     "ingredients": [
       {
-        "name": "White Rum",
-        "brand": "Havana 3yr",
-        "quantity": 2,
-        "unit": "oz",
-        "_id": "61f6b73bca23b4c73253e639"
+        "id": 81733,
+        "brand": "Bacardi",
+        "type": "Rum",
+        "quantity": "30",
+        "unit": "ml"
       },
       {
-        "name": "Lime Juice",
-        "quantity": 0.75,
-        "unit": "oz",
-        "_id": "61f6b73bca23b4c73253e63a"
+        "id": 32902,
+        "type": "Pineapple Juice",
+        "quantity": "30",
+        "unit": "ml"
       },
-      {
-        "name": "Sugar",
-        "quantity": 0.5,
-        "unit": "oz",
-        "_id": "61f6b73bca23b4c73253e63b"
-      }
+      { "id": 67176, "type": "Coconut Milk", "quantity": "1", "unit": "oz" }
     ],
-    "garnish": "None",
-    "method": [
-      {
-        "value": "step 1"
-      },
-      {
-        "value": "step 2"
-      },
-      {
-        "value": "step 3"
-      }
+    "recipe": [
+      { "id": 22644, "value": "Blend it up!" },
+      { "id": 60263, "value": "And enjoy!" },
+      { "id": 33875 }
     ],
-    "slug": "daiquiri",
-    "ratingsAverage": 3.4,
-    "ratingsQuantity": 5,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Classic_Daiquiri_in_Cocktail_Glass.jpg",
-    "id": "61f6b73bca23b4c73253e638"
+    "slug": "PinaColada",
+    "image": "/static/media/cock4.16c5b479b1442440f042.jpg"
   },
   {
-    "_id": "61f6b73bca23b4c73253e638",
-    "name": "Daiquiri",
-    "flavour": "Citrus",
+    "name": "The Last Word",
+    "author": "Stephanie Barry",
     "glass": "Coupe",
+    "flavour": "Boozy",
+    "garnish": "Lime Wheel",
     "ingredients": [
       {
-        "name": "White Rum",
-        "brand": "Havana 3yr",
-        "quantity": 2,
-        "unit": "oz",
-        "_id": "61f6b73bca23b4c73253e639"
+        "id": 80345,
+        "brand": "Bombay",
+        "type": "Gin",
+        "quantity": "30",
+        "unit": "ml"
       },
       {
-        "name": "Lime Juice",
-        "quantity": 0.75,
-        "unit": "oz",
-        "_id": "61f6b73bca23b4c73253e63a"
+        "id": 65386,
+        "type": "Green Chartreuse",
+        "quantity": "30",
+        "unit": "ml"
       },
-      {
-        "name": "Sugar",
-        "quantity": 0.5,
-        "unit": "oz",
-        "_id": "61f6b73bca23b4c73253e63b"
-      }
+      { "id": 34129, "type": "Maraschcino", "quantity": "30", "unit": "ml" },
+      { "id": 55271, "type": "Lime Juice", "quantity": "30", "unit": "ml" }
     ],
-    "garnish": "None",
-    "method": [
-      {
-        "value": "step 1"
-      },
-      {
-        "value": "step 2"
-      },
-      {
-        "value": "step 3"
-      }
+    "recipe": [
+      { "id": 1766, "value": "Add ingredients and shake." },
+      { "id": 59580, "value": "Strain in to a coupe." },
+      { "id": 47989, "value": "Enjoy" }
     ],
-    "slug": "daiquiri",
-    "ratingsAverage": 3.4,
-    "ratingsQuantity": 5,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Classic_Daiquiri_in_Cocktail_Glass.jpg",
-    "id": "61f6b73bca23b4c73253e638"
+    "slug": "TheLastWord",
+    "image": "/static/media/cock2.9e348dd470890e854211.jpg"
   },
   {
-    "_id": "61f6b73bca23b4c73253e638",
-    "name": "Daiquiri",
-    "flavour": "Citrus",
-    "glass": "Coupe",
+    "name": "Tutti Fruity",
+    "author": "NEIL Barry",
+    "glass": "Rocks",
+    "flavour": "Sweet",
+    "garnish": "Orange",
     "ingredients": [
       {
-        "name": "White Rum",
-        "brand": "Havana 3yr",
-        "quantity": 2,
-        "unit": "oz",
-        "_id": "61f6b73bca23b4c73253e639"
+        "id": 59497,
+        "unit": "ml",
+        "brand": "Grey Goose",
+        "type": "Vodka",
+        "quantity": "40"
       },
       {
-        "name": "Lime Juice",
-        "quantity": 0.75,
-        "unit": "oz",
-        "_id": "61f6b73bca23b4c73253e63a"
+        "id": 12073,
+        "unit": "ml",
+        "brand": "St. Germaine",
+        "type": "Elderflower Liquour",
+        "quantity": "20"
       },
+      { "id": 61797, "unit": "ml", "type": "Lemon Juice", "quantity": "25" },
       {
-        "name": "Sugar",
-        "quantity": 0.5,
-        "unit": "oz",
-        "_id": "61f6b73bca23b4c73253e63b"
+        "id": 31046,
+        "unit": "ml",
+        "brand": "Aperol",
+        "type": "Aperitivo",
+        "quantity": "15"
       }
     ],
-    "garnish": "None",
-    "method": [
-      {
-        "value": "step 1"
-      },
-      {
-        "value": "step 2"
-      },
-      {
-        "value": "step 3"
-      }
+    "recipe": [
+      { "id": 57350, "value": "Build in a rocks glass" },
+      { "id": 39981, "value": "Add ice" },
+      { "id": 46646, "value": "Stir and garnish with an orange slice" }
     ],
-    "slug": "daiquiri",
-    "ratingsAverage": 3.4,
-    "ratingsQuantity": 5,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Classic_Daiquiri_in_Cocktail_Glass.jpg",
-    "id": "61f6b73bca23b4c73253e638"
+    "image": "/static/media/cock.0cbe7be3133209497208.jpg",
+    "slug": "TuttiFruity"
+  },
+  {
+    "name": "Paper Plane",
+    "author": "Neil Barry",
+    "glass": "Up",
+    "flavour": "Spicy",
+    "garnish": "Salt Rim",
+    "ingredients": [
+      { "id": 78917, "unit": "ml", "type": "Brany", "quantity": "33" },
+      { "id": 88490, "unit": "ml", "type": "Shite", "quantity": "33" },
+      { "id": 96341, "unit": "ml" }
+    ],
+    "recipe": [
+      { "id": 86202, "value": "Do nothing." },
+      { "id": 94101 },
+      { "id": 45405 }
+    ],
+    "slug": "PaperPlane"
   }
 ]

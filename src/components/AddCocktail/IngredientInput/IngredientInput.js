@@ -30,7 +30,7 @@ const IngredientInput = ({ ing, removeIngredient, id, updateIngredient }) => {
       <FormInput
         type="text"
         value={ing.name}
-        id="name"
+        id="type"
         placeholder="Type (e.g. Gin)"
         changeHandler={ingredientChangeHandler}
       />

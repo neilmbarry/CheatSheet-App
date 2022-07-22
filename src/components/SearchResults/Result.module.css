@@ -27,10 +27,17 @@
 
 .image {
   border-radius: 100px;
+  border: 1px solid grey;
+  background-color: rgb(219, 219, 219);
   overflow: hidden;
   margin-right: 2rem;
   height: 90px;
   width: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  color: grey;
 }
 
 .rating {

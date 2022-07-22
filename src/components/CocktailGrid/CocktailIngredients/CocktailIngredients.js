@@ -4,6 +4,7 @@ import classes from './CocktailIngredients.module.css';
 const CocktailIngredients = ({ className, ingredients }) => {
   const classesList = `${classes.main} ${className}`;
   // const ingredientsHTMLAlternative = ingredients.map((ing) => {
+
   //   return (
   //     <div key={ing.ingredient}>
   //       <p>{ing.quantity}</p>
@@ -13,12 +14,15 @@ const CocktailIngredients = ({ className, ingredients }) => {
   //     </div>
   //   );
   // });
-  const ingredientsHTML = ingredients.map((ing) => {
+  console.log(ingredients);
+  const ingredientsHTML = ingredients.map((ing, i) => {
+    console.log(ing);
     return (
-      <div key={ing.ingredient}>
+      <div key={i}>
         <p>
           {ing.quantity}
-          {ing.unit} {ing.ingredient}
+          {ing.unit} {ing.type}{' '}
+          <span style={{ color: 'grey', fontWeight: '300' }}>{ing.brand}</span>
         </p>
       </div>
     );

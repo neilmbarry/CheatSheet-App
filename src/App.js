@@ -13,11 +13,16 @@ import SearchResults from './components/SearchResults/SearchResults';
 import Footer from './components/Navigation/Footer';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { motion } from 'framer-motion/dist/es/index';
+import dummy from './store/dummyCocktail.json';
+import store from './store/store';
+import Result from './components/SearchResults/Result';
 
 function App() {
   console.log('App rendered');
+  console.log(dummy);
 
   const [showResults, setShowResults] = useState(false);
+  const [results, setResults] = useState([]);
   // const [cocktailsDatabase, setCocktailDatabase] = useState([]);
   // const [isLoading, setIsLoading] = useState(true);
 
@@ -33,6 +38,7 @@ function App() {
   };
 
   const revealResults = () => {
+    setResults(store.getState().cocktails.value.cocktails);
     setShowResults(true);
   };
 
@@ -69,36 +75,47 @@ function App() {
         onSearchClick={revealResults}
         onClick={closeResults}
         onChange={revealResults}
-      >
-        <Footer>
-          <div className={classes.pageContainer}>
-            {showResults && (
-              <SearchResults
-                results={[]}
-                onClick={toggleResults}
-              ></SearchResults>
-            )}
+      />
+      <div className={classes.pageContainer}>
+        {showResults && (
+          <SearchResults results={[]} onClick={toggleResults}>
+            {results.map((res, i) => {
+              return (
+                <Result
+                  name={res.name}
+                  tags={[res.ingredients[0].type, res.flavour, res.glass]}
+                  rating={4.9}
+                  reviews={23}
+                  key={i}
+                  image={res.image}
+                  slug={res.slug}
+                  isAuthor={true}
+                />
+              );
+            })}
+          </SearchResults>
+        )}
 
-            <Route path="/add-cocktail">
-              <AddCocktail />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/signUp">
-              <SignUp />
-            </Route>
-            <Route path="/cocktails/:slug">
-              <CocktailGrid />
-            </Route>
-            <Route path="/" exact>
-              {/* {isLoading ? <Spinner /> : null} */}
-              <CocktailGrid />
-              {/* {cocktailsList} */}
-            </Route>
-          </div>
-        </Footer>
-      </NavigationBar>
+        <Route path="/add-cocktail">
+          <AddCocktail />
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/signUp">
+          <SignUp />
+        </Route>
+        <Route path="/cocktails/:slug">
+          <CocktailGrid />
+        </Route>
+        <Route path="/" exact>
+          {/* {isLoading ? <Spinner /> : null} */}
+          {/* <CocktailGrid /> */}
+          {/* {cocktailsList} */}
+        </Route>
+      </div>
+      <Footer />
+
       {/* <NavigationBar></NavigationBar> */}
     </div>
   );

@@ -12,6 +12,8 @@ import {
 
 import { Link } from 'react-router-dom';
 
+import { faCocktail } from '@fortawesome/free-solid-svg-icons';
+
 const Result = ({
   onClick,
   img,
@@ -21,13 +23,19 @@ const Result = ({
   reviews,
   isAuthor,
   fave,
+  slug,
+  image,
 }) => {
   const tagsHTML = tags.join(' | ');
   return (
-    <Link to="/">
+    <Link to={`/cocktails/${slug}`}>
       <div className={classes.main} onClick={onClick}>
         <div className={classes.image}>
-          <img src={img} alt="" />
+          {image ? (
+            <img src={image} alt="" />
+          ) : (
+            <FontAwesomeIcon icon={faCocktail}></FontAwesomeIcon>
+          )}
         </div>
         <div className={classes.textBox}>
           <h3>{name}</h3>
