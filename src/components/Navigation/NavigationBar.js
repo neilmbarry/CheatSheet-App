@@ -23,7 +23,7 @@ const NavigationBar = (props) => {
             <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
           </div>
         </div>
-        <Link to="/">
+        <Link to="/cocktails/TheLastWord">
           <h4 className={classes.navButton}>
             <span className={classes.other}>Cheat</span>
             <span className={classes.yellow}>\</span>Sheet

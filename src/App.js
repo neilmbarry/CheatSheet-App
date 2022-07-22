@@ -1,6 +1,6 @@
 import classes from './App.module.css';
 import NavigationBar from './components/Navigation/NavigationBar';
-import { Route } from 'react-router-dom';
+import { Route, useLocation, Switch } from 'react-router-dom';
 import AddCocktail from './components/AddCocktail/AddCocktail';
 import { useState } from 'react';
 // import CocktailItem from './components/CocktailItem/CocktailItem';
@@ -16,10 +16,12 @@ import Footer from './components/Navigation/Footer';
 import dummy from './store/dummyCocktail.json';
 import store from './store/store';
 import Result from './components/SearchResults/Result';
+import { AnimatePresence } from 'framer-motion';
 
 function App() {
   console.log('App rendered');
   console.log(dummy);
+  const location = useLocation();
 
   const [showResults, setShowResults] = useState(false);
   const [results, setResults] = useState([]);
@@ -95,24 +97,27 @@ function App() {
             })}
           </SearchResults>
         )}
-
-        <Route path="/add-cocktail">
-          <AddCocktail />
-        </Route>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/signUp">
-          <SignUp />
-        </Route>
-        <Route path="/cocktails/:slug">
-          <CocktailGrid />
-        </Route>
-        <Route path="/" exact>
-          {/* {isLoading ? <Spinner /> : null} */}
-          {/* <CocktailGrid /> */}
-          {/* {cocktailsList} */}
-        </Route>
+        <AnimatePresence exitBeforeEnter>
+          <Switch location={location} key={location.key}>
+            <Route path="/add-cocktail">
+              <AddCocktail />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/signUp">
+              <SignUp />
+            </Route>
+            <Route path="/cocktails/:slug">
+              <CocktailGrid />
+            </Route>
+            <Route path="/" exact>
+              {/* {isLoading ? <Spinner /> : null} */}
+              {/* <CocktailGrid /> */}
+              {/* {cocktailsList} */}
+            </Route>
+          </Switch>
+        </AnimatePresence>
       </div>
       <Footer />
 

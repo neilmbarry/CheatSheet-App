@@ -13,6 +13,7 @@ import store from '../../store/store';
 import { addCocktail, deleteCocktail } from '../../store/cocktails';
 import Modal from '../UI/Modal';
 import PlaceHolderSelection from './PlaceHolderSelection';
+import { motion } from 'framer-motion';
 
 const generateId = () => Math.floor(Math.random() * 100000 + 1);
 // const DUMMY_INGS = [
@@ -164,6 +165,38 @@ const AddCocktail = (props) => {
     />
   ));
 
+  const defaultVariants = {
+    hidden: {
+      x: 100,
+      opacity: 0,
+      // scale: 0.8,
+
+      // rotate: "0deg",
+    },
+    visible: {
+      x: 0,
+      opacity: 1,
+
+      transition: {
+        type: 'spring',
+        // delay: 0.5,
+        duration: 0.5,
+      },
+    },
+    exit: {
+      x: 100,
+      opacity: 0,
+      // scale: 0.9,
+      transition: {
+        type: 'spring',
+        // delay: 0.5,
+        duration: 0.3,
+      },
+    },
+  };
+
+  const variants = defaultVariants;
+
   return (
     <>
       {showImageModal && (
@@ -174,7 +207,13 @@ const AddCocktail = (props) => {
           />
         </Modal>
       )}
-      <div className={classes.main}>
+      <motion.div
+        variants={variants}
+        initial="hidden"
+        animate="visible"
+        exit={variants.exit}
+        className={classes.main}
+      >
         <h2>Create a cocktail</h2>
         <h6>Fill in required fields to add a cocktail.</h6>
 
@@ -275,7 +314,7 @@ const AddCocktail = (props) => {
             </Button>
           </div>
         </div>
-      </div>
+      </motion.div>
       {/* <Card classes={classes.addCocktail}>
         <div className={classes.photo}>
           Photo
