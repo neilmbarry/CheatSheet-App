@@ -7,7 +7,7 @@ const NavigationSearch = ({ onChange, onClick }) => {
       className={classes.input}
       placeholder="Search over 1,000,000 cocktails..."
       onChange={onChange}
-      onClick={onClick}
+      // onClick={onClick}
     ></input>
   );
 };

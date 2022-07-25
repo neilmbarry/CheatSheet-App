@@ -6,18 +6,21 @@ import CocktailIngredients from './CocktailIngredients/CocktailIngredients';
 import CocktailTitle from './CocktailTitle/CocktailTitle';
 import photo from '../../img/paper.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCocktail } from '@fortawesome/free-solid-svg-icons';
+import { faCocktail, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faHeartEmpty } from '@fortawesome/free-regular-svg-icons';
 import { useParams } from 'react-router';
 import store from '../../store/store';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { toggleFave } from '../../store/cocktails';
 
 const CocktailGrid = () => {
   const { slug } = useParams();
   const [cocktail, setCocktail] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [isFave, setIsFav] = useState(false);
 
-  console.log('HERE');
+  // console.log('HERE');
 
   const variants = {
     hidden: {
@@ -38,7 +41,7 @@ const CocktailGrid = () => {
       },
     },
     exit: {
-      y: -100,
+      y: 100,
       opacity: 0,
       // scale: 0.9,
       transition: {
@@ -49,6 +52,11 @@ const CocktailGrid = () => {
     },
   };
 
+  const toggleFav = (slug) => {
+    store.dispatch(toggleFave(slug));
+    setIsFav((prev) => !prev);
+  };
+
   useEffect(() => {
     const cocktailInfo = store
       .getState()
@@ -56,8 +64,12 @@ const CocktailGrid = () => {
     if (!cocktailInfo) {
       console.warn('No cocktail found');
     }
-    console.log(cocktailInfo);
+    const isFav = store
+      .getState()
+      .cocktails.value.faves.includes(cocktailInfo.slug);
+    // console.log(cocktailInfo);
     setCocktail(cocktailInfo);
+    setIsFav(isFav);
     setIsLoading(false);
     return;
   }, [slug]);
@@ -73,6 +85,16 @@ const CocktailGrid = () => {
         reviews="102"
       />
       <div className={classes.pic}>
+        <div
+          className={classes.favIcon}
+          onClick={() => toggleFav(cocktail.slug)}
+        >
+          {isFave ? (
+            <FontAwesomeIcon icon={faHeart} />
+          ) : (
+            <FontAwesomeIcon icon={faHeartEmpty} />
+          )}
+        </div>
         <img src={cocktail.image} alt="" className={classes.image} />
       </div>
       <CocktailIngredients

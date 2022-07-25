@@ -7,7 +7,7 @@
   color: aliceblue;
   position: fixed;
   width: 100%;
-  z-index: 20;
+  z-index: 100;
   /* opacity: 0.1; */
 }
 
@@ -56,4 +56,5 @@
   font-size: 1.4rem;
   margin: 1.3rem;
   position: absolute;
+  cursor: pointer;
 }

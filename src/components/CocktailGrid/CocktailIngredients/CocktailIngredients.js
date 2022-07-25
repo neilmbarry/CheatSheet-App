@@ -14,11 +14,11 @@ const CocktailIngredients = ({ className, ingredients }) => {
   //     </div>
   //   );
   // });
-  console.log(ingredients);
+  // console.log(ingredients);
   const ingredientsHTML =
     ingredients &&
     ingredients.map((ing, i) => {
-      console.log(ing);
+      // console.log(ing);
       return (
         <div key={i}>
           <p>

@@ -41,14 +41,8 @@ const generateId = () => Math.floor(Math.random() * 100000 + 1);
 const AddCocktail = (props) => {
   const [ingredients, setIngredients] = useState([
     { id: generateId(), unit: 'ml' },
-    { id: generateId(), unit: 'ml' },
-    { id: generateId(), unit: 'ml' },
   ]);
-  const [recipe, setRecipe] = useState([
-    { id: generateId() },
-    { id: generateId() },
-    { id: generateId() },
-  ]);
+  const [recipe, setRecipe] = useState([{ id: generateId() }]);
   const cocktailName = useRef();
   const authorName = useRef();
   const [image, setImage] = useState();
@@ -184,7 +178,7 @@ const AddCocktail = (props) => {
       },
     },
     exit: {
-      x: 100,
+      x: -100,
       opacity: 0,
       // scale: 0.9,
       transition: {

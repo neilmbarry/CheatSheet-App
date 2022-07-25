@@ -6,6 +6,7 @@
   border-bottom: 1px solid rgb(207, 207, 207);
   border-top: 0;
   padding: 1rem;
+  padding-right: 3rem;
   transition: all ease 0.3s;
   cursor: pointer;
   position: relative;
@@ -53,7 +54,7 @@
 
 .icon {
   position: absolute;
-  right: 0;
+  right: 0.5rem;
 
   font-size: 2rem;
   padding: 1rem 1rem;

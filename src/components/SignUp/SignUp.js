@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Button from '../UI/Button';
 // import { useRef } from 'react';
 import classes from './SignUp.module.css';
+import { motion } from 'framer-motion';
 
 const SignUp = (props) => {
   // const name = useRef();
@@ -43,8 +44,45 @@ const SignUp = (props) => {
   //     console.log(err);
   //   }
   // };
+
+  const variants = {
+    hidden: {
+      x: 50,
+      opacity: 0,
+      // scale: 0.8,
+
+      // rotate: "0deg",
+    },
+    visible: {
+      x: 0,
+      opacity: 1,
+
+      transition: {
+        type: 'spring',
+        // delay: 0.5,
+        duration: 0.5,
+      },
+    },
+    exit: {
+      x: -50,
+      opacity: 0,
+      // scale: 0.9,
+      transition: {
+        type: 'spring',
+        // delay: 0.5,
+        duration: 0.5,
+      },
+    },
+  };
+
   return (
-    <div className={classes.main}>
+    <motion.div
+      variants={variants}
+      initial="hidden"
+      animate="visible"
+      exit={variants.exit}
+      className={classes.main}
+    >
       <h2>Create your account</h2>
       <h6>Fill in the required fields to continue.</h6>
       <div className={classes.loginBox}>
@@ -85,7 +123,7 @@ const SignUp = (props) => {
       <label name="passwordConfirm">password confirm</label>
       <input placeholder="Confirm your password" ref={passwordConfirm}></input>
       <Button onClick={submitHandler}>Sign UP</Button> */}
-    </div>
+    </motion.div>
   );
 };
 export default SignUp;

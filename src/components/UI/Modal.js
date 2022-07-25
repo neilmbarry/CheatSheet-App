@@ -79,6 +79,7 @@ const Modal = ({ className, onClose, children }) => {
           exit={overlayVariants.exit}
           className={classes.overlay}
           onClick={onClose}
+          key={1}
         ></motion.div>
         <motion.div
           variants={modalVariants}
@@ -86,6 +87,7 @@ const Modal = ({ className, onClose, children }) => {
           animate="visible"
           exit={modalVariants.exit}
           className={classesList}
+          key={2}
         >
           {children}
         </motion.div>

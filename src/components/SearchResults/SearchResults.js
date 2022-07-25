@@ -6,6 +6,7 @@ import img1 from '../../img/cock.jpg';
 import img2 from '../../img/cock2.jpg';
 import img3 from '../../img/cock3.jpg';
 import img4 from '../../img/cock4.jpg';
+import { motion } from 'framer-motion';
 
 const SearchResults = ({ className, children, results, onClick }) => {
   // const [isActive, setIsActive] = useState(false);
@@ -56,9 +57,64 @@ const SearchResults = ({ className, children, results, onClick }) => {
       />
     </>
   );
+  const defaultVariants = {
+    hidden: {
+      x: -450,
+    },
+    visible: {
+      x: 0,
+      transition: {
+        type: 'spring',
+
+        duration: 0.3,
+      },
+    },
+    exit: {
+      x: -450,
+
+      transition: {
+        duration: 0.2,
+      },
+    },
+  };
+
+  const backdropVariants = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.3,
+      },
+    },
+    exit: {
+      opacity: 0,
+
+      transition: {
+        duration: 0.2,
+      },
+    },
+  };
+
+  const variants = defaultVariants;
+
   return (
-    <div className={classes.backdrop} onClick={onClick}>
-      <div className={classesList}>
+    <motion.div
+      className={classes.backdrop}
+      variants={backdropVariants}
+      initial="hidden"
+      animate="visible"
+      exit={backdropVariants.exit}
+      onClick={onClick}
+    >
+      <motion.div
+        variants={variants}
+        initial="hidden"
+        animate="visible"
+        exit={variants.exit}
+        className={classesList}
+      >
         <div className={classes.options}>
           <h6>71 matching results for 'paper plane'</h6>
           <div className={classes.dropdown}>
@@ -74,8 +130,8 @@ const SearchResults = ({ className, children, results, onClick }) => {
           {children}
           {false && template}
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

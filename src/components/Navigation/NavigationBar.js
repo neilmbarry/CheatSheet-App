@@ -10,16 +10,20 @@ import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
-const NavigationBar = (props) => {
+const NavigationBar = ({
+  onChange,
+  onClick,
+  onSearch,
+  onSearchClick,
+  toggleFav,
+  children,
+}) => {
   return (
     <>
-      <nav className={classes.nav} onClick={props.onClick}>
+      <nav className={classes.nav} onClick={null}>
         <div className={classes.navLeft}>
-          <NavigationSearch
-            onChange={props.onChange}
-            onClick={props.onSearchClick}
-          />
-          <div onClick={(e) => props.onSearch(e)} className={classes.magni}>
+          <NavigationSearch onChange={onChange} />
+          <div onClick={onSearchClick} className={classes.magni}>
             <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
           </div>
         </div>
@@ -36,7 +40,7 @@ const NavigationBar = (props) => {
             </Button>
           </Link>
 
-          <Button>
+          <Button onClick={toggleFav}>
             <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>
           </Button>
 
@@ -50,7 +54,7 @@ const NavigationBar = (props) => {
 
         {/* <Settings /> */}
       </nav>
-      {props.children}
+      {children}
     </>
   );
 };

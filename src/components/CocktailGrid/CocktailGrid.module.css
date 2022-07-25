@@ -21,6 +21,7 @@
   /* border-radius: 15px; */
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.171);
   /* background-color: red; */
+  z-index: 2;
 }
 
 .cocktailPage {
@@ -49,6 +50,8 @@
   background-color: white;
   /* max-height: 50vh; */
   /* width: 150%; */
+  position: relative;
+  /* z-index: -1; */
 }
 
 .ing {
@@ -107,4 +110,14 @@
   flex: 1;
   background-color: rgb(109, 109, 109);
   height: 1px;
+}
+
+.favIcon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 3rem;
+  color: white;
+  margin: 0.5rem 1rem;
+  cursor: pointer;
 }

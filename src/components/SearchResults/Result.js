@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classes from './Result.module.css';
 // import img from '../../img/paper.jpg';
 // import Star from '../UI/Star';
@@ -14,9 +14,12 @@ import { Link } from 'react-router-dom';
 
 import { faCocktail } from '@fortawesome/free-solid-svg-icons';
 
+import store from '../../store/store';
+import { toggleFave } from '../../store/cocktails';
+
 const Result = ({
   onClick,
-  img,
+  info,
   name,
   tags,
   rating,
@@ -27,6 +30,17 @@ const Result = ({
   image,
 }) => {
   const tagsHTML = tags.join(' | ');
+
+  const [favourite, setFavourite] = useState(fave);
+
+  const toggleFaveUI = (e) => {
+    console.log('toggling fave', ' event===', e);
+    e.preventDefault();
+    e.stopPropagation();
+    setFavourite((prev) => !prev);
+    return store.dispatch(toggleFave(slug));
+  };
+
   return (
     <Link to={`/cocktails/${slug}`}>
       <div className={classes.main} onClick={onClick}>
@@ -52,8 +66,11 @@ const Result = ({
             <h4>({reviews})</h4>
           </div>
         </div>
-        <div className={classes.icon + ' ' + classes.fav}>
-          {fave ? (
+        <div
+          className={classes.icon + ' ' + classes.fav}
+          onClick={toggleFaveUI}
+        >
+          {favourite ? (
             <FontAwesomeIcon icon={faHeartFull} />
           ) : (
             <FontAwesomeIcon icon={faHeart} />
