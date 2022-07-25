@@ -1,0 +1,54 @@
+.main {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 450px;
+  /* border: 1px dashed red; */
+  background-color: rgb(240, 240, 240);
+  /* filter: blur(3px); */
+
+  /* transition: all ease 0.3s; */
+  border: 1px solid grey;
+}
+
+.backdrop {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.685);
+  backdrop-filter: blur(3px);
+  z-index: 99;
+}
+
+.hidden {
+  display: none;
+}
+
+.options {
+  display: flex;
+  padding: 1rem;
+  /* background-color: rgb(214, 214, 214); */
+  border-bottom: 1px solid grey;
+  justify-content: space-between;
+}
+
+.dropdown {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown h6 {
+  margin-right: 1rem;
+  color: black;
+}
+
+.dropdown select {
+  border: none;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  outline: none;
+}
