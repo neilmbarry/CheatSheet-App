@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const RecipeInput = ({ text, index, removeStep, updateRecipe, id }) => {
   const recipeChangeHandler = (e) => {
     const value = e.target.value;
-    return updateRecipe({ value, id });
+    return updateRecipe({ value, index });
   };
   return (
     <div className={classes.recipe}>

@@ -62,7 +62,8 @@ const CocktailGrid = () => {
       .getState()
       .cocktails.value.cocktails.find((el) => el.slug === slug);
     if (!cocktailInfo) {
-      console.warn('No cocktail found');
+      setIsLoading(false);
+      return console.warn('No cocktail found');
     }
     const isFav = store
       .getState()
@@ -116,26 +117,10 @@ const CocktailGrid = () => {
 
   const loadingCocktailGrid = (
     <div className={classes.cocktailGrid}>
-      <CocktailTitle
-      // className={classes.title}
-      // title={cocktail.name}
-      // author={`${cocktail.author}, Sydney, Australia`}
-      // date="January 19, 2022"
-      // rating={'4.9'}
-      // reviews="102"
-      />
-      <div className={classes.pic}>
-        {/* <img src={cocktail.image} alt="" className={classes.image} /> */}
-      </div>
-      <CocktailIngredients
-        className={classes.ing}
-        // ingredients={cocktail.ingredients}
-      />
-      <CocktailMethod
-        className={classes.method}
-        // method={cocktail.recipe}
-      />
-
+      <CocktailTitle />
+      <div className={classes.pic}></div>
+      <CocktailIngredients className={classes.ing} />
+      <CocktailMethod className={classes.method} />
       <CocktailReviews className={classes.rev} />
       <div className={classes.gridFooter}>
         <div className={classes.orBreak}>
@@ -147,6 +132,8 @@ const CocktailGrid = () => {
     </div>
   );
 
+  const notFoundMessage = <div>Couldn't locate that cocktail!</div>;
+
   return (
     <>
       <motion.div
@@ -156,7 +143,9 @@ const CocktailGrid = () => {
         exit={variants.exit}
         className={classes.cocktailPage}
       >
-        {isLoading ? loadingCocktailGrid : loadedCocktailGrid}
+        {isLoading && loadingCocktailGrid}
+        {!isLoading && cocktail.name && loadedCocktailGrid}
+        {!isLoading && !cocktail.name && notFoundMessage}
       </motion.div>
     </>
   );

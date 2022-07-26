@@ -16,11 +16,11 @@ export const gameSlice = createSlice({
     },
 
     deleteCocktail: (state, action) => {
-      state.value = {
-        ...state.value,
-      };
+      state.value.cocktails = [...state.value.cocktails].filter(
+        (cocktail) => cocktail.slug !== action.payload
+      );
     },
-    modifyCocktail: (state, action) => {
+    updateCocktail: (state, action) => {
       state.value = {
         ...state.value,
       };
@@ -40,6 +40,7 @@ export const gameSlice = createSlice({
   },
 });
 
-export const { addCocktail, deleteCocktail, toggleFave } = gameSlice.actions;
+export const { addCocktail, deleteCocktail, toggleFave, updateCocktail } =
+  gameSlice.actions;
 
 export default gameSlice.reducer;

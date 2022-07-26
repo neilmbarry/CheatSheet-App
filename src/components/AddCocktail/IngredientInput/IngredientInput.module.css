@@ -1,8 +1,15 @@
 .ingredient {
   display: flex;
+  /* flex-direction: row-reverse; */
   align-items: stretch;
   width: 100%;
   margin-bottom: 5px;
+}
+
+.inputList {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
 }
 
 .ingredient input {
@@ -19,7 +26,7 @@
   /* border-radius: 5px 0 0 5px; */
 }
 
-.ingredient input:nth-child(3) {
+.ingredient input:nth-child(1) {
   width: 6rem;
 }
 

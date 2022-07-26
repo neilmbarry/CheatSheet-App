@@ -1,27 +1,25 @@
-import classes from './App.module.css';
-import NavigationBar from './components/Navigation/NavigationBar';
 import { Route, useLocation, Switch } from 'react-router-dom';
-import AddCocktail from './components/AddCocktail/AddCocktail';
 import { useState } from 'react';
+import store from './store/store';
 
+import NavigationBar from './components/Navigation/NavigationBar';
+import AddCocktail from './components/AddCocktail/AddCocktail';
 import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
-
 import CocktailGrid from './components/CocktailGrid/CocktailGrid';
 import SearchResults from './components/SearchResults/SearchResults';
-import Footer from './components/Navigation/Footer';
-
-import dummy from './store/dummyCocktail.json';
-import store from './store/store';
 import Result from './components/SearchResults/Result';
-import { AnimatePresence } from 'framer-motion';
+import Footer from './components/Navigation/Footer';
 import Favoutites from './components/Favourties/Favourites';
+
+import { AnimatePresence } from 'framer-motion';
+import { addCocktail, updateCocktail, deleteCocktail } from './store/cocktails';
+
+import classes from './App.module.css';
 
 function App() {
   console.log('App rendered');
-  // console.log(dummy);
   const location = useLocation();
-
   const [showResults, setShowResults] = useState(false);
   const [showFavourites, setShowFavourites] = useState(false);
   const [results, setResults] = useState([]);
@@ -116,6 +114,18 @@ function App() {
     <Favoutites onClose={toggleFavourties} results={favourites} />
   );
 
+  const addCocktailHandler = (cocktail) => {
+    store.dispatch(addCocktail(cocktail));
+  };
+
+  const updateCocktailHandler = (id, info) => {
+    store.dispatch(updateCocktail(id, info));
+  };
+
+  const deleteCocktailHandler = (id) => {
+    store.dispatch(deleteCocktail(id));
+  };
+
   return (
     <div className={classes.app}>
       <NavigationBar
@@ -134,22 +144,27 @@ function App() {
               <AddCocktail
                 title="Create a cocktail"
                 subtitle="Fill in required fields to add a cocktail."
+                action={addCocktailHandler}
+                button="Submit"
               />
             </Route>
             <Route path="/modify-cocktail/:slug">
               <AddCocktail
                 title="Modify your cocktail"
                 subtitle="Update your chosen fields."
+                action={updateCocktailHandler}
+                button="Update"
+                remove={deleteCocktailHandler}
               />
+            </Route>
+            <Route path="/cocktails/:slug">
+              <CocktailGrid />
             </Route>
             <Route path="/login">
               <Login />
             </Route>
             <Route path="/signUp">
               <SignUp />
-            </Route>
-            <Route path="/cocktails/:slug">
-              <CocktailGrid />
             </Route>
             <Route path="/" exact>
               {/* {isLoading ? <Spinner /> : null} */}

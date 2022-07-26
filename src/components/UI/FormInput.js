@@ -7,11 +7,13 @@ const FormInput = (props) => {
       <input
         type={props.type}
         placeholder={props.placeholder || '-placeholder-'}
-        onChange={props.changeHandler}
+        // onChange={props.changeHandler}
+        onBlur={props.changeHandler}
         className={classes.input}
         defaultValue={props.value}
         id={props.id}
         min={props.min}
+        // autoFocus={true}
       />
     </>
   );
