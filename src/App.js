@@ -91,7 +91,7 @@ function App() {
   // fetchInfo();
 
   const searchResults = (
-    <SearchResults results={[]} onClick={toggleResults}>
+    <SearchResults results={[]} onClick={closeAll}>
       {results.map((res, i) => {
         const faveSlugs = getFavList();
         return (
@@ -105,6 +105,7 @@ function App() {
             slug={res.slug}
             isAuthor={true}
             fave={faveSlugs.includes(res.slug)}
+            onClick={closeAll}
           />
         );
       })}
@@ -130,7 +131,16 @@ function App() {
         <AnimatePresence exitBeforeEnter>
           <Switch location={location} key={location.key}>
             <Route path="/add-cocktail">
-              <AddCocktail />
+              <AddCocktail
+                title="Create a cocktail"
+                subtitle="Fill in required fields to add a cocktail."
+              />
+            </Route>
+            <Route path="/modify-cocktail/:slug">
+              <AddCocktail
+                title="Modify your cocktail"
+                subtitle="Update your chosen fields."
+              />
             </Route>
             <Route path="/login">
               <Login />

@@ -116,5 +116,25 @@
     ],
     "slug": "PaperPlane",
     "image": "/static/media/paper.16f45992eea9951a1010.jpg"
+  },
+  {
+    "name": "Sea Breeze",
+    "author": "Amar Clair",
+    "glass": "Rocks",
+    "flavour": "Refreshing",
+    "garnish": "Leef",
+    "ingredients": [
+      { "id": 12555, "unit": "ml", "type": "Gin", "quantity": "30" },
+      { "id": 64412, "unit": "ml", "type": "Lemon Juice", "quantity": "30" },
+      { "id": 53755, "unit": "ml", "type": "Cranberry Juice", "quantity": "30" }
+    ],
+    "recipe": [
+      { "id": 32449, "value": "Build in a tall glass" },
+      { "id": 15709, "value": "Stir" },
+      { "id": 6592, "value": "Add garnish" },
+      { "id": 6015, "value": "Enjoy" }
+    ],
+    "image": "/static/media/cock3.63fbf37427ce5295b545.jpg",
+    "slug": "SeaBreeze"
   }
 ]

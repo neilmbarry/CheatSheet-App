@@ -16,6 +16,7 @@ import { faCocktail } from '@fortawesome/free-solid-svg-icons';
 
 import store from '../../store/store';
 import { toggleFave } from '../../store/cocktails';
+import { useHistory } from 'react-router';
 
 const Result = ({
   onClick,
@@ -31,6 +32,8 @@ const Result = ({
 }) => {
   const tagsHTML = tags.join(' | ');
 
+  const history = useHistory();
+
   const [favourite, setFavourite] = useState(fave);
 
   const toggleFaveUI = (e) => {
@@ -39,6 +42,13 @@ const Result = ({
     e.stopPropagation();
     setFavourite((prev) => !prev);
     return store.dispatch(toggleFave(slug));
+  };
+
+  const editHandler = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    onClick();
+    history.push(`/modify-cocktail/${slug}`);
   };
 
   return (
@@ -76,9 +86,15 @@ const Result = ({
             <FontAwesomeIcon icon={faHeart} />
           )}
         </div>
-        <div className={classes.icon + ' ' + classes.edit}>
-          {isAuthor && <FontAwesomeIcon icon={faPenToSquare} />}
-        </div>
+
+        {isAuthor && (
+          <div
+            className={classes.icon + ' ' + classes.edit}
+            onClick={editHandler}
+          >
+            <FontAwesomeIcon icon={faPenToSquare} />
+          </div>
+        )}
       </div>
     </Link>
   );

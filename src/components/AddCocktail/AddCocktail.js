@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 // import Card from '../UI/Card';
 import classes from './AddCocktail.module.css';
 // import FormInput from '../UI/FormInput';
@@ -14,6 +14,7 @@ import { addCocktail, deleteCocktail } from '../../store/cocktails';
 import Modal from '../UI/Modal';
 import PlaceHolderSelection from './PlaceHolderSelection';
 import { motion } from 'framer-motion';
+import { useParams } from 'react-router';
 
 const generateId = () => Math.floor(Math.random() * 100000 + 1);
 // const DUMMY_INGS = [
@@ -38,11 +39,13 @@ const generateId = () => Math.floor(Math.random() * 100000 + 1);
 //   },
 // ];
 
-const AddCocktail = (props) => {
+const AddCocktail = ({ title, subtitle }) => {
   const [ingredients, setIngredients] = useState([
     { id: generateId(), unit: 'ml' },
   ]);
   const [recipe, setRecipe] = useState([{ id: generateId() }]);
+  const [cocktailInfo, setCocktailInfo] = useState({});
+  const slug = useParams().slug;
   const cocktailName = useRef();
   const authorName = useRef();
   const [image, setImage] = useState();
@@ -191,6 +194,16 @@ const AddCocktail = (props) => {
 
   const variants = defaultVariants;
 
+  useEffect(() => {
+    if (!slug) return;
+
+    const cocktail = store
+      .getState()
+      .cocktails.value.cocktails.find((cocktail) => cocktail.slug === slug);
+    console.log(cocktail);
+    setCocktailInfo(cocktail);
+  }, [slug]);
+
   return (
     <>
       {showImageModal && (
@@ -208,8 +221,8 @@ const AddCocktail = (props) => {
         exit={variants.exit}
         className={classes.main}
       >
-        <h2>Create a cocktail</h2>
-        <h6>Fill in required fields to add a cocktail.</h6>
+        <h2>{title}</h2>
+        <h6>{subtitle}</h6>
 
         <div className={classes.formContainer}>
           <div className={classes.labelGroup}>
