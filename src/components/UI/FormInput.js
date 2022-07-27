@@ -9,7 +9,7 @@ const FormInput = (props) => {
         placeholder={props.placeholder || '-placeholder-'}
         // onChange={props.changeHandler}
         onBlur={props.changeHandler}
-        className={classes.input}
+        className={`${classes.input} ${props.loading ? classes.un : undefined}`}
         defaultValue={props.value}
         id={props.id}
         min={props.min}

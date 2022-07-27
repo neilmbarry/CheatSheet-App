@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './FormDropdown.module.css';
 
-const FormDropdown = ({ options, selected, changeHandler, id }) => {
+const FormDropdown = ({ options, selected, changeHandler, id, loading }) => {
   const optionsList = options.map((option) => {
     return (
       <option key={option} value={option}>
@@ -11,7 +11,7 @@ const FormDropdown = ({ options, selected, changeHandler, id }) => {
   });
   return (
     <select
-      className={classes.input}
+      className={`${classes.input} ${loading ? classes.un : undefined}`}
       defaultValue={selected}
       onChange={changeHandler}
       id={id}

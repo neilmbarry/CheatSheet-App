@@ -5,6 +5,7 @@ import FormDropdown from '../../UI/FormDropdown';
 // import Button from '../../UI/Button';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { motion } from 'framer-motion';
 
 const IngredientInput = ({
   ing,
@@ -12,6 +13,7 @@ const IngredientInput = ({
   id,
   index,
   updateIngredient,
+  loading
 }) => {
   const removeIngredientHandler = () => {
     removeIngredient();
@@ -25,7 +27,11 @@ const IngredientInput = ({
   };
 
   return (
-    <div className={classes.ingredient}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className={classes.ingredient}
+    >
       <div className={classes.inputList}>
         <FormInput
           type="number"
@@ -34,43 +40,33 @@ const IngredientInput = ({
           id="quantity"
           placeholder="1"
           changeHandler={ingredientChangeHandler}
+          loading={loading}
         />
         <FormInput
           type="text"
           value={ing.type}
           id="type"
           placeholder="Type (e.g. Gin)"
-          changeHandler={ingredientChangeHandler}
+          changeHandler={ingredientChangeHandler} loading={loading}
         />
         <FormInput
           type="text"
           value={ing.brand}
           id="brand"
           placeholder="Brand (Optional)"
-          changeHandler={ingredientChangeHandler}
+          changeHandler={ingredientChangeHandler} loading={loading}
         />
       </div>
       <FormDropdown
         options={['ml', 'oz', 'dash']}
         selected={ing.unit}
         changeHandler={ingredientChangeHandler}
-        id="unit"
+        id="unit" loading={loading}
       />
-      {/* <select
-        name=""
-        id=""
-        ref={ingUnitRef}
-     
-        value={props.unit}
-      >
-        <option value="ml">ml</option>
-        <option value="oz">oz</option>
-        <option value="dash">dash</option>
-      </select> */}
       <div className={classes.close} onClick={removeIngredientHandler}>
         <FontAwesomeIcon icon={faCircleXmark}></FontAwesomeIcon>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

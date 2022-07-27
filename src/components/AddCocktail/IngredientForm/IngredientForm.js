@@ -1,82 +1,43 @@
-import React, { useState } from "react";
-import IngredientInput from "../IngredientInput/IngredientInput";
-import classes from "./IngredientForm.module.css";
+import React from 'react';
+import classes from './IngredientForm.module.css';
 
-const IngredientForm = (props) => {
-  console.log("restart");
-  const [ingredientsList, setIngredientsList] = useState([
-    {
-      name: "Bourbon",
-      quantity: 2,
-      unit: "oz",
-    },
-    {
-      name: "Sugar",
-      quantity: 5,
-      unit: "ml",
-    },
-    {
-      name: "Bitters",
-      quantity: 2,
-      unit: "dash",
-    },
-  ]);
-  const removeIngredientHandler = (index) => {
-    const newIngList = [...ingredientsList];
-    newIngList.splice(index, 1);
-    console.log(newIngList);
-    setIngredientsList(newIngList);
-  };
-  const ingredientUpdateHandler = (name, amount, unit, index) => {
-    const newIngList = [...ingredientsList];
+import IngredientInput from '../IngredientInput/IngredientInput';
+import { AnimatePresence } from 'framer-motion';
 
-    console.log(name);
-    console.log(amount);
-    console.log(unit);
-    console.log(index);
-    newIngList[index].name = name;
-    newIngList[index].quantity = amount;
-    newIngList[index].unit = unit;
-    console.log(newIngList);
+const IngredientForm = ({
+  className,
+  listItems,
+  updateIngredient,
+  removeIngredient,
+  addIngredient,
+  loading,
+}) => {
+  const classesList = `${classes.main} ${className}`;
 
-    setIngredientsList(newIngList);
-    return;
-  };
-  console.log(ingredientsList);
-  const ingredients = ingredientsList.map((ing, i) => {
-    console.log("index number", i);
+  const ingredientsUI = listItems.map((ing, i) => {
     return (
       <IngredientInput
-        removeIngredient={() => removeIngredientHandler(i)}
-        ingredientUpdater={ingredientUpdateHandler}
-        key={i}
-        id={i}
-        name={ing.name}
-        quantity={ing.quantity}
-        unit={ing.unit}
+        ing={ing}
+        key={ing.id}
+        id={ing.id}
+        index={i}
+        updateIngredient={(info) => updateIngredient(info)}
+        // ref={cocktailName}
+        removeIngredient={() => removeIngredient(i)}
+        loading={loading}
+
+        // removeIngredient={() => removeIngredientHandler(ing.id)}
       />
     );
   });
 
-  const addIngredientHandler = (e) => {
-    e.preventDefault();
-
-    const newList = [
-      ...ingredientsList,
-      {
-        name: "",
-        quantity: 0,
-        unit: "ml",
-      },
-    ];
-    setIngredientsList(newList);
-  };
-
   return (
-    <div className={classes.ingForm}>
-      {ingredients}
-
-      <button onClick={addIngredientHandler}>Add ingredient</button>
+    <div className={classesList}>
+      <label name="Ingredients">Ingredients</label>
+      {ingredientsUI}
+      <h6 className={classes.addBtn} onClick={addIngredient}>
+        + Add another ingredient
+      </h6>
     </div>
   );
 };

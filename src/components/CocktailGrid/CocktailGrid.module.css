@@ -1,7 +1,7 @@
 .cocktailGrid {
   display: grid;
   width: 95%;
-  max-width: 1200px;
+  max-width: 1000px;
   /* height: 600px; */
   /* background-color: turquoise; */
   margin: 0rem auto;

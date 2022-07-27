@@ -7,22 +7,30 @@ import {
   updateCocktail,
 } from '../../store/cocktails';
 
-import IngredientInput from './IngredientInput/IngredientInput';
-import RecipeInput from './RecipeInput/RecipeInput';
+import IngredientForm from './IngredientForm/IngredientForm';
+import RecipeForm from './RecipeForm/RecipeForm';
+
 import Modal from '../UI/Modal';
 import PlaceHolderSelection from './PlaceHolderSelection';
 import DeleteConfirm from './DeleteConfirm/DeleteConfirm';
+import SuccessBox from './SuccessBox/SuccessBox';
 import Button from '../UI/Button';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCocktail } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faCocktail } from '@fortawesome/free-solid-svg-icons';
 import { motion } from 'framer-motion';
 
 import classes from './AddCocktail.module.css';
 
+import { addCocktailVariants } from '../../config/animationVariants';
+import Title from '../Title/Title';
+import Tile from '../UI/Tile/Tile';
+import LabelInput from './LabelInput/LabelInput';
+import LoadingSpinner from '../UI/Spinner';
+
 const generateId = () => Math.floor(Math.random() * 100000 + 1);
 
-const AddCocktail = ({ title, subtitle, action, remove }) => {
+const AddCocktail = ({ title, subtitle, action, remove, button }) => {
   const [ingredients, setIngredients] = useState([
     { unit: 'ml', id: generateId() },
   ]);
@@ -37,7 +45,8 @@ const AddCocktail = ({ title, subtitle, action, remove }) => {
   const garnishType = useRef();
   const [showImageModal, setShowImageModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(true);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [focus, setFocus] = useState(false);
 
   const toggleImageModal = () => {
@@ -75,7 +84,7 @@ const AddCocktail = ({ title, subtitle, action, remove }) => {
     const filteredList = ingredients.filter((ing, i) => {
       return i !== index;
     });
-    setIngredients(filteredList.length ? filteredList : [{}]);
+    setIngredients(filteredList.length ? filteredList : [{ id: generateId() }]);
     return;
   };
 
@@ -101,31 +110,38 @@ const AddCocktail = ({ title, subtitle, action, remove }) => {
     const filteredList = recipe.filter((step, i) => {
       return i !== index;
     });
-    setRecipe(filteredList.length ? filteredList : [{}]);
+    setRecipe(filteredList.length ? filteredList : [{ id: generateId() }]);
   };
 
   const submitFormHandler = (e) => {
     e.preventDefault();
-
+    setLoading(true);
     const cocktail = {
-      name: cocktailName.current.value,
-      author: authorName.current.value,
-      glass: glassType.current.value,
-      flavour: flavourType.current.value,
-      garnish: garnishType.current.value,
+      name: cocktailName.current?.value,
+      author: authorName.current?.value,
+      glass: glassType.current?.value,
+      flavour: flavourType.current?.value,
+      garnish: garnishType.current?.value,
       ingredients,
       recipe,
       image,
-      slug: cocktailName.current.value.split(' ').join(''),
+      slug: cocktailName.current?.value.split(' ').join(''),
     };
     console.log(cocktail);
-    action(cocktail);
+    setTimeout(() => {
+      action(cocktail);
+      setLoading(false);
+      setShowSuccessModal(true);
+    }, 1000);
   };
 
   const deleteCocktailHandler = (e) => {
     e.preventDefault();
     remove(slug);
-    closeModal();
+    setLoading(true);
+    setTimeout(() => {
+      closeModal();
+    }, 1000);
   };
 
   const logState = () => {
@@ -137,79 +153,37 @@ const AddCocktail = ({ title, subtitle, action, remove }) => {
     setImage(pic);
   };
 
-  const ingredientsUI = ingredients.map((ing, i) => {
-    console.log(ing);
-    return (
-      <IngredientInput
-        ing={ing}
-        key={ing.id}
-        id={ing.id}
-        index={i}
-        updateIngredient={(info) => updateIngredientHandler(info)}
-        // ref={cocktailName}
-        removeIngredient={() => removeIngredientHandler(i)}
-
-        // removeIngredient={() => removeIngredientHandler(ing.id)}
-      />
-    );
-  });
-
-  const recipeUI = recipe.map((step, i) => (
-    <RecipeInput
-      text={step.value}
-      key={step.id}
-      id={i}
-      index={i}
-      updateRecipe={(info) => updateRecipeHandler(info)}
-      removeStep={() => removeStepHandler(i)}
-    />
-  ));
-
-  const defaultVariants = {
-    hidden: {
-      x: 100,
-      opacity: 0,
-      // scale: 0.8,
-
-      // rotate: "0deg",
-    },
-    visible: {
-      x: 0,
-      opacity: 1,
-
-      transition: {
-        type: 'spring',
-        // delay: 0.5,
-        duration: 0.5,
-      },
-    },
-    exit: {
-      x: -100,
-      opacity: 0,
-      // scale: 0.9,
-      transition: {
-        type: 'spring',
-        // delay: 0.5,
-        duration: 0.3,
-      },
-    },
-  };
-
-  const variants = defaultVariants;
-
   const imageModal = showImageModal && (
     <Modal onClose={closeModal}>
       <PlaceHolderSelection
         onClose={closeModal}
         onSubmit={submitPlaceHolderHandler}
+        loading={loading}
       />
     </Modal>
   );
 
   const deleteModal = showDeleteModal && (
     <Modal onClose={closeModal}>
-      <DeleteConfirm info={cocktailInfo} confirm={deleteCocktailHandler} />
+      <DeleteConfirm
+        info={cocktailInfo}
+        confirm={deleteCocktailHandler}
+        onClose={closeModal}
+        loading={loading}
+      />
     </Modal>
+  );
+
+  const successModal = showSuccessModal && (
+    <Modal onClose={closeModal}>
+      <SuccessBox />
+    </Modal>
+  );
+
+  const deleteButton = remove && (
+    <div className={classes.closeIcon} onClick={() => setShowDeleteModal(true)}>
+      <FontAwesomeIcon icon={faCircleXmark} />
+    </div>
   );
 
   useEffect(() => {
@@ -219,7 +193,6 @@ const AddCocktail = ({ title, subtitle, action, remove }) => {
     const cocktail = store
       .getState()
       .cocktails.value.cocktails.find((cocktail) => cocktail.slug === slug);
-    console.log(cocktail);
     setCocktailInfo(cocktail);
     setIngredients(cocktail.ingredients);
     setRecipe(cocktail.recipe);
@@ -230,37 +203,38 @@ const AddCocktail = ({ title, subtitle, action, remove }) => {
     <>
       {imageModal}
       {deleteModal}
+      {successModal}
       <motion.div
-        variants={variants}
+        variants={addCocktailVariants}
         initial="hidden"
         animate="visible"
-        exit={variants.exit}
+        exit="exit"
         className={classes.main}
       >
-        <h2>{title}</h2>
-        <h6>{subtitle}</h6>
-
-        <div className={classes.formContainer}>
-          <div className={classes.labelGroup}>
-            <div className={`${classes.labelContainer} ${classes.labelHalf}`}>
-              <label name="cocktail">Cocktail Name</label>
-              <input
-                type="text"
+        <Title title={title} subtitle={subtitle} />
+        <Tile className={classes.form}>
+          {deleteButton}
+          <div className={classes.labelRow}>
+            <div className={classes.labelColumn}>
+              <LabelInput
+                label="cocktail"
+                name="Cocktail Name"
                 placeholder="e.g. Paper Plane"
+                parentRef={cocktailName}
                 defaultValue={cocktailInfo.name}
-                ref={cocktailName}
-                // autoFocus={focus}
+                loading={loading}
               />
-              <label name="author">Author</label>
-              <input
-                type="text"
+              <LabelInput
+                label="name"
+                name="Author"
                 placeholder="e.g. Neil Barry"
-                ref={authorName}
+                parentRef={authorName}
                 defaultValue={cocktailInfo.author}
+                loading={loading}
               />
             </div>
-            <div className={classes.labelContainer}>
-              <label name="author">Photo</label>
+            <div className={classes.labelColumn}>
+              <label name="photo">Photo</label>
               <div className={classes.photoBox}>
                 <div className={classes.photoBtns}>
                   <Button type="alt" className={classes.photoButton}>
@@ -289,99 +263,56 @@ const AddCocktail = ({ title, subtitle, action, remove }) => {
               </div>
             </div>
           </div>
-          <div className={classes.labelGroup}>
-            <div className={`${classes.labelContainer} ${classes.labelHalf}`}>
-              <label name="glass">Glass Type</label>
-              <input
-                type="text"
-                placeholder="e.g. Coupe"
-                ref={glassType}
-                defaultValue={cocktailInfo.glass}
-              />
-            </div>
-            <div className={`${classes.labelContainer} ${classes.labelHalf}`}>
-              <label name="flavour">Flavour Profile</label>
-              <input
-                type="text"
-                placeholder="e.g. Citrus Forward"
-                ref={flavourType}
-                defaultValue={cocktailInfo.flavour}
-              />
-            </div>
-
-            <div className={classes.labelContainer}>
-              <label name="garnish">Garnish</label>
-              <input
-                type="text"
-                placeholder="e.g. Cherry"
-                ref={garnishType}
-                defaultValue={cocktailInfo.garnish}
-              />
-            </div>
+          <div className={classes.labelRow}>
+            <LabelInput
+              label="glass"
+              name="Glass Type"
+              placeholder="e.g. Coupe"
+              parentRef={glassType}
+              defaultValue={cocktailInfo.glass}
+              loading={loading}
+            />
+            <LabelInput
+              label="flavour"
+              name="Flavour Profile"
+              placeholder="e.g. Citrus Forward"
+              parentRef={flavourType}
+              defaultValue={cocktailInfo.flavour}
+              loading={loading}
+            />
+            <LabelInput
+              label="garnish"
+              name="Garnish"
+              placeholder="e.g. Cherry"
+              parentRef={garnishType}
+              defaultValue={cocktailInfo.garnish}
+              loading={loading}
+            />
           </div>
-          <div className={classes.labelContainer}>
-            <label name="ingredients">Ingredients</label>
-            {/* <input
-              type="password"
-              placeholder="e.g. Neil Barry"
-              className={classes.password}
-            /> */}
-            {ingredientsUI}
-            <h6 className={classes.addBtn} onClick={addIngredientHandler}>
-              + Add another ingredient
-            </h6>
-          </div>
-          <div className={classes.labelContainer}>
-            <label name="password">Method</label>
-            {/* <input
-              type="password"
-              placeholder="e.g. Neil Barry"
-              className={classes.password}
-            /> */}
-            {recipeUI}
-            <h6 className={classes.addBtn} onClick={addRecipeHandler}>
-              + Add another step
-            </h6>
-          </div>
-
+          <IngredientForm
+            listItems={ingredients}
+            updateIngredient={updateIngredientHandler}
+            addIngredient={addIngredientHandler}
+            removeIngredient={removeIngredientHandler}
+            loading={loading}
+          />
+          <RecipeForm
+            listItems={recipe}
+            updateRecipe={updateRecipeHandler}
+            addRecipe={addRecipeHandler}
+            removeRecipe={removeStepHandler}
+            loading={loading}
+          />
           <div className={classes.btnContainer}>
-            <Button onClick={submitFormHandler}>Submit</Button>
+            <Button onClick={submitFormHandler}>
+              {loading ? <LoadingSpinner /> : button}
+            </Button>
             <Button type="alt" onClick={() => logState()}>
               Log State
             </Button>
           </div>
-        </div>
+        </Tile>
       </motion.div>
-      {/* <Card classes={classes.addCocktail}>
-        <div className={classes.photo}>
-          Photo
-          <Button>Upload</Button>
-        </div>
-        <div className={classes.description}>
-          <FormInput type="text" placeholder="Cocktail Name" />
-          <FormInput type="text" placeholder="Author" />
-          <div className={classes.dropdown}>
-            <p>Glass:</p>
-            <FormDropdown options={['Rocks', 'Coupe']} changeHandler={null} />
-            <p>Taste:</p>
-            <FormDropdown options={['Citrusy', 'Boozy']} changeHandler={null} />
-          </div>
-        </div>
-        <div className={classes.ingredients}>
-          {ingredientsUI}
-          <Button onClick={addIngredientHandler}>Add Ingredient</Button>
-        </div>
-        <div className={classes.recipe}>
-          {recipeUI}
-
-          <Button onClick={addRecipeHandler}>Add Step</Button>
-        </div>
-
-        <div></div>
-        <div className={classes.submit}>
-          <Button>Add Cocktail</Button>
-        </div>
-      </Card> */}
     </>
   );
 };

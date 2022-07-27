@@ -29,6 +29,10 @@
   cursor: pointer;
 }
 
+.close:hover {
+  color: rgb(255, 105, 105);
+}
+
 .step {
   width: 4rem;
   /* background-color: azure; */

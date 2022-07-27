@@ -31,3 +31,17 @@
   transform: translateY(-1px);
   box-shadow: 2px 2px 5px rgba(17, 17, 17, 0.262);
 } */
+
+.disable {
+  color: grey;
+  border: grey;
+  background-color: rgb(155, 155, 155);
+  cursor: not-allowed;
+}
+
+.disable:hover {
+  color: grey;
+  border: grey;
+  background-color: rgb(155, 155, 155);
+  cursor: not-allowed;
+}

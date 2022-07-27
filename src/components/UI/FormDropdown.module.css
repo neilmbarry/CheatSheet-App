@@ -1,17 +1,15 @@
 .input {
   padding: 0.75rem 1rem;
-  /* outline: none;
- 
-  display: block; */
-  /* margin-bottom: 1rem; */
-  /* width: 100%; */
-  /* border-radius: 5px;
-  background-color: #ecfbfe; */
-  /* margin-bottom: 5px; */
+
   border: solid rgb(190, 190, 190) 1px;
   outline: none;
 }
 
 .input:focus {
   border: solid black 1px;
+}
+
+.un {
+  background-color: rgb(202, 202, 202);
+  transition: all ease 0.5s;
 }

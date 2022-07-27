@@ -31,7 +31,9 @@ const PlaceHolderSelection = ({ className, onClose, onSubmit }) => {
       <div className={classes.picsContainer}>{imagesJSX}</div>
       <div className={classes.buttonContainer}>
         <Button onClick={() => onSubmit(selected)}>Select</Button>
-        <Button type="alt">Cancel</Button>
+        <Button type="alt" onClick={onClose}>
+          Cancel
+        </Button>
       </div>
     </div>
   );

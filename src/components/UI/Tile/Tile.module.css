@@ -1,0 +1,12 @@
+.main {
+  /* width: 95%;
+    max-width: 750px; */
+  padding: 1rem 3rem;
+  background-color: #ffffff;
+  /* margin: 3rem; */
+  /* overflow: hidden; */
+  position: relative;
+  /* border-radius: 15px; */
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.171);
+  user-select: none;
+}
