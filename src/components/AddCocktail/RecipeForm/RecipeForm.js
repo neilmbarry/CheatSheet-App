@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './RecipeForm.module.css';
 import RecipeInput from '../RecipeInput/RecipeInput';
+import store from '../../../store/store';
 
 const RecipeForm = ({
   className,
@@ -8,9 +9,9 @@ const RecipeForm = ({
   updateRecipe,
   removeRecipe,
   addRecipe,
-  loading,
 }) => {
   const classesList = `${classes.main} ${className}`;
+  const loading = store.getState().config.value.loading;
 
   const recipeUI = listItems.map((step, i) => (
     <RecipeInput

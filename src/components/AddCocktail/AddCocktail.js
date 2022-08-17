@@ -1,20 +1,20 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useParams } from 'react-router';
+
 import store from '../../store/store';
-import {
-  addCocktail,
-  deleteCocktail,
-  updateCocktail,
-} from '../../store/cocktails';
+import { setLoading } from '../../store/cocktails';
 
 import IngredientForm from './IngredientForm/IngredientForm';
 import RecipeForm from './RecipeForm/RecipeForm';
-
 import Modal from '../UI/Modal';
 import PlaceHolderSelection from './PlaceHolderSelection';
 import DeleteConfirm from './DeleteConfirm/DeleteConfirm';
 import SuccessBox from './SuccessBox/SuccessBox';
 import Button from '../UI/Button';
+import Title from '../Title/Title';
+import Tile from '../UI/Tile/Tile';
+import LabelInput from './LabelInput/LabelInput';
+import LoadingSpinner from '../UI/Spinner';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faCocktail } from '@fortawesome/free-solid-svg-icons';
@@ -23,10 +23,6 @@ import { motion } from 'framer-motion';
 import classes from './AddCocktail.module.css';
 
 import { addCocktailVariants } from '../../config/animationVariants';
-import Title from '../Title/Title';
-import Tile from '../UI/Tile/Tile';
-import LabelInput from './LabelInput/LabelInput';
-import LoadingSpinner from '../UI/Spinner';
 
 const generateId = () => Math.floor(Math.random() * 100000 + 1);
 
@@ -46,7 +42,7 @@ const AddCocktail = ({ title, subtitle, action, remove, button }) => {
   const [showImageModal, setShowImageModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const loading = store.getState().config.value.loading;
   const [focus, setFocus] = useState(false);
 
   const toggleImageModal = () => {
@@ -115,7 +111,7 @@ const AddCocktail = ({ title, subtitle, action, remove, button }) => {
 
   const submitFormHandler = (e) => {
     e.preventDefault();
-    setLoading(true);
+    store.dispatch(setLoading(true));
     const cocktail = {
       name: cocktailName.current?.value,
       author: authorName.current?.value,
@@ -128,18 +124,22 @@ const AddCocktail = ({ title, subtitle, action, remove, button }) => {
       slug: cocktailName.current?.value.split(' ').join(''),
     };
     console.log(cocktail);
+    setCocktailInfo(cocktail);
     setTimeout(() => {
       action(cocktail);
-      setLoading(false);
+      store.dispatch(setLoading(false));
+      // setLoading(false);
       setShowSuccessModal(true);
     }, 1000);
   };
 
   const deleteCocktailHandler = (e) => {
     e.preventDefault();
+    store.dispatch(setLoading(true));
     remove(slug);
     setLoading(true);
     setTimeout(() => {
+      store.dispatch(setLoading(false));
       closeModal();
     }, 1000);
   };
@@ -158,7 +158,6 @@ const AddCocktail = ({ title, subtitle, action, remove, button }) => {
       <PlaceHolderSelection
         onClose={closeModal}
         onSubmit={submitPlaceHolderHandler}
-        loading={loading}
       />
     </Modal>
   );
@@ -169,14 +168,13 @@ const AddCocktail = ({ title, subtitle, action, remove, button }) => {
         info={cocktailInfo}
         confirm={deleteCocktailHandler}
         onClose={closeModal}
-        loading={loading}
       />
     </Modal>
   );
 
   const successModal = showSuccessModal && (
     <Modal onClose={closeModal}>
-      <SuccessBox />
+      <SuccessBox cocktail={cocktailInfo} onClose={null} />
     </Modal>
   );
 
@@ -222,7 +220,6 @@ const AddCocktail = ({ title, subtitle, action, remove, button }) => {
                 placeholder="e.g. Paper Plane"
                 parentRef={cocktailName}
                 defaultValue={cocktailInfo.name}
-                loading={loading}
               />
               <LabelInput
                 label="name"
@@ -230,7 +227,6 @@ const AddCocktail = ({ title, subtitle, action, remove, button }) => {
                 placeholder="e.g. Neil Barry"
                 parentRef={authorName}
                 defaultValue={cocktailInfo.author}
-                loading={loading}
               />
             </div>
             <div className={classes.labelColumn}>
@@ -270,7 +266,6 @@ const AddCocktail = ({ title, subtitle, action, remove, button }) => {
               placeholder="e.g. Coupe"
               parentRef={glassType}
               defaultValue={cocktailInfo.glass}
-              loading={loading}
             />
             <LabelInput
               label="flavour"
@@ -278,7 +273,6 @@ const AddCocktail = ({ title, subtitle, action, remove, button }) => {
               placeholder="e.g. Citrus Forward"
               parentRef={flavourType}
               defaultValue={cocktailInfo.flavour}
-              loading={loading}
             />
             <LabelInput
               label="garnish"
@@ -286,7 +280,6 @@ const AddCocktail = ({ title, subtitle, action, remove, button }) => {
               placeholder="e.g. Cherry"
               parentRef={garnishType}
               defaultValue={cocktailInfo.garnish}
-              loading={loading}
             />
           </div>
           <IngredientForm
@@ -294,14 +287,12 @@ const AddCocktail = ({ title, subtitle, action, remove, button }) => {
             updateIngredient={updateIngredientHandler}
             addIngredient={addIngredientHandler}
             removeIngredient={removeIngredientHandler}
-            loading={loading}
           />
           <RecipeForm
             listItems={recipe}
             updateRecipe={updateRecipeHandler}
             addRecipe={addRecipeHandler}
             removeRecipe={removeStepHandler}
-            loading={loading}
           />
           <div className={classes.btnContainer}>
             <Button onClick={submitFormHandler}>

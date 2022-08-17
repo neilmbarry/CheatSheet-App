@@ -27,7 +27,7 @@ const NavigationBar = ({
             <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
           </div>
         </div>
-        <Link to="/cocktails/TheLastWord">
+        <Link to="/">
           <h4 className={classes.navButton}>
             <span className={classes.other}>Cheat</span>
             <span className={classes.yellow}>\</span>Sheet

@@ -2,9 +2,11 @@ import React from 'react';
 import classes from './DeleteConfirm.module.css';
 import Button from '../../UI/Button';
 import Spinner from '../../UI/Spinner';
+import store from '../../../store/store';
 
-const DeleteConfirm = ({ className, info, confirm, onClose, loading }) => {
+const DeleteConfirm = ({ className, info, confirm, onClose }) => {
   const classesList = `${classes.main} ${className}`;
+  const loading = store.getState().config.value.loading;
   return (
     <>
       <div className={classesList}>

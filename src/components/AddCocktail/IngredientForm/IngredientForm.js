@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './IngredientForm.module.css';
 
 import IngredientInput from '../IngredientInput/IngredientInput';
-import { AnimatePresence } from 'framer-motion';
+import store from '../../../store/store';
 
 const IngredientForm = ({
   className,
@@ -10,9 +10,9 @@ const IngredientForm = ({
   updateIngredient,
   removeIngredient,
   addIngredient,
-  loading,
 }) => {
   const classesList = `${classes.main} ${className}`;
+  const loading = store.getState().config.value.loading;
 
   const ingredientsUI = listItems.map((ing, i) => {
     return (
@@ -22,11 +22,8 @@ const IngredientForm = ({
         id={ing.id}
         index={i}
         updateIngredient={(info) => updateIngredient(info)}
-        // ref={cocktailName}
         removeIngredient={() => removeIngredient(i)}
         loading={loading}
-
-        // removeIngredient={() => removeIngredientHandler(ing.id)}
       />
     );
   });

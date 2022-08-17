@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './LabelInput.module.css';
+import store from '../../../store/store';
 
 const LabelInput = ({
   className,
@@ -8,9 +9,9 @@ const LabelInput = ({
   placeholder,
   ParentRef,
   defaultValue,
-  loading,
 }) => {
   const classesList = `${classes.main} ${className}`;
+  const loading = store.getState().config.value.loading;
   return (
     <div className={classesList}>
       <label name={label}>{name}</label>

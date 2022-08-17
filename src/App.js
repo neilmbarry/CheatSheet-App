@@ -11,11 +11,13 @@ import SearchResults from './components/SearchResults/SearchResults';
 import Result from './components/SearchResults/Result';
 import Footer from './components/Navigation/Footer';
 import Favoutites from './components/Favourties/Favourites';
+import LandingPage from './components/LandingPage/LandingPage';
 
 import { AnimatePresence } from 'framer-motion';
 import { addCocktail, updateCocktail, deleteCocktail } from './store/cocktails';
 
 import classes from './App.module.css';
+import background from './img/bar.jpg';
 
 function App() {
   console.log('App rendered');
@@ -136,6 +138,7 @@ function App() {
         toggleFav={toggleFavourties}
       />
       <div className={classes.pageContainer}>
+        <img src={background} alt="background" className={classes.background} />
         <AnimatePresence>{showResults && searchResults}</AnimatePresence>
         <AnimatePresence>{showFavourites && favouriteResults}</AnimatePresence>
         <AnimatePresence exitBeforeEnter>
@@ -167,9 +170,7 @@ function App() {
               <SignUp />
             </Route>
             <Route path="/" exact>
-              {/* {isLoading ? <Spinner /> : null} */}
-              {/* <CocktailGrid /> */}
-              {/* {cocktailsList} */}
+              <LandingPage />
             </Route>
           </Switch>
         </AnimatePresence>

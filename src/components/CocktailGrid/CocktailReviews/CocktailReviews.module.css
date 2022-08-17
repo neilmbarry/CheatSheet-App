@@ -6,17 +6,17 @@
   /* margin: 0 1rem; */
   padding: 1rem 0;
 
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid #233747;
 }
 
 .main p:last-child {
-  border-bottom: 0px solid black;
+  border-bottom: 0px solid #233747;
 }
 
 .main p {
   padding: 1rem 0;
   margin-right: 1rem;
   display: inline-block;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #233747;
   width: 100%;
 }

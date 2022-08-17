@@ -4,8 +4,8 @@
   /* border-radius: 4px; */
   text-decoration: none;
   text-transform: uppercase;
-  background-color: #000;
-  padding: 1.4rem 2.2rem;
+  background-color: #233747;
+  padding: 1rem;
   font-size: 1.4rem;
   font-weight: 400;
   color: white;
@@ -13,18 +13,17 @@
   /* box-shadow: 2px 3px 7px rgba(17, 17, 17, 0.283); */
   cursor: pointer;
   transition: all ease 0.4s;
-  border: 1px solid black;
 }
 
 .btn:hover {
-  background-color: black;
+  background-color: #233747;
   color: white;
 }
 
 .alt {
   background-color: transparent;
-  color: black;
-  border: 1px solid black;
+  color: #233747;
+  border: 1px solid #233747;
 }
 /*
 .btn:active {
@@ -44,4 +43,14 @@
   border: grey;
   background-color: rgb(155, 155, 155);
   cursor: not-allowed;
+}
+
+.large {
+  padding: 1rem 3rem;
+  font-size: 2rem;
+  border-radius: 1000px;
+  font-weight: \500;
+  text-shadow: none;
+  /* color: #ffda07; */
+  /* background-color: #ffda07; */
 }
