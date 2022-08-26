@@ -10,7 +10,7 @@ const LandingSection = ({ className, photo, type, background }) => {
       <div className={classes.landingBox}>
         <div className={classes.textBox}>
           <h1>
-            The Ultimate <span className={classes.yellow}>Cocktail</span> App
+            The Ultimate <span className={classes.altFont}>Cocktail</span> App
           </h1>
           <h3>
             Meet the all-in-one app for cocktail recipe searching, creating, and

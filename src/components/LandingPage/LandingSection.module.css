@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap');
+
 .main {
   width: 100%;
   z-index: 2;
@@ -64,5 +66,15 @@
 
 .yellow {
   color: #ffda07;
+}
+
+.altFont {
+  color: #ffda07;
+  font-size: 7rem;
   font-weight: 700;
+  letter-spacing: -0.5rem;
+  /* letter-spacing: -0.8rem; */
+  /* text-shadow: -6px 0 0 black; */
+  font-family: 'Kalam', cursive;
+  text-transform: uppercase;
 }
