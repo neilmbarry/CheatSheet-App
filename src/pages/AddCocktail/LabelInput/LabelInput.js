@@ -1,0 +1,29 @@
+import React from 'react';
+import classes from './LabelInput.module.css';
+import store from '../../../store/store';
+
+const LabelInput = ({
+  className,
+  label,
+  name,
+  placeholder,
+  ParentRef,
+  defaultValue,
+}) => {
+  const classesList = `${classes.main} ${className}`;
+  const loading = store.getState().config.value.loading;
+  return (
+    <div className={classesList}>
+      <label name={label}>{name}</label>
+      <input
+        type="text"
+        placeholder={placeholder}
+        ref={ParentRef}
+        defaultValue={defaultValue}
+        className={loading ? classes.unavailable : undefined}
+      />
+    </div>
+  );
+};
+
+export default LabelInput;

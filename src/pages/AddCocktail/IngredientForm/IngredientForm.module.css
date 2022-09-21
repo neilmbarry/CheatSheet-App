@@ -1,0 +1,11 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.addBtn {
+  padding: 0.5rem 0;
+  cursor: pointer;
+}

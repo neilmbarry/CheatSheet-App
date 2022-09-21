@@ -1,0 +1,15 @@
+.main {
+  padding: 0 2rem;
+}
+
+.main h3 {
+  /* margin: 0 1rem; */
+  padding: 1rem 0;
+
+  border-bottom: 2px solid #233747;
+}
+.main p {
+  padding: 1rem 0;
+  margin-right: 1rem;
+  display: inline-block;
+}
