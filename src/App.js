@@ -3,21 +3,21 @@ import { useState } from 'react';
 import store from './store/store';
 
 import NavigationBar from './components/Navigation/NavigationBar';
-import AddCocktail from './components/AddCocktail/AddCocktail';
-import Login from './components/Login/Login';
-import SignUp from './components/SignUp/SignUp';
-import CocktailGrid from './components/CocktailGrid/CocktailGrid';
-import SearchResults from './components/SearchResults/SearchResults';
-import Result from './components/SearchResults/Result';
+import AddCocktail from './pages/AddCocktail/AddCocktail';
+import Login from './pages/Authentication/Login/Login';
+import SignUp from './pages/Authentication/SignUp/SignUp';
+import CocktailGrid from './pages/CocktailPage/CocktailGrid';
+import SearchResults from './components/Navigation/SearchResults/SearchResults';
+import Result from './components/Navigation/SearchResults/Result';
 import Footer from './components/Navigation/Footer';
-import Favoutites from './components/Favourties/Favourites';
-import LandingPage from './components/LandingPage/LandingPage';
+import Favoutites from './components/Navigation/Favourites/Favourites';
+import Home from './pages/Home/Home';
 
 import { AnimatePresence } from 'framer-motion';
 import { addCocktail, updateCocktail, deleteCocktail } from './store/cocktails';
 
 import classes from './App.module.css';
-import background from './img/bar.jpg';
+import background from './assets/img/bar.jpg';
 
 function App() {
   console.log('App rendered');
@@ -170,7 +170,7 @@ function App() {
               <SignUp />
             </Route>
             <Route path="/" exact>
-              <LandingPage />
+              <Home />
             </Route>
           </Switch>
         </AnimatePresence>

@@ -1,14 +1,15 @@
 import React from 'react';
-import classes from './SearchResults.module.css';
-import Result from './Result';
-import img from '../../img/paper.jpg';
-import img1 from '../../img/cock.jpg';
-import img2 from '../../img/cock2.jpg';
-import img3 from '../../img/cock3.jpg';
-import img4 from '../../img/cock4.jpg';
+import classes from './Favourites.module.css';
+import Result from '../SearchResults/Result';
+import img from '../../../assets/img/paper.jpg';
+import img1 from '../../../assets/img/cock.jpg';
+import img2 from '../../../assets/img/cock2.jpg';
+import img3 from '../../../assets/img/cock3.jpg';
+import img4 from '../../../assets/img/cock4.jpg';
 import { motion } from 'framer-motion';
+import store from '../../../store/store';
 
-const SearchResults = ({ className, children, results, onClick }) => {
+const Favourites = ({ className, children, results, onClose }) => {
   // const [isActive, setIsActive] = useState(false);
   const classesList = `${classes.main} ${className}`;
   const template = (
@@ -57,9 +58,37 @@ const SearchResults = ({ className, children, results, onClick }) => {
       />
     </>
   );
-  const defaultVariants = {
+
+  const faveSlugs = store.getState().cocktails.value.faves;
+
+  const resultsJSX = store
+    .getState()
+    .cocktails.value.cocktails.filter((cocktail) =>
+      results.includes(cocktail.slug)
+    )
+    .map((cocktail, i) => {
+      return (
+        <Result
+          name={cocktail.name}
+          tags={[
+            cocktail.ingredients[0].type,
+            cocktail.flavour,
+            cocktail.glass,
+          ]}
+          rating={4.9}
+          reviews={23}
+          key={i}
+          image={cocktail.image}
+          slug={cocktail.slug}
+          isAuthor={true}
+          fave={faveSlugs.includes(cocktail.slug)}
+        />
+      );
+    });
+
+  const variants = {
     hidden: {
-      x: -450,
+      x: 400,
     },
     visible: {
       x: 0,
@@ -70,69 +99,59 @@ const SearchResults = ({ className, children, results, onClick }) => {
       },
     },
     exit: {
-      x: -450,
-
-      transition: {
-        duration: 0.2,
-      },
+      x: 700,
     },
   };
-
-  const backdropVariants = {
+  const backVariants = {
     hidden: {
       opacity: 0,
     },
     visible: {
       opacity: 1,
       transition: {
-        duration: 0.3,
+        duration: 0.1,
       },
     },
     exit: {
       opacity: 0,
-
-      transition: {
-        duration: 0.2,
-      },
     },
   };
 
-  const variants = defaultVariants;
-
   return (
     <motion.div
-      className={classes.backdrop}
-      variants={backdropVariants}
-      initial="hidden"
+      variants={backVariants}
       animate="visible"
-      exit={backdropVariants.exit}
-      onClick={onClick}
+      initial="hidden"
+      exit="exit"
+      className={classes.backdrop}
+      onClick={onClose}
     >
       <motion.div
         variants={variants}
-        initial="hidden"
         animate="visible"
-        exit={variants.exit}
+        initial="hidden"
+        exit="exit"
         className={classesList}
       >
         <div className={classes.options}>
-          <h6>71 matching results for 'paper plane'</h6>
-          <div className={classes.dropdown}>
+          <h6>My favourites</h6>
+          {/* <div className={classes.dropdown}>
             <h6>Sort by:</h6>
             <select name="" id="">
               <option value="">rating</option>
               <option value="">newest</option>
               <option value="">relevant</option>
             </select>
-          </div>
+          </div> */}
         </div>
         <div className={classes.results}>
           {children}
           {false && template}
+          {true && resultsJSX}
         </div>
       </motion.div>
     </motion.div>
   );
 };
 
-export default SearchResults;
+export default Favourites;

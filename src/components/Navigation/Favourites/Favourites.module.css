@@ -1,24 +1,21 @@
 .main {
-  position: fixed;
-  left: 0;
-  top: 0;
+  position: absolute;
+  right: 0;
+  top: 6rem;
   bottom: 0;
   width: 450px;
   /* border: 1px dashed red; */
   background-color: rgb(240, 240, 240);
   /* filter: blur(3px); */
-  overflow: scroll;
-  height: 700px;
-  height: 100%;
+
   /* transition: all ease 0.3s; */
   border: 1px solid grey;
-  z-index: 100;
-  padding-top: 45px;
 }
 
 .backdrop {
   position: absolute;
   left: 0;
+
   top: 0;
   bottom: 0;
   right: 0;
@@ -35,13 +32,9 @@
 .options {
   display: flex;
   padding: 1rem;
-  background-color: rgb(214, 214, 214);
+  /* background-color: rgb(214, 214, 214); */
   border-bottom: 1px solid grey;
   justify-content: space-between;
-  position: fixed;
-  top: 0px;
-  width: 448px;
-  z-index: 20;
 }
 
 .dropdown {

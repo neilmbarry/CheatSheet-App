@@ -14,8 +14,8 @@ import { Link } from 'react-router-dom';
 
 import { faCocktail } from '@fortawesome/free-solid-svg-icons';
 
-import store from '../../store/store';
-import { toggleFave } from '../../store/cocktails';
+import store from '../../../store/store';
+import { toggleFave } from '../../../store/cocktails';
 import { useHistory } from 'react-router';
 
 const Result = ({

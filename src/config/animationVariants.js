@@ -24,3 +24,43 @@ export const addCocktailVariants = {
     },
   },
 };
+
+export const searchResultsVariants = {
+  hidden: {
+    x: -450,
+  },
+  visible: {
+    x: 0,
+    transition: {
+      type: 'spring',
+
+      duration: 0.3,
+    },
+  },
+  exit: {
+    x: -450,
+
+    transition: {
+      duration: 0.2,
+    },
+  },
+};
+
+export const backdropVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.3,
+    },
+  },
+  exit: {
+    opacity: 0,
+
+    transition: {
+      duration: 0.2,
+    },
+  },
+};
