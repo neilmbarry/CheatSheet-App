@@ -1,5 +1,5 @@
 import { Route, useLocation, Switch } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import store from './store/store';
 
 import NavigationBar from './components/Navigation/NavigationBar';
@@ -26,8 +26,6 @@ function App() {
   const [showFavourites, setShowFavourites] = useState(false);
   const [results, setResults] = useState([]);
   const [favourites, setFavourites] = useState([]);
-  // const [cocktailsDatabase, setCocktailDatabase] = useState([]);
-  // const [isLoading, setIsLoading] = useState(true);
 
   const toggleResults = (e) => {
     // console.log(e.target);
@@ -54,7 +52,12 @@ function App() {
   };
 
   const fetchResults = () => {
-    setResults(store.getState().cocktails.value.cocktails);
+    fetch('http://127.0.0.1:8000/api/v1/cocktails')
+      .then((res) => res.json())
+      .then((data) => setResults(data.cocktails))
+      .catch((err) => console.error(err));
+
+    // setResults(store.getState().cocktails.value.cocktails);
     closeFaves();
     setShowResults(true);
   };
@@ -97,7 +100,7 @@ function App() {
         return (
           <Result
             name={res.name}
-            tags={[res.ingredients[0].type, res.flavour, res.glass]}
+            tags={[res.recipe[0].ingredient, res.flavour, res.glass]}
             rating={4.9}
             reviews={23}
             key={i}
@@ -127,6 +130,13 @@ function App() {
   const deleteCocktailHandler = (id) => {
     store.dispatch(deleteCocktail(id));
   };
+
+  useEffect(() => {
+    fetch('http://127.0.0.1:8000/api/v1/cocktails')
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <div className={classes.app}>
@@ -176,8 +186,6 @@ function App() {
         </AnimatePresence>
       </div>
       <Footer />
-
-      {/* <NavigationBar></NavigationBar> */}
     </div>
   );
 }

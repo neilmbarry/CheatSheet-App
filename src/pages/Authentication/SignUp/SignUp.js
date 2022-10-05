@@ -4,15 +4,39 @@ import React from 'react';
 // import { faBarsProgress } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import Button from '../../../components/UI/Button';
-// import { useRef } from 'react';
+import { useRef } from 'react';
 import classes from './SignUp.module.css';
 import { motion } from 'framer-motion';
 
+import { apiEndpoint } from '../../../config/apiEndpoint';
+
 const SignUp = (props) => {
-  // const name = useRef();
-  // const email = useRef();
-  // const password = useRef();
-  // const passwordConfirm = useRef();
+  const name = useRef();
+  const email = useRef();
+  const password = useRef();
+  const passwordConfirm = useRef();
+
+  const signUpHandler = () => {
+    const body = {
+      name: name.current.value,
+      email: email.current.value,
+      password: password.current.value,
+      passwordConfirm: passwordConfirm.current.value,
+    };
+    console.log(body);
+    console.log(JSON.stringify(body));
+    fetch(apiEndpoint() + 'api/v1/users/signup', {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.warn(err));
+  };
 
   // const submitHandler = async (e) => {
   //   e.preventDefault();
@@ -87,8 +111,16 @@ const SignUp = (props) => {
       <h6>Fill in the required fields to continue.</h6>
       <div className={classes.loginBox}>
         <div className={classes.labelContainer}>
+          <label name="name">Name</label>
+          <input type="name" placeholder="Enter your name" ref={name} />
+        </div>
+        <div className={classes.labelContainer}>
           <label name="email">Email</label>
-          <input type="email" placeholder="Enter your email address" />
+          <input
+            type="email"
+            placeholder="Enter your email address"
+            ref={email}
+          />
         </div>
         <div className={classes.labelContainer}>
           <label name="password">Password</label>
@@ -96,6 +128,7 @@ const SignUp = (props) => {
             type="password"
             placeholder="Enter your password"
             className={classes.password}
+            ref={password}
           />
         </div>
         <div className={classes.labelContainer}>
@@ -104,9 +137,10 @@ const SignUp = (props) => {
             type="password"
             placeholder="Confirm your password"
             className={classes.password}
+            ref={passwordConfirm}
           />
         </div>
-        <Button>Sign Up</Button>
+        <Button onClick={signUpHandler}>Sign Up</Button>
         <div className={classes.orBreak}>
           <span>or</span>
         </div>
