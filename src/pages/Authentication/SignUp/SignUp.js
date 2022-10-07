@@ -10,6 +10,9 @@ import { motion } from 'framer-motion';
 
 import { apiEndpoint } from '../../../config/apiEndpoint';
 
+import store from '../../../store/store';
+import configActions from '../../../store/configSlice';
+
 const SignUp = (props) => {
   const name = useRef();
   const email = useRef();
@@ -34,7 +37,10 @@ const SignUp = (props) => {
       },
     })
       .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        store.dispatch(configActions.setToken(data.token));
+        return console.log(data);
+      })
       .catch((err) => console.warn(err));
   };
 

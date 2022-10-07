@@ -12,7 +12,7 @@ import { useParams } from 'react-router';
 import store from '../../store/store';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { toggleFave } from '../../store/cocktails';
+import cocktailActions from '../../store/cocktailSlice';
 
 const CocktailGrid = () => {
   const { slug } = useParams();
@@ -53,7 +53,7 @@ const CocktailGrid = () => {
   };
 
   const toggleFav = (slug) => {
-    store.dispatch(toggleFave(slug));
+    store.dispatch(cocktailActions.toggleFave(slug));
     setIsFav((prev) => !prev);
   };
 

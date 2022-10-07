@@ -7,11 +7,7 @@ const initialState = {
   faves: [],
 };
 
-const initialConfig = {
-  loading: false,
-};
-
-export const gameSlice = createSlice({
+export const cocktailSlice = createSlice({
   name: 'cocktails',
   initialState: { value: initialState },
   reducers: {
@@ -44,20 +40,6 @@ export const gameSlice = createSlice({
   },
 });
 
-export const configSlice = createSlice({
-  name: 'config',
-  initialState: { value: initialConfig },
-  reducers: {
-    setLoading: (state, action) => {
-      state.value.loading = action.payload;
-    },
-  },
-});
+export default cocktailSlice.actions;
 
-export const { addCocktail, deleteCocktail, toggleFave, updateCocktail } =
-  gameSlice.actions;
-
-export const { setLoading } = configSlice.actions;
-
-export const cocktailReducer = gameSlice.reducer;
-export const configReducer = configSlice.reducer;
+export const cocktailReducer = cocktailSlice.reducer;

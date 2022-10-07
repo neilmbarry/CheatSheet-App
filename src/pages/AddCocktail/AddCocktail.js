@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useParams } from 'react-router';
 
 import store from '../../store/store';
-import { setLoading } from '../../store/cocktails';
+import configActions from '../../store/configSlice';
 
 import IngredientForm from './IngredientForm/IngredientForm';
 import RecipeForm from './RecipeForm/RecipeForm';
@@ -111,7 +111,7 @@ const AddCocktail = ({ title, subtitle, action, remove, button }) => {
 
   const submitFormHandler = (e) => {
     e.preventDefault();
-    store.dispatch(setLoading(true));
+    store.dispatch(configActions.setLoading(true));
     const cocktail = {
       name: cocktailName.current?.value,
       author: authorName.current?.value,
@@ -127,19 +127,19 @@ const AddCocktail = ({ title, subtitle, action, remove, button }) => {
     setCocktailInfo(cocktail);
     setTimeout(() => {
       action(cocktail);
-      store.dispatch(setLoading(false));
-      // setLoading(false);
+      store.dispatch(configActions.setLoading(false));
+      // configActions.setLoading(false);
       setShowSuccessModal(true);
     }, 1000);
   };
 
   const deleteCocktailHandler = (e) => {
     e.preventDefault();
-    store.dispatch(setLoading(true));
+    store.dispatch(configActions.setLoading(true));
     remove(slug);
-    setLoading(true);
+    configActions.setLoading(true);
     setTimeout(() => {
-      store.dispatch(setLoading(false));
+      store.dispatch(configActions.setLoading(false));
       closeModal();
     }, 1000);
   };

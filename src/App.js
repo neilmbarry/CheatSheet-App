@@ -14,7 +14,7 @@ import Favoutites from './components/Navigation/Favourites/Favourites';
 import Home from './pages/Home/Home';
 
 import { AnimatePresence } from 'framer-motion';
-import { addCocktail, updateCocktail, deleteCocktail } from './store/cocktails';
+import cocktailActions from './store/cocktailSlice';
 
 import classes from './App.module.css';
 import background from './assets/img/bar.jpg';
@@ -53,7 +53,10 @@ function App() {
 
   const fetchResults = () => {
     fetch('http://127.0.0.1:8000/api/v1/cocktails')
-      .then((res) => res.json())
+      .then((res) => {
+        console.log(res.cookie);
+        return res.json();
+      })
       .then((data) => setResults(data.cocktails))
       .catch((err) => console.error(err));
 
@@ -120,15 +123,15 @@ function App() {
   );
 
   const addCocktailHandler = (cocktail) => {
-    store.dispatch(addCocktail(cocktail));
+    store.dispatch(cocktailActions.addCocktail(cocktail));
   };
 
   const updateCocktailHandler = (id, info) => {
-    store.dispatch(updateCocktail(id, info));
+    store.dispatch(cocktailActions.updateCocktail(id, info));
   };
 
   const deleteCocktailHandler = (id) => {
-    store.dispatch(deleteCocktail(id));
+    store.dispatch(cocktailActions.deleteCocktail(id));
   };
 
   useEffect(() => {

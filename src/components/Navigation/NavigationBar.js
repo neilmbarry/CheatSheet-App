@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '../UI/Button';
 import NavigationSearch from './NavigationSearch';
 import classes from './NavigationBar.module.css';
@@ -9,6 +9,9 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import store from '../../store/store';
+import { useSelector } from 'react-redux';
+import { apiEndpoint } from '../../config/apiEndpoint';
 
 const NavigationBar = ({
   onChange,
@@ -18,6 +21,23 @@ const NavigationBar = ({
   toggleFav,
   children,
 }) => {
+  const token = useSelector((state) => state.config.value.token);
+
+  const [name, setName] = useState(null);
+
+  useEffect(() => {
+    fetch(apiEndpoint() + 'api/v1/users/me', {
+      method: 'GET',
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setName(data.user?.name);
+        console.log(data);
+      })
+      .catch((err) => console.error(err));
+  }, [token]);
+
   return (
     <>
       <nav className={classes.nav} onClick={null}>
@@ -46,7 +66,7 @@ const NavigationBar = ({
 
           <Link to="/login">
             <Button className={classes.yellow}>
-              <h4>Log in / Sign up</h4>
+              <h4>{name || 'Log in / Sign up'}</h4>
               {/* <FontAwesomeIcon icon={faUser}/> */}
             </Button>
           </Link>

@@ -1,5 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { cocktailReducer, configReducer } from './cocktails';
+
+import { cocktailReducer } from './cocktailSlice';
+import { configReducer } from './configSlice';
 
 const store = configureStore({
   reducer: {
