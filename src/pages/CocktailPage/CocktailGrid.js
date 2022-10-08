@@ -4,7 +4,7 @@ import CocktailMethod from './CocktailMethod/CocktailMethod';
 import CocktailReviews from './CocktailReviews/CocktailReviews';
 import CocktailIngredients from './CocktailIngredients/CocktailIngredients';
 import CocktailTitle from './CocktailTitle/CocktailTitle';
-import photo from '../../assets/img/paper.jpg';
+// import photo from '../../assets/img/paper.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCocktail, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faHeartEmpty } from '@fortawesome/free-regular-svg-icons';

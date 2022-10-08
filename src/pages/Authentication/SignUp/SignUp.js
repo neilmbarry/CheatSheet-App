@@ -13,6 +13,8 @@ import { apiEndpoint } from '../../../config/apiEndpoint';
 import store from '../../../store/store';
 import configActions from '../../../store/configSlice';
 
+import Title from '../../../components/UI/Title/Title';
+
 const SignUp = (props) => {
   const name = useRef();
   const email = useRef();
@@ -113,8 +115,11 @@ const SignUp = (props) => {
       exit={variants.exit}
       className={classes.main}
     >
-      <h2>Create your account</h2>
-      <h6>Fill in the required fields to continue.</h6>
+      <Title
+        title="Create your account"
+        subtitle="Fill in the required fields to continue."
+      />
+
       <div className={classes.loginBox}>
         <div className={classes.labelContainer}>
           <label name="name">Name</label>

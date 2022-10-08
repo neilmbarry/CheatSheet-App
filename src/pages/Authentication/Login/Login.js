@@ -4,46 +4,48 @@ import React from 'react';
 // import { faBarsProgress } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import Button from '../../../components/UI/Button';
-// import { useRef } from 'react';
+import { useRef } from 'react';
 import classes from './Login.module.css';
 import { motion } from 'framer-motion';
 
+import Title from '../../../components/UI/Title/Title';
+
+import { apiEndpoint } from '../../../config/apiEndpoint';
+import store from '../../../store/store';
+import configActions from '../../../store/configSlice';
+
 const Login = (props) => {
   // const name = useRef();
-  // const email = useRef();
-  // const password = useRef();
+  const email = useRef();
+  const password = useRef();
   // const passwordConfirm = useRef();
 
-  // const submitHandler = async (e) => {
-  //   e.preventDefault();
-  //   console.log(
-  //     email.current.value,
-  //     password.current.value,
-  //     passwordConfirm.current.value,
-  //     name.current.value
-  //   );
-  //   const body = JSON.stringify({
-  //     name: name.current.value,
-  //     email: email.current.value,
-  //     password: password.current.value,
-  //     passwordConfirm: passwordConfirm.current.value,
-  //   });
-  //   console.log(body);
-  //   try {
-  //     fetch('http://127.0.0.1:8000/api/v1/users/signup', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body,
-  //     })
-  //       .then((res) => res.json())
-  //       .then((data) => console.log(data))
-  //       .catch((err) => console.log(err));
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    console.log(email.current.value, password.current.value);
+    const body = JSON.stringify({
+      email: email.current.value,
+      password: password.current.value,
+    });
+    console.log(body);
+    try {
+      fetch(`${apiEndpoint()}api/v1/users/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          store.dispatch(configActions.setToken(data.token));
+          console.log(data);
+        })
+        .catch((err) => console.log(err));
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const variants = {
     hidden: {
       x: 50,
@@ -82,12 +84,19 @@ const Login = (props) => {
       exit={variants.exit}
       className={classes.main}
     >
-      <h2>Log in to your account</h2>
-      <h6>Enter your email address and password to continue.</h6>
+      <Title
+        title="Log in to your account"
+        subtitle="Enter your email address and password to continue."
+      />
+
       <div className={classes.loginBox}>
         <div className={classes.labelContainer}>
           <label name="email">Email</label>
-          <input type="email" placeholder="Enter your email address" />
+          <input
+            type="email"
+            placeholder="Enter your email address"
+            ref={email}
+          />
         </div>
         <div className={classes.labelContainer}>
           <label name="password">Password</label>
@@ -95,9 +104,10 @@ const Login = (props) => {
             type="password"
             placeholder="Enter your password"
             className={classes.password}
+            ref={password}
           />
         </div>
-        <Button>Log In</Button>
+        <Button onClick={submitHandler}>Log In</Button>
         <div className={classes.orBreak}>
           <span>or</span>
         </div>

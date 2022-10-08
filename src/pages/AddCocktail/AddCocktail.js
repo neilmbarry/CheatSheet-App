@@ -23,6 +23,8 @@ import { motion } from 'framer-motion';
 import classes from './AddCocktail.module.css';
 
 import { addCocktailVariants } from '../../config/animationVariants';
+import { apiEndpoint } from '../../config/apiEndpoint';
+import { useSelector } from 'react-redux';
 
 const generateId = () => Math.floor(Math.random() * 100000 + 1);
 
@@ -45,6 +47,8 @@ const AddCocktail = ({ title, subtitle, action, remove, button }) => {
   const loading = store.getState().config.value.loading;
   const [focus, setFocus] = useState(false);
 
+  const token = useSelector((state) => state.config.value.token);
+
   const toggleImageModal = () => {
     setShowImageModal((prev) => !prev);
   };
@@ -56,11 +60,7 @@ const AddCocktail = ({ title, subtitle, action, remove, button }) => {
   };
 
   const addIngredientHandler = () => {
-    const updatedIngredients = [
-      ...ingredients,
-      { unit: 'ml', id: generateId() },
-    ];
-    setIngredients(updatedIngredients);
+    setIngredients((prev) => [...prev, { unit: 'ml', id: generateId() }]);
     return;
   };
 
@@ -85,8 +85,7 @@ const AddCocktail = ({ title, subtitle, action, remove, button }) => {
   };
 
   const addRecipeHandler = () => {
-    const updatedRecipe = [...recipe, { id: generateId() }];
-    setRecipe(updatedRecipe);
+    setRecipe((prev) => [...prev, { id: generateId() }]);
     return;
   };
 
@@ -112,6 +111,8 @@ const AddCocktail = ({ title, subtitle, action, remove, button }) => {
   const submitFormHandler = (e) => {
     e.preventDefault();
     store.dispatch(configActions.setLoading(true));
+    // TODO Check if slug exists
+
     const cocktail = {
       name: cocktailName.current?.value,
       author: authorName.current?.value,
@@ -123,13 +124,29 @@ const AddCocktail = ({ title, subtitle, action, remove, button }) => {
       image,
       slug: cocktailName.current?.value.split(' ').join(''),
     };
-    console.log(cocktail);
+
+    const body = JSON.stringify(cocktail);
+
+    console.log(body);
     setCocktailInfo(cocktail);
     setTimeout(() => {
-      action(cocktail);
+      // action(cocktail);
       store.dispatch(configActions.setLoading(false));
+      fetch(`${apiEndpoint()}api/v1/cocktails`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          setShowSuccessModal(true);
+        })
+        .catch((err) => console.warn(err));
       // configActions.setLoading(false);
-      setShowSuccessModal(true);
     }, 1000);
   };
 

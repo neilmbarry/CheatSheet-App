@@ -7,7 +7,7 @@ const LabelInput = ({
   label,
   name,
   placeholder,
-  ParentRef,
+  parentRef,
   defaultValue,
 }) => {
   const classesList = `${classes.main} ${className}`;
@@ -18,7 +18,7 @@ const LabelInput = ({
       <input
         type="text"
         placeholder={placeholder}
-        ref={ParentRef}
+        ref={parentRef}
         defaultValue={defaultValue}
         className={loading ? classes.unavailable : undefined}
       />
