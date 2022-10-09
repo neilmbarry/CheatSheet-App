@@ -14,7 +14,7 @@ const IngredientForm = ({
   const classesList = `${classes.main} ${className}`;
   const loading = store.getState().config.value.loading;
 
-  const ingredientsUI = listItems.map((ing, i) => {
+  const ingredientsUI = listItems?.map((ing, i) => {
     return (
       <IngredientInput
         ing={ing}

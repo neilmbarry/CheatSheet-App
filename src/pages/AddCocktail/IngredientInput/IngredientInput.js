@@ -21,8 +21,8 @@ const IngredientInput = ({
 
   const ingredientChangeHandler = (e) => {
     const value = e.target.value;
-    const type = e.target.id;
-    updateIngredient({ value, type, index });
+    const name = e.target.id;
+    updateIngredient({ value, name, index });
     return;
   };
 
@@ -45,7 +45,7 @@ const IngredientInput = ({
         <FormInput
           type="text"
           value={ing.type}
-          id="type"
+          id="name"
           placeholder="Type (e.g. Gin)"
           changeHandler={ingredientChangeHandler}
           loading={loading}

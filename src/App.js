@@ -1,6 +1,7 @@
 import { Route, useLocation, Switch } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import store from './store/store';
+import { Redirect } from 'react-router-dom';
 
 import NavigationBar from './components/Navigation/NavigationBar';
 import AddCocktail from './pages/AddCocktail/AddCocktail';
@@ -18,6 +19,7 @@ import cocktailActions from './store/cocktailSlice';
 
 import classes from './App.module.css';
 import background from './assets/img/bar.jpg';
+import { useSelector } from 'react-redux';
 
 function App() {
   console.log('App rendered');
@@ -54,7 +56,6 @@ function App() {
   const fetchResults = () => {
     fetch('http://127.0.0.1:8000/api/v1/cocktails')
       .then((res) => {
-        console.log(res.cookie);
         return res.json();
       })
       .then((data) => setResults(data.cocktails))
@@ -103,7 +104,7 @@ function App() {
         return (
           <Result
             name={res.name}
-            tags={[res.recipe[0].ingredient, res.flavour, res.glass]}
+            tags={[res.ingredients[0].name, res.flavour, res.glass]}
             rating={4.9}
             reviews={23}
             key={i}
@@ -141,6 +142,10 @@ function App() {
       .catch((err) => console.error(err));
   }, []);
 
+  const restrictToAuthor = () => {
+    return <Redirect to="/" />;
+  };
+
   return (
     <div className={classes.app}>
       <NavigationBar
@@ -165,6 +170,7 @@ function App() {
               />
             </Route>
             <Route path="/modify-cocktail/:slug">
+              {restrictToAuthor()}
               <AddCocktail
                 title="Modify your cocktail"
                 subtitle="Update your chosen fields."

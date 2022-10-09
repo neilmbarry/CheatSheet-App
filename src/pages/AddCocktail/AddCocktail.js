@@ -66,7 +66,7 @@ const AddCocktail = ({ title, subtitle, action, remove, button }) => {
 
   const updateIngredientHandler = (info) => {
     const modifiedEntry = { ...ingredients[info.index] };
-    modifiedEntry[info.type] = info.value;
+    modifiedEntry[info.name] = info.value;
     const updatedIngredients = ingredients.map((el, i) => {
       if (i === info.index) {
         return modifiedEntry;
@@ -127,7 +127,7 @@ const AddCocktail = ({ title, subtitle, action, remove, button }) => {
 
     const body = JSON.stringify(cocktail);
 
-    console.log(body);
+    console.log(cocktail);
     setCocktailInfo(cocktail);
     setTimeout(() => {
       // action(cocktail);
@@ -204,14 +204,23 @@ const AddCocktail = ({ title, subtitle, action, remove, button }) => {
   useEffect(() => {
     setFocus(true);
     if (!slug) return;
+    console.log(slug);
 
-    const cocktail = store
-      .getState()
-      .cocktails.value.cocktails.find((cocktail) => cocktail.slug === slug);
-    setCocktailInfo(cocktail);
-    setIngredients(cocktail.ingredients);
-    setRecipe(cocktail.recipe);
-    setImage(cocktail.image);
+    fetch(`${apiEndpoint()}api/v1/cocktails?slug=${slug}`)
+      .then((res) => res.json())
+      .then((data) => {
+        const cocktail = data.cocktails[0];
+        console.log(cocktail);
+        setCocktailInfo(cocktail);
+        setIngredients(cocktail.ingredients);
+        setRecipe(cocktail.recipe);
+        setImage(cocktail.image);
+      })
+      .catch((err) => console.error(err));
+
+    // const cocktail = store
+    //   .getState()
+    //   .cocktails.value.cocktails.find((cocktail) => cocktail.slug === slug);
   }, [slug]);
 
   return (

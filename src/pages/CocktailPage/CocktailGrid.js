@@ -13,6 +13,7 @@ import store from '../../store/store';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import cocktailActions from '../../store/cocktailSlice';
+import { apiEndpoint } from '../../config/apiEndpoint';
 
 const CocktailGrid = () => {
   const { slug } = useParams();
@@ -58,20 +59,29 @@ const CocktailGrid = () => {
   };
 
   useEffect(() => {
-    const cocktailInfo = store
-      .getState()
-      .cocktails.value.cocktails.find((el) => el.slug === slug);
-    if (!cocktailInfo) {
-      setIsLoading(false);
-      return console.warn('No cocktail found');
-    }
-    const isFav = store
-      .getState()
-      .cocktails.value.faves.includes(cocktailInfo.slug);
-    // console.log(cocktailInfo);
-    setCocktail(cocktailInfo);
-    setIsFav(isFav);
-    setIsLoading(false);
+    if (!slug) return;
+    fetch(`${apiEndpoint()}api/v1/cocktails?slug=${slug}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setCocktail(data.cocktails[0]);
+        setIsLoading(false);
+      })
+      .catch((err) => console.warn(err));
+    // const cocktailInfo = store
+    //   .getState()
+    //   .cocktails.value.cocktails.find((el) => el.slug === slug);
+    // if (!cocktailInfo) {
+    //   setIsLoading(false);
+    //   return console.warn('No cocktail found');
+    // }
+    // const isFav = store
+    //   .getState()
+    //   .cocktails.value.faves.includes(cocktailInfo.slug);
+    // // console.log(cocktailInfo);
+    // setCocktail(cocktailInfo);
+    // setIsFav(isFav);
+    // setIsLoading(false);
     return;
   }, [slug]);
 

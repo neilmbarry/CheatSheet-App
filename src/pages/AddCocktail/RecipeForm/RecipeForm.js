@@ -13,7 +13,7 @@ const RecipeForm = ({
   const classesList = `${classes.main} ${className}`;
   const loading = store.getState().config.value.loading;
 
-  const recipeUI = listItems.map((step, i) => (
+  const recipeUI = listItems?.map((step, i) => (
     <RecipeInput
       text={step.value}
       key={step.id}
