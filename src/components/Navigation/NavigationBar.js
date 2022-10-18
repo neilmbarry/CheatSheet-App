@@ -35,7 +35,7 @@ const NavigationBar = ({
         setName(data.user?.name);
         console.log(data);
       })
-      .catch((err) => console.warn(err));
+      .catch((err) => console.log(err));
   }, [token]);
 
   return (

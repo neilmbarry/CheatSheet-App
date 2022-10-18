@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import classes from './PlaceHolderSelection.module.css';
-import cocktailImages from '../../util/CocktailImages';
-import Button from '../../components/UI/Button';
+import cocktailImages from '../../../util/CocktailImages';
+import Button from '../../../components/UI/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import store from '../../../store/store';
+import configActions from '../../../store/configSlice';
 
-const PlaceHolderSelection = ({ className, onClose, onSubmit }) => {
+const PlaceHolderSelection = ({ className, onSubmit }) => {
   const classesList = `${classes.main} ${className}`;
   const [selected, setSelected] = useState('name');
   console.log(cocktailImages);
@@ -25,13 +27,22 @@ const PlaceHolderSelection = ({ className, onClose, onSubmit }) => {
       </div>
     );
   });
+
+  const submitHandler = () => {
+    onSubmit(selected);
+    store.dispatch(configActions.setModal(null));
+  };
+
   return (
     <div className={classesList}>
       <h2>Pick your placeholder</h2>
       <div className={classes.picsContainer}>{imagesJSX}</div>
       <div className={classes.buttonContainer}>
-        <Button onClick={() => onSubmit(selected)}>Select</Button>
-        <Button type="alt" onClick={onClose}>
+        <Button onClick={submitHandler}>Select</Button>
+        <Button
+          type="alt"
+          onClick={() => store.dispatch(configActions.setModal(null))}
+        >
           Cancel
         </Button>
       </div>

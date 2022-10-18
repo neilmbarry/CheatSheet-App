@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import dummy from './dummyCocktail.json';
 
 const initialState = {
-  // cocktails: [],
   cocktails: dummy,
   faves: [],
 };

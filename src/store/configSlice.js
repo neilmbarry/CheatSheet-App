@@ -4,7 +4,9 @@ const initialState = {
   loading: false,
   token: null,
   name: null,
-  authMessage: false,
+  authMessage: false, // warning that you must be signed in to add cocktail etc.
+  notification: null, 
+  modal: null,
 };
 
 export const configSlice = createSlice({
@@ -16,6 +18,12 @@ export const configSlice = createSlice({
     },
     setToken: (state, action) => {
       state.value.token = action.payload;
+    },
+    setNotification: (state, action) => {
+      state.value.notification = action.payload;
+    },
+    setModal: (state, action) => {
+      state.value.modal = action.payload;
     },
   },
 });

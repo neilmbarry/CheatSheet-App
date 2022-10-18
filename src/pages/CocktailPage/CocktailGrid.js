@@ -12,7 +12,7 @@ import { useParams } from 'react-router';
 import store from '../../store/store';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import cocktailActions from '../../store/cocktailSlice';
+import cocktailActions from '../../store/localCocktailsSlice';
 import { apiEndpoint } from '../../config/apiEndpoint';
 
 const CocktailGrid = () => {

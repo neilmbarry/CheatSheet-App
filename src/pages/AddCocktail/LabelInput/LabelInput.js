@@ -21,6 +21,7 @@ const LabelInput = ({
         ref={parentRef}
         defaultValue={defaultValue}
         className={loading ? classes.unavailable : undefined}
+        onBlur={() => console.log('Focuse out')}
       />
     </div>
   );

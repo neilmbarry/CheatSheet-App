@@ -4,7 +4,7 @@ import store from './store/store';
 import { Redirect } from 'react-router-dom';
 
 import NavigationBar from './components/Navigation/NavigationBar';
-import AddCocktail from './pages/AddCocktail/AddCocktail';
+import AddCocktailPage from './pages/AddCocktail/AddCocktailPage';
 import Login from './pages/Authentication/Login/Login';
 import SignUp from './pages/Authentication/SignUp/SignUp';
 import CocktailGrid from './pages/CocktailPage/CocktailGrid';
@@ -13,13 +13,15 @@ import Result from './components/Navigation/SearchResults/Result';
 import Footer from './components/Navigation/Footer';
 import Favoutites from './components/Navigation/Favourites/Favourites';
 import Home from './pages/Home/Home';
+import Modal from './components/UI/Modal';
 
 import { AnimatePresence } from 'framer-motion';
-import cocktailActions from './store/cocktailSlice';
+import cocktailActions from './store/localCocktailsSlice';
 
 import classes from './App.module.css';
 import background from './assets/img/bar.jpg';
 import { useSelector } from 'react-redux';
+import configActions from './store/configSlice';
 
 function App() {
   console.log('App rendered');
@@ -28,6 +30,15 @@ function App() {
   const [showFavourites, setShowFavourites] = useState(false);
   const [results, setResults] = useState([]);
   const [favourites, setFavourites] = useState([]);
+
+  const modal = useSelector((state) => state.config.value.modal);
+
+  const modalJSX = (
+    <Modal
+      type={modal}
+      onClose={() => store.dispatch(configActions.setModal(null))}
+    />
+  );
 
   const toggleResults = (e) => {
     // console.log(e.target);
@@ -148,6 +159,7 @@ function App() {
 
   return (
     <div className={classes.app}>
+      {modalJSX}
       <NavigationBar
         onSearchClick={fetchResults}
         // onClick={closeAll}
@@ -162,7 +174,7 @@ function App() {
         <AnimatePresence exitBeforeEnter>
           <Switch location={location} key={location.key}>
             <Route path="/add-cocktail">
-              <AddCocktail
+              <AddCocktailPage
                 title="Create a cocktail"
                 subtitle="Fill in required fields to add a cocktail."
                 action={addCocktailHandler}
@@ -170,8 +182,8 @@ function App() {
               />
             </Route>
             <Route path="/modify-cocktail/:slug">
-              {restrictToAuthor()}
-              <AddCocktail
+              {/* {restrictToAuthor()} */}
+              <AddCocktailPage
                 title="Modify your cocktail"
                 subtitle="Update your chosen fields."
                 action={updateCocktailHandler}

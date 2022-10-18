@@ -64,3 +64,64 @@ export const backdropVariants = {
     },
   },
 };
+
+export const overlayVariants = {
+  hidden: {
+    // y: -100,
+    opacity: 0,
+    // scale: 0.8,
+
+    // rotate: "0deg",
+  },
+  visible: {
+    // y: 0,
+    opacity: 1,
+
+    transition: {
+      // type: 'spring',
+      // delay: 0.5,
+      duration: 0.2,
+    },
+  },
+  exit: {
+    // y: -30,
+    opacity: 0,
+    // scale: 0.9,
+    transition: {
+      // type: "spring",
+      // delay: 0.5,
+      duration: 0.3,
+    },
+  },
+};
+
+export const modalVariants = {
+  hidden: {
+    y: '-30%',
+    x: '-50%',
+    opacity: 0,
+    // scale: 0.8,
+
+    // rotate: "0deg",
+  },
+  visible: {
+    y: '-50%',
+    opacity: 1,
+
+    transition: {
+      type: 'spring',
+      // delay: 0.5,
+      duration: 0.5,
+    },
+  },
+  exit: {
+    y: -30,
+    opacity: 0,
+    // scale: 0.9,
+    transition: {
+      // type: "spring",
+      // delay: 0.5,
+      duration: 0.3,
+    },
+  },
+};

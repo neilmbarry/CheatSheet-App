@@ -4,6 +4,7 @@
   align-items: center;
   padding: 2rem;
   flex-direction: column;
+  border: red solid 3px;
 }
 
 .form {

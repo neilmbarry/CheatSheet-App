@@ -6,8 +6,9 @@ import configActions from '../../store/configSlice';
 
 import IngredientForm from './IngredientForm/IngredientForm';
 import RecipeForm from './RecipeForm/RecipeForm';
+import AddCocktailBox from './AddCocktailBox/AddCocktailBox';
 import Modal from '../../components/UI/Modal';
-import PlaceHolderSelection from './PlaceHolderSelection';
+// import PlaceHolderSelection from './PlaceHolder/PlaceHolderSelection';
 import DeleteConfirm from './DeleteConfirm/DeleteConfirm';
 import SuccessBox from './SuccessBox/SuccessBox';
 import Button from '../../components/UI/Button';
@@ -20,7 +21,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faCocktail } from '@fortawesome/free-solid-svg-icons';
 import { motion } from 'framer-motion';
 
-import classes from './AddCocktail.module.css';
+import classes from './AddCocktailPage.module.css';
 
 import { addCocktailVariants } from '../../config/animationVariants';
 import { apiEndpoint } from '../../config/apiEndpoint';
@@ -29,35 +30,27 @@ import { useSelector } from 'react-redux';
 const generateId = () => Math.floor(Math.random() * 100000 + 1);
 
 const AddCocktail = ({ title, subtitle, action, remove, button }) => {
+  const cocktailName = useRef();
+  const authorName = useRef();
+  const glassType = useRef();
+  const flavourType = useRef();
+  const garnishType = useRef();
   const [ingredients, setIngredients] = useState([
     { unit: 'ml', id: generateId() },
   ]);
   const [recipe, setRecipe] = useState([{ id: generateId() }]);
+
   const [cocktailInfo, setCocktailInfo] = useState({});
   const slug = useParams().slug;
-  const cocktailName = useRef();
-  const authorName = useRef();
   const [image, setImage] = useState();
-  const glassType = useRef();
-  const flavourType = useRef();
-  const garnishType = useRef();
-  const [showImageModal, setShowImageModal] = useState(false);
+
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const loading = store.getState().config.value.loading;
-  const [focus, setFocus] = useState(false);
 
+  const loading = useSelector((state) => state.config.value.loading);
   const token = useSelector((state) => state.config.value.token);
 
-  const toggleImageModal = () => {
-    setShowImageModal((prev) => !prev);
-  };
-
-  const closeModal = () => {
-    setShowImageModal(false);
-    setShowSuccessModal(false);
-    setShowDeleteModal(false);
-  };
+  const [focus, setFocus] = useState(false);
 
   const addIngredientHandler = () => {
     setIngredients((prev) => [...prev, { unit: 'ml', id: generateId() }]);
@@ -101,7 +94,7 @@ const AddCocktail = ({ title, subtitle, action, remove, button }) => {
     setRecipe(updatedRecipe);
   };
 
-  const removeStepHandler = (index) => {
+  const removeRecipeHandler = (index) => {
     const filteredList = recipe.filter((step, i) => {
       return i !== index;
     });
@@ -140,7 +133,10 @@ const AddCocktail = ({ title, subtitle, action, remove, button }) => {
         },
         body,
       })
-        .then((res) => res.json())
+        .then((res) => {
+          console.log(res.ok);
+          return res.json();
+        })
         .then((data) => {
           console.log(data);
           setShowSuccessModal(true);
@@ -157,42 +153,38 @@ const AddCocktail = ({ title, subtitle, action, remove, button }) => {
     configActions.setLoading(true);
     setTimeout(() => {
       store.dispatch(configActions.setLoading(false));
-      closeModal();
     }, 1000);
   };
 
   const logState = () => {
-    console.log(JSON.stringify(store.getState().cocktails.value.cocktails));
+    store.dispatch(
+      configActions.setModal(
+        <DeleteConfirm info={cocktailInfo} confirm={deleteCocktailHandler} />
+      )
+    );
+    // setCocktailInfo({});
+    // console.log(store.getState().cocktails.value.cocktails);
   };
 
   const submitPlaceHolderHandler = (pic) => {
-    toggleImageModal();
     setImage(pic);
   };
 
-  const imageModal = showImageModal && (
-    <Modal onClose={closeModal}>
-      <PlaceHolderSelection
-        onClose={closeModal}
-        onSubmit={submitPlaceHolderHandler}
-      />
-    </Modal>
-  );
+  const showPlaceholderModal = () => {
+    store.dispatch(
+      configActions.setModal({
+        type: 'placeholderSelection',
+        onSubmit: submitPlaceHolderHandler(),
+      })
+    );
+  };
 
   const deleteModal = showDeleteModal && (
-    <Modal onClose={closeModal}>
-      <DeleteConfirm
-        info={cocktailInfo}
-        confirm={deleteCocktailHandler}
-        onClose={closeModal}
-      />
-    </Modal>
+    <DeleteConfirm info={cocktailInfo} confirm={deleteCocktailHandler} />
   );
 
   const successModal = showSuccessModal && (
-    <Modal onClose={closeModal}>
-      <SuccessBox cocktail={cocktailInfo} onClose={null} />
-    </Modal>
+    <SuccessBox cocktail={cocktailInfo} />
   );
 
   const deleteButton = remove && (
@@ -217,17 +209,10 @@ const AddCocktail = ({ title, subtitle, action, remove, button }) => {
         setImage(cocktail.image);
       })
       .catch((err) => console.error(err));
-
-    // const cocktail = store
-    //   .getState()
-    //   .cocktails.value.cocktails.find((cocktail) => cocktail.slug === slug);
   }, [slug]);
 
   return (
     <>
-      {imageModal}
-      {deleteModal}
-      {successModal}
       <motion.div
         variants={addCocktailVariants}
         initial="hidden"
@@ -236,99 +221,7 @@ const AddCocktail = ({ title, subtitle, action, remove, button }) => {
         className={classes.main}
       >
         <Title title={title} subtitle={subtitle} />
-        <Tile className={classes.form}>
-          {deleteButton}
-          <div className={classes.labelRow}>
-            <div className={classes.labelColumn}>
-              <LabelInput
-                label="cocktail"
-                name="Cocktail Name"
-                placeholder="e.g. Paper Plane"
-                parentRef={cocktailName}
-                defaultValue={cocktailInfo.name}
-              />
-              <LabelInput
-                label="name"
-                name="Author"
-                placeholder="e.g. Neil Barry"
-                parentRef={authorName}
-                defaultValue={cocktailInfo.author}
-              />
-            </div>
-            <div className={classes.labelColumn}>
-              <label name="photo">Photo</label>
-              <div className={classes.photoBox}>
-                <div className={classes.photoBtns}>
-                  <Button type="alt" className={classes.photoButton}>
-                    Upload Photo
-                  </Button>
-                  <div className={classes.orBreak}>
-                    <span>or</span>
-                  </div>
-                  <Button
-                    type="alt"
-                    className={classes.photoButton}
-                    onClick={toggleImageModal}
-                  >
-                    Choose Placeholder
-                  </Button>
-                </div>
-                <div className={classes.photoContainer}>
-                  <div className={classes.photoImage}>
-                    {image ? (
-                      <img src={image} alt="none" />
-                    ) : (
-                      <FontAwesomeIcon icon={faCocktail}></FontAwesomeIcon>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className={classes.labelRow}>
-            <LabelInput
-              label="glass"
-              name="Glass Type"
-              placeholder="e.g. Coupe"
-              parentRef={glassType}
-              defaultValue={cocktailInfo.glass}
-            />
-            <LabelInput
-              label="flavour"
-              name="Flavour Profile"
-              placeholder="e.g. Citrus Forward"
-              parentRef={flavourType}
-              defaultValue={cocktailInfo.flavour}
-            />
-            <LabelInput
-              label="garnish"
-              name="Garnish"
-              placeholder="e.g. Cherry"
-              parentRef={garnishType}
-              defaultValue={cocktailInfo.garnish}
-            />
-          </div>
-          <IngredientForm
-            listItems={ingredients}
-            updateIngredient={updateIngredientHandler}
-            addIngredient={addIngredientHandler}
-            removeIngredient={removeIngredientHandler}
-          />
-          <RecipeForm
-            listItems={recipe}
-            updateRecipe={updateRecipeHandler}
-            addRecipe={addRecipeHandler}
-            removeRecipe={removeStepHandler}
-          />
-          <div className={classes.btnContainer}>
-            <Button onClick={submitFormHandler}>
-              {loading ? <LoadingSpinner /> : button}
-            </Button>
-            <Button type="alt" onClick={() => logState()}>
-              Log State
-            </Button>
-          </div>
-        </Tile>
+        <AddCocktailBox />
       </motion.div>
     </>
   );

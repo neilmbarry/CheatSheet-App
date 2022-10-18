@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom';
 import { faCocktail } from '@fortawesome/free-solid-svg-icons';
 
 import store from '../../../store/store';
-import cocktailActions from '../../../store/cocktailSlice';
+import cocktailActions from '../../../store/localCocktailsSlice';
 import { useHistory } from 'react-router';
 
 const Result = ({

@@ -17,11 +17,21 @@
     'title title title pic pic pic'
     'ing ing method method rev rev'
     'footer footer footer footer footer footer ';
-  overflow: hidden;
+  /* overflow: hidden; */
   /* border-radius: 15px; */
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.171);
   /* background-color: red; */
   z-index: 2;
+  /* border-bottom: 23px solid green; */
+}
+
+.cocktailGrid::after {
+  content: '';
+
+  border-bottom: 23px solid green;
+  /* background-color: red; */
+  /* height: 100%; */
+  width: 600%;
 }
 
 .cocktailPage {
