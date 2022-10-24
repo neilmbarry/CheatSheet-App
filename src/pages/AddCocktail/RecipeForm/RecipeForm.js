@@ -27,7 +27,7 @@ const RecipeForm = ({
 
   return (
     <div className={classesList}>
-      <label name="Method">Method</label>
+      <label name="Method">Method*</label>
       {recipeUI}
       <h6 className={classes.addBtn} onClick={addRecipe}>
         + Add another step

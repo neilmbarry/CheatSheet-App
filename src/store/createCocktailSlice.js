@@ -10,7 +10,10 @@ const dummyState = {
   method: [{ id: null }],
   image: null,
 };
-const initialState = {};
+const initialState = {
+  ingredients: [{ unit: 'ml', id: null }],
+  method: [{ id: null }],
+};
 
 export const createCocktailSlice = createSlice({
   name: 'create',

@@ -30,7 +30,7 @@ const IngredientForm = ({
 
   return (
     <div className={classesList}>
-      <label name="Ingredients">Ingredients</label>
+      <label name="Ingredients">Ingredients*</label>
       {ingredientsUI}
       <h6 className={classes.addBtn} onClick={addIngredient}>
         + Add another ingredient

@@ -28,70 +28,55 @@ const AddCocktailBox = ({ className, remove }) => {
   );
 
   return (
-    <Tile className={classes.form}>
-      {deleteButton}
+    <Tile className={classesList}>
       <div className={classes.labelRow}>
         <div className={classes.labelColumn}>
           <LabelInput
             label="cocktail"
-            name="Cocktail Name"
+            name="Cocktail Name*"
             placeholder="e.g. Paper Plane"
             //   parentRef={cocktailName}
             defaultValue={cocktailInfo.name}
           />
           <LabelInput
-            label="name"
-            name="Author"
-            placeholder="e.g. Neil Barry"
-            //   parentRef={authorName}
-            defaultValue={cocktailInfo.author}
+            label="flavour"
+            name="Flavour Profile*"
+            placeholder="e.g. Citrus Forward"
+            // parentRef={flavourType}
+            defaultValue={cocktailInfo.flavour}
+          />
+          <LabelInput
+            label="glass"
+            name="Glass Type*"
+            placeholder="e.g. Coupe"
+            // parentRef={glassType}
+            defaultValue={cocktailInfo.glass}
           />
         </div>
         <div className={classes.labelColumn}>
-          <label name="photo">Photo</label>
-          <div className={classes.photoBox}>
-            <div className={classes.photoBtns}>
-              <Button
-                type="alt"
-                className={classes.photoButton}
-                //   onClick={showPlaceholderModal}
-              >
-                Select
-              </Button>
-            </div>
-            <div className={classes.photoContainer}>
-              <div className={classes.photoImage}>
-                {cocktailInfo.image ? (
-                  <img src={cocktailInfo.image} alt="none" />
-                ) : (
-                  <FontAwesomeIcon icon={faCocktail}></FontAwesomeIcon>
-                )}
-              </div>
-            </div>
+          <div className={classes.photoImage}>
+            {cocktailInfo.image ? (
+              <img src={cocktailInfo.image} alt="none" />
+            ) : (
+              <FontAwesomeIcon icon={faCocktail}></FontAwesomeIcon>
+            )}
           </div>
         </div>
       </div>
       <div className={classes.labelRow}>
-        <LabelInput
-          label="glass"
-          name="Glass Type"
-          placeholder="e.g. Coupe"
-          // parentRef={glassType}
-          defaultValue={cocktailInfo.glass}
-        />
-        <LabelInput
-          label="flavour"
-          name="Flavour Profile"
-          placeholder="e.g. Citrus Forward"
-          // parentRef={flavourType}
-          defaultValue={cocktailInfo.flavour}
-        />
         <LabelInput
           label="garnish"
           name="Garnish"
           placeholder="e.g. Cherry"
           // parentRef={garnishType}
           defaultValue={cocktailInfo.garnish}
+        />
+        <LabelInput
+          label="name"
+          name="Author"
+          placeholder="e.g. Neil Barry"
+          //   parentRef={authorName}
+          defaultValue={cocktailInfo.author}
         />
       </div>
       <IngredientForm
@@ -114,6 +99,7 @@ const AddCocktailBox = ({ className, remove }) => {
           Log State
         </Button>
       </div>
+      {deleteButton}
     </Tile>
   );
 };

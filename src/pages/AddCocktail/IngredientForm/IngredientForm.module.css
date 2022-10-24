@@ -2,10 +2,13 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  gap: 0.5rem;
   align-items: flex-start;
+  margin-bottom: 1.5rem;
 }
 
 .addBtn {
-  padding: 0.5rem 0;
+  margin-left: 1.5rem;
+  margin-top: 0.5rem;
   cursor: pointer;
 }
