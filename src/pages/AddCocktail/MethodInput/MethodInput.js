@@ -1,21 +1,30 @@
 import React from 'react';
 import FormInput from '../../../components/UI/FormInput';
-import classes from './RecipeInput.module.css';
+import classes from './MethodInput.module.css';
 // import Button from '../../UI/Button';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
+import DeleteButton from '../../../components/UI/DeleteButton';
 
-const RecipeInput = ({ text, index, removeStep, updateRecipe, loading }) => {
-  const recipeChangeHandler = (e) => {
+const MethodInput = ({
+  text,
+  index,
+  removeMethod,
+  id,
+  updateMethod,
+  loading,
+}) => {
+  const methodChangeHandler = (e) => {
     const value = e.target.value;
-    return updateRecipe({ value, index });
+    console.log(value);
+    return updateMethod({ value, id });
   };
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className={classes.recipe}
+      className={classes.method}
     >
       <div className={classes.step}>
         <p>{index + 1}</p>
@@ -23,14 +32,15 @@ const RecipeInput = ({ text, index, removeStep, updateRecipe, loading }) => {
       <FormInput
         placeholder="Enter Step"
         value={text}
-        changeHandler={recipeChangeHandler}
+        changeHandler={methodChangeHandler}
         loading={loading}
       />
-      <div className={classes.close} onClick={removeStep}>
+      <DeleteButton onClick={removeMethod} />
+      {/* <div className={classes.close} onClick={}>
         <FontAwesomeIcon icon={faCircleXmark}></FontAwesomeIcon>
-      </div>
+      </div> */}
     </motion.div>
   );
 };
 
-export default RecipeInput;
+export default MethodInput;

@@ -6,11 +6,11 @@ import FormDropdown from '../../../components/UI/FormDropdown';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
+import DeleteButton from '../../../components/UI/DeleteButton';
 
 const IngredientInput = ({
   ing,
   removeIngredient,
-  id,
   index,
   updateIngredient,
   loading,
@@ -34,27 +34,28 @@ const IngredientInput = ({
     >
       <div className={classes.inputList}>
         <FormInput
+          type="text"
+          value={ing.brand}
+          id="brand"
+          placeholder="Brand (Optional)"
+          changeHandler={ingredientChangeHandler}
+          loading={loading}
+        />
+
+        <FormInput
+          type="text"
+          value={ing.type}
+          id="name"
+          placeholder="Type* (e.g. Gin)"
+          changeHandler={ingredientChangeHandler}
+          loading={loading}
+        />
+        <FormInput
           type="number"
           min={0}
           value={ing.quantity}
           id="quantity"
           placeholder="1"
-          changeHandler={ingredientChangeHandler}
-          loading={loading}
-        />
-        <FormInput
-          type="text"
-          value={ing.type}
-          id="name"
-          placeholder="Type (e.g. Gin)"
-          changeHandler={ingredientChangeHandler}
-          loading={loading}
-        />
-        <FormInput
-          type="text"
-          value={ing.brand}
-          id="brand"
-          placeholder="Brand (Optional)"
           changeHandler={ingredientChangeHandler}
           loading={loading}
         />
@@ -66,9 +67,7 @@ const IngredientInput = ({
         id="unit"
         loading={loading}
       />
-      <div className={classes.close} onClick={removeIngredientHandler}>
-        <FontAwesomeIcon icon={faCircleXmark}></FontAwesomeIcon>
-      </div>
+      <DeleteButton onClick={removeIngredientHandler} />
     </motion.div>
   );
 };

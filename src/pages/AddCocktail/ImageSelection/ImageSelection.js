@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import classes from './PlaceHolderSelection.module.css';
+import classes from './ImageSelection.module.css';
 import cocktailImages from '../../../util/CocktailImages';
 import Button from '../../../components/UI/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import store from '../../../store/store';
 import configActions from '../../../store/configSlice';
+import createCocktailActions from '../../../store/createCocktailSlice';
 
-const PlaceHolderSelection = ({ className, onSubmit }) => {
+const PlaceHolderSelection = ({ className }) => {
   const classesList = `${classes.main} ${className}`;
-  const [selected, setSelected] = useState('name');
+  const [selected, setSelected] = useState(null);
   console.log(cocktailImages);
 
   const selectedIcon = (
@@ -29,7 +30,7 @@ const PlaceHolderSelection = ({ className, onSubmit }) => {
   });
 
   const submitHandler = () => {
-    onSubmit(selected);
+    store.dispatch(createCocktailActions.changeImage(selected));
     store.dispatch(configActions.setModal(null));
   };
 

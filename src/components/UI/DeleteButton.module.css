@@ -1,0 +1,13 @@
+.main {
+  color: rgb(190, 190, 190);
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+.main:hover {
+  color: rgb(255, 105, 105);
+}

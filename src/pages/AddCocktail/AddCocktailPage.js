@@ -5,20 +5,17 @@ import store from '../../store/store';
 import configActions from '../../store/configSlice';
 
 import IngredientForm from './IngredientForm/IngredientForm';
-import RecipeForm from './RecipeForm/RecipeForm';
+
 import AddCocktailBox from './AddCocktailBox/AddCocktailBox';
 import Modal from '../../components/UI/Modal';
 // import PlaceHolderSelection from './PlaceHolder/PlaceHolderSelection';
 import DeleteConfirm from './DeleteConfirm/DeleteConfirm';
 import SuccessBox from './SuccessBox/SuccessBox';
-import Button from '../../components/UI/Button';
+
 import Title from '../../components/UI/Title/Title';
-import Tile from '../../components/UI/Tile/Tile';
-import LabelInput from './LabelInput/LabelInput';
-import LoadingSpinner from '../../components/UI/Spinner';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faCocktail } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { motion } from 'framer-motion';
 
 import classes from './AddCocktailPage.module.css';

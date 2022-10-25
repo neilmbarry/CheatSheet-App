@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import classes from './Modal.module.css';
 import { overlayVariants, modalVariants } from '../../config/animationVariants';
 
-import PlaceHolderSelection from '../../pages/AddCocktail/PlaceHolder/PlaceHolderSelection';
+import ImageSelection from '../../pages/AddCocktail/ImageSelection/ImageSelection';
 
 import { motion, AnimatePresence } from 'framer-motion';
 import store from '../../store/store';
@@ -16,7 +16,7 @@ const Modal = ({ className, type }) => {
   console.log(type);
 
   const modalList = {
-    placeholderSelection: <PlaceHolderSelection onSubmit={type?.onSubmit} />,
+    imageSelection: <ImageSelection />,
   };
 
   return ReactDOM.createPortal(

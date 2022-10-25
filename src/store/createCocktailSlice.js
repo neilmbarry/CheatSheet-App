@@ -6,13 +6,13 @@ const dummyState = {
   glass: null,
   flavour: null,
   garnish: null,
-  ingredients: [{ unit: 'ml', id: null }],
-  method: [{ id: null }],
+  ingredients: [],
+  method: [],
   image: null,
 };
 const initialState = {
-  ingredients: [{ unit: 'ml', id: null }],
-  method: [{ id: null }],
+  ingredients: [],
+  method: [],
 };
 
 export const createCocktailSlice = createSlice({

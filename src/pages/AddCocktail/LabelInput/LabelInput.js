@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import classes from './LabelInput.module.css';
 import store from '../../../store/store';
 
@@ -7,21 +7,22 @@ const LabelInput = ({
   label,
   name,
   placeholder,
-  parentRef,
   defaultValue,
+  updateValue,
 }) => {
   const classesList = `${classes.main} ${className}`;
   const loading = store.getState().config.value.loading;
+  const value = useRef();
   return (
     <div className={classesList}>
       <label name={label}>{name}</label>
       <input
         type="text"
         placeholder={placeholder}
-        ref={parentRef}
+        ref={value}
         defaultValue={defaultValue}
         className={loading ? classes.unavailable : undefined}
-        onBlur={() => console.log('Focuse out')}
+        onBlur={() => updateValue(value.current.value)}
       />
     </div>
   );
