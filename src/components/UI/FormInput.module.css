@@ -3,10 +3,16 @@
   outline: none;
   display: block;
   width: 100%;
+  font-size: 1.8rem;
+  font-weight: 400;
 }
 
 .input:focus {
   border: solid #233747 1px;
+}
+
+.input::placeholder {
+  font-weight: 300;
 }
 
 .un {

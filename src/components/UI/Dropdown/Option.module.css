@@ -1,0 +1,29 @@
+.main {
+  width: 100%;
+  height: 3rem;
+  background-color: white;
+  border: solid rgb(190, 190, 190) 1px;
+  /* color: grey; */
+  font-size: 1.8rem;
+  padding: 2rem 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 400;
+  min-width: 10rem;
+  /* justify-content: ; */
+  /* position: relative; */
+}
+
+.main:hover {
+  background-color: rgb(233, 233, 233);
+}
+
+.icon {
+  /* position: absolute; */
+  /* left: 0; */
+  font-size: 1.5rem;
+  /* margin: 0 1rem; */
+  width: 2rem;
+}

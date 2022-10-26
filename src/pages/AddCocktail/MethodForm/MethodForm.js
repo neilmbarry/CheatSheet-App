@@ -57,7 +57,9 @@ const MethodForm = ({ className }) => {
 
   return (
     <div className={classesList}>
-      <label name="Method">Method*</label>
+      <label name="Method" className={classes.label}>
+        Method*
+      </label>
       {methodUI}
       <h6 className={classes.addBtn} onClick={addMethod}>
         + Add another step

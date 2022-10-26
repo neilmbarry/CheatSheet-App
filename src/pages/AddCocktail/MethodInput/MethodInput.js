@@ -27,7 +27,7 @@ const MethodInput = ({
       className={classes.method}
     >
       <div className={classes.step}>
-        <p>{index + 1}</p>
+        <p className={classes.index}>{index + 1}</p>
       </div>
       <FormInput
         placeholder="Enter Step"

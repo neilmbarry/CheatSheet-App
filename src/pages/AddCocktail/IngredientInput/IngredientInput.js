@@ -7,6 +7,7 @@ import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
 import DeleteButton from '../../../components/UI/DeleteButton';
+import Dropdown from '../../../components/UI/Dropdown/Dropdown';
 
 const IngredientInput = ({
   ing,
@@ -37,7 +38,7 @@ const IngredientInput = ({
           type="text"
           value={ing.brand}
           id="brand"
-          placeholder="Brand (Optional)"
+          placeholder="Brand"
           changeHandler={ingredientChangeHandler}
           loading={loading}
         />
@@ -46,7 +47,7 @@ const IngredientInput = ({
           type="text"
           value={ing.type}
           id="name"
-          placeholder="Type* (e.g. Gin)"
+          placeholder="Type* e.g. Gin, Lemon Juice"
           changeHandler={ingredientChangeHandler}
           loading={loading}
         />
@@ -60,13 +61,17 @@ const IngredientInput = ({
           loading={loading}
         />
       </div>
-      <FormDropdown
+      <Dropdown
+        options={[{ name: 'Ml' }, { name: 'Oz' }, { name: 'Dash' }]}
+        placeholder="- Unit -"
+      />
+      {/* <FormDropdown
         options={['ml', 'oz', 'dash']}
         selected={ing.unit}
         changeHandler={ingredientChangeHandler}
         id="unit"
         loading={loading}
-      />
+      /> */}
       <DeleteButton onClick={removeIngredientHandler} />
     </motion.div>
   );

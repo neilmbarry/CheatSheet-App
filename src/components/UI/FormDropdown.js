@@ -15,6 +15,8 @@ const FormDropdown = ({ options, selected, changeHandler, id, loading }) => {
       defaultValue={selected}
       onChange={changeHandler}
       id={id}
+      onBlur={() => console.log('blurred dropdown')}
+      onFocus={() => console.log('focused dropdown')}
     >
       {optionsList}
     </select>

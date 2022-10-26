@@ -76,7 +76,9 @@ const IngredientForm = ({ className, listItems }) => {
 
   return (
     <div className={classesList}>
-      <label name="Ingredients">Ingredients*</label>
+      <label name="Ingredients" className={classes.label}>
+        Ingredients*
+      </label>
       {ingredientsUI}
       <h6 className={classes.addBtn} onClick={addIngredientHandler}>
         + Add another ingredient

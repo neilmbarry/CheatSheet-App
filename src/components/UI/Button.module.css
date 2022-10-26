@@ -4,7 +4,7 @@
   /* border-radius: 4px; */
   text-decoration: none;
   text-transform: uppercase;
-  background-color: #233747;
+  background-color: transparent;
   padding: 1rem;
   font-size: 1.4rem;
   font-weight: 400;
@@ -16,7 +16,7 @@
 }
 
 .btn:hover {
-  background-color: #233747;
+  background-color: #0f3553;
   color: white;
 }
 

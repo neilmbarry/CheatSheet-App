@@ -175,7 +175,7 @@ function App() {
           <Switch location={location} key={location.key}>
             <Route path="/add-cocktail">
               <AddCocktailPage
-                title="Create a cocktail"
+                title="ADD COCKTAIL"
                 subtitle="Fill in required fields to add a cocktail."
                 action={addCocktailHandler}
                 button="Submit"

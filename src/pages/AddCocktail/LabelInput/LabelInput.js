@@ -15,13 +15,15 @@ const LabelInput = ({
   const value = useRef();
   return (
     <div className={classesList}>
-      <label name={label}>{name}</label>
+      <label name={label} className={classes.label}>
+        {name}
+      </label>
       <input
         type="text"
         placeholder={placeholder}
         ref={value}
         defaultValue={defaultValue}
-        className={loading ? classes.unavailable : undefined}
+        className={loading ? classes.unavailable : classes.input}
         onBlur={() => updateValue(value.current.value)}
       />
     </div>
