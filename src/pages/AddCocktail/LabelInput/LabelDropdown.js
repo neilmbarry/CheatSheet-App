@@ -12,13 +12,16 @@ const LabelDropdown = ({
   updateValue,
 }) => {
   const classesList = `${classes.main} ${className}`;
-  console.log(options);
   return (
     <div className={classesList}>
       <label name={label} className={classes.label}>
         {name}
       </label>
-      <Dropdown options={options} />
+      <Dropdown
+        options={options}
+        selected={defaultValue}
+        updateValue={updateValue}
+      />
     </div>
   );
 };

@@ -27,7 +27,7 @@ const Option = ({ className, onClick, icon, name }) => {
   const classesList = `${classes.main} ${className}`;
   return (
     <div className={classesList} onClick={onClick}>
-      {icon && <FontAwesomeIcon className={classes.icon} icon={map[icon]} />}
+      {icon && <FontAwesomeIcon className={classes.icon} icon={icon} />}
       {name}
     </div>
   );

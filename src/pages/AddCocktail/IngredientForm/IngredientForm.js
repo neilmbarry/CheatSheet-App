@@ -20,7 +20,7 @@ const IngredientForm = ({ className, listItems }) => {
     store.dispatch(
       createCocktailActions.changeIngredients([
         ...cocktailInfo.ingredients,
-        { unit: 'ml', id: generateId() },
+        { id: generateId() },
       ])
     );
   }, [cocktailInfo.ingredients]);

@@ -28,6 +28,9 @@ import Title from '../../../components/UI/Title/Title';
 
 import Dropdown from '../../../components/UI/Dropdown/Dropdown';
 
+import { flavourOptions } from '../../../config/dropdownOptions/flavourOptions';
+import { glassOptions } from '../../../config/dropdownOptions/glassOptions';
+
 const optionsTemplate = [
   { icon: 'faWhiskeyGlass', name: 'Flute' },
   { icon: 'faWineGlass', name: 'Tall' },
@@ -50,33 +53,12 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
 
   const loading = useSelector((state) => state.config.value.loading);
 
-  const submitFormHandler = () => null;
-
-  console.log('add cocktail renedered');
-
-  const addMethodHandler = () => {
-    store.dispatch(
-      createCocktailActions.changeMethod([
-        ...cocktailInfo.method,
-        { id: generateId() },
-      ])
-    );
+  const submitFormHandler = () => {
+    console.log(cocktailInfo);
   };
 
-  const updateNameHandler = useCallback((value) => {
-    store.dispatch(createCocktailActions.changeName(value));
-  }, []);
-  const updateFlavourHandler = useCallback((value) => {
-    store.dispatch(createCocktailActions.changeFlavour(value));
-  }, []);
-  const updateGlassHandler = useCallback((value) => {
-    store.dispatch(createCocktailActions.changeGlass(value));
-  }, []);
-  const updateGarnishHandler = useCallback((value) => {
-    store.dispatch(createCocktailActions.changeGarnish(value));
-  }, []);
-  const updateAuthorHandler = useCallback((value) => {
-    store.dispatch(createCocktailActions.changeAuthor(value));
+  const updateHandler = useCallback((action, value) => {
+    store.dispatch(createCocktailActions[action](value));
   }, []);
 
   const showImageSelection = () => {
@@ -120,30 +102,23 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
             label="cocktail"
             name="Cocktail Name*"
             placeholder="e.g. Old Fashioned"
-            updateValue={updateNameHandler}
+            updateValue={(name) => updateHandler('changeName', name)}
             defaultValue={cocktailInfo.name}
           />
-          {/* <LabelInput
-            label="flavour"
-            name="Flavour Profile*"
-            placeholder="e.g. Citrus Forward"
-            updateValue={updateFlavourHandler}
-            defaultValue={cocktailInfo.flavour}
-          /> */}
           <LabelDropdown
             label="flavour"
             name="Flavour Profile*"
-            options={flavoursTemplate}
+            options={flavourOptions}
             placeholder="e.g. Coupe"
-            updateValue={updateGlassHandler}
-            defaultValue={cocktailInfo.glass}
+            updateValue={(flavour) => updateHandler('changeFlavour', flavour)}
+            defaultValue={cocktailInfo.flavour}
           />
           <LabelDropdown
             label="glass"
             name="Glass Type*"
-            options={optionsTemplate}
+            options={glassOptions}
             placeholder="e.g. Coupe"
-            updateValue={updateGlassHandler}
+            updateValue={(glass) => updateHandler('changeGlass', glass)}
             defaultValue={cocktailInfo.glass}
           />
         </div>
@@ -159,14 +134,14 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
           label="garnish"
           name="Garnish"
           placeholder="e.g. Cherry"
-          updateValue={updateGarnishHandler}
+          updateValue={(garnish) => updateHandler('changeGarnish', garnish)}
           defaultValue={cocktailInfo.garnish}
         />
         <LabelInput
           label="name"
           name="Author"
           placeholder="e.g. Neil Barry"
-          updateValue={updateAuthorHandler}
+          updateValue={(author) => updateHandler('changeAuthor', author)}
           defaultValue={cocktailInfo.author}
         />
       </div>

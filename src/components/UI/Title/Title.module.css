@@ -10,8 +10,9 @@
 }
 
 .title {
-  color: #0963ac;
-  text-shadow: 1px 1px 0px black;
+  /* color: #0963ac;
+  text-shadow: 1px 1px 0px black; */
+  color: rgb(39, 39, 39);
   border-bottom: 1px solid grey;
   margin-bottom: 3rem;
   margin-top: -1rem;

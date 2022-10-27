@@ -11,7 +11,6 @@ import createCocktailActions from '../../../store/createCocktailSlice';
 const PlaceHolderSelection = ({ className }) => {
   const classesList = `${classes.main} ${className}`;
   const [selected, setSelected] = useState(null);
-  console.log(cocktailImages);
 
   const selectedIcon = (
     <div className={classes.checkIcon}>
@@ -20,7 +19,6 @@ const PlaceHolderSelection = ({ className }) => {
   );
 
   const imagesJSX = Object.values(cocktailImages).map((name) => {
-    console.log(name);
     return (
       <div className={classes.pic} key={name} onClick={() => setSelected(name)}>
         {selected === name && selectedIcon}

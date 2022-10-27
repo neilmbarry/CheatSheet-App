@@ -217,7 +217,6 @@ const AddCocktail = ({ title, subtitle, action, remove, button }) => {
         exit="exit"
         className={classes.main}
       >
-        {/* <Title title={title} subtitle={subtitle} /> */}
         <AddCocktailBox title={title} subtitle={subtitle} />
       </motion.div>
     </>

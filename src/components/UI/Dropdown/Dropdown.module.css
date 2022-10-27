@@ -17,6 +17,8 @@
 .buttonContainer {
   background-color: green;
   position: relative;
+  display: flex;
+  width: 100%;
 }
 
 .options {

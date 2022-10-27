@@ -9,6 +9,7 @@
 .inputList {
   display: flex;
   /* flex-direction: row-reverse; */
+  gap: 0.5rem;
   width: 100%;
 }
 
@@ -17,7 +18,7 @@
   border-radius: 0;
   border: 1px solid rgb(190, 190, 190);
   /* border-right: none; */
-  margin-right: 5px;
+
   text-align: center;
 }
 

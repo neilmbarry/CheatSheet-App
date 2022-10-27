@@ -9,6 +9,8 @@ import { motion } from 'framer-motion';
 import DeleteButton from '../../../components/UI/DeleteButton';
 import Dropdown from '../../../components/UI/Dropdown/Dropdown';
 
+import { unitOptions } from '../../../config/dropdownOptions/unitOptions';
+
 const IngredientInput = ({
   ing,
   removeIngredient,
@@ -23,8 +25,13 @@ const IngredientInput = ({
   const ingredientChangeHandler = (e) => {
     const value = e.target.value;
     const name = e.target.id;
+
     updateIngredient({ value, name, index });
     return;
+  };
+
+  const unitChangeHandler = (value) => {
+    updateIngredient({ value, name: 'unit', index });
   };
 
   return (
@@ -45,7 +52,7 @@ const IngredientInput = ({
 
         <FormInput
           type="text"
-          value={ing.type}
+          value={ing.name}
           id="name"
           placeholder="Type* e.g. Gin, Lemon Juice"
           changeHandler={ingredientChangeHandler}
@@ -60,11 +67,14 @@ const IngredientInput = ({
           changeHandler={ingredientChangeHandler}
           loading={loading}
         />
+        <Dropdown
+          options={unitOptions}
+          placeholder="- Unit -"
+          updateValue={unitChangeHandler}
+          id="unit"
+          selected={ing.unit}
+        />
       </div>
-      <Dropdown
-        options={[{ name: 'Ml' }, { name: 'Oz' }, { name: 'Dash' }]}
-        placeholder="- Unit -"
-      />
       {/* <FormDropdown
         options={['ml', 'oz', 'dash']}
         selected={ing.unit}
