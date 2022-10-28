@@ -2,52 +2,23 @@
   display: grid;
   width: 95%;
   max-width: 1000px;
-  /* height: 600px; */
-  /* background-color: turquoise; */
   margin: 0rem auto;
-  /* padding: 2rem; */
   grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: 70vh 1fr;
-  /* height: 700px; */
-  /* overflow: scroll; */
-  /* grid-template-areas:
-    'title title pic pic rev rev'
-    'ing method method method rev rev'; */
+  grid-template-rows: 500px 1fr;
   grid-template-areas:
     'title title title pic pic pic'
     'ing ing method method rev rev'
     'footer footer footer footer footer footer ';
-  /* overflow: hidden; */
-  /* border-radius: 15px; */
+  overflow: hidden;
+  border-radius: 10px;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.171);
-  /* background-color: red; */
   z-index: 2;
-  /* border-bottom: 23px solid green; */
-}
-
-.cocktailGrid::after {
-  content: '';
-
-  border-bottom: 23px solid green;
-  /* background-color: red; */
-  /* height: 100%; */
-  width: 600%;
 }
 
 .cocktailPage {
   /* height: 2000px;
   background-color: red; */
   padding: 4rem 0;
-}
-
-.title,
-.pic,
-.ing,
-.method,
-.rev {
-  /* height: 300px; */
-
-  /* border: 1px dashed red; */
 }
 
 .title {
@@ -58,10 +29,7 @@
 .pic {
   grid-area: pic;
   background-color: white;
-  /* max-height: 50vh; */
-  /* width: 150%; */
   position: relative;
-  /* z-index: -1; */
 }
 
 .ing {
@@ -80,12 +48,7 @@
 }
 
 .image {
-  /* border-radius: 50px; */
-  /* height: 90%; */
-  /* width: 70%; */
   margin: auto;
-  /* clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); */
-  /* clip-path: polygon(20% 0, 100% 0%, 100% 100%, 0 100%); */
 }
 
 .gridFooter {
@@ -95,39 +58,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* background-color: greenyellow; */
   background-color: white;
   color: rgb(109, 109, 109);
-}
-
-.orBreak {
-  display: flex;
-  width: 50%;
-  margin: auto;
-  align-items: center;
-}
-
-.orBreak span {
-  padding: 0 2rem;
-  text-transform: lowercase;
-  font-size: 2.4rem;
-  font-weight: 600;
-}
-
-.orBreak::before,
-.orBreak::after {
-  content: '';
-  flex: 1;
-  background-color: rgb(109, 109, 109);
-  height: 1px;
-}
-
-.favIcon {
-  position: absolute;
-  top: 0;
-  right: 0;
-  font-size: 3rem;
-  color: white;
-  margin: 0.5rem 1rem;
-  cursor: pointer;
 }

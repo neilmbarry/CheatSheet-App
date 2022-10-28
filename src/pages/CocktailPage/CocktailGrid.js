@@ -4,6 +4,8 @@ import CocktailMethod from './CocktailMethod/CocktailMethod';
 import CocktailReviews from './CocktailReviews/CocktailReviews';
 import CocktailIngredients from './CocktailIngredients/CocktailIngredients';
 import CocktailTitle from './CocktailTitle/CocktailTitle';
+import CocktailImage from './CocktailImage/CocktailImage';
+import PageBreak from '../../components/UI/PageBreak';
 // import photo from '../../assets/img/paper.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCocktail, faHeart } from '@fortawesome/free-solid-svg-icons';
@@ -68,60 +70,27 @@ const CocktailGrid = () => {
         setIsLoading(false);
       })
       .catch((err) => console.warn(err));
-    // const cocktailInfo = store
-    //   .getState()
-    //   .cocktails.value.cocktails.find((el) => el.slug === slug);
-    // if (!cocktailInfo) {
-    //   setIsLoading(false);
-    //   return console.warn('No cocktail found');
-    // }
-    // const isFav = store
-    //   .getState()
-    //   .cocktails.value.faves.includes(cocktailInfo.slug);
-    // // console.log(cocktailInfo);
-    // setCocktail(cocktailInfo);
-    // setIsFav(isFav);
-    // setIsLoading(false);
     return;
   }, [slug]);
 
+  console.log(cocktail);
+
   const loadedCocktailGrid = (
     <div className={classes.cocktailGrid}>
-      <CocktailTitle
-        className={classes.title}
-        title={cocktail.name}
-        author={`${cocktail.author}, Sydney, Australia`}
-        date="January 19, 2022"
-        rating={'4.9'}
-        reviews="102"
-      />
-      <div className={classes.pic}>
-        <div
-          className={classes.favIcon}
-          onClick={() => toggleFav(cocktail.slug)}
-        >
-          {isFave ? (
-            <FontAwesomeIcon icon={faHeart} />
-          ) : (
-            <FontAwesomeIcon icon={faHeartEmpty} />
-          )}
-        </div>
-        <img src={cocktail.image} alt="" className={classes.image} />
-      </div>
-      <CocktailIngredients
-        className={classes.ing}
-        ingredients={cocktail.ingredients}
-      />
-      <CocktailMethod className={classes.method} method={cocktail.recipe} />
+      <CocktailTitle className={classes.title} cocktail={cocktail} />
+      <CocktailImage cocktail={cocktail} />
+      <CocktailIngredients className={classes.ing} cocktail={cocktail} />
+      <CocktailMethod className={classes.method} cocktail={cocktail} />
 
       <CocktailReviews className={classes.rev} />
-      <div className={classes.gridFooter}>
+      <PageBreak />
+      {/* <div className={classes.gridFooter}>
         <div className={classes.orBreak}>
           <span>
             <FontAwesomeIcon icon={faCocktail}></FontAwesomeIcon>
           </span>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 
@@ -132,6 +101,7 @@ const CocktailGrid = () => {
       <CocktailIngredients className={classes.ing} />
       <CocktailMethod className={classes.method} />
       <CocktailReviews className={classes.rev} />
+
       <div className={classes.gridFooter}>
         <div className={classes.orBreak}>
           <span>
@@ -153,9 +123,10 @@ const CocktailGrid = () => {
         exit={variants.exit}
         className={classes.cocktailPage}
       >
-        {isLoading && loadingCocktailGrid}
-        {!isLoading && cocktail.name && loadedCocktailGrid}
-        {!isLoading && !cocktail.name && notFoundMessage}
+        {/* {isLoading && loadingCocktailGrid} */}
+        {!isLoading && cocktail?.name && loadedCocktailGrid}
+        {!isLoading && !cocktail?.name && notFoundMessage}
+        {/* {loadingCocktailGrid} */}
       </motion.div>
     </>
   );

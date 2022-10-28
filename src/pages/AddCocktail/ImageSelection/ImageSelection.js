@@ -20,31 +20,37 @@ const PlaceHolderSelection = ({ className }) => {
 
   const imagesJSX = Object.values(cocktailImages).map((name) => {
     return (
-      <div className={classes.pic} key={name} onClick={() => setSelected(name)}>
+      <div
+        className={classes.pic}
+        key={name}
+        onClick={() => submitHandler(name)}
+      >
         {selected === name && selectedIcon}
         <img src={name} alt="" />
       </div>
     );
   });
 
-  const submitHandler = () => {
-    store.dispatch(createCocktailActions.changeImage(selected));
+  const submitHandler = (name) => {
+    store.dispatch(createCocktailActions.changeImage(name));
     store.dispatch(configActions.setModal(null));
   };
 
   return (
     <div className={classesList}>
-      <h2>Pick your placeholder</h2>
+      <h2>Choose your image</h2>
       <div className={classes.picsContainer}>{imagesJSX}</div>
-      <div className={classes.buttonContainer}>
-        <Button onClick={submitHandler}>Select</Button>
+      {/* <div className={classes.buttonContainer}>
+        <Button type="main" onClick={submitHandler}>
+          Select
+        </Button>
         <Button
           type="alt"
           onClick={() => store.dispatch(configActions.setModal(null))}
         >
           Cancel
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 };

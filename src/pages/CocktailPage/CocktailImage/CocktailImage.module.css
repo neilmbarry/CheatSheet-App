@@ -1,0 +1,17 @@
+.main {
+  grid-area: pic;
+  background-color: white;
+  /* max-height: 50vh; */
+  /* width: 150%; */
+  position: relative;
+  /* z-index: -1; */
+}
+.favIcon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 3rem;
+  color: white;
+  margin: 0.5rem 1rem;
+  cursor: pointer;
+}

@@ -30,6 +30,7 @@ import Dropdown from '../../../components/UI/Dropdown/Dropdown';
 
 import { flavourOptions } from '../../../config/dropdownOptions/flavourOptions';
 import { glassOptions } from '../../../config/dropdownOptions/glassOptions';
+import { apiEndpoint } from '../../../config/apiEndpoint';
 
 const optionsTemplate = [
   { icon: 'faWhiskeyGlass', name: 'Flute' },
@@ -50,11 +51,29 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
   const classesList = `${classes.main} ${className}`;
 
   const cocktailInfo = useSelector((state) => state.create.value);
-
+  const token = useSelector((state) => state.config.value.token);
   const loading = useSelector((state) => state.config.value.loading);
 
   const submitFormHandler = () => {
+    const body = JSON.stringify(cocktailInfo);
     console.log(cocktailInfo);
+    fetch(`${apiEndpoint()}api/v1/cocktails`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body,
+    })
+      .then((res) => {
+        console.log(res.ok);
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        // setShowSuccessModal(true);
+      })
+      .catch((err) => console.warn(err));
   };
 
   const updateHandler = useCallback((action, value) => {
@@ -149,7 +168,7 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
       <MethodForm />
       <PageBreak />
       <div className={classes.btnContainer}>
-        <Button onClick={submitFormHandler}>
+        <Button type="main" onClick={submitFormHandler}>
           {loading ? <LoadingSpinner /> : 'submit'}
         </Button>
         <Button type="alt" onClick={() => null}>

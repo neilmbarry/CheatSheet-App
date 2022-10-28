@@ -45,7 +45,7 @@ const IngredientInput = ({
           type="text"
           value={ing.brand}
           id="brand"
-          placeholder="Brand"
+          placeholder="Brand (optional)"
           changeHandler={ingredientChangeHandler}
           loading={loading}
         />
@@ -54,7 +54,7 @@ const IngredientInput = ({
           type="text"
           value={ing.name}
           id="name"
-          placeholder="Type* e.g. Gin, Lemon Juice"
+          placeholder="Ingredient*"
           changeHandler={ingredientChangeHandler}
           loading={loading}
         />

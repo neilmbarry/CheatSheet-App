@@ -1,7 +1,4 @@
 .btn {
-  /* margin: 1rem 0; */
-  /* margin-bottom: 1rem; */
-  /* border-radius: 4px; */
   text-decoration: none;
   text-transform: uppercase;
   background-color: transparent;
@@ -20,16 +17,15 @@
   color: white;
 }
 
+.main {
+  background-color: #0f3553;
+}
+
 .alt {
-  background-color: transparent;
+  background-color: white;
   color: #233747;
   border: 1px solid #233747;
 }
-/*
-.btn:active {
-  transform: translateY(-1px);
-  box-shadow: 2px 2px 5px rgba(17, 17, 17, 0.262);
-} */
 
 .disable {
   color: grey;
@@ -49,8 +45,9 @@
   padding: 1rem 3rem;
   font-size: 2rem;
   border-radius: 1000px;
-  font-weight: \500;
+  font-weight: 500;
   text-shadow: none;
+  background-color: #0f3553;
   /* color: #ffda07; */
   /* background-color: #ffda07; */
 }
