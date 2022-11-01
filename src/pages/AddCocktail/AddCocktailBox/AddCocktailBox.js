@@ -31,6 +31,7 @@ import Dropdown from '../../../components/UI/Dropdown/Dropdown';
 import { flavourOptions } from '../../../config/dropdownOptions/flavourOptions';
 import { glassOptions } from '../../../config/dropdownOptions/glassOptions';
 import { apiEndpoint } from '../../../config/apiEndpoint';
+import FormDropdown from '../../../components/UI/FormDropdown';
 
 const optionsTemplate = [
   { icon: 'faWhiskeyGlass', name: 'Flute' },
@@ -57,7 +58,7 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
   const submitFormHandler = () => {
     const body = JSON.stringify(cocktailInfo);
     console.log(cocktailInfo);
-    fetch(`${apiEndpoint()}api/v1/cocktails`, {
+    fetch(`${apiEndpoint()}cocktails`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -140,6 +141,7 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
             updateValue={(glass) => updateHandler('changeGlass', glass)}
             defaultValue={cocktailInfo.glass}
           />
+          {/* <FormDropdown options={['neil', 'barry']} /> */}
         </div>
         <div className={classes.firstGroup_right}>
           <div className={classes.imageContainer}>

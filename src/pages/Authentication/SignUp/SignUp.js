@@ -30,7 +30,7 @@ const SignUp = (props) => {
     };
     console.log(body);
     console.log(JSON.stringify(body));
-    fetch(apiEndpoint() + 'api/v1/users/signup', {
+    fetch(apiEndpoint() + 'users/signup', {
       method: 'POST',
       body: JSON.stringify(body),
       headers: {

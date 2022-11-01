@@ -62,7 +62,7 @@ const CocktailGrid = () => {
 
   useEffect(() => {
     if (!slug) return;
-    fetch(`${apiEndpoint()}api/v1/cocktails?slug=${slug}`)
+    fetch(`${apiEndpoint()}cocktails?slug=${slug}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

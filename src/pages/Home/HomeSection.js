@@ -12,9 +12,7 @@ const HomeSection = ({ className, photo, type, background }) => {
   const history = useHistory();
 
   const randomCocktailHandler = async () => {
-    const response = await fetch(
-      apiEndpoint() + 'api/v1/cocktails?fields=slug'
-    );
+    const response = await fetch(apiEndpoint() + 'cocktails?fields=slug');
     const data = await response.json();
     const slugsList = data.cocktails.map((entry) => entry.slug);
     console.log(slugsList);

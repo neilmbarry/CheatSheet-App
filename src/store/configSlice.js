@@ -3,10 +3,13 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   loading: false,
   token: null,
+  id: null,
   name: null,
   authMessage: false, // warning that you must be signed in to add cocktail etc.
-  notification: null, 
+  notification: null,
   modal: null,
+  openSearchResults: false,
+  openFavourites: false,
 };
 
 export const configSlice = createSlice({

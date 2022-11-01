@@ -13,8 +13,6 @@ import configActions from '../../store/configSlice';
 const Modal = ({ className, type }) => {
   const classesList = `${classes.main} ${className}`;
 
-  console.log(type);
-
   const modalList = {
     imageSelection: <ImageSelection />,
   };

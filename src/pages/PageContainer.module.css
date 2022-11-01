@@ -1,0 +1,20 @@
+.main {
+  position: relative;
+  padding-top: 6rem;
+  flex: 1;
+  background-color: rgba(24, 24, 24, 0.705);
+
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+  filter: blur(2px);
+}

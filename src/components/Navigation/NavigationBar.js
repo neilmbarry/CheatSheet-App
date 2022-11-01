@@ -26,7 +26,8 @@ const NavigationBar = ({
   const [name, setName] = useState(null);
 
   useEffect(() => {
-    fetch(apiEndpoint() + 'api/v1/users/me', {
+    if (!token) return;
+    fetch(apiEndpoint() + 'users/me', {
       method: 'GET',
       headers: { Authorization: `Bearer ${token}` },
     })

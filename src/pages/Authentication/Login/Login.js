@@ -29,7 +29,7 @@ const Login = (props) => {
     });
     console.log(body);
     try {
-      fetch(`${apiEndpoint()}api/v1/users/login`, {
+      fetch(`${apiEndpoint()}users/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

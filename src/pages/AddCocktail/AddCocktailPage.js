@@ -122,7 +122,7 @@ const AddCocktail = ({ title, subtitle, action, remove, button }) => {
     setTimeout(() => {
       // action(cocktail);
       store.dispatch(configActions.setLoading(false));
-      fetch(`${apiEndpoint()}api/v1/cocktails`, {
+      fetch(`${apiEndpoint()}cocktails`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -195,7 +195,7 @@ const AddCocktail = ({ title, subtitle, action, remove, button }) => {
     if (!slug) return;
     console.log(slug);
 
-    fetch(`${apiEndpoint()}api/v1/cocktails?slug=${slug}`)
+    fetch(`${apiEndpoint()}cocktails?slug=${slug}`)
       .then((res) => res.json())
       .then((data) => {
         const cocktail = data.cocktails[0];
