@@ -12,18 +12,24 @@ import { Link } from 'react-router-dom';
 import store from '../../store/store';
 import { useSelector } from 'react-redux';
 import { apiEndpoint } from '../../config/apiEndpoint';
+import configActions from '../../store/configSlice';
 
 const NavigationBar = ({
   onChange,
   onClick,
   onSearch,
   onSearchClick,
-  toggleFav,
+
   children,
 }) => {
   const token = useSelector((state) => state.config.value.token);
 
   const [name, setName] = useState(null);
+
+  const toggleFavourites = () => {
+    console.log('toggling');
+    store.dispatch(configActions.toggleOpenFavourites());
+  };
 
   useEffect(() => {
     if (!token) return;
@@ -34,6 +40,7 @@ const NavigationBar = ({
       .then((res) => res.json())
       .then((data) => {
         setName(data.user?.name);
+
         console.log(data);
       })
       .catch((err) => console.log(err));
@@ -44,9 +51,6 @@ const NavigationBar = ({
       <nav className={classes.nav} onClick={null}>
         <div className={classes.navLeft}>
           <NavigationSearch onChange={onChange} />
-          <div onClick={onSearchClick} className={classes.magni}>
-            <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
-          </div>
         </div>
         <Link to="/">
           <h4 className={classes.navButton}>
@@ -61,7 +65,7 @@ const NavigationBar = ({
             </Button>
           </Link>
 
-          <Button onClick={toggleFav}>
+          <Button onClick={toggleFavourites}>
             <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>
           </Button>
 

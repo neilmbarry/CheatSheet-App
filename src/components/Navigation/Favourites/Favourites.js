@@ -6,13 +6,12 @@ import Result from '../SearchResults/Result';
 
 import { motion } from 'framer-motion';
 import { AnimatePresence } from 'framer-motion';
+import configActions from '../../../store/configSlice';
 
 import classes from './Favourites.module.css';
-import {
-  favouritesVariants,
-  backdropVariants,
-} from '../../../config/animationVariants';
+import { favouritesVariants } from '../../../config/animationVariants';
 import { apiEndpoint } from '../../../config/apiEndpoint';
+import Backdrop from '../../UI/Backdrop';
 
 const Favourites = ({ className, children, onClose }) => {
   const classesList = `${classes.main} ${className}`;
@@ -21,21 +20,28 @@ const Favourites = ({ className, children, onClose }) => {
   const id = useSelector((state) => state.config.value.id);
   const isOpen = useSelector((state) => state.config.value.openFavourites);
 
-  const resultsJSX = faves.map((cocktail, i) => {
-    return (
-      <Result
-        name={cocktail.name}
-        tags={[cocktail.ingredients[0].name, cocktail.flavour, cocktail.glass]}
-        rating={4.9}
-        reviews={23}
-        key={i}
-        image={cocktail.image}
-        slug={cocktail.slug}
-        isAuthor={true}
-        fave={cocktail.createdBy === id}
-      />
-    );
-  });
+  const closeHandler = () => {
+    store.dispatch(configActions.toggleOpenFavourites());
+    return;
+  };
+
+  // const resultsJSX = faves?.map((cocktail, i) => {
+  //   return (
+  //     <Result
+  //       name={cocktail.name}
+  //       tags={[cocktail.ingredients[0].name, cocktail.flavour, cocktail.glass]}
+  //       rating={4.9}
+  //       reviews={23}
+  //       key={i}
+  //       image={cocktail.image}
+  //       slug={cocktail.slug}
+  //       isAuthor={true}
+  //       fave={cocktail.createdBy === id}
+  //     />
+  //   );
+  // });
+
+  const resultsJSX = null;
 
   useEffect(() => {
     fetch(apiEndpoint() + '')
@@ -47,14 +53,7 @@ const Favourites = ({ className, children, onClose }) => {
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
-          variants={backdropVariants}
-          animate="visible"
-          initial="hidden"
-          exit="exit"
-          className={classes.backdrop}
-          onClick={onClose}
-        >
+        <Backdrop onClick={closeHandler}>
           <motion.div
             variants={favouritesVariants}
             animate="visible"
@@ -67,7 +66,7 @@ const Favourites = ({ className, children, onClose }) => {
             </div>
             <div className={classes.results}>{resultsJSX}</div>
           </motion.div>
-        </motion.div>
+        </Backdrop>
       )}
     </AnimatePresence>
   );

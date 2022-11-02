@@ -47,7 +47,6 @@ const Result = ({
   const editHandler = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    onClick();
     history.push(`/modify-cocktail/${slug}`);
   };
 

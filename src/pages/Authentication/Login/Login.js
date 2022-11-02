@@ -39,6 +39,7 @@ const Login = (props) => {
         .then((res) => res.json())
         .then((data) => {
           store.dispatch(configActions.setToken(data.token));
+          store.dispatch(configActions.setId(data.user._id));
           console.log(data);
         })
         .catch((err) => console.log(err));

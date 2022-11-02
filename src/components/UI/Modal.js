@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import store from '../../store/store';
 
 import configActions from '../../store/configSlice';
+import Backdrop from './Backdrop';
 
 const Modal = ({ className, type }) => {
   const classesList = `${classes.main} ${className}`;
@@ -21,25 +22,20 @@ const Modal = ({ className, type }) => {
     <AnimatePresence>
       {type && (
         <>
-          <motion.div
-            variants={overlayVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            className={classes.overlay}
+          <Backdrop
             onClick={() => store.dispatch(configActions.setModal(null))}
-            key={1}
-          ></motion.div>
-          <motion.div
-            variants={modalVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            className={classesList}
-            key={2}
           >
-            {modalList[type]}
-          </motion.div>
+            <motion.div
+              variants={modalVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className={classesList}
+              key={2}
+            >
+              {modalList[type]}
+            </motion.div>
+          </Backdrop>
         </>
       )}
     </AnimatePresence>,

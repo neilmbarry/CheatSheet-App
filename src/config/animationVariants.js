@@ -59,7 +59,7 @@ export const favouritesVariants = {
     },
   },
   exit: {
-    x: -450,
+    x: 450,
 
     transition: {
       duration: 0.2,

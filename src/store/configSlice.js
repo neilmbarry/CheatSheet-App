@@ -22,11 +22,23 @@ export const configSlice = createSlice({
     setToken: (state, action) => {
       state.value.token = action.payload;
     },
+    setId: (state, action) => {
+      state.value.id = action.payload;
+    },
     setNotification: (state, action) => {
       state.value.notification = action.payload;
     },
     setModal: (state, action) => {
       state.value.modal = action.payload;
+    },
+    setOpenSearchResults: (state, action) => {
+      state.value.openSearchResults = action.payload;
+    },
+    setOpenFavourites: (state, action) => {
+      state.value.openFavourites = action.payload;
+    },
+    toggleOpenFavourites: (state, action) => {
+      state.value.openFavourites = !state.value.openFavourites;
     },
   },
 });

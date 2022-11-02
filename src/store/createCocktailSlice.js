@@ -43,6 +43,9 @@ export const createCocktailSlice = createSlice({
     changeImage: (state, action) => {
       state.value.image = action.payload;
     },
+    updateCocktail: (state, action) => {
+      state.value = action.payload;
+    },
   },
 });
 

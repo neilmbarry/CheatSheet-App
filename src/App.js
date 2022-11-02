@@ -16,9 +16,10 @@ import PageContainer from './pages/PageContainer';
 
 import { AnimatePresence } from 'framer-motion';
 import useFetch from './hooks/useFetch';
-import { useFetch2 } from './hooks/useFetch';
+import configActions from './store/configSlice';
 
 import classes from './App.module.css';
+import store from './store/store';
 
 function App() {
   console.log('App rendered');
@@ -45,14 +46,16 @@ function App() {
   useEffect(() => {
     window.scrollTo(0, 0);
     // Close Faves and SearchResults
+    store.dispatch(configActions.setOpenFavourites(false));
+    store.dispatch(configActions.setOpenSearchResults(false));
   }, [location.pathname]);
 
   return (
     <div className={classes.app}>
       <NavigationBar />
       <PageContainer>
-        {/* <SearchResults /> */}
-        {/* <Favoutites /> */}
+        <SearchResults />
+        <Favoutites />
         <AnimatePresence exitBeforeEnter>
           <Switch location={location} key={location.key}>
             <Route path="/add-cocktail">

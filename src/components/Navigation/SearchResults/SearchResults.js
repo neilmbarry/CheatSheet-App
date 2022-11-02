@@ -12,16 +12,26 @@ import {
   searchResultsVariants,
   backdropVariants,
 } from '../../../config/animationVariants';
+import { useSelector } from 'react-redux';
+import store from '../../../store/store';
+import configActions from '../../../store/configSlice';
+import ResultsBar from './ResultsBar';
+import Backdrop from '../../UI/Backdrop';
 
 const SearchResults = ({ className, children, onClick }) => {
   const classesList = `${classes.main} ${className}`;
 
+  const isOpen = useSelector((state) => state.config.value.openSearchResults);
+
+  const userId = useSelector((state) => state.config.value.id);
+
+  const closeHandler = () => {
+    store.dispatch(configActions.setOpenSearchResults(false));
+  };
+
   const { data, loading } = useFetch({
     url: 'cocktails',
   });
-
-  console.log(data, '<--- DATA');
-  console.log(loading, '<--- LOADING');
 
   const results = loading ? (
     <>
@@ -44,65 +54,29 @@ const SearchResults = ({ className, children, onClick }) => {
         image={cocktail.image}
         slug={cocktail.slug}
         createdBy={cocktail.createdBy}
+        isAuthor={cocktail.createdBy === userId}
         // fave={faveSlugs.includes(cocktail.slug)}
         onClick={null}
       />
     ))
   );
 
-  // USE THIS!!! -------------------------
-  // {results.map((res, i) => {
-  //       const faveSlugs = getFavList();
-  //       return (
-  //         <Result
-  //           name={res.name}
-  //           tags={[res.ingredients[0].name, res.flavour, res.glass]}
-  //           rating={4.9}
-  //           reviews={23}
-  //           key={i}
-  //           image={res.image}
-  //           slug={res.slug}
-  //           isAuthor={true}
-  //           fave={faveSlugs.includes(res.slug)}
-  //           onClick={closeAll}
-  //         />
-  //       );
-  //     })}
-
   return (
     <AnimatePresence>
-      <motion.div
-        className={classes.backdrop}
-        variants={backdropVariants}
-        initial="hidden"
-        animate="visible"
-        exit="exit"
-        onClick={onClick}
-      >
-        <motion.div
-          variants={searchResultsVariants}
-          initial="hidden"
-          animate="visible"
-          exit="exit"
-          className={classesList}
-        >
-          <div className={classes.options}>
-            <h6>71 matching results for 'paper plane'</h6>
-            <div className={classes.dropdown}>
-              <h6>Sort by:</h6>
-              <select name="" id="">
-                <option value="">rating</option>
-                <option value="">newest</option>
-                <option value="">relevant</option>
-              </select>
-            </div>
-          </div>
-          <div className={classes.results}>
-            {children}
-            {results}
-          </div>
-        </motion.div>
-      </motion.div>
+      {isOpen && (
+        <Backdrop onClick={closeHandler}>
+          <motion.div
+            variants={searchResultsVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className={classesList}
+          >
+            <ResultsBar />
+            <div className={classes.results}>{results}</div>
+          </motion.div>
+        </Backdrop>
+      )}
     </AnimatePresence>
   );
 };

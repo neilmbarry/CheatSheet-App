@@ -44,20 +44,20 @@ const CocktailGrid = () => {
               <CocktailTitle
                 className={classes.title}
                 cocktail={cocktail}
-                loading={true}
+                loading={loading}
               />
-              <CocktailImage cocktail={cocktail} loading={true} />
+              <CocktailImage cocktail={cocktail} loading={loading} />
               <CocktailIngredients
                 className={classes.ing}
                 cocktail={cocktail}
-                loading={true}
+                loading={loading}
               />
               <CocktailMethod
                 className={classes.method}
                 cocktail={cocktail}
-                loading={true}
+                loading={loading}
               />
-              <CocktailReviews className={classes.rev} loading={true} />
+              <CocktailReviews className={classes.rev} loading={loading} />
               <PageBreak />
             </>
           )}
