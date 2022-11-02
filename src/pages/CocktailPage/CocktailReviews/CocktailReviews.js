@@ -1,8 +1,17 @@
 import React from 'react';
 import classes from './CocktailReviews.module.css';
 
-const CocktailReviews = ({ className }) => {
+const CocktailReviews = ({ className, cocktail, loading }) => {
   const classesList = `${classes.main} ${className}`;
+
+  if (loading) {
+    return (
+      <div className={classesList}>
+        <h3>Reviews</h3>
+        <h4>Loading...</h4>
+      </div>
+    );
+  }
   return (
     <div className={classesList}>
       <h3>Reviews</h3>

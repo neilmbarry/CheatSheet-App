@@ -4,13 +4,38 @@ import classes from './CocktailTitle.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStarHalfStroke, faStar } from '@fortawesome/free-solid-svg-icons';
 
-const CocktailTitle = ({ className, cocktail }) => {
+const CocktailTitle = ({ className, cocktail, loading }) => {
   const classesList = `${classes.main} ${className}`;
-  const title = cocktail.name;
-  const author = `${cocktail.author}, Sydney, Australia`;
+  const title = cocktail?.name;
+  const author = `${cocktail?.author}, Sydney, Australia`;
   const date = 'January 19, 2022';
   const rating = '4.9';
   const reviews = '102';
+
+  if (loading) {
+    return (
+      <div className={`${classes.loading} ${className}`}>
+        <h1>Loading...</h1>
+        <h4>Loading...</h4>
+
+        {/* <div className={classes.ratings}>
+          <h3>{rating}</h3>
+          <div className={classes.stars}>
+            <FontAwesomeIcon icon={faStar} />
+            <FontAwesomeIcon icon={faStar} />
+            <FontAwesomeIcon icon={faStar} />
+            <FontAwesomeIcon icon={faStar} />
+            <FontAwesomeIcon icon={faStarHalfStroke} />
+          </div>
+
+          <h3>
+            <span className={classes.smaller}>({reviews})</span>
+          </h3>
+        </div> */}
+      </div>
+    );
+  }
+
   return (
     <div className={classesList}>
       <h1>{title}</h1>

@@ -1,9 +1,9 @@
 import classes from './Spinner.module.css';
 
-const LoadingSpinner = () => {
+const LoadingSpinner = ({ type }) => {
   return (
     <div className={classes.spinnerContainer}>
-      <div className={classes.spinner}></div>
+      <div className={`${classes.spinner} ${classes[type]}`}></div>
     </div>
   );
 };

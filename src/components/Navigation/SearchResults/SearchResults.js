@@ -2,8 +2,11 @@ import React from 'react';
 import classes from './SearchResults.module.css';
 import Result from './Result';
 import { AnimatePresence } from 'framer-motion';
+import LoadingSpinner from '../../UI/Spinner';
 
 import { motion } from 'framer-motion';
+
+import useFetch from '../../../hooks/useFetch';
 
 import {
   searchResultsVariants,
@@ -12,6 +15,40 @@ import {
 
 const SearchResults = ({ className, children, onClick }) => {
   const classesList = `${classes.main} ${className}`;
+
+  const { data, loading } = useFetch({
+    url: 'cocktails',
+  });
+
+  console.log(data, '<--- DATA');
+  console.log(loading, '<--- LOADING');
+
+  const results = loading ? (
+    <>
+      <h1>Loading...</h1>
+      <h1>Loading...</h1>
+
+      <LoadingSpinner type="dark" />
+      <h1>herererer...</h1>
+      <h1>herererer...</h1>
+      <h1>herererer...</h1>
+    </>
+  ) : (
+    data.cocktails.map((cocktail) => (
+      <Result
+        name={cocktail.name}
+        tags={[cocktail.ingredients[0].name, cocktail.flavour, cocktail.glass]}
+        rating={4.9}
+        reviews={23}
+        key={cocktail.id}
+        image={cocktail.image}
+        slug={cocktail.slug}
+        createdBy={cocktail.createdBy}
+        // fave={faveSlugs.includes(cocktail.slug)}
+        onClick={null}
+      />
+    ))
+  );
 
   // USE THIS!!! -------------------------
   // {results.map((res, i) => {
@@ -62,7 +99,7 @@ const SearchResults = ({ className, children, onClick }) => {
           </div>
           <div className={classes.results}>
             {children}
-            {/* {false && template} */}
+            {results}
           </div>
         </motion.div>
       </motion.div>

@@ -4,6 +4,9 @@
   /* max-height: 50vh; */
   /* width: 150%; */
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   /* z-index: -1; */
 }
 .favIcon {
@@ -14,4 +17,8 @@
   color: white;
   margin: 0.5rem 1rem;
   cursor: pointer;
+}
+.loading {
+  color: grey;
+  background-color: rgb(46, 46, 46);
 }

@@ -1,10 +1,19 @@
 import React from 'react';
 import classes from './CocktailIngredients.module.css';
 
-const CocktailIngredients = ({ className, cocktail }) => {
+const CocktailIngredients = ({ className, cocktail, loading }) => {
   const classesList = `${classes.main} ${className}`;
 
-  const ingredientsJSX = cocktail.ingredients.map((ing, i) => {
+  if (loading) {
+    return (
+      <div className={classesList}>
+        <h3>Ingredients</h3>
+        <h4>Loading...</h4>
+      </div>
+    );
+  }
+
+  const ingredientsJSX = cocktail?.ingredients.map((ing, i) => {
     // console.log(ing);
     return (
       <div key={i}>

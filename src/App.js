@@ -15,6 +15,8 @@ import Modal from './components/UI/Modal';
 import PageContainer from './pages/PageContainer';
 
 import { AnimatePresence } from 'framer-motion';
+import useFetch from './hooks/useFetch';
+import { useFetch2 } from './hooks/useFetch';
 
 import classes from './App.module.css';
 
@@ -23,12 +25,22 @@ function App() {
   const location = useLocation();
   const modal = useSelector((state) => state.config.value.modal);
 
-  useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/v1/cocktails')
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((err) => console.error(err));
-  }, []);
+  const { data, loading, error } = useFetch({
+    url: 'cocktails',
+  });
+
+  // const { data2, loading2, error2 } = useFetch2(
+  //   'http://127.0.0.1:8000/api/v1/cocktails'
+  // );
+
+  console.log(data);
+
+  // useEffect(() => {
+  //   fetch('http://127.0.0.1:8000/api/v1/cocktails')
+  //     .then((res) => res.json())
+  //     .then((data) => null)
+  //     .catch((err) => console.error(err));
+  // }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -39,8 +51,8 @@ function App() {
     <div className={classes.app}>
       <NavigationBar />
       <PageContainer>
-        <SearchResults />
-        <Favoutites />
+        {/* <SearchResults /> */}
+        {/* <Favoutites /> */}
         <AnimatePresence exitBeforeEnter>
           <Switch location={location} key={location.key}>
             <Route path="/add-cocktail">

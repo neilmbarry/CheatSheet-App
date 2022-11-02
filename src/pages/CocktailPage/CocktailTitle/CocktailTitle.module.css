@@ -43,3 +43,16 @@
   margin: 0 1rem;
   color: #233747;
 }
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  text-align: center;
+}
+
+.loading * {
+  color: rgb(167, 167, 167);
+}
