@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import classes from './LabelInput.module.css';
 import store from '../../../store/store';
+import { useEffect } from 'react';
 
 const LabelInput = ({
   className,
@@ -12,7 +13,11 @@ const LabelInput = ({
 }) => {
   const classesList = `${classes.main} ${className}`;
   const loading = store.getState().config.value.loading;
-  const value = useRef();
+  const value = useRef(defaultValue);
+
+  useEffect(() => {
+    value.current.value = defaultValue || '';
+  }, [defaultValue]);
   return (
     <div className={classesList}>
       <label name={label} className={classes.label}>
@@ -22,7 +27,7 @@ const LabelInput = ({
         type="text"
         placeholder={placeholder}
         ref={value}
-        defaultValue={defaultValue}
+        // defaultValue={defaultValue}
         className={loading ? classes.unavailable : classes.input}
         onBlur={() => updateValue(value.current.value)}
       />

@@ -1,0 +1,11 @@
+.main {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  font-size: 3rem;
+}
+.number {
+  font-size: 2rem;
+}

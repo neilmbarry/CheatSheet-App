@@ -17,6 +17,7 @@ import PageContainer from './pages/PageContainer';
 import { AnimatePresence } from 'framer-motion';
 import useFetch from './hooks/useFetch';
 import configActions from './store/configSlice';
+import createCocktailActions from './store/createCocktailSlice';
 
 import classes from './App.module.css';
 import store from './store/store';
@@ -26,28 +27,12 @@ function App() {
   const location = useLocation();
   const modal = useSelector((state) => state.config.value.modal);
 
-  const { data, loading, error } = useFetch({
-    url: 'cocktails',
-  });
-
-  // const { data2, loading2, error2 } = useFetch2(
-  //   'http://127.0.0.1:8000/api/v1/cocktails'
-  // );
-
-  console.log(data);
-
-  // useEffect(() => {
-  //   fetch('http://127.0.0.1:8000/api/v1/cocktails')
-  //     .then((res) => res.json())
-  //     .then((data) => null)
-  //     .catch((err) => console.error(err));
-  // }, []);
-
   useEffect(() => {
     window.scrollTo(0, 0);
     // Close Faves and SearchResults
     store.dispatch(configActions.setOpenFavourites(false));
     store.dispatch(configActions.setOpenSearchResults(false));
+    store.dispatch(createCocktailActions.resetCocktail());
   }, [location.pathname]);
 
   return (
@@ -59,7 +44,7 @@ function App() {
         <AnimatePresence exitBeforeEnter>
           <Switch location={location} key={location.key}>
             <Route path="/add-cocktail">
-              <AddCocktailPage title="ADD COCKTAIL" type="Add" />
+              <AddCocktailPage title="Create a cocktail" type="Add" />
             </Route>
             <Route path="/modify-cocktail/:slug">
               <AddCocktailPage title="Modify your cocktail" type="Modify" />

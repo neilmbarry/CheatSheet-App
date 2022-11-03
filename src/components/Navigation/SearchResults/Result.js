@@ -37,7 +37,6 @@ const Result = ({
   const [favourite, setFavourite] = useState(fave);
 
   const toggleFaveUI = (e) => {
-    console.log('toggling fave', ' event===', e);
     e.preventDefault();
     e.stopPropagation();
     setFavourite((prev) => !prev);

@@ -25,7 +25,6 @@ const IngredientInput = ({
   const ingredientChangeHandler = (e) => {
     const value = e.target.value;
     const name = e.target.id;
-
     updateIngredient({ value, name, index });
     return;
   };

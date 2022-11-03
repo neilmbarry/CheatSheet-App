@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './AddCocktailBox.module.css';
+
+// import { usePrompt } from 'react-router-dom';
 
 import Tile from '../../../components/UI/Tile/Tile';
 import LabelInput from '../LabelInput/LabelInput';
@@ -21,32 +23,15 @@ import { useSelector } from 'react-redux';
 import store from '../../../store/store';
 import { useCallback } from 'react';
 
-import { generateId } from '../../../util/generateId';
 import DeleteButton from '../../../components/UI/DeleteButton';
 
 import Title from '../../../components/UI/Title/Title';
 
-import Dropdown from '../../../components/UI/Dropdown/Dropdown';
-
 import { flavourOptions } from '../../../config/dropdownOptions/flavourOptions';
 import { glassOptions } from '../../../config/dropdownOptions/glassOptions';
 import { apiEndpoint } from '../../../config/apiEndpoint';
-import FormDropdown from '../../../components/UI/FormDropdown';
-
-const optionsTemplate = [
-  { icon: 'faWhiskeyGlass', name: 'Flute' },
-  { icon: 'faWineGlass', name: 'Tall' },
-  { icon: 'faWhiskeyGlass', name: 'Short' },
-  { icon: 'faMartiniGlass', name: 'Coupe' },
-  { icon: 'faWineGlass', name: 'Rocks' },
-];
-const flavoursTemplate = [
-  { icon: 'faLemon', name: 'Citrusy' },
-  { icon: 'faDroplet', name: 'Boozy' },
-  { icon: 'faCookieBite', name: 'Sweet' },
-  { icon: 'faSpider', name: 'Bitter' },
-  { icon: 'faPepperHot', name: 'Spicy' },
-];
+import useFetch from '../../../hooks/useFetch';
+import { useParams } from 'react-router';
 
 const AddCocktailBox = ({ className, remove, title, subtitle }) => {
   const classesList = `${classes.main} ${className}`;
@@ -55,11 +40,14 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
   const token = useSelector((state) => state.config.value.token);
   const loading = useSelector((state) => state.config.value.loading);
 
+  const slug = useParams().slug;
+
   const submitFormHandler = () => {
     const body = JSON.stringify(cocktailInfo);
     console.log(cocktailInfo);
-    fetch(`${apiEndpoint()}cocktails`, {
-      method: 'POST',
+
+    fetch(`${apiEndpoint()}cocktails/${slug && cocktailInfo._id}`, {
+      method: slug ? 'PATCH' : 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
@@ -89,7 +77,7 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
     store.dispatch(createCocktailActions.changeImage(null));
   };
 
-  const deleteButton = remove && (
+  const deleteButton = true && (
     <div className={classes.closeIcon} onClick={() => null}>
       <FontAwesomeIcon icon={faCircleXmark} />
     </div>
@@ -112,6 +100,21 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
       Select Image
     </Button>
   );
+
+  // usePrompt('Hello from usePrompt -- Are you sure you want to leave?', true);
+
+  useEffect(() => {
+    if (!slug) return;
+    console.log(slug);
+    fetch(`${apiEndpoint()}cocktails?slug=${slug}`)
+      .then((res) => res.json())
+      .then((data) => {
+        const cocktail = data.cocktails[0];
+
+        store.dispatch(createCocktailActions.updateCocktail(cocktail));
+      })
+      .catch((err) => console.error(err));
+  }, [slug]);
 
   return (
     <Tile className={classesList}>
@@ -171,10 +174,10 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
       <PageBreak />
       <div className={classes.btnContainer}>
         <Button type="main" onClick={submitFormHandler}>
-          {loading ? <LoadingSpinner /> : 'submit'}
+          {loading ? <LoadingSpinner /> : 'update'}
         </Button>
         <Button type="alt" onClick={() => null}>
-          Log State
+          Delete Cocktail
         </Button>
       </div>
       {deleteButton}

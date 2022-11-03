@@ -17,31 +17,36 @@ import store from '../../../store/store';
 import configActions from '../../../store/configSlice';
 import ResultsBar from './ResultsBar';
 import Backdrop from '../../UI/Backdrop';
+import Pagination from './Pagination';
 
-const SearchResults = ({ className, children, onClick }) => {
+const SearchResults = ({ className }) => {
   const classesList = `${classes.main} ${className}`;
 
   const isOpen = useSelector((state) => state.config.value.openSearchResults);
-
   const userId = useSelector((state) => state.config.value.id);
+  const query = useSelector((state) => state.config.value.searchQuery);
+
+  console.warn(query);
 
   const closeHandler = () => {
     store.dispatch(configActions.setOpenSearchResults(false));
   };
 
+  console.log('rerendered');
+
   const { data, loading } = useFetch({
     url: 'cocktails',
+    query,
+    reload: isOpen === true,
   });
+
+  console.log(data?.cocktails);
 
   const results = loading ? (
     <>
-      <h1>Loading...</h1>
-      <h1>Loading...</h1>
-
-      <LoadingSpinner type="dark" />
-      <h1>herererer...</h1>
-      <h1>herererer...</h1>
-      <h1>herererer...</h1>
+      <div className={classes.spinnerContainer}>
+        <LoadingSpinner type="dark" />
+      </div>
     </>
   ) : (
     data.cocktails.map((cocktail) => (
@@ -72,8 +77,10 @@ const SearchResults = ({ className, children, onClick }) => {
             exit="exit"
             className={classesList}
           >
-            <ResultsBar />
+            <ResultsBar results={data?.results} />
             <div className={classes.results}>{results}</div>
+
+            <Pagination pages={2} />
           </motion.div>
         </Backdrop>
       )}

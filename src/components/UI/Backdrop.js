@@ -11,7 +11,11 @@ const Backdrop = ({ onClick, children }) => {
       initial="hidden"
       animate="visible"
       exit="exit"
-      onClick={onClick}
+      id="backdrop"
+      onClick={(e) => {
+        if (e.target.id !== 'backdrop') return;
+        onClick();
+      }}
     >
       {children}
     </motion.div>

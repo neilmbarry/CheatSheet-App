@@ -1,25 +1,28 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { apiEndpoint } from '../config/apiEndpoint';
-import axios from 'axios';
 
-const useFetch = ({ url, method = 'GET', body = null }) => {
+const useFetch = ({ url, method = 'GET', body = null, reload }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const token = useSelector((state) => state.config.value.token);
+  const query = useSelector((state) => state.config.value.searchQuery);
 
-  console.log('TOKEN ----> ', token);
+  console.log(query);
 
   useEffect(() => {
+    if (!reload) return;
     setLoading(true);
+    console.warn('refreshing');
     const headers = {
       'Content-Type': 'application/json',
     };
     if (token) {
       headers['Authorization'] = `Bearer ${token}`;
     }
-    fetch(apiEndpoint() + url, {
+    const queryString = query ? `?nameSearch=${query}` : '';
+    fetch(apiEndpoint() + url + queryString, {
       method,
       body,
       headers,
@@ -34,9 +37,9 @@ const useFetch = ({ url, method = 'GET', body = null }) => {
         setError(err);
         setLoading(false);
       });
-  }, [body, method, token, url]);
+  }, [body, method, token, url, reload, query]);
 
-  return { loading, data, error };
+  return { loading, data, error, reload };
 };
 
 export default useFetch;

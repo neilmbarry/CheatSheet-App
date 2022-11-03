@@ -40,6 +40,9 @@ export const configSlice = createSlice({
     toggleOpenFavourites: (state, action) => {
       state.value.openFavourites = !state.value.openFavourites;
     },
+    setSearchQuery: (state, action) => {
+      state.value.searchQuery = action.payload;
+    },
   },
 });
 

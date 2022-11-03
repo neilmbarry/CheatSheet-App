@@ -20,7 +20,7 @@ const IngredientForm = ({ className, listItems }) => {
     store.dispatch(
       createCocktailActions.changeIngredients([
         ...cocktailInfo.ingredients,
-        { id: generateId() },
+        { _id: generateId() },
       ])
     );
   }, [cocktailInfo.ingredients]);
@@ -44,12 +44,11 @@ const IngredientForm = ({ className, listItems }) => {
 
   const removeIngredient = (id) => {
     const updatedIng = cocktailInfo.ingredients.filter((ing) => {
-      if (id === ing.id) {
+      if (id === ing._id) {
         return false;
       }
       return true;
     });
-    console.log(updatedIng);
     store.dispatch(createCocktailActions.changeIngredients(updatedIng));
     // store.dispatch();
   };
@@ -58,11 +57,11 @@ const IngredientForm = ({ className, listItems }) => {
     return (
       <IngredientInput
         ing={ing}
-        key={ing.id}
-        id={ing.id}
+        key={ing._id}
+        id={ing._id}
         index={i}
         updateIngredient={(info) => updateIngredient(info)}
-        removeIngredient={() => removeIngredient(ing.id)}
+        removeIngredient={() => removeIngredient(ing._id)}
         loading={loading}
       />
     );

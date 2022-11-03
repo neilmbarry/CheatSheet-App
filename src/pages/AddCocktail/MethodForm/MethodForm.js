@@ -16,19 +16,19 @@ const MethodForm = ({ className }) => {
   const method = useSelector((state) => state.create.value.method);
 
   const addMethod = useCallback(() => {
-    const newMethod = [...method, { id: generateId() }];
+    const newMethod = [...method, { _id: generateId() }];
     store.dispatch(createCocktailActions.changeMethod(newMethod));
   }, [method]);
 
   const removeMethod = (id) => {
-    const updatedMethod = method.filter((step) => step.id !== id);
+    const updatedMethod = method.filter((step) => step._id !== id);
     store.dispatch(createCocktailActions.changeMethod(updatedMethod));
   };
 
   const updateMethod = (info) => {
     const updatedMethod = method.map((step) => {
       console.log(step.id, info.id);
-      if (step.id === info.id) {
+      if (step._id === info._id) {
         return { ...step, value: info.value };
       }
       return step;
@@ -40,11 +40,11 @@ const MethodForm = ({ className }) => {
   const methodUI = method.map((step, i) => (
     <MethodInput
       text={step.value}
-      key={step.id}
-      id={step.id}
+      key={step._id}
+      id={step._id}
       index={i}
       updateMethod={(info) => updateMethod(info)}
-      removeMethod={() => removeMethod(step.id)}
+      removeMethod={() => removeMethod(step._id)}
       loading={loading}
     />
   ));

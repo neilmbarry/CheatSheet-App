@@ -46,6 +46,9 @@ export const createCocktailSlice = createSlice({
     updateCocktail: (state, action) => {
       state.value = action.payload;
     },
+    resetCocktail: (state) => {
+      state.value = initialState;
+    },
   },
 });
 

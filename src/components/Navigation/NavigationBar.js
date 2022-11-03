@@ -27,7 +27,6 @@ const NavigationBar = ({
   const [name, setName] = useState(null);
 
   const toggleFavourites = () => {
-    console.log('toggling');
     store.dispatch(configActions.toggleOpenFavourites());
   };
 
@@ -40,8 +39,6 @@ const NavigationBar = ({
       .then((res) => res.json())
       .then((data) => {
         setName(data.user?.name);
-
-        console.log(data);
       })
       .catch((err) => console.log(err));
   }, [token]);
