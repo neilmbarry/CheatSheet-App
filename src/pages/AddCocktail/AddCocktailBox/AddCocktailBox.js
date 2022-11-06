@@ -46,7 +46,7 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
     const body = JSON.stringify(cocktailInfo);
     console.log(cocktailInfo);
 
-    fetch(`${apiEndpoint()}cocktails/${slug && cocktailInfo._id}`, {
+    fetch(`${apiEndpoint()}cocktails${slug ? '/' + cocktailInfo._id : ''}`, {
       method: slug ? 'PATCH' : 'POST',
       headers: {
         'Content-Type': 'application/json',

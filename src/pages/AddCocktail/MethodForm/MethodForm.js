@@ -27,8 +27,8 @@ const MethodForm = ({ className }) => {
 
   const updateMethod = (info) => {
     const updatedMethod = method.map((step) => {
-      console.log(step.id, info.id);
-      if (step._id === info._id) {
+      console.log(step._id, info.id);
+      if (step._id === info.id) {
         return { ...step, value: info.value };
       }
       return step;

@@ -2,14 +2,13 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { apiEndpoint } from '../config/apiEndpoint';
 
-const useFetch = ({ url, method = 'GET', body = null, reload }) => {
+const useFetch = ({ url, method = 'GET', body = null, reload, query }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const token = useSelector((state) => state.config.value.token);
-  const query = useSelector((state) => state.config.value.searchQuery);
 
-  console.log(query);
+  console.log(apiEndpoint(), '<---------');
 
   useEffect(() => {
     if (!reload) return;
@@ -22,6 +21,7 @@ const useFetch = ({ url, method = 'GET', body = null, reload }) => {
       headers['Authorization'] = `Bearer ${token}`;
     }
     const queryString = query ? `?nameSearch=${query}` : '';
+    console.log(apiEndpoint() + url + queryString, 'WTF =============');
     fetch(apiEndpoint() + url + queryString, {
       method,
       body,
