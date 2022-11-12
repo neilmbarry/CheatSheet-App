@@ -20,7 +20,7 @@ const IngredientForm = ({ className, listItems }) => {
     store.dispatch(
       createCocktailActions.changeIngredients([
         ...cocktailInfo.ingredients,
-        { _id: generateId() },
+        { key: generateId() },
       ])
     );
   }, [cocktailInfo.ingredients]);
@@ -44,7 +44,7 @@ const IngredientForm = ({ className, listItems }) => {
 
   const removeIngredient = (id) => {
     const updatedIng = cocktailInfo.ingredients.filter((ing) => {
-      if (id === ing._id) {
+      if (id === ing.key || id === ing._id) {
         return false;
       }
       return true;
@@ -53,15 +53,18 @@ const IngredientForm = ({ className, listItems }) => {
     // store.dispatch();
   };
 
+  console.log(cocktailInfo.ingredients);
+
   const ingredientsUI = cocktailInfo.ingredients.map((ing, i) => {
+    console.log('mapping ings');
     return (
       <IngredientInput
         ing={ing}
-        key={ing._id}
+        key={ing.key || ing._id}
         id={ing._id}
         index={i}
         updateIngredient={(info) => updateIngredient(info)}
-        removeIngredient={() => removeIngredient(ing._id)}
+        removeIngredient={() => removeIngredient(ing.key || ing._id)}
         loading={loading}
       />
     );

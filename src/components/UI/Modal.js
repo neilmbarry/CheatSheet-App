@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import classes from './Modal.module.css';
 import { overlayVariants, modalVariants } from '../../config/animationVariants';
+import SuccessAuthModal from '../../pages/Authentication/Modals/SuccessAuthModal';
+import FailAuthModal from '../../pages/Authentication/Modals/FailAuthModal';
 
 import ImageSelection from '../../pages/AddCocktail/ImageSelection/ImageSelection';
 
@@ -16,6 +18,13 @@ const Modal = ({ className, type }) => {
 
   const modalList = {
     imageSelection: <ImageSelection />,
+    successAuth: <SuccessAuthModal />,
+    failAuth: <FailAuthModal />,
+
+    successCocktail: null,
+    failCocktail: null,
+    successReview: null,
+    failReview: null,
   };
 
   return ReactDOM.createPortal(
@@ -25,6 +34,7 @@ const Modal = ({ className, type }) => {
           <Backdrop
             onClick={() => store.dispatch(configActions.setModal(null))}
           >
+            <div className={classes.temp}></div>
             <motion.div
               variants={modalVariants}
               initial="hidden"

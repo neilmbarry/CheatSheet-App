@@ -46,7 +46,10 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
     const body = JSON.stringify(cocktailInfo);
     console.log(cocktailInfo);
 
-    fetch(`${apiEndpoint()}cocktails${slug ? '/' + cocktailInfo._id : ''}`, {
+    const url = `${apiEndpoint()}cocktails${
+      slug ? '/' + cocktailInfo._id : ''
+    }`;
+    fetch(url, {
       method: slug ? 'PATCH' : 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -65,6 +68,27 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
       .catch((err) => console.warn(err));
   };
 
+  const deleteCocktailHandler = () => {
+    const url = `${apiEndpoint()}cocktails/${cocktailInfo._id}`;
+
+    fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        console.log(res.ok);
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data, 'successful delete');
+        // setShowSuccessModal(true);
+      })
+      .catch((err) => console.warn(err));
+  };
+
   const updateHandler = useCallback((action, value) => {
     store.dispatch(createCocktailActions[action](value));
   }, []);
@@ -77,7 +101,7 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
     store.dispatch(createCocktailActions.changeImage(null));
   };
 
-  const deleteButton = true && (
+  const deleteButton = slug && (
     <div className={classes.closeIcon} onClick={() => null}>
       <FontAwesomeIcon icon={faCircleXmark} />
     </div>
@@ -176,11 +200,11 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
         <Button type="main" onClick={submitFormHandler}>
           {loading ? <LoadingSpinner /> : 'update'}
         </Button>
-        <Button type="alt" onClick={() => null}>
+        <Button type="alt" onClick={() => deleteCocktailHandler()}>
           Delete Cocktail
         </Button>
       </div>
-      {deleteButton}
+      {/* {deleteButton} */}
     </Tile>
   );
 };

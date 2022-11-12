@@ -14,6 +14,7 @@ import store from '../../../store/store';
 import configActions from '../../../store/configSlice';
 
 import Title from '../../../components/UI/Title/Title';
+import Tile from '../../../components/UI/Tile/Tile';
 
 const SignUp = (props) => {
   const name = useRef();
@@ -117,59 +118,53 @@ const SignUp = (props) => {
       exit={variants.exit}
       className={classes.main}
     >
-      <Title
-        title="Create your account"
-        subtitle="Fill in the required fields to continue."
-      />
-
-      <div className={classes.loginBox}>
-        <div className={classes.labelContainer}>
-          <label name="name">Name</label>
-          <input type="name" placeholder="Enter your name" ref={name} />
-        </div>
-        <div className={classes.labelContainer}>
-          <label name="email">Email</label>
-          <input
-            type="email"
-            placeholder="Enter your email address"
-            ref={email}
-          />
-        </div>
-        <div className={classes.labelContainer}>
-          <label name="password">Password</label>
-          <input
-            type="password"
-            placeholder="Enter your password"
-            className={classes.password}
-            ref={password}
-          />
-        </div>
-        <div className={classes.labelContainer}>
-          <label name="password">Confirm Password</label>
-          <input
-            type="password"
-            placeholder="Confirm your password"
-            className={classes.password}
-            ref={passwordConfirm}
-          />
-        </div>
-        <Button onClick={signUpHandler}>Sign Up</Button>
+      <Tile>
+        <Title
+          title="Create your account"
+          subtitle="Fill in the required fields to continue."
+        />
+        <form action="" className={classes.form}>
+          <div className={classes.labelContainer}>
+            <label name="name">Name</label>
+            <input type="name" placeholder="Enter your name" ref={name} />
+          </div>
+          <div className={classes.labelContainer}>
+            <label name="email">Email</label>
+            <input
+              type="email"
+              placeholder="Enter your email address"
+              ref={email}
+            />
+          </div>
+          <div className={classes.labelContainer}>
+            <label name="password">Password</label>
+            <input
+              type="password"
+              placeholder="Enter your password"
+              className={classes.password}
+              ref={password}
+            />
+          </div>
+          <div className={classes.labelContainer}>
+            <label name="password">Confirm Password</label>
+            <input
+              type="password"
+              placeholder="Confirm your password"
+              className={classes.password}
+              ref={passwordConfirm}
+            />
+          </div>
+        </form>
+        <Button type="main" onClick={signUpHandler}>
+          Sign Up
+        </Button>
         <div className={classes.orBreak}>
           <span>or</span>
         </div>
         <Link to="/login">
           <Button className={classes.lightButton}>Log in</Button>
         </Link>
-      </div>
-      {/* <label name="name">Name</label>
-      <input placeholder="Enter your name" ref={name}></input>
-      <label name="email">Email</label>
-      <input placeholder="Enter your email" ref={email}></input>
-      <label name="password">password</label>
-      <input placeholder="Enter your password" ref={password}></input>
-      <label name="passwordConfirm">password confirm</label>
-      <input placeholder="Confirm your password" ref={passwordConfirm}></input>
-      <Button onClick={submitHandler}>Sign UP</Button> */}
+      </Tile>
     </motion.div>
   );
 };

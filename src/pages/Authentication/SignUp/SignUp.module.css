@@ -58,3 +58,10 @@
   /* font-size: 2rem; */
   /* padding: 0; */
 }
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  /* background-color: green; */
+}

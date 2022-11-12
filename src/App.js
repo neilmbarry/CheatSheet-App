@@ -9,7 +9,7 @@ import SignUp from './pages/Authentication/SignUp/SignUp';
 import CocktailGrid from './pages/CocktailPage/CocktailGrid';
 import SearchResults from './components/Navigation/SearchResults/SearchResults';
 import Footer from './components/Navigation/Footer';
-import Favoutites from './components/Navigation/Favourites/Favourites';
+import Favourites from './components/Navigation/Favourites/Favourites';
 import Home from './pages/Home/Home';
 import Modal from './components/UI/Modal';
 import PageContainer from './pages/PageContainer';
@@ -40,7 +40,8 @@ function App() {
       <NavigationBar />
       <PageContainer>
         <SearchResults />
-        <Favoutites />
+        <Favourites />
+
         <AnimatePresence exitBeforeEnter>
           <Switch location={location} key={location.key}>
             <Route path="/add-cocktail">

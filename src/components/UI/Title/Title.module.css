@@ -5,7 +5,8 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-
+  margin-bottom: 3rem;
+  gap: 1rem;
   /* background-color: red */
 }
 
@@ -14,7 +15,7 @@
   text-shadow: 1px 1px 0px black; */
   color: rgb(39, 39, 39);
   border-bottom: 1px solid grey;
-  margin-bottom: 3rem;
+
   margin-top: -1rem;
 }
 
