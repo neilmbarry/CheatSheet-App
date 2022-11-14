@@ -1,10 +1,25 @@
 import React from 'react';
 import classes from './CocktailImage.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faHeartEmpty } from '@fortawesome/free-regular-svg-icons';
+import { faHeart as faHeartEmpty } from '@fortawesome/free-regular-svg-icons';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import useFetch from '../../../hooks/useFetch';
+import { apiEndpoint } from '../../../config/apiEndpoint';
+import { useSelector } from 'react-redux';
 
 const CocktailImage = ({ className, cocktail, loading }) => {
   const classesList = `${classes.main} ${className}`;
+
+  const { data, loading: loadingData } = useFetch({
+    url: `users/getFaves`,
+    reload: true,
+  });
+
+  const token = useSelector((state) => state.config.value.token);
+
+  console.log(data?.faves);
+
+  const isFave = data?.faves?.includes(cocktail.id);
 
   if (loading) {
     return (
@@ -14,10 +29,36 @@ const CocktailImage = ({ className, cocktail, loading }) => {
     );
   }
 
+  const toggleFaveHandler = () => {
+    console.log(cocktail.id);
+    const body = JSON.stringify({
+      cocktailId: cocktail.id,
+    });
+
+    const url = `${apiEndpoint()}users/toggleFave`;
+    fetch(url, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body,
+    })
+      .then((res) => {
+        console.log(res.ok);
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        // setShowSuccessModal(true);
+      })
+      .catch((err) => console.warn(err));
+  };
+
   return (
     <div className={classesList}>
-      <div className={classes.favIcon} onClick={() => null}>
-        {true ? (
+      <div className={classes.favIcon} onClick={() => toggleFaveHandler()}>
+        {isFave ? (
           <FontAwesomeIcon icon={faHeart} />
         ) : (
           <FontAwesomeIcon icon={faHeartEmpty} />

@@ -7,13 +7,11 @@ const useFetch = ({ url, method = 'GET', body = null, reload, query }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const token = useSelector((state) => state.config.value.token);
-
-  console.log(apiEndpoint(), '<---------');
-
+  console.log('useFetch reloaded');
   useEffect(() => {
     if (!reload) return;
+    console.warn('useFetch requested');
     setLoading(true);
-    console.warn('refreshing');
     const headers = {
       'Content-Type': 'application/json',
     };
@@ -21,7 +19,6 @@ const useFetch = ({ url, method = 'GET', body = null, reload, query }) => {
       headers['Authorization'] = `Bearer ${token}`;
     }
     const queryString = query ? `?nameSearch=${query}` : '';
-    console.log(apiEndpoint() + url + queryString, 'WTF =============');
     fetch(apiEndpoint() + url + queryString, {
       method,
       body,
@@ -31,6 +28,7 @@ const useFetch = ({ url, method = 'GET', body = null, reload, query }) => {
       .then((data) => {
         setData(data);
         setLoading(false);
+        console.log('DATA RECIEVED FROM USEFETCH: ', data);
       })
       .catch((err) => {
         console.error(err);

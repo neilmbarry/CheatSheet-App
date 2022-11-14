@@ -38,6 +38,7 @@ const NavigationBar = ({
     })
       .then((res) => res.json())
       .then((data) => {
+        console.warn(data);
         setName(data.user?.name);
       })
       .catch((err) => console.log(err));

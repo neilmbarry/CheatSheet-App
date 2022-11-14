@@ -21,36 +21,44 @@ import { useHistory } from 'react-router';
 const Result = ({
   onClick,
   info,
-  name,
-  tags,
-  rating,
-  reviews,
+  // name,
+  // tags,
+  // rating,
+  // reviews,
   isAuthor,
-  fave,
+  // fave,
   slug,
   image,
+  cocktail,
 }) => {
-  const tagsHTML = tags.join(' | ');
+  const tagsHTML = [
+    cocktail.ingredients[0].name,
+    cocktail.flavour,
+    cocktail.glass,
+  ].join(' | ');
 
   const history = useHistory();
 
-  const [favourite, setFavourite] = useState(fave);
+  let rating = 4.8;
+  let reviews = 23;
+
+  const [favourite, setFavourite] = useState(false);
 
   const toggleFaveUI = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setFavourite((prev) => !prev);
-    return store.dispatch(cocktailActions.toggleFave(slug));
+    return store.dispatch(cocktailActions.toggleFave(cocktail.slug));
   };
 
   const editHandler = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    history.push(`/modify-cocktail/${slug}`);
+    history.push(`/modify-cocktail/${cocktail.slug}`);
   };
 
   return (
-    <Link to={`/cocktails/${slug}`}>
+    <Link to={`/cocktails/${cocktail.slug}`}>
       <div className={classes.main} onClick={onClick}>
         <div className={classes.image}>
           {image ? (
@@ -60,7 +68,7 @@ const Result = ({
           )}
         </div>
         <div className={classes.textBox}>
-          <h3>{name}</h3>
+          <h3>{cocktail.name}</h3>
           <h6>{tagsHTML}</h6>
           <div className={classes.rating}>
             <h3>{rating.toFixed(1)}</h3>

@@ -51,6 +51,7 @@ const SearchResults = ({ className }) => {
   ) : (
     data.cocktails.map((cocktail) => (
       <Result
+        cocktail={cocktail}
         name={cocktail.name}
         tags={[cocktail.ingredients[0].name, cocktail.flavour, cocktail.glass]}
         rating={4.9}
