@@ -17,21 +17,6 @@ const CocktailTitle = ({ className, cocktail, loading }) => {
       <div className={`${classes.loading} ${className}`}>
         <h1>Loading...</h1>
         <h4>Loading...</h4>
-
-        {/* <div className={classes.ratings}>
-          <h3>{rating}</h3>
-          <div className={classes.stars}>
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStarHalfStroke} />
-          </div>
-
-          <h3>
-            <span className={classes.smaller}>({reviews})</span>
-          </h3>
-        </div> */}
       </div>
     );
   }
@@ -55,6 +40,8 @@ const CocktailTitle = ({ className, cocktail, loading }) => {
           <span className={classes.smaller}>({reviews})</span>
         </h3>
       </div>
+      <h3>{cocktail.glass}</h3>
+      <h3>{cocktail.flavour}</h3>
     </div>
   );
 };

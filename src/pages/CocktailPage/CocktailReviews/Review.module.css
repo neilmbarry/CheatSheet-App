@@ -1,0 +1,17 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  /* gap: 1rem; */
+  align-items: flex-start;
+}
+
+.rating {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.stars {
+  max-width: 50px;
+  font-size: 1rem;
+}

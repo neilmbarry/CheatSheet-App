@@ -30,6 +30,7 @@ const CocktailIngredients = ({ className, cocktail, loading }) => {
     <div className={classesList}>
       <h3>Ingredients</h3>
       {ingredientsJSX}
+      <h4>Garnish: {cocktail.garnish}</h4>
     </div>
   );
 };

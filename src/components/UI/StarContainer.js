@@ -7,12 +7,13 @@ import {
   faStar,
 } from '@fortawesome/free-solid-svg-icons';
 
-const StarContainer = ({ rating }) => {
+const StarContainer = ({ rating, className }) => {
+  const classesList = `${className} ${classes.main}`;
   const roundedRating = Math.round(rating * 2) / 2;
   const display = Array(roundedRating)
     .fill(0)
     .map((el) => <FontAwesomeIcon icon={faStar} />);
-  return <div className={classes.main}>{display}</div>;
+  return <div className={classesList}>{display}</div>;
 };
 
 export default StarContainer;

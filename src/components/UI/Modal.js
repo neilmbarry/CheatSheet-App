@@ -4,6 +4,8 @@ import classes from './Modal.module.css';
 import { overlayVariants, modalVariants } from '../../config/animationVariants';
 import SuccessAuthModal from '../../pages/Authentication/Modals/SuccessAuthModal';
 import FailAuthModal from '../../pages/Authentication/Modals/FailAuthModal';
+import AddReviewModal from '../../pages/CocktailPage/CocktailReviews/AddReviewModal';
+import ReviewsModal from '../../pages/CocktailPage/CocktailReviews/ReviewsModal';
 
 import ImageSelection from '../../pages/AddCocktail/ImageSelection/ImageSelection';
 
@@ -25,6 +27,9 @@ const Modal = ({ className, type }) => {
     failCocktail: null,
     successReview: null,
     failReview: null,
+
+    addReview: <AddReviewModal />,
+    reviews: <ReviewsModal />,
   };
 
   return ReactDOM.createPortal(

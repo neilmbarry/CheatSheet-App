@@ -1,0 +1,11 @@
+.main {
+  width: 100%;
+  resize: none;
+  padding: 1rem;
+  font-weight: 400;
+  font-size: 1.8rem;
+  border-radius: 0;
+  border: 1px solid rgb(182, 182, 182);
+  outline: none;
+  min-height: 16rem;
+}

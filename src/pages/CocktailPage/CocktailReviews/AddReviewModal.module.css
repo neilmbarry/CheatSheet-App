@@ -1,0 +1,23 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.stars {
+  align-self: center;
+}
+.btnContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+}
+.btn {
+  flex: 1;
+}
+.title {
+  justify-self: center;
+  width: 100%;
+}
