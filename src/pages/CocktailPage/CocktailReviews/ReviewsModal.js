@@ -3,10 +3,16 @@ import classes from './ReviewsModal.module.css';
 import Review from './Review';
 import Dropdown from '../../../components/UI/Dropdown/Dropdown';
 import { useState } from 'react';
+import Button from '../../../components/UI/Button';
+import store from '../../../store/store';
+import configActions from '../../../store/configSlice';
 
 const ReviewsModal = ({ className }) => {
   const classesList = `${classes.main} ${className}`;
   const [sortBy, setSortBy] = useState('Recent');
+  const addReviewHandler = () => {
+    store.dispatch(configActions.setModal('addReview'));
+  };
   return (
     <div className={classesList}>
       <div className={classes.title}>
@@ -22,7 +28,12 @@ const ReviewsModal = ({ className }) => {
         <Review className={classes.review} />
         <Review className={classes.review} />
         <Review className={classes.review} />
+        <Review className={classes.review} />
+        <Review className={classes.review} />
       </div>
+      <Button type="main" onClick={addReviewHandler}>
+        Add review
+      </Button>
     </div>
   );
 };

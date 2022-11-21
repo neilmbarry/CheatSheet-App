@@ -43,6 +43,9 @@ export const configSlice = createSlice({
     setSearchQuery: (state, action) => {
       state.value.searchQuery = action.payload;
     },
+    setAuthMessage: (state) => {
+      state.value.authMessage = true;
+    },
   },
 });
 

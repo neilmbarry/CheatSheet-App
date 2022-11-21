@@ -118,11 +118,11 @@ const SignUp = (props) => {
       exit={variants.exit}
       className={classes.main}
     >
-      <Tile>
-        <Title
+      <Tile title="Create your account">
+        {/* <Title
           title="Create your account"
           subtitle="Fill in the required fields to continue."
-        />
+        /> */}
         <form action="" className={classes.form}>
           <div className={classes.labelContainer}>
             <label name="name">Name</label>

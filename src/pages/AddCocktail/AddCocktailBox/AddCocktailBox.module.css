@@ -2,6 +2,13 @@
   width: 100%;
   margin: 3rem 0;
   border-radius: 10px;
+  position: relative;
+}
+
+.title {
+  width: 100%;
+  background-color: green;
+  position: absolute;
 }
 
 .firstGroup {

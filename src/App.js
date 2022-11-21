@@ -6,6 +6,7 @@ import NavigationBar from './components/Navigation/NavigationBar';
 import AddCocktailPage from './pages/AddCocktail/AddCocktailPage';
 import Login from './pages/Authentication/Login/Login';
 import SignUp from './pages/Authentication/SignUp/SignUp';
+import Account from './pages/Account/Account';
 import CocktailGrid from './pages/CocktailPage/CocktailGrid';
 import SearchResults from './components/Navigation/SearchResults/SearchResults';
 import Footer from './components/Navigation/Footer';
@@ -45,7 +46,7 @@ function App() {
         <AnimatePresence exitBeforeEnter>
           <Switch location={location} key={location.key}>
             <Route path="/add-cocktail">
-              <AddCocktailPage title="Create a cocktail" type="Add" />
+              <AddCocktailPage title="Add a cocktail" type="Add" />
             </Route>
             <Route path="/modify-cocktail/:slug">
               <AddCocktailPage title="Modify your cocktail" type="Modify" />
@@ -58,6 +59,9 @@ function App() {
             </Route>
             <Route path="/signUp">
               <SignUp />
+            </Route>
+            <Route path="/account">
+              <Account />
             </Route>
             <Route path="/" exact>
               <Home />

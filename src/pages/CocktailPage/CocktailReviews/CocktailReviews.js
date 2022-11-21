@@ -30,11 +30,11 @@ const CocktailReviews = ({ className, cocktail, loading }) => {
       <Review />
       <Review />
       <Review />
-      <Button type={'main'} onClick={addReviewHandler}>
+      {/* <Button type={'main'} onClick={addReviewHandler}>
         Add review
-      </Button>
+      </Button> */}
       <Button type={'alt'} onClick={reviewsHandler}>
-        All reviews
+        See all
       </Button>
     </div>
   );

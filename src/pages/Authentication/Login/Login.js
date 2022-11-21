@@ -88,11 +88,11 @@ const Login = (props) => {
       exit={variants.exit}
       className={classes.main}
     >
-      <Tile>
-        <Title
+      <Tile title="Log in to your account">
+        {/* <Title
           title="Log in to your account"
           subtitle="Enter your email address and password to continue."
-        />
+        /> */}
 
         <form action="" className={classes.form}>
           <div className={classes.labelContainer}>

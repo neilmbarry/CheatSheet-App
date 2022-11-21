@@ -6,6 +6,7 @@ import SuccessAuthModal from '../../pages/Authentication/Modals/SuccessAuthModal
 import FailAuthModal from '../../pages/Authentication/Modals/FailAuthModal';
 import AddReviewModal from '../../pages/CocktailPage/CocktailReviews/AddReviewModal';
 import ReviewsModal from '../../pages/CocktailPage/CocktailReviews/ReviewsModal';
+import AuthMessage from '../../pages/AddCocktail/AuthMessage/AuthMessage';
 
 import ImageSelection from '../../pages/AddCocktail/ImageSelection/ImageSelection';
 
@@ -30,6 +31,7 @@ const Modal = ({ className, type }) => {
 
     addReview: <AddReviewModal />,
     reviews: <ReviewsModal />,
+    authMessage: <AuthMessage />,
   };
 
   return ReactDOM.createPortal(

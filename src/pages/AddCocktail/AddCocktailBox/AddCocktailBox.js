@@ -63,6 +63,7 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
       })
       .then((data) => {
         console.log(data);
+        store.dispatch(configActions.setModal('addReview'));
         // setShowSuccessModal(true);
       })
       .catch((err) => console.warn(err));
@@ -140,9 +141,12 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
       .catch((err) => console.error(err));
   }, [slug]);
 
+  const tileTitle = title === 'Add' ? 'Add a cocktail' : 'Modify your cocktail';
+
   return (
-    <Tile className={classesList}>
-      <Title title={title} />
+    <Tile className={classesList} title={tileTitle}>
+      {/* <Title title={title} /> */}
+
       <div className={classes.firstGroup}>
         <div className={classes.firstGroup_left}>
           <LabelInput

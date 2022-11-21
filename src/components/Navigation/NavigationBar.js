@@ -5,10 +5,11 @@ import classes from './NavigationBar.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faDice } from '@fortawesome/free-solid-svg-icons';
 // import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import store from '../../store/store';
 import { useSelector } from 'react-redux';
 import { apiEndpoint } from '../../config/apiEndpoint';
@@ -23,6 +24,7 @@ const NavigationBar = ({
   children,
 }) => {
   const token = useSelector((state) => state.config.value.token);
+  const history = useHistory();
 
   const [name, setName] = useState(null);
 
@@ -44,6 +46,24 @@ const NavigationBar = ({
       .catch((err) => console.log(err));
   }, [token]);
 
+  const randomCocktailHandler = async () => {
+    const response = await fetch(apiEndpoint() + 'cocktails?fields=slug');
+    const data = await response.json();
+    const slugsList = data.cocktails.map((entry) => entry.slug);
+    console.log(slugsList);
+    const randomEntry = Math.floor(Math.random() * slugsList.length);
+    const randomCocktail = slugsList[randomEntry];
+
+    history.push('/cocktails/' + randomCocktail);
+  };
+
+  const authNavigation = () => {
+    if (name) {
+      return history.push('/account');
+    }
+    history.push('/login');
+  };
+
   return (
     <>
       <nav className={classes.nav} onClick={null}>
@@ -57,6 +77,9 @@ const NavigationBar = ({
           </h4>
         </Link>
         <div className={classes.navRight}>
+          <Button onClick={randomCocktailHandler}>
+            <FontAwesomeIcon icon={faDice}></FontAwesomeIcon>
+          </Button>
           <Link to="/add-cocktail">
             <Button>
               <FontAwesomeIcon icon={faPenToSquare}></FontAwesomeIcon>
@@ -67,12 +90,10 @@ const NavigationBar = ({
             <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>
           </Button>
 
-          <Link to="/login">
-            <Button className={classes.yellow}>
-              <h4>{name || 'Log in / Sign up'}</h4>
-              {/* <FontAwesomeIcon icon={faUser}/> */}
-            </Button>
-          </Link>
+          <Button className={classes.yellow} onClick={authNavigation}>
+            <h4>{name ? 'my account' : 'Log in / Sign up'}</h4>
+            {/* <FontAwesomeIcon icon={faUser}/> */}
+          </Button>
         </div>
 
         {/* <Settings /> */}
