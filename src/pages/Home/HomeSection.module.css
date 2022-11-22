@@ -78,3 +78,13 @@
   font-family: 'Kalam', cursive;
   text-transform: uppercase;
 }
+
+.buttonContainer {
+  gap: 1rem;
+  display: flex;
+}
+
+.random {
+  background-color: #f2e9e4;
+  color: purple;
+}

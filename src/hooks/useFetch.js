@@ -7,10 +7,10 @@ const useFetch = ({ url, method = 'GET', body = null, reload, query }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const token = useSelector((state) => state.config.value.token);
-  console.log('useFetch reloaded');
+  // console.log('useFetch reloaded');
   useEffect(() => {
     if (!reload) return;
-    console.warn('useFetch requested');
+    // console.warn('useFetch requested');
     setLoading(true);
     const headers = {
       'Content-Type': 'application/json',

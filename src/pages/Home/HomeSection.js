@@ -21,6 +21,9 @@ const HomeSection = ({ className, photo, type, background }) => {
 
     history.push('/cocktails/' + randomCocktail);
   };
+  const addCocktail = () => {
+    history.push('/add-cocktail');
+  };
   return (
     <div className={classesList}>
       <div className={classes.homeBox}>
@@ -32,11 +35,19 @@ const HomeSection = ({ className, photo, type, background }) => {
             Meet the all-in-one app for cocktail recipe searching, creating, and
             sharing.
           </h3>
-
-          <Button type="large" onClick={randomCocktailHandler}>
-            Random Cocktail
-            <span className={classes.yellow}> &#8594;</span>
-          </Button>
+          <div className={classes.buttonContainer}>
+            <Button type="large" onClick={addCocktail}>
+              Add Cocktail
+            </Button>
+            <Button
+              className={classes.random}
+              type="large"
+              onClick={randomCocktailHandler}
+            >
+              Random Cocktail
+              <span className={classes.yellow}> &#8594;</span>
+            </Button>
+          </div>
         </div>
         {photo && (
           <div className={classes.imageBox}>

@@ -32,7 +32,7 @@
   align-items: stretch;
 }
 .imageContainer {
-  background-color: rgb(204, 204, 204);
+  background-color: #9a8c98;
   color: rgb(59, 59, 59);
   display: flex;
   position: relative;

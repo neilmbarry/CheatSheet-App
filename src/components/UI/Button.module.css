@@ -13,13 +13,13 @@
 }
 
 .btn:hover {
-  background-color: #00296b;
+  background-color: #22223b;
   color: white;
 }
 
 .main {
-  background-color: #00296b;
-  border: 1px solid #00296b;
+  background-color: #22223b;
+  border: 1px solid #22223b;
 }
 
 .alt {
@@ -48,7 +48,7 @@
   border-radius: 1000px;
   font-weight: 500;
   text-shadow: none;
-  background-color: #00296b;
+  background-color: #22223b;
   /* color: #ffda07; */
   /* background-color: #ffda07; */
 }

@@ -31,22 +31,22 @@ const Favourites = ({ className, children, onClose }) => {
     reload: isOpen === true,
   });
 
+  // console.log(data);
+
+  // const favesIdString = data?.faves
+  //   .map((favId) => {
+  //     return `_id=${favId}`;
+  //   })
+  //   .join('&');
+
+  // console.log(favesIdString);
+
+  // const { data: faves } = useFetch({
+  //   url: `cocktails?${favesIdString?.length > 0 || 'name=null'}`,
+  //   reload: isOpen === true,
+  // });
+
   console.log(data);
-
-  const favesIdString = data?.faves
-    .map((favId) => {
-      return `_id=${favId}`;
-    })
-    .join('&');
-
-  console.log(favesIdString);
-
-  const { data: faves } = useFetch({
-    url: `cocktails?${favesIdString?.length > 0 || 'name=null'}`,
-    reload: isOpen === true,
-  });
-
-  console.log(faves);
 
   // const resultsJSX = faves?.faves.map((cocktail, i) => {
   //   return (

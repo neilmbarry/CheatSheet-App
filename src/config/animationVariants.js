@@ -25,6 +25,33 @@ export const addCocktailVariants = {
   },
 };
 
+export const homePageVariants = {
+  hidden: {
+    y: 50,
+    opacity: 0,
+  },
+  visible: {
+    y: 0,
+    opacity: 1,
+
+    transition: {
+      type: 'spring',
+      // delay: 0.5,
+      duration: 0.5,
+    },
+  },
+  exit: {
+    y: 50,
+    opacity: 0,
+    // scale: 0.9,
+    transition: {
+      type: 'spring',
+      // delay: 0.5,
+      duration: 0.3,
+    },
+  },
+};
+
 export const searchResultsVariants = {
   hidden: {
     x: -450,
