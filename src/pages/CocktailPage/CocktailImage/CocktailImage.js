@@ -17,8 +17,6 @@ const CocktailImage = ({ className, cocktail, loading }) => {
 
   const token = useSelector((state) => state.config.value.token);
 
-  console.log(data?.faves);
-
   const isFave = data?.faves?.includes(cocktail.id);
 
   if (loading) {

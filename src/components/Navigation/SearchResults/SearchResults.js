@@ -26,21 +26,15 @@ const SearchResults = ({ className }) => {
   const userId = useSelector((state) => state.config.value.id);
   const query = useSelector((state) => state.config.value.searchQuery);
 
-  console.warn(query);
-
   const closeHandler = () => {
     store.dispatch(configActions.setOpenSearchResults(false));
   };
-
-  console.log('rerendered');
 
   const { data, loading } = useFetch({
     url: 'cocktails',
     query,
     reload: isOpen === true,
   });
-
-  console.log(data?.cocktails);
 
   const results = loading ? (
     <>

@@ -7,10 +7,8 @@ import { faStarHalfStroke, faStar } from '@fortawesome/free-solid-svg-icons';
 const CocktailTitle = ({ className, cocktail, loading }) => {
   const classesList = `${classes.main} ${className}`;
   const title = cocktail?.name;
-  const author = `${cocktail?.author}, Sydney, Australia`;
-  const date = 'January 19, 2022';
-  const rating = '4.9';
-  const reviews = '102';
+  const author = `${cocktail?.author || 'Anonymous'}`;
+  const date = new Date(Date.parse(cocktail.createdAt));
 
   if (loading) {
     return (
@@ -25,9 +23,10 @@ const CocktailTitle = ({ className, cocktail, loading }) => {
     <div className={classesList}>
       <h1>{title}</h1>
       <h4>by {author}</h4>
-      <h5>{date}</h5>
+      <h5>{date.toLocaleString('en-GB').split(',')[0]}</h5>
+
       <div className={classes.ratings}>
-        <h3>{rating}</h3>
+        <h3>{cocktail.ratingsAverage}</h3>
         <div className={classes.stars}>
           <FontAwesomeIcon icon={faStar} />
           <FontAwesomeIcon icon={faStar} />
@@ -37,7 +36,7 @@ const CocktailTitle = ({ className, cocktail, loading }) => {
         </div>
 
         <h3>
-          <span className={classes.smaller}>({reviews})</span>
+          <span className={classes.smaller}>({cocktail.ratingsQuantity})</span>
         </h3>
       </div>
       <h3>{cocktail.glass}</h3>

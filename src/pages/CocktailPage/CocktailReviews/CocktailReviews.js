@@ -16,6 +16,8 @@ const CocktailReviews = ({ className, cocktail, loading }) => {
     store.dispatch(configActions.setModal('reviews'));
   };
 
+  console.log(cocktail.reviews, 'COCKTAIL');
+
   if (loading) {
     return (
       <div className={classesList}>
@@ -24,15 +26,18 @@ const CocktailReviews = ({ className, cocktail, loading }) => {
       </div>
     );
   }
+  const reviewsJSX = cocktail.reviews.length ? (
+    cocktail.reviews.map((review, i) => {
+      return <Review review={review} key={i} />;
+    })
+  ) : (
+    <h4>There are no reviews!</h4>
+  );
+
   return (
     <div className={classesList}>
       <h3>Reviews</h3>
-      <Review />
-      <Review />
-      <Review />
-      {/* <Button type={'main'} onClick={addReviewHandler}>
-        Add review
-      </Button> */}
+      {reviewsJSX}
       <Button type={'alt'} onClick={reviewsHandler}>
         See all
       </Button>

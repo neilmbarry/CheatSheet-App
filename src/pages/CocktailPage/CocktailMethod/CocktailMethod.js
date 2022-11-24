@@ -12,7 +12,6 @@ const CocktailMethod = ({ className, cocktail, loading }) => {
     );
   }
 
-  console.log(cocktail);
   return (
     <div className={classesList}>
       <h3>Method</h3>

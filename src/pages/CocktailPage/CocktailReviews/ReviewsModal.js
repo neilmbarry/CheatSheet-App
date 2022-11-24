@@ -6,6 +6,7 @@ import { useState } from 'react';
 import Button from '../../../components/UI/Button';
 import store from '../../../store/store';
 import configActions from '../../../store/configSlice';
+import { useParams } from 'react-router';
 
 const ReviewsModal = ({ className }) => {
   const classesList = `${classes.main} ${className}`;
@@ -13,6 +14,8 @@ const ReviewsModal = ({ className }) => {
   const addReviewHandler = () => {
     store.dispatch(configActions.setModal('addReview'));
   };
+  const params = useParams();
+  console.log(params);
   return (
     <div className={classesList}>
       <div className={classes.title}>

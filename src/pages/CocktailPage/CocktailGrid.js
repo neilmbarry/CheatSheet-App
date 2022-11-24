@@ -22,7 +22,6 @@ const CocktailGrid = () => {
   });
 
   const cocktail = data?.cocktails[0];
-  console.log(cocktail);
 
   return (
     <>
@@ -52,7 +51,11 @@ const CocktailGrid = () => {
                 cocktail={cocktail}
                 loading={loading}
               />
-              <CocktailReviews className={classes.rev} loading={loading} />
+              <CocktailReviews
+                className={classes.rev}
+                loading={loading}
+                cocktail={cocktail}
+              />
               <PageBreak />
             </>
           )}

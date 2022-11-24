@@ -46,8 +46,6 @@ const Favourites = ({ className, children, onClose }) => {
   //   reload: isOpen === true,
   // });
 
-  console.log(data);
-
   // const resultsJSX = faves?.faves.map((cocktail, i) => {
   //   return (
   //     <Result

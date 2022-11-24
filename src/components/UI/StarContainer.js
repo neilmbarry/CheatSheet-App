@@ -12,7 +12,7 @@ const StarContainer = ({ rating, className }) => {
   const roundedRating = Math.round(rating * 2) / 2;
   const display = Array(roundedRating)
     .fill(0)
-    .map((el) => <FontAwesomeIcon icon={faStar} />);
+    .map((el, i) => <FontAwesomeIcon icon={faStar} key={i} />);
   return <div className={classesList}>{display}</div>;
 };
 
