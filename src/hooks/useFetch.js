@@ -2,7 +2,13 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { apiEndpoint } from '../config/apiEndpoint';
 
-const useFetch = ({ url, method = 'GET', body = null, reload, query }) => {
+const useFetch = ({
+  url = 'cocktails',
+  method = 'GET',
+  body = null,
+  reload,
+  query,
+}) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

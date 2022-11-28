@@ -16,7 +16,7 @@ const CocktailReviews = ({ className, cocktail, loading }) => {
     store.dispatch(configActions.setModal('reviews'));
   };
 
-  console.log(cocktail.reviews, 'COCKTAIL');
+  console.log(cocktail?.reviews, 'COCKTAIL');
 
   if (loading) {
     return (
@@ -26,8 +26,8 @@ const CocktailReviews = ({ className, cocktail, loading }) => {
       </div>
     );
   }
-  const reviewsJSX = cocktail.reviews.length ? (
-    cocktail.reviews.map((review, i) => {
+  const reviewsJSX = cocktail?.reviews.length ? (
+    cocktail?.reviews.map((review, i) => {
       return <Review review={review} key={i} />;
     })
   ) : (

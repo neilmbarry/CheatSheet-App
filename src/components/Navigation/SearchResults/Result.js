@@ -17,6 +17,7 @@ import { faCocktail } from '@fortawesome/free-solid-svg-icons';
 import store from '../../../store/store';
 import cocktailActions from '../../../store/localCocktailsSlice';
 import { useHistory } from 'react-router';
+import StarContainer from '../../UI/StarContainer';
 
 const Result = ({
   onClick,
@@ -61,8 +62,8 @@ const Result = ({
     <Link to={`/cocktails/${cocktail.slug}`}>
       <div className={classes.main} onClick={onClick}>
         <div className={classes.image}>
-          {image ? (
-            <img src={image} alt="" />
+          {cocktail.image ? (
+            <img src={cocktail.image} alt="" />
           ) : (
             <FontAwesomeIcon icon={faCocktail}></FontAwesomeIcon>
           )}
@@ -70,16 +71,21 @@ const Result = ({
         <div className={classes.textBox}>
           <h3>{cocktail.name}</h3>
           <h6>{tagsHTML}</h6>
-          <div className={classes.rating}>
-            <h3>{rating.toFixed(1)}</h3>
+          <div
+            className={`${classes.rating} ${
+              !cocktail.ratingsQuantity && classes.zero
+            }`}
+          >
+            <h3>{cocktail.ratingsAverage?.toFixed(1) || 'n/a'}</h3>
             <div className={classes.stars}>
+              <StarContainer rating={3.8 || cocktail.ratingsAverage || 0} />
+              {/* <FontAwesomeIcon icon={faStar} />
               <FontAwesomeIcon icon={faStar} />
               <FontAwesomeIcon icon={faStar} />
               <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStarHalfStroke} />
+              <FontAwesomeIcon icon={faStarHalfStroke} /> */}
             </div>
-            <h4>({reviews})</h4>
+            <h4>({cocktail.ratingsQuantity || 0})</h4>
           </div>
         </div>
         <div

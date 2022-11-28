@@ -3,12 +3,13 @@ import classes from './CocktailTitle.module.css';
 // import Star from '../../UI/Star';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStarHalfStroke, faStar } from '@fortawesome/free-solid-svg-icons';
+import StarContainer from '../../../components/UI/StarContainer';
 
 const CocktailTitle = ({ className, cocktail, loading }) => {
   const classesList = `${classes.main} ${className}`;
   const title = cocktail?.name;
   const author = `${cocktail?.author || 'Anonymous'}`;
-  const date = new Date(Date.parse(cocktail.createdAt));
+  const date = new Date(Date.parse(cocktail?.createdAt));
 
   if (loading) {
     return (
@@ -26,17 +27,15 @@ const CocktailTitle = ({ className, cocktail, loading }) => {
       <h5>{date.toLocaleString('en-GB').split(',')[0]}</h5>
 
       <div className={classes.ratings}>
-        <h3>{cocktail.ratingsAverage}</h3>
+        <h3>{cocktail.ratingsAverage?.toFixed(1) || 0}</h3>
         <div className={classes.stars}>
-          <FontAwesomeIcon icon={faStar} />
-          <FontAwesomeIcon icon={faStar} />
-          <FontAwesomeIcon icon={faStar} />
-          <FontAwesomeIcon icon={faStar} />
-          <FontAwesomeIcon icon={faStarHalfStroke} />
+          <StarContainer rating={cocktail.ratingsAverage} />
         </div>
 
         <h3>
-          <span className={classes.smaller}>({cocktail.ratingsQuantity})</span>
+          <span className={classes.smaller}>
+            ({cocktail.ratingsQuantity || 0})
+          </span>
         </h3>
       </div>
       <h3>{cocktail.glass}</h3>

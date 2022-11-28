@@ -21,7 +21,46 @@ const CocktailGrid = () => {
     reload: slug,
   });
 
-  const cocktail = data?.cocktails[0];
+  const cocktail = data?.cocktails[0] || null;
+
+  if (loading) {
+    return (
+      <>
+        <motion.div
+          variants={cocktailGridVariants}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          className={classes.cocktailPage}
+        >
+          <div className={classes.cocktailGrid}>
+            <CocktailTitle
+              className={classes.title}
+              cocktail={cocktail}
+              loading={loading}
+            />
+            <CocktailImage cocktail={cocktail} loading={loading} />
+            <CocktailIngredients
+              className={classes.ing}
+              cocktail={cocktail}
+              loading={loading}
+            />
+            <CocktailMethod
+              className={classes.method}
+              cocktail={cocktail}
+              loading={loading}
+            />
+            <CocktailReviews
+              className={classes.rev}
+              loading={loading}
+              cocktail={cocktail}
+            />
+            <PageBreak />
+          </div>
+        </motion.div>
+      </>
+    );
+  }
 
   return (
     <>

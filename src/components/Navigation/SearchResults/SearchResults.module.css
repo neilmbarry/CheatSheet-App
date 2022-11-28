@@ -4,14 +4,14 @@
   top: 6rem;
   /* bottom: 0; */
   width: 450px;
-  /* border: 1px dashed red; */
+  border: 3px dashed red;
   background-color: rgb(240, 240, 240);
   /* filter: blur(3px); */
   overflow: scroll;
   /* height: 700px; */
-  /* height: 100%; */
+  height: 90%;
   /* transition: all ease 0.3s; */
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
   z-index: 100;
   border-radius: 0 0 15px 0;
   /* padding-top: 45px; */

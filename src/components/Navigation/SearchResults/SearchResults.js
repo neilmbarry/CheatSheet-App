@@ -46,17 +46,10 @@ const SearchResults = ({ className }) => {
     data.cocktails.map((cocktail) => (
       <Result
         cocktail={cocktail}
-        name={cocktail.name}
-        tags={[cocktail.ingredients[0].name, cocktail.flavour, cocktail.glass]}
-        rating={4.9}
-        reviews={23}
         key={cocktail.id}
-        image={cocktail.image}
         slug={cocktail.slug}
         createdBy={cocktail.createdBy}
-        isAuthor={cocktail.createdBy === userId}
-        // fave={faveSlugs.includes(cocktail.slug)}
-        onClick={null}
+        // isAuthor={cocktail.createdBy === userId}
       />
     ))
   );

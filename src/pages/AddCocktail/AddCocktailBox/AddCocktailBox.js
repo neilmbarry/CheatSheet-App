@@ -85,6 +85,7 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
       })
       .then((data) => {
         console.log(data, 'successful delete');
+        store.dispatch(configActions.setModal('successDelete'));
         // setShowSuccessModal(true);
       })
       .catch((err) => console.warn(err));
