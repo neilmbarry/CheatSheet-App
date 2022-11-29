@@ -10,14 +10,14 @@ import { useSelector } from 'react-redux';
 const CocktailImage = ({ className, cocktail, loading }) => {
   const classesList = `${classes.main} ${className}`;
 
-  const { data, loading: loadingData } = useFetch({
-    url: `users/getFaves`,
-    reload: true,
-  });
+  // const { data, loading: loadingData } = useFetch({
+  //   url: `users/getFaves`,
+  //   reload: true,
+  // });
 
   const token = useSelector((state) => state.config.value.token);
 
-  const isFave = data?.faves?.includes(cocktail.id);
+  // const isFave = data?.faves?.includes(cocktail?.id);
 
   if (loading) {
     return (
@@ -56,7 +56,7 @@ const CocktailImage = ({ className, cocktail, loading }) => {
   return (
     <div className={classesList}>
       <div className={classes.favIcon} onClick={() => toggleFaveHandler()}>
-        {isFave ? (
+        {true ? (
           <FontAwesomeIcon icon={faHeart} />
         ) : (
           <FontAwesomeIcon icon={faHeartEmpty} />

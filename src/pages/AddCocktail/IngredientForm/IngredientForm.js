@@ -37,7 +37,6 @@ const IngredientForm = ({ className, listItems }) => {
       return ing;
     });
 
-    console.log(updatedIng);
     store.dispatch(createCocktailActions.changeIngredients(updatedIng));
     // store.dispatch();
   };
@@ -53,10 +52,7 @@ const IngredientForm = ({ className, listItems }) => {
     // store.dispatch();
   };
 
-  console.log(cocktailInfo.ingredients);
-
   const ingredientsUI = cocktailInfo.ingredients.map((ing, i) => {
-    console.log('mapping ings');
     return (
       <IngredientInput
         ing={ing}

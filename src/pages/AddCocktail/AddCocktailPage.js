@@ -18,10 +18,13 @@ import createCocktailActions from '../../store/createCocktailSlice';
 const AddCocktail = ({ title, subtitle, type }) => {
   const token = useSelector((state) => state.config.value.token);
   const warningSent = useSelector((state) => state.config.value.authMessage);
-  if (!token && !warningSent) {
-    store.dispatch(configActions.setModal('authMessage'));
-    store.dispatch(configActions.setAuthMessage(true));
-  }
+
+  useEffect(() => {
+    if (!token && !warningSent) {
+      store.dispatch(configActions.setModal('authMessage'));
+      store.dispatch(configActions.setAuthMessage(true));
+    }
+  }, [token, warningSent]);
   return (
     <>
       <motion.div

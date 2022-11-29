@@ -10,6 +10,7 @@ const initialState = {
   modal: null,
   openSearchResults: false,
   openFavourites: false,
+  currentCocktailId: null,
 };
 
 export const configSlice = createSlice({
@@ -24,6 +25,11 @@ export const configSlice = createSlice({
     },
     setId: (state, action) => {
       state.value.id = action.payload;
+    },
+    signOut: (state, action) => {
+      state.value.id = null;
+      state.value.token = null;
+      state.value.name = null;
     },
     setNotification: (state, action) => {
       state.value.notification = action.payload;
@@ -45,6 +51,9 @@ export const configSlice = createSlice({
     },
     setAuthMessage: (state) => {
       state.value.authMessage = true;
+    },
+    setCurrentCocktailId: (state, action) => {
+      state.value.currentCocktailId = action.payload;
     },
   },
 });

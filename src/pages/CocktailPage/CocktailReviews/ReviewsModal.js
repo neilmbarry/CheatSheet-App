@@ -38,7 +38,7 @@ const ReviewsModal = ({ className }) => {
       <div className={classes.title}>
         <h2>Reviews ({data?.cocktails[0].reviews.length || 0})</h2>
         <Dropdown
-          options={{ Recent: 'Recent', Rating: 'Rating' }}
+          options={{ Recent: null, Rating: null }}
           selected={sortBy}
           updateValue={(value) => setSortBy(value)}
         />

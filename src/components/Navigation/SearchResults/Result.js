@@ -78,7 +78,7 @@ const Result = ({
           >
             <h3>{cocktail.ratingsAverage?.toFixed(1) || 'n/a'}</h3>
             <div className={classes.stars}>
-              <StarContainer rating={3.8 || cocktail.ratingsAverage || 0} />
+              <StarContainer rating={cocktail.ratingsAverage || 0} />
               {/* <FontAwesomeIcon icon={faStar} />
               <FontAwesomeIcon icon={faStar} />
               <FontAwesomeIcon icon={faStar} />

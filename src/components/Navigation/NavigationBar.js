@@ -33,7 +33,9 @@ const NavigationBar = ({
   };
 
   useEffect(() => {
-    if (!token) return;
+    if (!token) {
+      return setName(null);
+    }
     fetch(apiEndpoint() + 'users/me', {
       method: 'GET',
       headers: { Authorization: `Bearer ${token}` },
@@ -50,7 +52,6 @@ const NavigationBar = ({
     const response = await fetch(apiEndpoint() + 'cocktails?fields=slug');
     const data = await response.json();
     const slugsList = data.cocktails.map((entry) => entry.slug);
-    console.log(slugsList);
     const randomEntry = Math.floor(Math.random() * slugsList.length);
     const randomCocktail = slugsList[randomEntry];
 

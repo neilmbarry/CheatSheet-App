@@ -8,10 +8,13 @@ import CocktailImage from './CocktailImage/CocktailImage';
 import PageBreak from '../../components/UI/PageBreak';
 import { useParams } from 'react-router';
 
+import configActions from '../../store/configSlice';
+
 import useFetch from '../../hooks/useFetch';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import { cocktailGridVariants } from '../../config/animationVariants';
+import store from '../../store/store';
 
 const CocktailGrid = () => {
   const { slug } = useParams();
@@ -22,6 +25,8 @@ const CocktailGrid = () => {
   });
 
   const cocktail = data?.cocktails[0] || null;
+
+  store.dispatch(configActions.setCurrentCocktailId(cocktail?.id));
 
   if (loading) {
     return (

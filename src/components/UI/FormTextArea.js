@@ -1,10 +1,14 @@
 import React from 'react';
 import classes from './FormTextArea.module.css';
 
-const FormTextArea = ({ className, placeholder = 'Enter Text' }) => {
+const FormTextArea = ({ className, placeholder = 'Enter Text', parentRef }) => {
   const classesList = `${classes.main} ${className}`;
   return (
-    <textarea className={classesList} placeholder={placeholder}></textarea>
+    <textarea
+      ref={parentRef}
+      className={classesList}
+      placeholder={placeholder}
+    ></textarea>
   );
 };
 

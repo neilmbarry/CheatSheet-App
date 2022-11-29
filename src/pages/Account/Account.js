@@ -3,9 +3,17 @@ import classes from './Account.module.css';
 import Tile from '../../components/UI/Tile/Tile';
 import LabelInput from '../AddCocktail/LabelInput/LabelInput';
 import Button from '../../components/UI/Button';
+import store from '../../store/store';
+import configActions from '../../store/configSlice';
+import { useHistory } from 'react-router';
 
 const Account = ({ className }) => {
   const classesList = `${classes.main} ${className}`;
+  const history = useHistory();
+  const signOut = () => {
+    store.dispatch(configActions.signOut());
+    history.push('/');
+  };
   return (
     <div className={classesList}>
       <Tile title="Account">
@@ -31,7 +39,7 @@ const Account = ({ className }) => {
           defaultValue={null}
         />
         <div className={classes.btnContainer}>
-          <Button type="main" onClick={null}>
+          <Button type="main" onClick={signOut}>
             Sign Out
           </Button>
           <Button type="alt" onClick={() => null}>

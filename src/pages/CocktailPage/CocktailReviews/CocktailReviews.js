@@ -16,7 +16,7 @@ const CocktailReviews = ({ className, cocktail, loading }) => {
     store.dispatch(configActions.setModal('reviews'));
   };
 
-  console.log(cocktail?.reviews, 'COCKTAIL');
+  // console.log(cocktail?.reviews, 'COCKTAIL');
 
   if (loading) {
     return (
@@ -37,7 +37,7 @@ const CocktailReviews = ({ className, cocktail, loading }) => {
   return (
     <div className={classesList}>
       <h3>Reviews</h3>
-      {reviewsJSX}
+      <div className={classes.reviews}>{reviewsJSX}</div>
       <Button type={'alt'} onClick={reviewsHandler}>
         See all
       </Button>

@@ -13,6 +13,7 @@ import { favouritesVariants } from '../../../config/animationVariants';
 import { apiEndpoint } from '../../../config/apiEndpoint';
 import Backdrop from '../../UI/Backdrop';
 import useFetch from '../../../hooks/useFetch';
+import LoadingSpinner from '../../UI/Spinner';
 
 const Favourites = ({ className, children, onClose }) => {
   const classesList = `${classes.main} ${className}`;
@@ -27,7 +28,7 @@ const Favourites = ({ className, children, onClose }) => {
   };
 
   const { data, loading } = useFetch({
-    url: 'users/getFaves',
+    url: 'users/me',
     reload: isOpen === true,
   });
 
@@ -46,19 +47,19 @@ const Favourites = ({ className, children, onClose }) => {
   //   reload: isOpen === true,
   // });
 
-  // const resultsJSX = faves?.faves.map((cocktail, i) => {
-  //   return (
-  //     <Result
-  //       cocktail={cocktail}
-  //       key={i}
-  //       image={cocktail.image}
-  //       isAuthor={true}
-  //       // fave={cocktail.createdBy === id}
-  //     />
-  //   );
-  // });
+  console.log(data);
 
-  const resultsJSX = null;
+  const resultsJSX = data?.user?.faves.map((cocktail, i) => {
+    return (
+      <Result
+        cocktail={cocktail}
+        key={i}
+        image={cocktail.image}
+        isAuthor={true}
+        // fave={cocktail.createdBy === id}
+      />
+    );
+  });
 
   // useEffect(() => {
   //   fetch(apiEndpoint() + '')
@@ -81,7 +82,10 @@ const Favourites = ({ className, children, onClose }) => {
             <div className={classes.options}>
               <h6>My favourites</h6>
             </div>
-            <div className={classes.results}>{resultsJSX}</div>
+            <div className={classes.results}>
+              {resultsJSX}
+              {loading && <LoadingSpinner />}
+            </div>
           </motion.div>
         </Backdrop>
       )}

@@ -22,3 +22,9 @@
   border-bottom: 1px solid #233747;
   width: 100%;
 }
+.reviews {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem 0;
+}

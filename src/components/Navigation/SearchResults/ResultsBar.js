@@ -15,9 +15,9 @@ const ResultsBar = ({ className, results }) => {
         <h6>Sort by:</h6>
         <Dropdown
           options={{
-            Rating: 'rating',
-            Newest: 'newest',
-            Relevant: 'relevant',
+            Rating: null,
+            Newest: null,
+            Relevant: null,
           }}
         />
         {/* <select name="" id="">

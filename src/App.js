@@ -16,7 +16,7 @@ import Modal from './components/UI/Modal';
 import PageContainer from './pages/PageContainer';
 
 import { AnimatePresence } from 'framer-motion';
-import useFetch from './hooks/useFetch';
+
 import configActions from './store/configSlice';
 import createCocktailActions from './store/createCocktailSlice';
 
@@ -26,6 +26,7 @@ import store from './store/store';
 function App() {
   console.log('App rendered');
   const location = useLocation();
+  const page = useLocation().pathname;
   const modal = useSelector((state) => state.config.value.modal);
 
   useEffect(() => {
@@ -34,7 +35,7 @@ function App() {
     store.dispatch(configActions.setOpenFavourites(false));
     store.dispatch(configActions.setOpenSearchResults(false));
     store.dispatch(createCocktailActions.resetCocktail());
-  }, [location.pathname]);
+  }, [page]);
 
   return (
     <div className={classes.app}>
@@ -42,7 +43,7 @@ function App() {
       <PageContainer>
         <SearchResults />
         <Favourites />
-
+        <Modal type={modal} />
         <AnimatePresence exitBeforeEnter>
           <Switch location={location} key={location.key}>
             <Route path="/add-cocktail">
@@ -70,7 +71,6 @@ function App() {
         </AnimatePresence>
       </PageContainer>
       <Footer />
-      <Modal type={modal} />
     </div>
   );
 }
