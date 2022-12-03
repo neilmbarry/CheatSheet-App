@@ -7,65 +7,20 @@ import CocktailTitle from './CocktailTitle/CocktailTitle';
 import CocktailImage from './CocktailImage/CocktailImage';
 import PageBreak from '../../components/UI/PageBreak';
 import { useParams } from 'react-router';
-
-import configActions from '../../store/configSlice';
-
 import useFetch from '../../hooks/useFetch';
-import { motion, AnimatePresence } from 'framer-motion';
-
+import { motion } from 'framer-motion';
 import { cocktailGridVariants } from '../../config/animationVariants';
-import store from '../../store/store';
 
 const CocktailGrid = () => {
   const { slug } = useParams();
 
   const { loading, data, error } = useFetch({
-    url: `cocktails?slug=${slug}`,
+    url: `cocktails/${slug}`,
     reload: slug,
+    neil: true,
   });
 
-  const cocktail = data?.cocktails[0] || null;
-
-  store.dispatch(configActions.setCurrentCocktailId(cocktail?.id));
-
-  if (loading) {
-    return (
-      <>
-        <motion.div
-          variants={cocktailGridVariants}
-          initial="hidden"
-          animate="visible"
-          exit="exit"
-          className={classes.cocktailPage}
-        >
-          <div className={classes.cocktailGrid}>
-            <CocktailTitle
-              className={classes.title}
-              cocktail={cocktail}
-              loading={loading}
-            />
-            <CocktailImage cocktail={cocktail} loading={loading} />
-            <CocktailIngredients
-              className={classes.ing}
-              cocktail={cocktail}
-              loading={loading}
-            />
-            <CocktailMethod
-              className={classes.method}
-              cocktail={cocktail}
-              loading={loading}
-            />
-            <CocktailReviews
-              className={classes.rev}
-              loading={loading}
-              cocktail={cocktail}
-            />
-            <PageBreak />
-          </div>
-        </motion.div>
-      </>
-    );
-  }
+  const cocktail = data?.data;
 
   return (
     <>
@@ -77,32 +32,28 @@ const CocktailGrid = () => {
         className={classes.cocktailPage}
       >
         <div className={classes.cocktailGrid}>
-          {cocktail && (
-            <>
-              <CocktailTitle
-                className={classes.title}
-                cocktail={cocktail}
-                loading={loading}
-              />
-              <CocktailImage cocktail={cocktail} loading={loading} />
-              <CocktailIngredients
-                className={classes.ing}
-                cocktail={cocktail}
-                loading={loading}
-              />
-              <CocktailMethod
-                className={classes.method}
-                cocktail={cocktail}
-                loading={loading}
-              />
-              <CocktailReviews
-                className={classes.rev}
-                loading={loading}
-                cocktail={cocktail}
-              />
-              <PageBreak />
-            </>
-          )}
+          <CocktailTitle
+            className={classes.title}
+            cocktail={cocktail}
+            loading={loading}
+          />
+          <CocktailImage cocktail={cocktail} loading={loading} />
+          <CocktailIngredients
+            className={classes.ing}
+            cocktail={cocktail}
+            loading={loading}
+          />
+          <CocktailMethod
+            className={classes.method}
+            cocktail={cocktail}
+            loading={loading}
+          />
+          <CocktailReviews
+            className={classes.rev}
+            loading={loading}
+            cocktail={cocktail}
+          />
+          <PageBreak />
         </div>
       </motion.div>
     </>

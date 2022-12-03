@@ -19,10 +19,11 @@ import ResultsBar from './ResultsBar';
 import Backdrop from '../../UI/Backdrop';
 import Pagination from './Pagination';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 const SearchResults = ({ className }) => {
   const classesList = `${classes.main} ${className}`;
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(null);
 
   const isOpen = useSelector((state) => state.config.value.openSearchResults);
@@ -35,7 +36,7 @@ const SearchResults = ({ className }) => {
 
   console.warn('SEARCH RESULTS RERENDERED');
 
-  const { data: data2, loading2 } = useFetch({
+  const { data: allCocktails, loading2 } = useFetch({
     url: 'cocktails',
     query,
     neil: true,
@@ -50,16 +51,18 @@ const SearchResults = ({ className }) => {
     neil: true,
   });
 
-  if (data2?.results) {
-    const results = data2.results;
+  if (allCocktails?.results) {
+    const results = allCocktails.results;
     console.log('results quantity: ', results);
     const pages = Math.ceil(results / 5);
-    if (pages > 1) {
+    if (pages > 1 && currentPage !== 1) {
       setCurrentPage(1);
     }
   }
 
-  console.log(data2);
+  useEffect(() => {}, [query]);
+
+  console.log(allCocktails);
 
   const results = loading ? (
     <>
@@ -90,7 +93,7 @@ const SearchResults = ({ className }) => {
             exit="exit"
             className={classesList}
           >
-            <ResultsBar results={data2?.results} />
+            <ResultsBar results={allCocktails?.results} />
             <div className={classes.results}>{results}</div>
             <Pagination totalPages={totalPages} currPage={currentPage} />
           </motion.div>

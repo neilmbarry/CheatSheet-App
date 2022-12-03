@@ -19,9 +19,7 @@ const AddReviewModal = ({ className }) => {
   const token = useSelector((state) => state.config.value.token);
   const history = useHistory();
 
-  const cocktailId = useSelector(
-    (state) => state.config.value.currentCocktailId
-  );
+  const cocktailId = history.location.pathname.split('/')[2];
 
   // const { data, error, loading } = useFetch({
   //   url: 'reviews',
