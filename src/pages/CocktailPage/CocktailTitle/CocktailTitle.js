@@ -4,6 +4,8 @@ import classes from './CocktailTitle.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStarHalfStroke, faStar } from '@fortawesome/free-solid-svg-icons';
 import StarContainer from '../../../components/UI/StarContainer';
+import LoadingSpinner from '../../../components/UI/Spinner';
+import SkeletonLoading from '../../../components/UI/SkeletonLoading/SkeletonLoading';
 
 const CocktailTitle = ({ className, cocktail, loading }) => {
   const classesList = `${classes.main} ${className}`;
@@ -14,8 +16,9 @@ const CocktailTitle = ({ className, cocktail, loading }) => {
   if (loading) {
     return (
       <div className={`${classes.loading} ${className}`}>
-        <h1>Loading...</h1>
-        <h4>Loading...</h4>
+        <SkeletonLoading className={classes.larger} />
+        <SkeletonLoading />
+        <SkeletonLoading />
       </div>
     );
   }
@@ -25,7 +28,9 @@ const CocktailTitle = ({ className, cocktail, loading }) => {
       <h1>{title}</h1>
       <h4>by {author}</h4>
       <h5>{date.toLocaleString('en-GB').split(',')[0]}</h5>
-
+      {/* <SkeletonLoading className={classes.larger} />
+      <SkeletonLoading />
+      <SkeletonLoading /> */}
       <div className={classes.ratings}>
         <h3>{cocktail.ratingsAverage?.toFixed(1) || 0}</h3>
         <div className={classes.stars}>

@@ -11,6 +11,7 @@ const initialState = {
   openSearchResults: false,
   openFavourites: false,
   currentCocktailId: null,
+  slugList: [],
 };
 
 export const configSlice = createSlice({
@@ -54,6 +55,9 @@ export const configSlice = createSlice({
     },
     setCurrentCocktailId: (state, action) => {
       state.value.currentCocktailId = action.payload;
+    },
+    setSlugList: (state, action) => {
+      state.value.slugList = action.payload;
     },
   },
 });

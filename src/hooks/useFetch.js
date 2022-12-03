@@ -2,48 +2,68 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { apiEndpoint } from '../config/apiEndpoint';
 
-const useFetch = ({
-  url = 'cocktails',
-  method = 'GET',
-  body = null,
-  reload,
-  query,
-}) => {
+const useFetch = (
+  {
+    url = 'cocktails',
+    method = 'GET',
+    body = null,
+    reload,
+    query,
+    neil,
+    page,
+    limit,
+    queryObj,
+  },
+  dependency
+) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [request, setRequest] = useState(false);
   const token = useSelector((state) => state.config.value.token);
-  // console.log('useFetch reloaded');
+  console.error('useFetch reloaded using', url, body);
+
   useEffect(() => {
-    if (!reload) return;
-    // console.warn('useFetch requested');
+    if (!neil) return;
+
     setLoading(true);
+
     const headers = {
       'Content-Type': 'application/json',
     };
     if (token) {
       headers['Authorization'] = `Bearer ${token}`;
     }
-    const queryString = query ? `?nameSearch=${query}` : '';
-    fetch(apiEndpoint() + url + queryString, {
+
+    const queryStringArray = [];
+    query && queryStringArray.push(`nameSearch=${query}`);
+    page && queryStringArray.push(`page=${page}`);
+    limit && queryStringArray.push(`limit=${limit}`);
+    const queryString = '?' + queryStringArray.join('&');
+
+    const address = apiEndpoint() + url + queryString;
+    console.log('ADDRESS:', address);
+    fetch(address, {
       method,
       body,
       headers,
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log('DATA RECIEVED FROM USEFETCH: ', data);
         setData(data);
         setLoading(false);
-        console.log('DATA RECIEVED FROM USEFETCH: ', data);
+        setRequest(false);
       })
       .catch((err) => {
         console.error(err);
         setError(err);
         setLoading(false);
+        setRequest(false);
       });
-  }, [body, method, token, url, reload, query]);
+  }, [body, method, token, url, reload, query, request]);
 
-  return { loading, data, error, reload };
+  return { loading, data, error, reload, setRequest };
 };
 
 export default useFetch;

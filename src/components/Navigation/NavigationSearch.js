@@ -7,6 +7,7 @@ import configActions from '../../store/configSlice';
 
 const NavigationSearch = ({ onChange, onClick }) => {
   const query = useRef();
+
   const searchHandler = () => {
     console.log(query.current.value);
     if (query.current.value === '') {

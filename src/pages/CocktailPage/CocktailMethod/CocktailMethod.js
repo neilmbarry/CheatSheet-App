@@ -1,4 +1,5 @@
 import React from 'react';
+import SkeletonLoading from '../../../components/UI/SkeletonLoading/SkeletonLoading';
 import classes from './CocktailMethod.module.css';
 
 const CocktailMethod = ({ className, cocktail, loading }) => {
@@ -7,7 +8,9 @@ const CocktailMethod = ({ className, cocktail, loading }) => {
     return (
       <div className={classesList}>
         <h3>Method</h3>
-        <h4>Loading...</h4>
+        <SkeletonLoading />
+        <SkeletonLoading />
+        <SkeletonLoading />
       </div>
     );
   }

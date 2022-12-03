@@ -4,6 +4,7 @@ import store from '../../../store/store';
 import classes from './CocktailReviews.module.css';
 import Review from './Review';
 import configActions from '../../../store/configSlice';
+import SkeletonLoading from '../../../components/UI/SkeletonLoading/SkeletonLoading';
 
 const CocktailReviews = ({ className, cocktail, loading }) => {
   const classesList = `${classes.main} ${className}`;
@@ -22,7 +23,9 @@ const CocktailReviews = ({ className, cocktail, loading }) => {
     return (
       <div className={classesList}>
         <h3>Reviews</h3>
-        <h4>Loading...</h4>
+        <SkeletonLoading />
+        <SkeletonLoading />
+        <SkeletonLoading />
       </div>
     );
   }

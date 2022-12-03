@@ -22,20 +22,33 @@ import createCocktailActions from './store/createCocktailSlice';
 
 import classes from './App.module.css';
 import store from './store/store';
+import { apiEndpoint } from './config/apiEndpoint';
 
 function App() {
   console.log('App rendered');
   const location = useLocation();
   const page = useLocation().pathname;
   const modal = useSelector((state) => state.config.value.modal);
+  const slugList = useSelector((state) => state.config.value.slugList);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     // Close Faves and SearchResults
     store.dispatch(configActions.setOpenFavourites(false));
     store.dispatch(configActions.setOpenSearchResults(false));
+    store.dispatch(configActions.setModal(null));
     store.dispatch(createCocktailActions.resetCocktail());
   }, [page]);
+
+  useEffect(() => {
+    fetch(apiEndpoint() + 'cocktails?fields=slug')
+      .then((res) => res.json())
+      .then((data) =>
+        store.dispatch(
+          configActions.setSlugList(data.cocktails.map((el) => el.slug))
+        )
+      );
+  }, []);
 
   return (
     <div className={classes.app}>

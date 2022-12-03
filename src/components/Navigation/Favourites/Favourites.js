@@ -28,7 +28,7 @@ const Favourites = ({ className, children, onClose }) => {
   };
 
   const { data, loading } = useFetch({
-    url: 'users/me',
+    url: 'users/getFaves',
     reload: isOpen === true,
   });
 
@@ -47,9 +47,7 @@ const Favourites = ({ className, children, onClose }) => {
   //   reload: isOpen === true,
   // });
 
-  console.log(data);
-
-  const resultsJSX = data?.user?.faves.map((cocktail, i) => {
+  const resultsJSX = data?.faves?.map((cocktail, i) => {
     return (
       <Result
         cocktail={cocktail}

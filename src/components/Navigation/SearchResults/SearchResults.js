@@ -18,23 +18,48 @@ import configActions from '../../../store/configSlice';
 import ResultsBar from './ResultsBar';
 import Backdrop from '../../UI/Backdrop';
 import Pagination from './Pagination';
+import { useState } from 'react';
 
 const SearchResults = ({ className }) => {
   const classesList = `${classes.main} ${className}`;
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(null);
 
   const isOpen = useSelector((state) => state.config.value.openSearchResults);
-  const userId = useSelector((state) => state.config.value.id);
+  // const userId = useSelector((state) => state.config.value.id);
   const query = useSelector((state) => state.config.value.searchQuery);
 
   const closeHandler = () => {
     store.dispatch(configActions.setOpenSearchResults(false));
   };
 
+  console.warn('SEARCH RESULTS RERENDERED');
+
+  const { data: data2, loading2 } = useFetch({
+    url: 'cocktails',
+    query,
+    neil: true,
+  });
+
   const { data, loading } = useFetch({
     url: 'cocktails',
     query,
-    reload: isOpen === true,
+    page: currentPage,
+    limit: 5,
+    // reload: isOpen === true,
+    neil: true,
   });
+
+  if (data2?.results) {
+    const results = data2.results;
+    console.log('results quantity: ', results);
+    const pages = Math.ceil(results / 5);
+    if (pages > 1) {
+      setCurrentPage(1);
+    }
+  }
+
+  console.log(data2);
 
   const results = loading ? (
     <>
@@ -43,7 +68,7 @@ const SearchResults = ({ className }) => {
       </div>
     </>
   ) : (
-    data.cocktails.map((cocktail) => (
+    data?.cocktails?.map((cocktail) => (
       <Result
         cocktail={cocktail}
         key={cocktail.id}
@@ -65,10 +90,9 @@ const SearchResults = ({ className }) => {
             exit="exit"
             className={classesList}
           >
-            <ResultsBar results={data?.results} />
+            <ResultsBar results={data2?.results} />
             <div className={classes.results}>{results}</div>
-
-            <Pagination pages={2} />
+            <Pagination totalPages={totalPages} currPage={currentPage} />
           </motion.div>
         </Backdrop>
       )}

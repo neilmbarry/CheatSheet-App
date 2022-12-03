@@ -6,6 +6,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import useFetch from '../../../hooks/useFetch';
 import { apiEndpoint } from '../../../config/apiEndpoint';
 import { useSelector } from 'react-redux';
+import LoadingSpinner from '../../../components/UI/Spinner';
 
 const CocktailImage = ({ className, cocktail, loading }) => {
   const classesList = `${classes.main} ${className}`;
@@ -22,7 +23,7 @@ const CocktailImage = ({ className, cocktail, loading }) => {
   if (loading) {
     return (
       <div className={`${classesList} ${classes.loading}`}>
-        <h2>Loading...</h2>
+        <LoadingSpinner />
       </div>
     );
   }

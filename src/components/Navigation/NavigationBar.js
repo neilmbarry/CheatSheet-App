@@ -24,6 +24,7 @@ const NavigationBar = ({
   children,
 }) => {
   const token = useSelector((state) => state.config.value.token);
+  const slugsList = useSelector((state) => state.config.value.slugList);
   const history = useHistory();
 
   const [name, setName] = useState(null);
@@ -48,10 +49,7 @@ const NavigationBar = ({
       .catch((err) => console.log(err));
   }, [token]);
 
-  const randomCocktailHandler = async () => {
-    const response = await fetch(apiEndpoint() + 'cocktails?fields=slug');
-    const data = await response.json();
-    const slugsList = data.cocktails.map((entry) => entry.slug);
+  const randomCocktailHandler = () => {
     const randomEntry = Math.floor(Math.random() * slugsList.length);
     const randomCocktail = slugsList[randomEntry];
 
