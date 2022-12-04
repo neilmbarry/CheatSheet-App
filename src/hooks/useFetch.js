@@ -2,29 +2,29 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { apiEndpoint } from '../config/apiEndpoint';
 
-const useFetch = (
-  {
-    url = 'cocktails',
-    method = 'GET',
-    body = null,
-    reload,
-    query,
-    neil,
-    page,
-    limit,
-    queryObj,
-  },
-  dependency
-) => {
+const useFetch = ({
+  url = 'cocktails',
+  method = 'GET',
+  body = null,
+  query,
+  page,
+  limit,
+  request,
+  sort,
+}) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [request, setRequest] = useState(false);
+
   const token = useSelector((state) => state.config.value.token);
-  console.error('useFetch reloaded using', url, body);
+  console.error('useFetced reloaded using', url, body);
 
   useEffect(() => {
-    if (!neil) return;
+    page = 1;
+  }, [query, sort]);
+
+  useEffect(() => {
+    if (!request) return;
 
     setLoading(true);
 
@@ -53,17 +53,15 @@ const useFetch = (
         console.log('DATA RECIEVED FROM USEFETCH: ', data);
         setData(data);
         setLoading(false);
-        setRequest(false);
       })
       .catch((err) => {
         console.error(err);
         setError(err);
         setLoading(false);
-        setRequest(false);
       });
-  }, [body, method, token, url, reload, query, request]);
+  }, [body, method, token, url, query, request, page, limit]);
 
-  return { loading, data, error, reload, setRequest };
+  return { loading, data, error };
 };
 
 export default useFetch;

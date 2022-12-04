@@ -16,8 +16,8 @@ const CocktailGrid = () => {
 
   const { loading, data, error } = useFetch({
     url: `cocktails/${slug}`,
-    reload: slug,
-    neil: true,
+
+    request: true,
   });
 
   const cocktail = data?.data;

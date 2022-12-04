@@ -23,7 +23,7 @@ import { useEffect } from 'react';
 
 const SearchResults = ({ className }) => {
   const classesList = `${classes.main} ${className}`;
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(null);
 
   const isOpen = useSelector((state) => state.config.value.openSearchResults);
@@ -36,33 +36,33 @@ const SearchResults = ({ className }) => {
 
   console.warn('SEARCH RESULTS RERENDERED');
 
-  const { data: allCocktails, loading2 } = useFetch({
-    url: 'cocktails',
-    query,
-    neil: true,
-  });
-
   const { data, loading } = useFetch({
     url: 'cocktails',
     query,
     page: currentPage,
-    limit: 5,
+    limit: 3,
+    sort: null,
     // reload: isOpen === true,
-    neil: true,
+    request: query,
   });
 
-  if (allCocktails?.results) {
-    const results = allCocktails.results;
-    console.log('results quantity: ', results);
-    const pages = Math.ceil(results / 5);
-    if (pages > 1 && currentPage !== 1) {
-      setCurrentPage(1);
-    }
-  }
+  useEffect(() => {
+    if (!data) return;
+    setTotalPages(Math.ceil(data.results / 3));
+    setCurrentPage(data.page);
+    // if (data.results) {
+    //   setCurrentPage(1);
+    // }
+  }, [data]);
 
-  useEffect(() => {}, [query]);
+  useEffect(() => {
+    setCurrentPage(1);
+    // if (data.results) {
+    //   setCurrentPage(1);
+    // }
+  }, [query]);
 
-  console.log(allCocktails);
+  console.log(data);
 
   const results = loading ? (
     <>
@@ -93,9 +93,13 @@ const SearchResults = ({ className }) => {
             exit="exit"
             className={classesList}
           >
-            <ResultsBar results={allCocktails?.results} />
+            <ResultsBar results={data?.results} />
+            <Pagination
+              totalPages={totalPages}
+              currPage={currentPage}
+              changePageHandler={(page) => setCurrentPage(page)}
+            />
             <div className={classes.results}>{results}</div>
-            <Pagination totalPages={totalPages} currPage={currentPage} />
           </motion.div>
         </Backdrop>
       )}

@@ -3,9 +3,23 @@
   gap: 2rem;
   align-items: center;
   justify-content: center;
-  padding: 3rem;
+  padding: 1.5rem;
   font-size: 3rem;
+  background-color: rgb(216, 199, 234);
+  border-bottom: 1px solid grey;
 }
 .number {
   font-size: 2rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.chevron {
+  cursor: pointer;
+}
+.grey {
+  color: grey;
+  text-decoration: none;
+}
+.unavailable {
+  color: transparent;
 }
