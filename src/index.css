@@ -1,2 +1,21 @@
-/* #F8F8F8 = off-white */
-/* rgb(190, 190, 190) = light grey */
+.mainColor {
+  background-color: #0f2c3d;
+}
+
+.mainColorAlt {
+  background-color: #004159;
+}
+
+.secondaryColor {
+  background-color: #ddec52;
+}
+.thirdColor {
+  background-color: #81ffb5;
+}
+.fourthColor {
+  background-color: #34dddf;
+}
+.offWhite {
+  background-color: #aac0c8;
+  background-color: #adbec7;
+}

@@ -23,13 +23,13 @@ import createCocktailActions from './store/createCocktailSlice';
 import classes from './App.module.css';
 import store from './store/store';
 import { apiEndpoint } from './config/apiEndpoint';
+import Notification from './components/UI/Notifications/Notification';
 
 function App() {
   console.log('App rendered');
   const location = useLocation();
   const page = useLocation().pathname;
   const modal = useSelector((state) => state.config.value.modal);
-  const slugList = useSelector((state) => state.config.value.slugList);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -57,6 +57,8 @@ function App() {
         <SearchResults />
         <Favourites />
         <Modal type={modal} />
+        <Notification />
+
         <AnimatePresence exitBeforeEnter>
           <Switch location={location} key={location.key}>
             <Route path="/add-cocktail">

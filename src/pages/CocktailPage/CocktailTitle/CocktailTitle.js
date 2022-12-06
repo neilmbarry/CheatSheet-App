@@ -15,7 +15,7 @@ const CocktailTitle = ({ className, cocktail, loading }) => {
 
   if (loading) {
     return (
-      <div className={`${classes.loading} ${className}`}>
+      <div className={`${classes.loading} ${className} ${classesList}`}>
         <SkeletonLoading className={classes.larger} />
         <SkeletonLoading />
         <SkeletonLoading />
@@ -26,13 +26,17 @@ const CocktailTitle = ({ className, cocktail, loading }) => {
   return (
     <div className={classesList}>
       <h1>{title}</h1>
-      <h4>by {author}</h4>
-      <h5>{date.toLocaleString('en-GB').split(',')[0]}</h5>
+      <h4 className={classes.author}>by {author}</h4>
+      <h5 className={classes.date}>
+        {date.toLocaleString('en-GB').split(',')[0]}
+      </h5>
       {/* <SkeletonLoading className={classes.larger} />
       <SkeletonLoading />
       <SkeletonLoading /> */}
       <div className={classes.ratings}>
-        <h3>{cocktail.ratingsAverage?.toFixed(1) || 0}</h3>
+        <h3 className={classes.rating}>
+          {cocktail.ratingsAverage?.toFixed(1) || 0}
+        </h3>
         <div className={classes.stars}>
           <StarContainer rating={cocktail.ratingsAverage} />
         </div>
@@ -43,8 +47,10 @@ const CocktailTitle = ({ className, cocktail, loading }) => {
           </span>
         </h3>
       </div>
-      <h3>{cocktail.glass}</h3>
-      <h3>{cocktail.flavour}</h3>
+      <div className={classes.typesContainer}>
+        <h3 className={classes.types}>{cocktail.glass}</h3>
+        <h3 className={classes.types}>{cocktail.flavour}</h3>
+      </div>
     </div>
   );
 };

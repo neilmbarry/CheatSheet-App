@@ -156,6 +156,7 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
             placeholder="e.g. Old Fashioned"
             updateValue={(name) => updateHandler('changeName', name)}
             defaultValue={cocktailInfo.name}
+            required={true}
           />
           <LabelDropdown
             label="flavour"
@@ -164,6 +165,7 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
             placeholder="e.g. Coupe"
             updateValue={(flavour) => updateHandler('changeFlavour', flavour)}
             defaultValue={cocktailInfo.flavour}
+            required={true}
           />
           <LabelDropdown
             label="glass"
@@ -172,6 +174,7 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
             placeholder="e.g. Coupe"
             updateValue={(glass) => updateHandler('changeGlass', glass)}
             defaultValue={cocktailInfo.glass}
+            required={true}
           />
           {/* <FormDropdown options={['neil', 'barry']} /> */}
         </div>

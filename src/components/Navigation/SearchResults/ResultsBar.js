@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import Dropdown from '../../UI/Dropdown/Dropdown';
 import classes from './ResultsBar.module.css';
 
-const ResultsBar = ({ className, results }) => {
+const ResultsBar = ({ className, results, sortBy, sortHandler }) => {
   const classesList = `${classes.main} ${className}`;
   const query = useSelector((state) => state.config.value.searchQuery);
   return (
@@ -15,10 +15,12 @@ const ResultsBar = ({ className, results }) => {
         <h6>Sort by:</h6>
         <Dropdown
           options={{
-            Rating: null,
-            Newest: null,
-            Relevant: null,
+            rating: 'faStar',
+            newest: null,
+            name: null,
           }}
+          selected={sortBy}
+          updateValue={sortHandler}
         />
         {/* <select name="" id="">
           <option value="">rating</option>

@@ -3,22 +3,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: #0f2c3d;
   text-align: center;
   padding: 3rem;
+  color: white;
 }
 
 .main h1 {
   margin: 1rem;
-  color: rgb(41, 41, 41);
+  color: white;
 }
 
 .main h2 {
   margin: 0.5rem;
-}
-
-.main h5 {
-  margin: 0.6rem;
+  color: white;
 }
 
 .ratings h3 {
@@ -26,10 +24,11 @@
   font-size: 2.9rem;
   display: flex;
   font-weight: 600;
+  color: #81ffb5;
 }
 
 .smaller {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 400;
 }
 
@@ -37,6 +36,8 @@
   display: flex;
   align-items: center;
   /* background-color: red; */
+}
+.rating {
 }
 
 .stars {
@@ -50,7 +51,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  /* background-color: white; */
   text-align: center;
 }
 
@@ -61,3 +62,24 @@
   width: 100%;
   height: 50px;
 } */
+.typesContainer {
+  display: flex;
+  gap: 2rem;
+  margin: 1rem;
+}
+.types {
+  padding: 0.2rem 2rem;
+  border-radius: 300px;
+  border: 2px solid #34dddf;
+  background-color: #34dddf;
+  background-color: transparent;
+  color: #ffffff;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+.author,
+.date {
+  /* color: #ddec52; */
+  margin: 0.2rem;
+  font-size: 1.5rem;
+}

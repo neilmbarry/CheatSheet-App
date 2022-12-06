@@ -1,17 +1,19 @@
 .main {
   padding: 0 2rem;
+  background-color: #004159;
 }
 
 .main h3 {
   /* margin: 0 1rem; */
   padding: 1rem 0;
-
-  border-bottom: 2px solid black;
+  color: white;
+  border-bottom: 3px solid #ddec52;
   margin-bottom: 1rem;
 }
 
 .main p {
   padding: 0.5rem 0;
+  color: white;
   text-align: center;
   margin-right: 1rem;
   display: inline-block;

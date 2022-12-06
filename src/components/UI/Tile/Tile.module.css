@@ -2,7 +2,7 @@
   /* width: 95%;
     max-width: 750px; */
 
-  background-color: rgb(255, 255, 255);
+  background-color: #0f2c3d;
   /* margin: 3rem; */
   /* overflow: hidden; */
   position: relative;
@@ -10,11 +10,12 @@
   box-shadow: 3px 3px 10px rgb(0, 0, 0), -3px -3px 10px rgb(0, 0, 0);
   user-select: none;
   overflow: hidden;
+  /* border: 2px solid #ddec52; */
 }
 
 .title {
   width: 100%;
-  background-color: #22223b;
+  background-color: #004159;
   text-align: center;
   color: white;
   padding: 0.5rem 3rem;
@@ -27,7 +28,7 @@
   width: 100%;
   left: 0;
   /* padding: 1rem; */
-  border-bottom: 3px solid #4a4e69;
+  border-bottom: 3px solid #ddec52;
   position: absolute;
   bottom: -0.5rem;
 }

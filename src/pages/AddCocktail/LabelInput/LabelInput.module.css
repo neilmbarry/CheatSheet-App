@@ -14,6 +14,11 @@
 .input {
   font-weight: 400;
   font-size: 1.8rem;
+  background-color: transparent;
+}
+
+.input:focus {
+  border: solid #ddec52 1px;
 }
 
 .input::placeholder {
@@ -23,5 +28,5 @@
 .label {
   font-size: 1.8rem;
   font-weight: 500;
-  color: #4a4e69;
+  color: #ddec52;
 }

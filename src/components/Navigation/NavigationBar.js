@@ -65,38 +65,41 @@ const NavigationBar = ({
 
   return (
     <>
-      <nav className={classes.nav} onClick={null}>
-        <div className={classes.navLeft}>
-          <NavigationSearch onChange={onChange} />
-        </div>
-        <Link to="/">
-          <h4 className={classes.navButton}>
-            <span className={classes.other}>Cheat</span>
-            <span className={classes.yellow}>\</span>Sheet
-          </h4>
-        </Link>
-        <div className={classes.navRight}>
-          <Button onClick={randomCocktailHandler}>
-            <FontAwesomeIcon icon={faDice}></FontAwesomeIcon>
-          </Button>
-          <Link to="/add-cocktail">
-            <Button>
-              <FontAwesomeIcon icon={faPenToSquare}></FontAwesomeIcon>
-            </Button>
+      <div className={classes.navContainer}>
+        <nav className={classes.nav} onClick={null}>
+          <div className={classes.navLeft}>
+            <NavigationSearch onChange={onChange} />
+          </div>
+          <Link to="/">
+            <h4 className={classes.navButton}>
+              <span className={classes.yellow}>Cheat</span>
+              <h2 className={classes.slash}>/</h2>
+              <span className={classes.green}>Sheet</span>
+            </h4>
           </Link>
+          <div className={classes.navRight}>
+            <Button onClick={randomCocktailHandler}>
+              <FontAwesomeIcon icon={faDice}></FontAwesomeIcon>
+            </Button>
+            <Link to="/add-cocktail">
+              <Button>
+                <FontAwesomeIcon icon={faPenToSquare}></FontAwesomeIcon>
+              </Button>
+            </Link>
 
-          <Button onClick={toggleFavourites}>
-            <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>
-          </Button>
+            <Button onClick={toggleFavourites}>
+              <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>
+            </Button>
 
-          <Button className={classes.yellow} onClick={authNavigation}>
-            <h4>{name ? 'my account' : 'Log in / Sign up'}</h4>
-            {/* <FontAwesomeIcon icon={faUser}/> */}
-          </Button>
-        </div>
+            <Button className={classes.yellow} onClick={authNavigation}>
+              <h4>{name ? 'my account' : 'Log in'}</h4>
+              {/* <FontAwesomeIcon icon={faUser}/> */}
+            </Button>
+          </div>
 
-        {/* <Settings /> */}
-      </nav>
+          {/* <Settings /> */}
+        </nav>
+      </div>
       {children}
     </>
   );

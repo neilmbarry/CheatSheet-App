@@ -39,6 +39,7 @@ const useFetch = ({
     query && queryStringArray.push(`nameSearch=${query}`);
     page && queryStringArray.push(`page=${page}`);
     limit && queryStringArray.push(`limit=${limit}`);
+    sort && queryStringArray.push(`sort=${sort}`);
     const queryString = '?' + queryStringArray.join('&');
 
     const address = apiEndpoint() + url + queryString;
@@ -59,7 +60,7 @@ const useFetch = ({
         setError(err);
         setLoading(false);
       });
-  }, [body, method, token, url, query, request, page, limit]);
+  }, [body, method, token, url, query, request, page, limit, sort]);
 
   return { loading, data, error };
 };

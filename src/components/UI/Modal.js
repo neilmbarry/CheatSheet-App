@@ -16,23 +16,23 @@ import store from '../../store/store';
 import configActions from '../../store/configSlice';
 import Backdrop from './Backdrop';
 
+const modalList = {
+  imageSelection: <ImageSelection />,
+  successAuth: <SuccessAuthModal />,
+  failAuth: <FailAuthModal />,
+
+  successCocktail: null,
+  failCocktail: null,
+  successReview: null,
+  failReview: null,
+
+  addReview: <AddReviewModal />,
+  reviews: <ReviewsModal />,
+  authMessage: <AuthMessage />,
+};
+
 const Modal = ({ className, type }) => {
   const classesList = `${classes.main} ${className}`;
-
-  const modalList = {
-    imageSelection: <ImageSelection />,
-    successAuth: <SuccessAuthModal />,
-    failAuth: <FailAuthModal />,
-
-    successCocktail: null,
-    failCocktail: null,
-    successReview: null,
-    failReview: null,
-
-    addReview: <AddReviewModal />,
-    reviews: <ReviewsModal />,
-    authMessage: <AuthMessage />,
-  };
 
   return ReactDOM.createPortal(
     <AnimatePresence>

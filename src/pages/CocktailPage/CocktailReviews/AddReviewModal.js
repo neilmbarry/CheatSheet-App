@@ -66,7 +66,6 @@ const AddReviewModal = ({ className }) => {
 
   return (
     <div className={classesList}>
-      <h2 className={classes.title}>Cocktail Added!</h2>
       <h3>How would you rate this cocktail?</h3>
       {/* <h2>AuthCocktailReview Success</h2> */}
       <ReviewStarContainer

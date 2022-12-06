@@ -3,7 +3,7 @@
   justify-content: space-between;
   flex-direction: column;
   padding: 0.5rem 2rem;
-  background-color: #22223b;
+  background-color: #0f2c3d;
   align-items: center;
   color: aliceblue;
   position: sticky;
@@ -16,12 +16,19 @@
   margin: 0.4rem;
 }
 
+.title {
+  font-size: 2rem;
+  color: #ddec52;
+}
+
 .name {
   text-transform: uppercase;
+  color: aquamarine;
 }
 
 .icons {
   font-size: 3rem;
+  color: aqua;
 }
 
 .icons * {

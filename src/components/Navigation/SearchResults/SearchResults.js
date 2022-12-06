@@ -25,6 +25,9 @@ const SearchResults = ({ className }) => {
   const classesList = `${classes.main} ${className}`;
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(null);
+  const [sortBy, setSortBy] = useState('Name');
+
+  console.log('sortBy: ', sortBy);
 
   const isOpen = useSelector((state) => state.config.value.openSearchResults);
   // const userId = useSelector((state) => state.config.value.id);
@@ -41,7 +44,7 @@ const SearchResults = ({ className }) => {
     query,
     page: currentPage,
     limit: 3,
-    sort: null,
+    sort: sortBy,
     // reload: isOpen === true,
     request: query,
   });
@@ -93,7 +96,11 @@ const SearchResults = ({ className }) => {
             exit="exit"
             className={classesList}
           >
-            <ResultsBar results={data?.results} />
+            <ResultsBar
+              results={data?.results}
+              sortHandler={setSortBy}
+              sortBy={sortBy}
+            />
             <Pagination
               totalPages={totalPages}
               currPage={currentPage}

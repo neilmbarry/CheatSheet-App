@@ -5,10 +5,12 @@
   width: 100%;
   font-size: 1.8rem;
   font-weight: 400;
+  background-color: #0f2c3d;
+  color: white;
 }
 
 .input:focus {
-  border: solid #233747 1px;
+  border: solid #ddec52 1px;
 }
 
 .input::placeholder {

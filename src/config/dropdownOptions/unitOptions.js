@@ -1,5 +1,5 @@
 export const unitOptions = {
-  Ml: null,
-  Oz: null,
-  Dash: null,
+  ml: null,
+  oz: null,
+  dash: null,
 };

@@ -2,13 +2,15 @@
   padding: 0 2rem;
   display: flex;
   flex-direction: column;
+  background-color: #004159;
 }
 
 .main h3 {
   /* margin: 0 1rem; */
   padding: 1rem 0;
 
-  border-bottom: 2px solid #233747;
+  color: white;
+  border-bottom: 3px solid #34dddf;
 }
 
 .main p:last-child {
@@ -21,6 +23,7 @@
   display: inline-block;
   border-bottom: 1px solid #233747;
   width: 100%;
+  color: white;
 }
 .reviews {
   display: flex;

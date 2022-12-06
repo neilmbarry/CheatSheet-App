@@ -1,7 +1,7 @@
 .main {
   width: 100%;
 
-  background-color: white;
+  background-color: #0f2c3d;
   border: solid rgb(190, 190, 190) 1px;
   /* color: grey; */
   font-size: 1.8rem;
@@ -12,12 +12,13 @@
   cursor: pointer;
   font-weight: 400;
   min-width: 10rem;
+  color: white;
   /* justify-content: ; */
   /* position: relative; */
 }
 
 .main:hover {
-  background-color: rgb(233, 233, 233);
+  background-color: #004159;
 }
 
 .icon {
