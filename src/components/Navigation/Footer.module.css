@@ -8,6 +8,7 @@
   color: aliceblue;
   position: sticky;
   justify-content: center;
+  border-top: 2px solid #ddec52;
 }
 
 .title,

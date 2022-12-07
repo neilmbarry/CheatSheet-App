@@ -4,9 +4,29 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 200;
-  padding: 1rem;
-  background-color: white;
-  border: 1px solid grey;
-  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.202);
+  padding: 1rem 2rem;
+  /* border: 3px solid white; */
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.397);
   border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.icon {
+  font-size: 2rem;
+}
+
+.title {
+  color: rgb(62, 62, 62);
+  font-weight: 500;
+}
+.success {
+  background-color: #81ffb5;
+}
+.fail {
+  background-color: #ff8192;
+}
+.info {
+  background-color: white;
 }

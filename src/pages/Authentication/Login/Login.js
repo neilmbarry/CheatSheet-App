@@ -42,11 +42,23 @@ const Login = (props) => {
           console.log(data);
           store.dispatch(configActions.setToken(data.token));
           store.dispatch(configActions.setId(data.user._id));
-          store.dispatch(configActions.setModal('successAuth'));
+          // store.dispatch(configActions.setModal('successAuth'));
+          store.dispatch(
+            configActions.setNotification({
+              type: 'success',
+              message: 'You were successfully logged in!',
+            })
+          );
         })
         .catch((err) => {
           console.log(err);
-          store.dispatch(configActions.setModal('failAuth'));
+          // store.dispatch(configActions.setModal('failAuth'));
+          store.dispatch(
+            configActions.setNotification({
+              type: 'fail',
+              message: 'You could not be logged in!',
+            })
+          );
         });
     } catch (err) {}
   };

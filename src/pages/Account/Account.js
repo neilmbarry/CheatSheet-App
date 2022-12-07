@@ -12,6 +12,12 @@ const Account = ({ className }) => {
   const history = useHistory();
   const signOut = () => {
     store.dispatch(configActions.signOut());
+    store.dispatch(
+      configActions.setNotification({
+        type: 'info',
+        message: 'You have been logged out!',
+      })
+    );
     history.push('/');
   };
   return (

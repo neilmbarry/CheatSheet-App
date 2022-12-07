@@ -1,7 +1,7 @@
 .main {
   position: fixed;
   left: 0;
-  top: 6rem;
+  top: 7rem;
   /* bottom: 0; */
   width: 450px;
   /* border: 3px dashed red; */
@@ -12,7 +12,7 @@
   /* height: 90%; */
   /* transition: all ease 0.3s; */
   /* border: 1px solid grey; */
-  z-index: 100;
+  z-index: 43300;
   border-radius: 0 0 15px 0;
   /* padding-top: 45px; */
 }
@@ -26,7 +26,7 @@
   min-height: 100vh;
   background-color: rgba(0, 0, 0, 0.685);
   backdrop-filter: blur(3px);
-  z-index: 99;
+  z-index: 150;
 }
 
 .hidden {

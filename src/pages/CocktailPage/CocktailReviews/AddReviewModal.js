@@ -19,7 +19,11 @@ const AddReviewModal = ({ className }) => {
   const token = useSelector((state) => state.config.value.token);
   const history = useHistory();
 
-  const cocktailId = history.location.pathname.split('/')[2];
+  const cocktailId = useSelector(
+    (state) => state.config.value.currentCocktailId
+  );
+
+  console.log(cocktailId, 'COCKTAIL ID');
 
   // const { data, error, loading } = useFetch({
   //   url: 'reviews',
@@ -58,6 +62,12 @@ const AddReviewModal = ({ className }) => {
       .then((data) => {
         console.log(data);
         history.push(history.location.pathname);
+        store.dispatch(
+          configActions.setNotification({
+            type: 'success',
+            message: 'Review Added!',
+          })
+        );
         store.dispatch(configActions.setModal(null));
         // setShowSuccessModal(true);
       })
@@ -66,13 +76,13 @@ const AddReviewModal = ({ className }) => {
 
   return (
     <div className={classesList}>
-      <h3>How would you rate this cocktail?</h3>
+      <h3 className={classes.text}>How would you rate this cocktail?</h3>
       {/* <h2>AuthCocktailReview Success</h2> */}
       <ReviewStarContainer
         onClick={(rating) => setRating(rating)}
         className={classes.stars}
       />
-      <h3>Leave a review</h3>
+      <h3 className={classes.text}>Leave a review</h3>
       <FormTextArea
         parentRef={review}
         placeholder="Let us know your thoughts..."

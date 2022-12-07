@@ -10,15 +10,20 @@ import { useParams } from 'react-router';
 import useFetch from '../../hooks/useFetch';
 import { motion } from 'framer-motion';
 import { cocktailGridVariants } from '../../config/animationVariants';
+import store from '../../store/store';
+import configActions from '../../store/configSlice';
 
 const CocktailGrid = () => {
   const { slug } = useParams();
 
   const { loading, data, error } = useFetch({
     url: `cocktails/${slug}`,
-
     request: true,
   });
+
+  if (data) {
+    store.dispatch(configActions.setCurrentCocktailId(data.data.id));
+  }
 
   const cocktail = data?.data;
 

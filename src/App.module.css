@@ -122,7 +122,7 @@ select:-webkit-autofill {
 
 .pageContainer {
   position: relative;
-  padding-top: 6rem;
+  padding-top: 17rem;
   flex: 1;
   background-color: rgba(24, 24, 24, 0.705);
   /* z-index: 10000;

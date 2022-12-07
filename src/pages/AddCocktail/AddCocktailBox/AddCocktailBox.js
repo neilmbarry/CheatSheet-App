@@ -64,6 +64,12 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
       .then((data) => {
         console.log(data);
         store.dispatch(configActions.setModal('addReview'));
+        store.dispatch(
+          configActions.setNotification({
+            type: 'success',
+            message: 'Cocktail Added!',
+          })
+        );
         // setShowSuccessModal(true);
       })
       .catch((err) => console.warn(err));

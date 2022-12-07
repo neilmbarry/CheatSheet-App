@@ -1,14 +1,19 @@
 .options {
   display: flex;
   padding: 1rem;
-  background-color: rgb(214, 214, 214);
+  background-color: #004159;
   border-bottom: 1px solid grey;
   justify-content: space-between;
+
   /* position: fixed; */
   /* top: 0px; */
   align-items: center;
   width: 448px;
   z-index: 20;
+}
+
+.options h6 {
+  color: white;
 }
 
 .dropdown {
@@ -18,7 +23,7 @@
 
 .dropdown h6 {
   margin-right: 1rem;
-  color: #233747;
+  color: white;
 }
 
 .dropdown select {
