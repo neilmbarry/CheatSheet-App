@@ -31,6 +31,7 @@ const CocktailReviews = ({ className, cocktail, loading }) => {
   }
   const reviewsJSX = cocktail?.reviews.length ? (
     cocktail?.reviews.map((review, i) => {
+      if (i > 1) return null;
       return <Review review={review} key={i} />;
     })
   ) : (

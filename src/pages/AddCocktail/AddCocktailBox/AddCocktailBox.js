@@ -109,12 +109,6 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
     store.dispatch(createCocktailActions.changeImage(null));
   };
 
-  const deleteButton = slug && (
-    <div className={classes.closeIcon} onClick={() => null}>
-      <FontAwesomeIcon icon={faCircleXmark} />
-    </div>
-  );
-
   const cocktailImage = cocktailInfo.image ? (
     <img src={cocktailInfo.image} alt="none" />
   ) : (
@@ -138,10 +132,10 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
   useEffect(() => {
     if (!slug) return;
     console.log(slug);
-    fetch(`${apiEndpoint()}cocktails?slug=${slug}`)
+    fetch(`${apiEndpoint()}cocktails/${slug}`)
       .then((res) => res.json())
       .then((data) => {
-        const cocktail = data.cocktails[0];
+        const cocktail = data.cocktail;
 
         store.dispatch(createCocktailActions.updateCocktail(cocktail));
       })

@@ -20,10 +20,12 @@ import Backdrop from '../../UI/Backdrop';
 import Pagination from './Pagination';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { apiEndpoint } from '../../../config/apiEndpoint';
 
 const SearchResults = ({ className }) => {
   const classesList = `${classes.main} ${className}`;
   const [currentPage, setCurrentPage] = useState(1);
+  const [faves, setFaves] = useState();
   const [totalPages, setTotalPages] = useState(null);
   const [sortBy, setSortBy] = useState('Name');
 
@@ -33,11 +35,33 @@ const SearchResults = ({ className }) => {
   // const userId = useSelector((state) => state.config.value.id);
   const query = useSelector((state) => state.config.value.searchQuery);
 
+  const token = useSelector((state) => state.config.value.token);
+  const userId = useSelector((state) => state.config.value.id);
+
   const closeHandler = () => {
     store.dispatch(configActions.setOpenSearchResults(false));
   };
 
   console.warn('SEARCH RESULTS RERENDERED');
+
+  const fetchFaves = () => {
+    if (!token) return;
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+
+    headers['Authorization'] = `Bearer ${token}`;
+
+    fetch(apiEndpoint() + `users/getFaves`, {
+      method: 'GET',
+      headers,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setFaves(data.faves.map((fav) => fav._id));
+      });
+  };
 
   const { data, loading } = useFetch({
     url: 'cocktails',
@@ -65,6 +89,10 @@ const SearchResults = ({ className }) => {
     // }
   }, [query]);
 
+  useEffect(() => {
+    fetchFaves();
+  }, []);
+
   console.log(data);
 
   const results = loading ? (
@@ -80,7 +108,9 @@ const SearchResults = ({ className }) => {
         key={cocktail.id}
         slug={cocktail.slug}
         createdBy={cocktail.createdBy}
-        // isAuthor={cocktail.createdBy === userId}
+        fave={faves?.includes(cocktail.id)}
+        refreshFaves={fetchFaves}
+        isAuthor={cocktail.createdBy === userId}
       />
     ))
   );

@@ -22,10 +22,10 @@ const CocktailGrid = () => {
   });
 
   if (data) {
-    store.dispatch(configActions.setCurrentCocktailId(data.data.id));
+    store.dispatch(configActions.setCurrentCocktailId(data.cocktail.id));
   }
 
-  const cocktail = data?.data;
+  const cocktail = data?.cocktail;
 
   return (
     <>

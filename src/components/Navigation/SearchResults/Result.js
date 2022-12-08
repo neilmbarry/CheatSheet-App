@@ -18,20 +18,11 @@ import store from '../../../store/store';
 import cocktailActions from '../../../store/localCocktailsSlice';
 import { useHistory } from 'react-router';
 import StarContainer from '../../UI/StarContainer';
+import { useSelector } from 'react-redux';
+import configActions from '../../../store/configSlice';
+import { apiEndpoint } from '../../../config/apiEndpoint';
 
-const Result = ({
-  onClick,
-  info,
-  // name,
-  // tags,
-  // rating,
-  // reviews,
-  isAuthor,
-  // fave,
-  slug,
-  image,
-  cocktail,
-}) => {
+const Result = ({ onClick, isAuthor, fave, refreshFaves, cocktail }) => {
   const tagsHTML = [
     cocktail.ingredients[0].name,
     cocktail.flavour,
@@ -40,16 +31,45 @@ const Result = ({
 
   const history = useHistory();
 
-  let rating = 4.8;
-  let reviews = 23;
-
-  const [favourite, setFavourite] = useState(false);
+  const token = useSelector((state) => state.config.value.token);
 
   const toggleFaveUI = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    setFavourite((prev) => !prev);
-    return store.dispatch(cocktailActions.toggleFave(cocktail.slug));
+    if (!token) {
+      return store.dispatch(
+        configActions.setNotification({
+          type: 'fail',
+          message: 'You must be signed in to add a favourite!',
+        })
+      );
+    }
+    console.log(cocktail.id);
+    const body = JSON.stringify({
+      cocktailId: cocktail.id,
+    });
+
+    const url = `${apiEndpoint()}users/toggleFave`;
+    fetch(url, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body,
+    })
+      .then((res) => {
+        console.log(res.ok);
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        refreshFaves();
+        // FETCH CURRENT FAVES
+
+        // setShowSuccessModal(true);
+      })
+      .catch((err) => console.warn(err));
   };
 
   const editHandler = (e) => {
@@ -79,11 +99,6 @@ const Result = ({
             <h3>{cocktail.ratingsAverage?.toFixed(1) || 'n/a'}</h3>
             <div className={classes.stars}>
               <StarContainer rating={cocktail.ratingsAverage || 0} />
-              {/* <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStarHalfStroke} /> */}
             </div>
             <h4>({cocktail.ratingsQuantity || 0})</h4>
           </div>
@@ -92,7 +107,7 @@ const Result = ({
           className={classes.icon + ' ' + classes.fav}
           onClick={toggleFaveUI}
         >
-          {favourite ? (
+          {fave ? (
             <FontAwesomeIcon icon={faHeartFull} />
           ) : (
             <FontAwesomeIcon icon={faHeart} />

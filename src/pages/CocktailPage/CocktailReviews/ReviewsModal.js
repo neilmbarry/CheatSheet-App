@@ -8,6 +8,7 @@ import store from '../../../store/store';
 import configActions from '../../../store/configSlice';
 import { useHistory, useParams } from 'react-router';
 import useFetch from '../../../hooks/useFetch';
+import LoadingSpinner from '../../../components/UI/Spinner';
 
 const ReviewsModal = ({ className }) => {
   const classesList = `${classes.main} ${className}`;
@@ -18,32 +19,33 @@ const ReviewsModal = ({ className }) => {
   };
   const slug = history.location.pathname.split('/')[2];
 
-  const { data } = useFetch({
-    url: `cocktails?slug=${slug}`,
-    reload: slug,
+  const { data, loading } = useFetch({
+    url: `cocktails/${slug}`,
+    request: slug,
   });
 
   console.log(data);
 
-  const reviewsJSX = data?.cocktails[0].reviews.length ? (
-    data?.cocktails[0].reviews.map((review, i) => {
+  const reviewsJSX =
+    data?.cocktail.reviews.length &&
+    data.cocktail.reviews.map((review, i) => {
       return <Review review={review} key={i} />;
-    })
-  ) : (
-    <h4>There are no reviews!</h4>
-  );
+    });
 
   return (
     <div className={classesList}>
       <div className={classes.title}>
-        <h2>Reviews ({data?.cocktails[0].reviews.length || 0})</h2>
+        <h2>Reviews ({data?.cocktail.reviews.length || 0})</h2>
         <Dropdown
           options={{ Recent: null, Rating: null }}
           selected={sortBy}
           updateValue={(value) => setSortBy(value)}
         />
       </div>
-      <div className={classes.reviews}>{reviewsJSX}</div>
+      <div className={classes.reviews}>
+        {reviewsJSX}
+        {loading && <LoadingSpinner />}
+      </div>
       <Button type="main" onClick={addReviewHandler}>
         Add review
       </Button>

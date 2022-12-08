@@ -65,10 +65,12 @@
 
 .fav {
   top: 0;
+  color: white;
 }
 
 .edit {
   bottom: 0;
+  color: white;
 }
 
 .stars {

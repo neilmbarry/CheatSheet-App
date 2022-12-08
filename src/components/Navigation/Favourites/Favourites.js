@@ -29,7 +29,7 @@ const Favourites = ({ className, children, onClose }) => {
 
   const { data, loading } = useFetch({
     url: 'users/getFaves',
-    reload: isOpen === true,
+    request: isOpen === true,
   });
 
   // console.log(data);
