@@ -9,6 +9,7 @@ const FormInput = ({
   value,
   id,
   min,
+  className,
 }) => {
   return (
     <>
@@ -17,7 +18,9 @@ const FormInput = ({
         placeholder={placeholder || '-placeholder-'}
         // onChange={changeHandler}
         onBlur={changeHandler}
-        className={`${classes.input} ${loading ? classes.un : undefined}`}
+        className={`${className} ${classes.input} ${
+          loading ? classes.un : undefined
+        }`}
         defaultValue={value}
         id={id}
         min={min}

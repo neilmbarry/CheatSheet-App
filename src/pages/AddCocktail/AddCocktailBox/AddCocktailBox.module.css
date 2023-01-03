@@ -91,3 +91,13 @@
   color: rgb(121, 121, 121);
   font-size: 3rem;
 }
+
+@media screen and (max-width: 1024px) {
+}
+@media screen and (max-width: 768px) {
+}
+@media screen and (max-width: 480px) {
+  .firstGroup {
+    flex-direction: column-reverse;
+  }
+}

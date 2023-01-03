@@ -64,7 +64,22 @@ const Result = ({ onClick, isAuthor, fave, refreshFaves, cocktail }) => {
       })
       .then((data) => {
         console.log(data);
+
         refreshFaves();
+        if (data.faveAdded) {
+          return store.dispatch(
+            configActions.setNotification({
+              type: 'success',
+              message: 'Added to favourites!',
+            })
+          );
+        }
+        store.dispatch(
+          configActions.setNotification({
+            type: 'info',
+            message: 'Removed from favourites!',
+          })
+        );
         // FETCH CURRENT FAVES
 
         // setShowSuccessModal(true);

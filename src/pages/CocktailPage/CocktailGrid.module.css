@@ -33,6 +33,7 @@
   grid-area: pic;
   background-color: white;
   position: relative;
+  max-width: 100vw;
 }
 
 .ing {
@@ -52,7 +53,7 @@
 }
 
 .image {
-  margin: auto;
+  /* margin: auto; */
 }
 
 .gridFooter {
@@ -64,4 +65,30 @@
   justify-content: center;
   background-color: #0f2c3d;
   color: rgb(109, 109, 109);
+}
+
+@media screen and (max-width: 1024px) {
+}
+@media screen and (max-width: 768px) {
+}
+@media screen and (max-width: 480px) {
+  .cocktailGrid {
+    width: 100%;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: 400px 1fr;
+    grid-template-areas:
+      'title'
+      'pic'
+      'ing'
+      'method'
+      'rev'
+      'footer';
+  }
+
+  .cocktailPage {
+    padding: 0;
+  }
+  .ing {
+    min-height: 0px;
+  }
 }

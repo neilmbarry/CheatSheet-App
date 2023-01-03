@@ -2,6 +2,12 @@ import React, { useRef } from 'react';
 import classes from './LabelInput.module.css';
 import store from '../../../store/store';
 import { useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faCircleCheck,
+  faCircleExclamation,
+} from '@fortawesome/free-solid-svg-icons';
+import LoadingSpinner from '../../../components/UI/Spinner';
 
 const LabelInput = ({
   className,
@@ -10,9 +16,11 @@ const LabelInput = ({
   placeholder,
   defaultValue,
   updateValue,
+  valid,
+  loading,
 }) => {
   const classesList = `${classes.main} ${className}`;
-  const loading = store.getState().config.value.loading;
+
   const value = useRef(defaultValue);
 
   useEffect(() => {
@@ -23,14 +31,29 @@ const LabelInput = ({
       <label name={label} className={classes.label}>
         {name}
       </label>
-      <input
-        type="text"
-        placeholder={placeholder}
-        ref={value}
-        // defaultValue={defaultValue}
-        className={loading ? classes.unavailable : classes.input}
-        onBlur={() => updateValue(value.current.value)}
-      />
+      <div className={classes.inputContainer}>
+        <input
+          type="text"
+          placeholder={placeholder}
+          ref={value}
+          // defaultValue={defaultValue}
+          className={false ? classes.unavailable : classes.input}
+          onBlur={() => updateValue(value.current.value)}
+        />
+
+        <div className={classes.iconContainer}>
+          {valid === 'invalid' && (
+            <FontAwesomeIcon
+              icon={faCircleExclamation}
+              className={classes.error}
+            />
+          )}
+          {valid === 'valid' && (
+            <FontAwesomeIcon icon={faCircleCheck} className={classes.icon} />
+          )}
+          {loading && <LoadingSpinner />}
+        </div>
+      </div>
     </div>
   );
 };

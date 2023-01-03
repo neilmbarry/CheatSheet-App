@@ -32,13 +32,16 @@ import { glassOptions } from '../../../config/dropdownOptions/glassOptions';
 import { apiEndpoint } from '../../../config/apiEndpoint';
 import useFetch from '../../../hooks/useFetch';
 import { useParams } from 'react-router';
+import { useState } from 'react';
 
 const AddCocktailBox = ({ className, remove, title, subtitle }) => {
   const classesList = `${classes.main} ${className}`;
 
   const cocktailInfo = useSelector((state) => state.create.value);
   const token = useSelector((state) => state.config.value.token);
-  const loading = useSelector((state) => state.config.value.loading);
+
+  const [loading, setLoading] = useState(false);
+  const [validName, setValidName] = useState(null);
 
   const slug = useParams().slug;
 
@@ -144,19 +147,31 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
 
   const tileTitle = title === 'Add' ? 'Add a cocktail' : 'Modify your cocktail';
 
+  const nameCheck = async (name) => {
+    setValidName(null);
+    setLoading(true);
+    const res = await fetch(apiEndpoint() + 'cocktails?name=' + name);
+    const data = await res.json();
+    console.log(data);
+    setLoading(false);
+    if (data.results) return setValidName('invalid');
+    setValidName('valid');
+  };
+
   return (
     <Tile className={classesList} title={tileTitle}>
-      {/* <Title title={title} /> */}
-
       <div className={classes.firstGroup}>
         <div className={classes.firstGroup_left}>
           <LabelInput
             label="cocktail"
             name="Cocktail Name*"
             placeholder="e.g. Old Fashioned"
-            updateValue={(name) => updateHandler('changeName', name)}
+            // updateValue={(name) => updateHandler('changeName', name)}
+            updateValue={(name) => nameCheck(name)}
             defaultValue={cocktailInfo.name}
             required={true}
+            loading={loading}
+            valid={validName}
           />
           <LabelDropdown
             label="flavour"

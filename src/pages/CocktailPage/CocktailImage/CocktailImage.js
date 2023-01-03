@@ -80,6 +80,21 @@ const CocktailImage = ({ className, cocktail, loading }) => {
       .then((data) => {
         console.log(data);
         fetchCurrentFaves();
+        if (data.faveAdded) {
+          return store.dispatch(
+            configActions.setNotification({
+              type: 'success',
+              message: 'Added to favourites!',
+            })
+          );
+        }
+        //
+        store.dispatch(
+          configActions.setNotification({
+            type: 'info',
+            message: 'Removed from favourites!',
+          })
+        );
         // FETCH CURRENT FAVES
 
         // setShowSuccessModal(true);

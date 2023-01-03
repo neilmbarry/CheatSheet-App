@@ -7,6 +7,7 @@
   font-weight: 400;
   background-color: #0f2c3d;
   color: white;
+  border-radius: 0px;
 }
 
 .input:focus {

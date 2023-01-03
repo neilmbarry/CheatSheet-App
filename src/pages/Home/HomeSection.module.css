@@ -8,9 +8,10 @@
 
 .homeBox {
   display: flex;
+
   height: 62rem;
 
-  width: 1100px;
+  max-width: 1100px;
   margin: auto;
   /* width: 100%; */
 }
@@ -87,4 +88,22 @@
 .random {
   background-color: #0f2c3d;
   color: #ddec52;
+}
+
+@media screen and (max-width: 1024px) {
+}
+@media screen and (max-width: 768px) {
+}
+@media screen and (max-width: 480px) {
+  .homeBox {
+    flex-direction: column;
+    height: auto;
+    min-width: auto;
+    text-align: center;
+    padding: 4rem 2rem;
+  }
+  .textBox {
+    width: 100%;
+    align-items: center;
+  }
 }

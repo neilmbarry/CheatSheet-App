@@ -1,6 +1,7 @@
 .ingredient {
   display: flex;
   /* flex-direction: row-reverse; */
+  /* flex-wrap: wrap; */
   align-items: stretch;
   width: 100%;
   /* margin-bottom: 5px; */
@@ -44,4 +45,38 @@
 
 .close:hover {
   color: rgb(255, 105, 105);
+}
+
+.brand {
+  grid-area: brand;
+}
+
+.ing {
+  grid-area: ing;
+}
+
+.quantity {
+  grid-area: quantity;
+}
+
+.unit {
+  grid-area: unit;
+}
+
+@media screen and (max-width: 1024px) {
+}
+@media screen and (max-width: 768px) {
+}
+@media screen and (max-width: 480px) {
+  .inputList {
+    display: grid;
+    grid-template-areas:
+      'ing quantity'
+      'brand unit';
+    grid-template-columns: 5fr 1fr;
+    margin-bottom: 0.5rem;
+  }
+  .ingredient input:nth-child(3) {
+    width: 100%;
+  }
 }

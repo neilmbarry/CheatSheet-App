@@ -47,6 +47,7 @@ const IngredientInput = ({
           placeholder="Brand (optional)"
           changeHandler={ingredientChangeHandler}
           loading={loading}
+          className={classes.brand}
         />
 
         <FormInput
@@ -56,6 +57,7 @@ const IngredientInput = ({
           placeholder="Ingredient*"
           changeHandler={ingredientChangeHandler}
           loading={loading}
+          className={classes.ing}
         />
         <FormInput
           type="number"
@@ -65,6 +67,7 @@ const IngredientInput = ({
           placeholder="1"
           changeHandler={ingredientChangeHandler}
           loading={loading}
+          className={classes.quantity}
         />
         <Dropdown
           options={unitOptions}
@@ -72,6 +75,7 @@ const IngredientInput = ({
           updateValue={unitChangeHandler}
           id="unit"
           selected={ing.unit}
+          className={classes.unit}
         />
       </div>
       {/* <FormDropdown
