@@ -4,7 +4,7 @@ This is a full stack application powered by React, Node, Express and MongoDB tha
 
 > You can check out a live demo [here](https://cheat-sheet-app.vercel.app/)
 
-![Add Cocktail Preview](https://imgur.com/zFCtBpf)
+![Add Cocktail Preview](https://i.imgur.com/zFCtBpf.png)
 
 ---
 
