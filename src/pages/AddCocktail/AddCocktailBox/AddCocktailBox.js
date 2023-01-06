@@ -11,32 +11,23 @@ import IngredientForm from '../IngredientForm/IngredientForm';
 import MethodForm from '../MethodForm/MethodForm';
 import LoadingSpinner from '../../../components/UI/Spinner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 import { faCocktail } from '@fortawesome/free-solid-svg-icons';
-
 import createCocktailActions from '../../../store/createCocktailSlice';
 import configActions from '../../../store/configSlice';
-
 import PageBreak from '../../../components/UI/PageBreak';
-
 import { useSelector } from 'react-redux';
 import store from '../../../store/store';
 import { useCallback } from 'react';
-
 import DeleteButton from '../../../components/UI/DeleteButton';
-
-import Title from '../../../components/UI/Title/Title';
 
 import { flavourOptions } from '../../../config/dropdownOptions/flavourOptions';
 import { glassOptions } from '../../../config/dropdownOptions/glassOptions';
 import { apiEndpoint } from '../../../config/apiEndpoint';
-import useFetch from '../../../hooks/useFetch';
 import { useParams } from 'react-router';
 import { useState } from 'react';
 
 const AddCocktailBox = ({ className, remove, title, subtitle }) => {
   const classesList = `${classes.main} ${className}`;
-
   const cocktailInfo = useSelector((state) => state.create.value);
   const token = useSelector((state) => state.config.value.token);
 

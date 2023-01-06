@@ -2,7 +2,9 @@
 
 This is a full stack application powered by React, Node, Express and MongoDB that allows authenticated users to create cocktail information cards, and add to a database. Users can query said database for other user’s cocktails and add reviews, ratings and favourites.
 
-![Chat Preview](http://i.imgur.com/lgRe8z4.png)
+> You can check out a live demo [here](https://cheat-sheet-app.vercel.app/)
+
+![Add Cocktail Preview](https://imgur.com/zFCtBpf)
 
 ---
 
