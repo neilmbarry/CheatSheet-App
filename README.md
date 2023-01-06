@@ -16,9 +16,9 @@ This is a full stack application powered by React, Node, Express and MongoDB tha
 - Store favourites
 - Other awesome features yet to be implemented
 
-![User Features](http://i.imgur.com/WbF1fi2.png)
+![Recipe Card](https://i.imgur.com/2YjeD1M.png)
 
-![Admin Features](http://i.imgur.com/xQFaadt.png)
+![Search Database](https://i.imgur.com/VZl2W0M.png)
 
 ---
 
