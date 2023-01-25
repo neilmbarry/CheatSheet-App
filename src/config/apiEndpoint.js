@@ -1,4 +1,5 @@
 export const apiEndpoint = () => {
+  return 'https://cheat-sheet-api.herokuapp.com/api/v1/';
   if (process.env.NODE_ENV === 'production') {
     return 'PRODUCTION ENDPOINT';
   }
