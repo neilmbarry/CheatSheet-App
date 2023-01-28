@@ -22,7 +22,7 @@ import DeleteButton from '../../../components/UI/DeleteButton';
 
 import { flavourOptions } from '../../../config/dropdownOptions/flavourOptions';
 import { glassOptions } from '../../../config/dropdownOptions/glassOptions';
-import { apiEndpoint } from '../../../config/apiEndpoint';
+import { BASE_URL } from '../../../config/BASE_URL';
 import { useParams } from 'react-router';
 import { useState } from 'react';
 
@@ -40,9 +40,7 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
     const body = JSON.stringify(cocktailInfo);
     console.log(cocktailInfo);
 
-    const url = `${apiEndpoint()}cocktails${
-      slug ? '/' + cocktailInfo._id : ''
-    }`;
+    const url = `${BASE_URL}cocktails${slug ? '/' + cocktailInfo._id : ''}`;
     fetch(url, {
       method: slug ? 'PATCH' : 'POST',
       headers: {
@@ -70,7 +68,7 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
   };
 
   const deleteCocktailHandler = () => {
-    const url = `${apiEndpoint()}cocktails/${cocktailInfo._id}`;
+    const url = `${BASE_URL}cocktails/${cocktailInfo._id}`;
 
     fetch(url, {
       method: 'DELETE',
@@ -126,7 +124,7 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
   useEffect(() => {
     if (!slug) return;
     console.log(slug);
-    fetch(`${apiEndpoint()}cocktails/${slug}`)
+    fetch(`${BASE_URL}cocktails/${slug}`)
       .then((res) => res.json())
       .then((data) => {
         const cocktail = data.cocktail;
@@ -141,7 +139,7 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
   const nameCheck = async (name) => {
     setValidName(null);
     setLoading(true);
-    const res = await fetch(apiEndpoint() + 'cocktails?name=' + name);
+    const res = await fetch(BASE_URL + 'cocktails?name=' + name);
     const data = await res.json();
     console.log(data);
     setLoading(false);

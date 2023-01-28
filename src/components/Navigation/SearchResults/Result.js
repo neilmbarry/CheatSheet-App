@@ -16,11 +16,11 @@ import { faCocktail } from '@fortawesome/free-solid-svg-icons';
 
 import store from '../../../store/store';
 import cocktailActions from '../../../store/localCocktailsSlice';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import StarContainer from '../../UI/StarContainer';
 import { useSelector } from 'react-redux';
 import configActions from '../../../store/configSlice';
-import { apiEndpoint } from '../../../config/apiEndpoint';
+import { BASE_URL } from '../../../config/BASE_URL';
 
 const Result = ({ onClick, isAuthor, fave, refreshFaves, cocktail }) => {
   const tagsHTML = [
@@ -29,7 +29,7 @@ const Result = ({ onClick, isAuthor, fave, refreshFaves, cocktail }) => {
     cocktail.glass,
   ].join(' | ');
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const token = useSelector((state) => state.config.value.token);
 
@@ -49,7 +49,7 @@ const Result = ({ onClick, isAuthor, fave, refreshFaves, cocktail }) => {
       cocktailId: cocktail.id,
     });
 
-    const url = `${apiEndpoint()}users/toggleFave`;
+    const url = `${BASE_URL}users/toggleFave`;
     fetch(url, {
       method: 'PATCH',
       headers: {
@@ -90,7 +90,7 @@ const Result = ({ onClick, isAuthor, fave, refreshFaves, cocktail }) => {
   const editHandler = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    history.push(`/modify-cocktail/${cocktail.slug}`);
+    navigate(`/modify-cocktail/${cocktail.slug}`);
   };
 
   return (

@@ -235,3 +235,33 @@ export const notificationVariants = {
     },
   },
 };
+
+export const authVariants = {
+  hidden: {
+    x: 50,
+    opacity: 0,
+    // scale: 0.8,
+
+    // rotate: "0deg",
+  },
+  visible: {
+    x: 0,
+    opacity: 1,
+
+    transition: {
+      type: 'spring',
+      // delay: 0.5,
+      duration: 0.5,
+    },
+  },
+  exit: {
+    x: -50,
+    opacity: 0,
+    // scale: 0.9,
+    transition: {
+      type: 'spring',
+      // delay: 0.5,
+      duration: 0.5,
+    },
+  },
+};

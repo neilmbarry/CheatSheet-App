@@ -5,11 +5,11 @@ import LabelInput from '../AddCocktail/LabelInput/LabelInput';
 import Button from '../../components/UI/Button';
 import store from '../../store/store';
 import configActions from '../../store/configSlice';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 
 const Account = ({ className }) => {
   const classesList = `${classes.main} ${className}`;
-  const history = useHistory();
+  const navigate = useNavigate();
   const signOut = () => {
     store.dispatch(configActions.signOut());
     store.dispatch(
@@ -18,7 +18,7 @@ const Account = ({ className }) => {
         message: 'You have been logged out!',
       })
     );
-    history.push('/');
+    navigate('/');
   };
   return (
     <div className={classesList}>

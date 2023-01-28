@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartEmpty } from '@fortawesome/free-regular-svg-icons';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import useFetch from '../../../hooks/useFetch';
-import { apiEndpoint } from '../../../config/apiEndpoint';
+import { BASE_URL } from '../../../config/BASE_URL';
 import { useSelector } from 'react-redux';
 import LoadingSpinner from '../../../components/UI/Spinner';
 import store from '../../../store/store';
@@ -24,7 +24,7 @@ const CocktailImage = ({ className, cocktail, loading }) => {
 
     headers['Authorization'] = `Bearer ${token}`;
 
-    fetch(apiEndpoint() + `users/getFaves`, {
+    fetch(BASE_URL + `users/getFaves`, {
       method: 'GET',
       headers,
     })
@@ -64,7 +64,7 @@ const CocktailImage = ({ className, cocktail, loading }) => {
       cocktailId: cocktail.id,
     });
 
-    const url = `${apiEndpoint()}users/toggleFave`;
+    const url = `${BASE_URL}users/toggleFave`;
     fetch(url, {
       method: 'PATCH',
       headers: {

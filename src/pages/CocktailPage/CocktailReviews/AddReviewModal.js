@@ -1,13 +1,13 @@
 import React, { useRef } from 'react';
 import classes from './AddReviewModal.module.css';
-import { useHistory, useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import ReviewStarContainer from '../../../components/UI/ReviewStarContainer';
 import FormTextArea from '../../../components/UI/FormTextArea';
 import Button from '../../../components/UI/Button';
 import { useState } from 'react';
 import useFetch from '../../../hooks/useFetch';
 import { useSelector } from 'react-redux';
-import { apiEndpoint } from '../../../config/apiEndpoint';
+import { BASE_URL } from '../../../config/BASE_URL';
 import store from '../../../store/store';
 import configActions from '../../../store/configSlice';
 
@@ -17,7 +17,7 @@ const AddReviewModal = ({ className }) => {
   const [sendRequest, setSendRequest] = useState(false);
   const review = useRef();
   const token = useSelector((state) => state.config.value.token);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const cocktailId = useSelector(
     (state) => state.config.value.currentCocktailId
@@ -47,7 +47,7 @@ const AddReviewModal = ({ className }) => {
       cocktailId,
     });
     // setSendRequest(true);
-    fetch(apiEndpoint() + 'reviews', {
+    fetch(BASE_URL + 'reviews', {
       method: 'POST',
       body,
       headers: {
@@ -61,7 +61,7 @@ const AddReviewModal = ({ className }) => {
       })
       .then((data) => {
         console.log(data);
-        history.push(history.location.pathname);
+        navigate(navigate.location.pathname);
         store.dispatch(
           configActions.setNotification({
             type: 'success',

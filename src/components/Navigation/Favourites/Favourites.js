@@ -10,15 +10,15 @@ import configActions from '../../../store/configSlice';
 
 import classes from './Favourites.module.css';
 import { favouritesVariants } from '../../../config/animationVariants';
-import { apiEndpoint } from '../../../config/apiEndpoint';
 import Backdrop from '../../UI/Backdrop';
 import useFetch from '../../../hooks/useFetch';
 import LoadingSpinner from '../../UI/Spinner';
+import useBetterFetch from '../../../hooks/useBetterFetch';
 
 const Favourites = ({ className, children, onClose }) => {
   const classesList = `${classes.main} ${className}`;
   // const [faves, setFaves] = useState([]);
-  // const token = useSelector((state) => state.config.value.token);
+  const token = useSelector((state) => state.config.value.token);
   // const id = useSelector((state) => state.config.value.id);
   const isOpen = useSelector((state) => state.config.value.openFavourites);
 
@@ -27,25 +27,7 @@ const Favourites = ({ className, children, onClose }) => {
     return;
   };
 
-  const { data, loading } = useFetch({
-    url: 'users/getFaves',
-    request: isOpen === true,
-  });
-
-  // console.log(data);
-
-  // const favesIdString = data?.faves
-  //   .map((favId) => {
-  //     return `_id=${favId}`;
-  //   })
-  //   .join('&');
-
-  // console.log(favesIdString);
-
-  // const { data: faves } = useFetch({
-  //   url: `cocktails?${favesIdString?.length > 0 || 'name=null'}`,
-  //   reload: isOpen === true,
-  // });
+  const { loading, error, data, getRequest } = useBetterFetch('users/getFaves');
 
   const resultsJSX = data?.faves?.map((cocktail, i) => {
     return (
@@ -59,12 +41,22 @@ const Favourites = ({ className, children, onClose }) => {
     );
   });
 
-  // useEffect(() => {
-  //   fetch(apiEndpoint() + '')
-  //     .then((res) => res.json())
-  //     .then((data) => setFaves(data))
-  //     .catch((err) => console.warn(err));
-  // }, [isOpen]);
+  useEffect(() => {
+    if (!isOpen || !token) return;
+    getRequest({ token });
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (error) {
+      console.log('setting notification', error);
+      store.dispatch(
+        configActions.setNotification({
+          type: 'fail',
+          message: error,
+        })
+      );
+    }
+  }, [data, error]);
 
   return (
     <AnimatePresence>
@@ -82,7 +74,15 @@ const Favourites = ({ className, children, onClose }) => {
             </div>
             <div className={classes.results}>
               {resultsJSX}
-              {loading && <LoadingSpinner />}
+              {loading && (
+                <>
+                  <LoadingSpinner />
+                  <LoadingSpinner />
+                  <LoadingSpinner />
+                  <LoadingSpinner />
+                  <LoadingSpinner />
+                </>
+              )}
             </div>
           </motion.div>
         </Backdrop>

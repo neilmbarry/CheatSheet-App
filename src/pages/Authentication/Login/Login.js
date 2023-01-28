@@ -10,7 +10,7 @@ import { motion } from 'framer-motion';
 
 import Title from '../../../components/UI/Title/Title';
 
-import { apiEndpoint } from '../../../config/apiEndpoint';
+import { BASE_URL } from '../../../config/BASE_URL';
 import store from '../../../store/store';
 import configActions from '../../../store/configSlice';
 import Tile from '../../../components/UI/Tile/Tile';
@@ -30,7 +30,7 @@ const Login = (props) => {
     });
     console.log(body);
     try {
-      fetch(`${apiEndpoint()}users/login`, {
+      fetch(`${BASE_URL}users/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

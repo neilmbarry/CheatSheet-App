@@ -35,21 +35,21 @@ const CocktailTitle = ({ className, cocktail, loading }) => {
       <SkeletonLoading /> */}
       <div className={classes.ratings}>
         <h3 className={classes.rating}>
-          {cocktail.ratingsAverage?.toFixed(1) || 0}
+          {cocktail?.ratingsAverage?.toFixed(1) || 0}
         </h3>
         <div className={classes.stars}>
-          <StarContainer rating={cocktail.ratingsAverage} />
+          <StarContainer rating={cocktail?.ratingsAverage} />
         </div>
 
         <h3>
           <span className={classes.smaller}>
-            ({cocktail.ratingsQuantity || 0})
+            ({cocktail?.ratingsQuantity || 0})
           </span>
         </h3>
       </div>
       <div className={classes.typesContainer}>
-        <h3 className={classes.types}>{cocktail.glass}</h3>
-        <h3 className={classes.types}>{cocktail.flavour}</h3>
+        <h3 className={classes.types}>{cocktail?.glass}</h3>
+        <h3 className={classes.types}>{cocktail?.flavour}</h3>
       </div>
     </div>
   );

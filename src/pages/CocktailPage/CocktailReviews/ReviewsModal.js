@@ -6,18 +6,18 @@ import { useState } from 'react';
 import Button from '../../../components/UI/Button';
 import store from '../../../store/store';
 import configActions from '../../../store/configSlice';
-import { useHistory, useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import useFetch from '../../../hooks/useFetch';
 import LoadingSpinner from '../../../components/UI/Spinner';
 
 const ReviewsModal = ({ className }) => {
   const classesList = `${classes.main} ${className}`;
   const [sortBy, setSortBy] = useState('Recent');
-  const history = useHistory();
+  const navigate = useNavigate();
   const addReviewHandler = () => {
     store.dispatch(configActions.setModal('addReview'));
   };
-  const slug = history.location.pathname.split('/')[2];
+  const slug = navigate.location.pathname.split('/')[2];
 
   const { data, loading } = useFetch({
     url: `cocktails/${slug}`,

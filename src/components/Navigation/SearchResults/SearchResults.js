@@ -20,7 +20,7 @@ import Backdrop from '../../UI/Backdrop';
 import Pagination from './Pagination';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { apiEndpoint } from '../../../config/apiEndpoint';
+import { BASE_URL } from '../../../config/BASE_URL';
 
 const SearchResults = ({ className }) => {
   const classesList = `${classes.main} ${className}`;
@@ -42,8 +42,6 @@ const SearchResults = ({ className }) => {
     store.dispatch(configActions.setOpenSearchResults(false));
   };
 
-  console.warn('SEARCH RESULTS RERENDERED');
-
   const fetchFaves = () => {
     if (!token) return;
     const headers = {
@@ -52,7 +50,7 @@ const SearchResults = ({ className }) => {
 
     headers['Authorization'] = `Bearer ${token}`;
 
-    fetch(apiEndpoint() + `users/getFaves`, {
+    fetch(BASE_URL + `users/getFaves`, {
       method: 'GET',
       headers,
     })
@@ -67,7 +65,7 @@ const SearchResults = ({ className }) => {
     url: 'cocktails',
     query,
     page: currentPage,
-    limit: 3,
+    limit: 4,
     sort: sortBy,
     // reload: isOpen === true,
     request: query,
@@ -134,7 +132,11 @@ const SearchResults = ({ className }) => {
             <Pagination
               totalPages={totalPages}
               currPage={currentPage}
-              changePageHandler={(page) => setCurrentPage(page)}
+              loading={loading}
+              changePageHandler={(page) => {
+                if (loading) return;
+                setCurrentPage(page);
+              }}
             />
             <div className={classes.results}>{results}</div>
           </motion.div>

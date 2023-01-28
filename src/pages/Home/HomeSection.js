@@ -4,23 +4,23 @@ import Button from '../../components/UI/Button';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { apiEndpoint } from '../../config/apiEndpoint';
-import { useHistory } from 'react-router-dom';
+import { BASE_URL } from '../../config/BASE_URL';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const HomeSection = ({ className, photo, type, background }) => {
   const classesList = `${classes.main} ${className} ${classes[type]}`;
   const slugsList = useSelector((state) => state.config.value.slugList);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const randomCocktailHandler = () => {
     const randomEntry = Math.floor(Math.random() * slugsList.length);
     const randomCocktail = slugsList[randomEntry];
 
-    history.push('/cocktails/' + randomCocktail);
+    navigate('/cocktails/' + randomCocktail);
   };
   const addCocktail = () => {
-    history.push('/add-cocktail');
+    navigate('/add-cocktail');
   };
   return (
     <div className={classesList}>

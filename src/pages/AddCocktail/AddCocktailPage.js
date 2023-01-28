@@ -11,7 +11,7 @@ import { motion } from 'framer-motion';
 import classes from './AddCocktailPage.module.css';
 
 import { addCocktailVariants } from '../../config/animationVariants';
-import { apiEndpoint } from '../../config/apiEndpoint';
+import { BASE_URL } from '../../config/BASE_URL';
 import { useSelector } from 'react-redux';
 import createCocktailActions from '../../store/createCocktailSlice';
 

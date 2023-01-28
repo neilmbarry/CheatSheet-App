@@ -9,10 +9,10 @@ import { faDice } from '@fortawesome/free-solid-svg-icons';
 // import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import store from '../../store/store';
 import { useSelector } from 'react-redux';
-import { apiEndpoint } from '../../config/apiEndpoint';
+import { BASE_URL } from '../../config/BASE_URL';
 import configActions from '../../store/configSlice';
 
 const NavigationBar = ({
@@ -25,7 +25,7 @@ const NavigationBar = ({
 }) => {
   const token = useSelector((state) => state.config.value.token);
   const slugsList = useSelector((state) => state.config.value.slugList);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [name, setName] = useState(null);
 
@@ -37,7 +37,7 @@ const NavigationBar = ({
     if (!token) {
       return setName(null);
     }
-    fetch(apiEndpoint() + 'users/me', {
+    fetch(BASE_URL + 'users/me', {
       method: 'GET',
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -53,14 +53,14 @@ const NavigationBar = ({
     const randomEntry = Math.floor(Math.random() * slugsList.length);
     const randomCocktail = slugsList[randomEntry];
 
-    history.push('/cocktails/' + randomCocktail);
+    navigate('/cocktails/' + randomCocktail);
   };
 
   const authNavigation = () => {
     if (name) {
-      return history.push('/account');
+      return navigate('/account');
     }
-    history.push('/login');
+    navigate('/login');
   };
 
   return (
@@ -73,7 +73,7 @@ const NavigationBar = ({
           <Link to="/">
             <h4 className={classes.navButton}>
               <span className={classes.yellow}>Cheat</span>
-              <h2 className={classes.slash}>/</h2>
+              <span className={classes.slash}>/</span>
               <span className={classes.green}>Sheet</span>
             </h4>
           </Link>

@@ -1,4 +1,4 @@
-import { Route, useLocation, Switch } from 'react-router-dom';
+import { Route, useLocation, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -22,7 +22,7 @@ import createCocktailActions from './store/createCocktailSlice';
 
 import classes from './App.module.css';
 import store from './store/store';
-import { apiEndpoint } from './config/apiEndpoint';
+import { BASE_URL } from './config/BASE_URL';
 import Notification from './components/UI/Notifications/Notification';
 
 function App() {
@@ -41,7 +41,7 @@ function App() {
   }, [page]);
 
   useEffect(() => {
-    fetch(apiEndpoint() + 'cocktails?fields=slug')
+    fetch(BASE_URL + 'cocktails?fields=slug')
       .then((res) => res.json())
       .then((data) =>
         store.dispatch(
@@ -60,29 +60,24 @@ function App() {
         <Notification />
 
         <AnimatePresence exitBeforeEnter>
-          <Switch location={location} key={location.key}>
-            <Route path="/add-cocktail">
-              <AddCocktailPage title="Add a cocktail" type="Add" />
-            </Route>
-            <Route path="/modify-cocktail/:slug">
-              <AddCocktailPage title="Modify your cocktail" type="Modify" />
-            </Route>
-            <Route path="/cocktails/:slug">
-              <CocktailGrid />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/signUp">
-              <SignUp />
-            </Route>
-            <Route path="/account">
-              <Account />
-            </Route>
-            <Route path="/" exact>
-              <Home />
-            </Route>
-          </Switch>
+          <Routes location={location} key={location.key}>
+            <Route
+              path="/add-cocktail"
+              element={<AddCocktailPage title="Add a cocktail" type="Add" />}
+            ></Route>
+            <Route
+              path="/modify-cocktail/:slug"
+              element={
+                <AddCocktailPage title="Modify your cocktail" type="Modify" />
+              }
+            ></Route>
+            <Route path="/cocktails/:slug" element={<CocktailGrid />} />
+
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/signUp" element={<SignUp />}></Route>
+            <Route path="/account" element={<Account />}></Route>
+            <Route path="/" element={<Home />}></Route>
+          </Routes>
         </AnimatePresence>
       </PageContainer>
       <Footer />
