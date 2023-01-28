@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Home.module.css';
 import HomeSection from './HomeSection';
 import HomeSubsection from './HomeSubsection';
-import photo from '../../assets/img/iphone-app-940.png';
+import photo from '../../assets/img/iphone.png';
 import barPhoto from '../../assets/img/bar.jpg';
 import { motion } from 'framer-motion';
 import { homePageVariants } from '../../config/animationVariants';
