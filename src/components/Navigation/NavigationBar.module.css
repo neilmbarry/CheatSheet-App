@@ -76,11 +76,11 @@
 }
 
 .magni {
-  background-color: white;
-  color: #0f2c3d;
+  /* background-color: white; */
+  /* color: #0f2c3d; */
   border: none;
   font-weight: 300;
-  font-size: 1.4rem;
+  font-size: 2rem;
   margin: 1.3rem;
   position: absolute;
   cursor: pointer;

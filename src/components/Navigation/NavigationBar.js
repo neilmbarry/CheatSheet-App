@@ -33,6 +33,11 @@ const NavigationBar = ({
     store.dispatch(configActions.toggleOpenFavourites());
   };
 
+  const toggleSearch = () => {
+    console.log('toggling search');
+    store.dispatch(configActions.toggleOpenSearch());
+  };
+
   useEffect(() => {
     if (!token) {
       return setName(null);
@@ -68,7 +73,12 @@ const NavigationBar = ({
       <div className={classes.navContainer}>
         <nav className={classes.nav} onClick={null}>
           <div className={classes.navLeft}>
-            <NavigationSearch onChange={onChange} />
+            <FontAwesomeIcon
+              className={classes.magni}
+              icon={faMagnifyingGlass}
+              onClick={toggleSearch}
+            ></FontAwesomeIcon>
+            {/* <NavigationSearch onChange={onChange} /> */}
           </div>
           <Link to="/">
             <h4 className={classes.navButton}>

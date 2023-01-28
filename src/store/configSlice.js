@@ -41,6 +41,9 @@ export const configSlice = createSlice({
     setOpenSearchResults: (state, action) => {
       state.value.openSearchResults = action.payload;
     },
+    toggleOpenSearch: (state, action) => {
+      state.value.openSearchResults = !state.value.openSearchResults;
+    },
     setOpenFavourites: (state, action) => {
       state.value.openFavourites = action.payload;
     },

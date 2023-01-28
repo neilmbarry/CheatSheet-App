@@ -21,6 +21,7 @@ import Pagination from './Pagination';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { BASE_URL } from '../../../config/BASE_URL';
+import SearchBar from './SearchBar';
 
 const SearchResults = ({ className }) => {
   const classesList = `${classes.main} ${className}`;
@@ -124,6 +125,7 @@ const SearchResults = ({ className }) => {
             exit="exit"
             className={classesList}
           >
+            <SearchBar />
             <ResultsBar
               results={data?.results}
               sortHandler={setSortBy}

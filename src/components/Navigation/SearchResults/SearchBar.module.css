@@ -1,0 +1,10 @@
+.main {
+  /* background-color: red; */
+  /* border: 2px dashed red; */
+  background-color: #102b3c;
+  padding: 1rem;
+}
+
+.input {
+  background-color: green;
+}

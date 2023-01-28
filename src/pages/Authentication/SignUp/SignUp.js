@@ -45,6 +45,7 @@ const SignUp = (props) => {
       );
     }
     if (data.status === 'success') {
+      store.dispatch(configActions.setToken(data.token));
       store.dispatch(
         configActions.setNotification({
           type: 'success',
