@@ -1,0 +1,21 @@
+.main {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  /* border: 1px solid red; */
+  border-radius: 5px;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.main:hover {
+  background-color: rgb(165, 165, 165);
+}
+
+.icon {
+  font-size: 1.6rem;
+  width: 20px;
+}
+.name {
+  font-size: 1.5rem;
+}

@@ -14,6 +14,7 @@ const MethodInput = ({
   id,
   updateMethod,
   loading,
+  invalid,
 }) => {
   const methodChangeHandler = (e) => {
     const value = e.target.value;
@@ -34,6 +35,7 @@ const MethodInput = ({
         value={text}
         changeHandler={methodChangeHandler}
         loading={loading}
+        invalid={invalid}
       />
       <DeleteButton onClick={removeMethod} />
       {/* <div className={classes.close} onClick={}>

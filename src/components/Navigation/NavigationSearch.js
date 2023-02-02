@@ -5,14 +5,11 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import store from '../../store/store';
 import configActions from '../../store/configSlice';
 
-const NavigationSearch = ({ onChange, onClick }) => {
+const NavigationSearch = () => {
   const query = useRef();
 
   const searchHandler = () => {
     console.log(query.current.value);
-    if (query.current.value === '') {
-      return store.dispatch(configActions.setOpenSearchResults(false));
-    }
     store.dispatch(configActions.setOpenSearchResults(true));
     store.dispatch(configActions.setSearchQuery(query.current.value));
     // fetch search query

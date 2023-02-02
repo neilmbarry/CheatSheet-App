@@ -1,166 +1,152 @@
-import React, { useEffect } from 'react';
+// Main imports
+import React, { useEffect, useState, useCallback } from 'react';
+import { useParams } from 'react-router';
+import { useSelector } from 'react-redux';
+
+// Styles
 import classes from './AddCocktailBox.module.css';
 
-// import { usePrompt } from 'react-router-dom';
-
+// Components
 import Tile from '../../../components/UI/Tile/Tile';
 import LabelInput from '../LabelInput/LabelInput';
 import LabelDropdown from '../LabelInput/LabelDropdown';
 import Button from '../../../components/UI/Button';
 import IngredientForm from '../IngredientForm/IngredientForm';
 import MethodForm from '../MethodForm/MethodForm';
-import LoadingSpinner from '../../../components/UI/Spinner';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCocktail } from '@fortawesome/free-solid-svg-icons';
+import PageBreak from '../../../components/UI/PageBreak';
+import ImageContainer from './ImageContainer';
+
+// State Management
+import store from '../../../store/store';
 import createCocktailActions from '../../../store/createCocktailSlice';
 import configActions from '../../../store/configSlice';
-import PageBreak from '../../../components/UI/PageBreak';
-import { useSelector } from 'react-redux';
-import store from '../../../store/store';
-import { useCallback } from 'react';
-import DeleteButton from '../../../components/UI/DeleteButton';
 
+// Config
 import { flavourOptions } from '../../../config/dropdownOptions/flavourOptions';
 import { glassOptions } from '../../../config/dropdownOptions/glassOptions';
 import { BASE_URL } from '../../../config/BASE_URL';
-import { useParams } from 'react-router';
-import { useState } from 'react';
+import useFetch from '../../../hooks/useFetch';
+import { trimCocktailInputs } from '../../../config/trimCocktailInputs';
+import { invalidCocktailItems } from '../../../config/invalidCocktailItems';
 
-const AddCocktailBox = ({ className, remove, title, subtitle }) => {
+const AddCocktailBox = ({ className, title, type }) => {
   const classesList = `${classes.main} ${className}`;
   const cocktailInfo = useSelector((state) => state.create.value);
   const token = useSelector((state) => state.config.value.token);
 
-  const [loading, setLoading] = useState(false);
   const [validName, setValidName] = useState(null);
 
-  const slug = useParams().slug;
+  const { slug } = useParams();
+
+  const { data, error, loading, fetchRequest } = useFetch(
+    `cocktails${slug ? '/' + slug : ''}`
+  );
 
   const submitFormHandler = () => {
-    const body = JSON.stringify(cocktailInfo);
-    console.log(cocktailInfo);
+    // Trim Ings and Methods
+    // Validate first
+    console.log('cocktailInfo', cocktailInfo);
+    const trimmedCocktail = trimCocktailInputs(cocktailInfo);
+    console.log('trimmedcocktailInfo', trimmedCocktail);
+    const invalidItems = invalidCocktailItems(trimmedCocktail);
+    console.log('invalidcocktailItems', invalidItems);
 
-    const url = `${BASE_URL}cocktails${slug ? '/' + cocktailInfo._id : ''}`;
-    fetch(url, {
-      method: slug ? 'PATCH' : 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
+    store.dispatch(createCocktailActions.setInvalidItems(invalidItems));
+
+    if (invalidItems.length) {
+      return;
+    }
+    console.log('invalidcocktailItems', invalidItems);
+    return;
+    const body = cocktailInfo;
+    fetchRequest({
+      method: 'POST',
       body,
-    })
-      .then((res) => {
-        console.log(res.ok);
-        return res.json();
-      })
-      .then((data) => {
-        console.log(data);
-        store.dispatch(configActions.setModal('addReview'));
-        store.dispatch(
-          configActions.setNotification({
-            type: 'success',
-            message: 'Cocktail Added!',
-          })
-        );
-        // setShowSuccessModal(true);
-      })
-      .catch((err) => console.warn(err));
+      token,
+    });
   };
 
   const deleteCocktailHandler = () => {
-    const url = `${BASE_URL}cocktails/${cocktailInfo._id}`;
-
-    fetch(url, {
+    // Confirm Delete
+    fetchRequest({
       method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => {
-        console.log(res.ok);
-        return res.json();
-      })
-      .then((data) => {
-        console.log(data, 'successful delete');
-        store.dispatch(configActions.setModal('successDelete'));
-        // setShowSuccessModal(true);
-      })
-      .catch((err) => console.warn(err));
+      token,
+    });
+  };
+
+  const updateCocktailHandler = () => {
+    const body = cocktailInfo;
+    fetchRequest({
+      method: 'PATCH',
+      token,
+      body,
+    });
   };
 
   const updateHandler = useCallback((action, value) => {
     store.dispatch(createCocktailActions[action](value));
   }, []);
 
-  const showImageSelection = () => {
-    store.dispatch(configActions.setModal('imageSelection'));
+  const fetchCocktailInfo = () => {
+    fetchRequest({});
   };
-
-  const removeCocktailImage = () => {
-    store.dispatch(createCocktailActions.changeImage(null));
-  };
-
-  const cocktailImage = cocktailInfo.image ? (
-    <img src={cocktailInfo.image} alt="none" />
-  ) : (
-    <FontAwesomeIcon icon={faCocktail}></FontAwesomeIcon>
-  );
-
-  const cocktailButton = cocktailInfo.image ? (
-    <DeleteButton className={classes.delete} onClick={removeCocktailImage} />
-  ) : (
-    <Button
-      type="alt"
-      className={classes.imageButton}
-      onClick={showImageSelection}
-    >
-      Select Image
-    </Button>
-  );
-
-  // usePrompt('Hello from usePrompt -- Are you sure you want to leave?', true);
 
   useEffect(() => {
     if (!slug) return;
-    console.log(slug);
-    fetch(`${BASE_URL}cocktails/${slug}`)
-      .then((res) => res.json())
-      .then((data) => {
-        const cocktail = data.cocktail;
 
-        store.dispatch(createCocktailActions.updateCocktail(cocktail));
-      })
-      .catch((err) => console.error(err));
+    fetchCocktailInfo();
   }, [slug]);
 
-  const tileTitle = title === 'Add' ? 'Add a cocktail' : 'Modify your cocktail';
+  useEffect(() => {
+    if (data.cocktail) {
+      store.dispatch(
+        configActions.setNotification({
+          type: 'info',
+          message: data.message,
+        })
+      );
+      store.dispatch(createCocktailActions.updateCocktail(data.cocktail));
+    }
+    if (data.updatedCocktail) {
+      store.dispatch(
+        configActions.setNotification({
+          type: 'info',
+          message: data.message,
+        })
+      );
+    }
+    if (error) {
+      console.warn(error);
+    }
+  }, [data, error]);
 
   const nameCheck = async (name) => {
+    if (slug || !name) return;
     setValidName(null);
-    setLoading(true);
+
     const res = await fetch(BASE_URL + 'cocktails?name=' + name);
     const data = await res.json();
     console.log(data);
-    setLoading(false);
+
     if (data.results) return setValidName('invalid');
     setValidName('valid');
+    updateHandler('changeName', name);
   };
 
   return (
-    <Tile className={classesList} title={tileTitle}>
+    <Tile className={classesList} title={title}>
       <div className={classes.firstGroup}>
         <div className={classes.firstGroup_left}>
           <LabelInput
             label="cocktail"
             name="Cocktail Name*"
             placeholder="e.g. Old Fashioned"
-            // updateValue={(name) => updateHandler('changeName', name)}
             updateValue={(name) => nameCheck(name)}
             defaultValue={cocktailInfo.name}
             required={true}
             loading={loading}
             valid={validName}
+            invalid={cocktailInfo.invalidItems.includes('name')}
           />
           <LabelDropdown
             label="flavour"
@@ -170,6 +156,7 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
             updateValue={(flavour) => updateHandler('changeFlavour', flavour)}
             defaultValue={cocktailInfo.flavour}
             required={true}
+            invalid={cocktailInfo.invalidItems.includes('flavour')}
           />
           <LabelDropdown
             label="glass"
@@ -179,14 +166,11 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
             updateValue={(glass) => updateHandler('changeGlass', glass)}
             defaultValue={cocktailInfo.glass}
             required={true}
+            invalid={cocktailInfo.invalidItems.includes('glass')}
           />
-          {/* <FormDropdown options={['neil', 'barry']} /> */}
         </div>
         <div className={classes.firstGroup_right}>
-          <div className={classes.imageContainer}>
-            {cocktailImage}
-            {cocktailButton}
-          </div>
+          <ImageContainer />
         </div>
       </div>
       <div className={classes.secondGroup}>
@@ -205,18 +189,19 @@ const AddCocktailBox = ({ className, remove, title, subtitle }) => {
           defaultValue={cocktailInfo.author}
         />
       </div>
-      <IngredientForm />
-      <MethodForm />
+      <IngredientForm
+        invalid={cocktailInfo.invalidItems.includes('ingredients')}
+      />
+      <MethodForm invalid={cocktailInfo.invalidItems.includes('method')} />
       <PageBreak />
       <div className={classes.btnContainer}>
-        <Button type="main" onClick={submitFormHandler}>
-          {loading ? <LoadingSpinner /> : 'update'}
+        <Button type="main" onClick={submitFormHandler} loading={loading}>
+          {type === 'Modify' ? 'update' : 'submit'}
         </Button>
         <Button type="alt" onClick={() => deleteCocktailHandler()}>
-          Delete Cocktail
+          {type === 'Modify' ? 'delete' : 'cancel'}
         </Button>
       </div>
-      {/* {deleteButton} */}
     </Tile>
   );
 };

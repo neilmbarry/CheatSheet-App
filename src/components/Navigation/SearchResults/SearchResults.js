@@ -30,7 +30,7 @@ const SearchResults = ({ className }) => {
   const [totalPages, setTotalPages] = useState(null);
   const [sortBy, setSortBy] = useState('Name');
 
-  console.log('sortBy: ', sortBy);
+  // console.log('sortBy: ', sortBy);
 
   const isOpen = useSelector((state) => state.config.value.openSearchResults);
   // const userId = useSelector((state) => state.config.value.id);
@@ -62,57 +62,41 @@ const SearchResults = ({ className }) => {
       });
   };
 
-  const { data, loading } = useFetch({
-    url: 'cocktails',
-    query,
-    page: currentPage,
-    limit: 4,
-    sort: sortBy,
-    // reload: isOpen === true,
-    request: query,
-  });
+  const { data, loading, fetchRequest } = useFetch('cocktails');
 
   useEffect(() => {
     if (!data) return;
     setTotalPages(Math.ceil(data.results / 3));
     setCurrentPage(data.page);
-    // if (data.results) {
-    //   setCurrentPage(1);
-    // }
   }, [data]);
 
   useEffect(() => {
     setCurrentPage(1);
-    // if (data.results) {
-    //   setCurrentPage(1);
-    // }
+    // if (!query.searchQuery) return;
+    fetchRequest({});
   }, [query]);
 
-  useEffect(() => {
-    fetchFaves();
-  }, []);
+  // console.log('loading?', loading);
 
-  console.log(data);
-
-  const results = loading ? (
+  const loadingJSX = loading && (
     <>
       <div className={classes.spinnerContainer}>
         <LoadingSpinner type="dark" />
       </div>
     </>
-  ) : (
-    data?.cocktails?.map((cocktail) => (
-      <Result
-        cocktail={cocktail}
-        key={cocktail.id}
-        slug={cocktail.slug}
-        createdBy={cocktail.createdBy}
-        fave={faves?.includes(cocktail.id)}
-        refreshFaves={fetchFaves}
-        isAuthor={cocktail.createdBy === userId}
-      />
-    ))
   );
+
+  const results = data?.cocktails?.map((cocktail) => (
+    <Result
+      cocktail={cocktail}
+      key={cocktail.id}
+      slug={cocktail.slug}
+      createdBy={cocktail.createdBy}
+      fave={faves?.includes(cocktail.id)}
+      refreshFaves={fetchFaves}
+      isAuthor={cocktail.createdBy === userId}
+    />
+  ));
 
   return (
     <AnimatePresence>
@@ -140,7 +124,10 @@ const SearchResults = ({ className }) => {
                 setCurrentPage(page);
               }}
             />
-            <div className={classes.results}>{results}</div>
+            <div className={classes.results}>
+              {loadingJSX}
+              {results}
+            </div>
           </motion.div>
         </Backdrop>
       )}

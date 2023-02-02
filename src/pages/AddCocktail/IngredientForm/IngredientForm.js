@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 import { generateId } from '../../../util/generateId';
 import { useEffect } from 'react';
 
-const IngredientForm = ({ className, listItems }) => {
+const IngredientForm = ({ className, invalid }) => {
   const classesList = `${classes.main} ${className}`;
   const loading = store.getState().config.value.loading;
 
@@ -62,6 +62,7 @@ const IngredientForm = ({ className, listItems }) => {
         updateIngredient={(info) => updateIngredient(info)}
         removeIngredient={() => removeIngredient(ing.key || ing._id)}
         loading={loading}
+        invalid={invalid}
       />
     );
   });

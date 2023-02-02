@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import classes from './Modal.module.css';
-import { overlayVariants, modalVariants } from '../../config/animationVariants';
-import SuccessAuthModal from '../../pages/Authentication/Modals/SuccessAuthModal';
-import FailAuthModal from '../../pages/Authentication/Modals/FailAuthModal';
+import { modalVariants } from '../../config/animationVariants';
+
 import AddReviewModal from '../../pages/CocktailPage/CocktailReviews/AddReviewModal';
 import ReviewsModal from '../../pages/CocktailPage/CocktailReviews/ReviewsModal';
-import AuthMessage from '../../pages/AddCocktail/AuthMessage/AuthMessage';
 
 import ImageSelection from '../../pages/AddCocktail/ImageSelection/ImageSelection';
 
@@ -15,28 +13,26 @@ import store from '../../store/store';
 
 import configActions from '../../store/configSlice';
 import Backdrop from './Backdrop';
+import { useSelector } from 'react-redux';
+
+import AuthModal from '../../pages/Authentication/AuthModal';
 
 const modalList = {
   imageSelection: <ImageSelection />,
-  successAuth: <SuccessAuthModal />,
-  failAuth: <FailAuthModal />,
-
-  successCocktail: null,
-  failCocktail: null,
-  successReview: null,
-  failReview: null,
-
   addReview: <AddReviewModal />,
   reviews: <ReviewsModal />,
-  authMessage: <AuthMessage />,
+  login: <AuthModal />,
+  signup: <AuthModal />,
 };
 
 const Modal = ({ className, type }) => {
   const classesList = `${classes.main} ${className}`;
 
+  const modal = useSelector((state) => state.config.value.modal);
+
   return ReactDOM.createPortal(
     <AnimatePresence>
-      {type && (
+      {modal && (
         <>
           <Backdrop
             onClick={() => store.dispatch(configActions.setModal(null))}
@@ -50,7 +46,7 @@ const Modal = ({ className, type }) => {
               className={classesList}
               key={2}
             >
-              {modalList[type]}
+              {modalList[modal]}
             </motion.div>
           </Backdrop>
         </>

@@ -6,7 +6,7 @@
   width: 100%;
   height: 3rem;
 
-  border: 1px solid grey;
+  border: 4px solid grey;
 
   padding: 2rem;
   display: flex;
@@ -52,4 +52,7 @@
 .placeholder {
   font-weight: 300 !important;
   color: grey;
+}
+.invalid {
+  border: red 1px solid;
 }

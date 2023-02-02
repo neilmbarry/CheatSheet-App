@@ -18,6 +18,7 @@ const LabelInput = ({
   updateValue,
   valid,
   loading,
+  invalid,
 }) => {
   const classesList = `${classes.main} ${className}`;
 
@@ -31,13 +32,13 @@ const LabelInput = ({
       <label name={label} className={classes.label}>
         {name}
       </label>
-      <div className={classes.inputContainer}>
+      <div className={`${classes.inputContainer}`}>
         <input
           type="text"
           placeholder={placeholder}
           ref={value}
           // defaultValue={defaultValue}
-          className={false ? classes.unavailable : classes.input}
+          className={`${classes.input} ${invalid && classes.invalid}`}
           onBlur={() => updateValue(value.current.value)}
         />
 

@@ -39,6 +39,7 @@
   background-color: transparent;
   color: white;
   border-radius: 0px;
+  border: 1px solid rgb(190, 190, 190);
 }
 
 .input:focus {
@@ -53,4 +54,7 @@
   font-size: 1.8rem;
   font-weight: 500;
   color: #ddec52;
+}
+.invalid {
+  border: red 1px solid;
 }

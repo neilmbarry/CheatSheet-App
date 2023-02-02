@@ -9,10 +9,12 @@ const dummyState = {
   ingredients: [],
   method: [],
   image: null,
+  invalid: [],
 };
 const initialState = {
   ingredients: [],
   method: [],
+  invalidItems: [],
 };
 
 export const createCocktailSlice = createSlice({
@@ -48,6 +50,9 @@ export const createCocktailSlice = createSlice({
     },
     resetCocktail: (state) => {
       state.value = initialState;
+    },
+    setInvalidItems: (state, action) => {
+      state.value.invalidItems = action.payload;
     },
   },
 });

@@ -9,33 +9,37 @@ import configActions from '../../../store/configSlice';
 import { useNavigate, useParams } from 'react-router';
 import useFetch from '../../../hooks/useFetch';
 import LoadingSpinner from '../../../components/UI/Spinner';
+import { useSelector } from 'react-redux';
 
 const ReviewsModal = ({ className }) => {
   const classesList = `${classes.main} ${className}`;
   const [sortBy, setSortBy] = useState('Recent');
   const navigate = useNavigate();
+
+  const slug = useSelector((state) => state.config.value.currentCocktailSlug);
+
   const addReviewHandler = () => {
     store.dispatch(configActions.setModal('addReview'));
   };
-  const slug = navigate.location.pathname.split('/')[2];
 
-  const { data, loading } = useFetch({
-    url: `cocktails/${slug}`,
-    request: slug,
-  });
+  const { data, loading, error, fetchRequest } = useFetch(`cocktails/${slug}`);
 
-  console.log(data);
+  console.log(`cocktails/${slug}`);
 
   const reviewsJSX =
-    data?.cocktail.reviews.length &&
+    data?.cocktail?.reviews.length &&
     data.cocktail.reviews.map((review, i) => {
       return <Review review={review} key={i} />;
     });
 
+  useState(() => {
+    fetchRequest({});
+  }, []);
+
   return (
     <div className={classesList}>
       <div className={classes.title}>
-        <h2>Reviews ({data?.cocktail.reviews.length || 0})</h2>
+        <h2>Reviews ({data?.cocktail?.reviews.length || 0})</h2>
         <Dropdown
           options={{ Recent: null, Rating: null }}
           selected={sortBy}

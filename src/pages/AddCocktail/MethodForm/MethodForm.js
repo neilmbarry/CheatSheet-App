@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useCallback } from 'react';
 
-const MethodForm = ({ className }) => {
+const MethodForm = ({ className, invalid }) => {
   const classesList = `${classes.main} ${className}`;
   const loading = store.getState().config.value.loading;
 
@@ -49,6 +49,7 @@ const MethodForm = ({ className }) => {
       updateMethod={(info) => updateMethod(info)}
       removeMethod={() => removeMethod(step.key || step._id)}
       loading={loading}
+      invalid={invalid}
     />
   ));
 

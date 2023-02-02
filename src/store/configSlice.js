@@ -5,13 +5,13 @@ const initialState = {
   token: null,
   id: null,
   name: null,
-  authMessage: false, // warning that you must be signed in to add cocktail etc.
   notification: null,
   modal: null,
   openSearchResults: false,
   openFavourites: false,
   currentCocktailId: null,
-  slugList: [],
+  currentCocktailSlug: null,
+  showMenu: false,
 };
 
 export const configSlice = createSlice({
@@ -31,6 +31,10 @@ export const configSlice = createSlice({
       state.value.id = null;
       state.value.token = null;
       state.value.name = null;
+      state.value.notification = {
+        message: 'Signed out',
+        type: 'info',
+      };
     },
     setNotification: (state, action) => {
       state.value.notification = action.payload;
@@ -59,8 +63,22 @@ export const configSlice = createSlice({
     setCurrentCocktailId: (state, action) => {
       state.value.currentCocktailId = action.payload;
     },
+    setCurrentCocktailSlug: (state, action) => {
+      state.value.currentCocktailSlug = action.payload;
+    },
     setSlugList: (state, action) => {
       state.value.slugList = action.payload;
+    },
+    resetPage: (state) => {
+      state.value.modal = null;
+      state.value.openFavourites = false;
+      state.value.openSearchResults = false;
+    },
+    setShowMenu: (state, action) => {
+      state.value.showMenu = action.payload;
+    },
+    toggleMenu: (state) => {
+      state.value.showMenu = !state.value.showMenu;
     },
   },
 });

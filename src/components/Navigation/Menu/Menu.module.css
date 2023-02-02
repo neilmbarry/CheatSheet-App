@@ -1,0 +1,29 @@
+.backdrop {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.709);
+  z-index: 99;
+}
+
+.main {
+  background-color: grey;
+  position: fixed;
+  right: 10rem;
+  top: 7rem;
+  z-index: 100;
+  padding: 1rem;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+
+  width: 350px;
+}
+
+.divider {
+  width: 100%;
+  border: 0.5px solid rgb(96, 96, 96);
+  margin: 0.5rem 0;
+}

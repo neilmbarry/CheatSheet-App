@@ -1,10 +1,7 @@
 import React from 'react';
 import classes from './IngredientInput.module.css';
 import FormInput from '../../../components/UI/FormInput';
-import FormDropdown from '../../../components/UI/FormDropdown';
-// import Button from '../../UI/Button';
-import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { motion } from 'framer-motion';
 import DeleteButton from '../../../components/UI/DeleteButton';
 import Dropdown from '../../../components/UI/Dropdown/Dropdown';
@@ -17,6 +14,7 @@ const IngredientInput = ({
   index,
   updateIngredient,
   loading,
+  invalid,
 }) => {
   const removeIngredientHandler = () => {
     removeIngredient();
@@ -58,6 +56,7 @@ const IngredientInput = ({
           changeHandler={ingredientChangeHandler}
           loading={loading}
           className={classes.ing}
+          invalid={invalid}
         />
         <FormInput
           type="number"

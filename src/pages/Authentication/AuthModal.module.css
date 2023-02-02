@@ -1,12 +1,5 @@
 .main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  justify-content: flex-start;
-  /* background-color: #f8f8f8; */
-  min-height: 85vh;
-  padding: 2rem;
+  min-width: 500px;
 }
 
 .main button {
@@ -20,14 +13,14 @@
   background-color: #ffffff;
   margin: 3rem;
   min-width: 500px;
-  overflow: hidden;
-  /* border-radius: 25px; */
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.171);
 }
 
 .labelContainer {
   display: flex;
   flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
 }
 
 .orBreak {
@@ -52,15 +45,10 @@
 
 .lightButton {
   background-color: transparent;
-  color: black;
-  border: 2px solid black;
+  color: #ffffff;
+  border: 2px solid white;
 }
 
-.password {
-  /* font-weight: 600; */
-  /* font-size: 2rem; */
-  /* padding: 0; */
-}
 .form {
   display: flex;
   flex-direction: column;

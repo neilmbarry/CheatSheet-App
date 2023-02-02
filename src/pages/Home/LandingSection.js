@@ -1,26 +1,26 @@
 import React from 'react';
-import classes from './HomeSection.module.css';
+import classes from './LandingSection.module.css';
 import Button from '../../components/UI/Button';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { BASE_URL } from '../../config/BASE_URL';
 import { useNavigate } from 'react-router-dom';
+import iphone from '../../assets/img/iphone.png';
 import { useSelector } from 'react-redux';
+import store from '../../store/store';
+import configActions from '../../store/configSlice';
 
-const HomeSection = ({ className, photo, type, background }) => {
-  const classesList = `${classes.main} ${className} ${classes[type]}`;
-  const slugsList = useSelector((state) => state.config.value.slugList);
+const LandingSection = ({ className }) => {
+  const classesList = `${classes.main} ${className}`;
+
   const navigate = useNavigate();
+  const token = useSelector((state) => state.config.value.token);
 
   const randomCocktailHandler = () => {
-    const randomEntry = Math.floor(Math.random() * slugsList.length);
-    const randomCocktail = slugsList[randomEntry];
-
-    navigate('/cocktails/' + randomCocktail);
+    navigate('/cocktails/random');
   };
   const addCocktail = () => {
-    navigate('/add-cocktail');
+    if (token) {
+      return navigate('/add-cocktail');
+    }
+    store.dispatch(configActions.setModal('signup'));
   };
   return (
     <div className={classesList}>
@@ -46,14 +46,13 @@ const HomeSection = ({ className, photo, type, background }) => {
             </Button>
           </div>
         </div>
-        {photo && (
-          <div className={classes.imageBox}>
-            <img src={photo} alt="" />
-          </div>
-        )}
+
+        <div className={classes.imageBox}>
+          <img src={iphone} alt="iphone" />
+        </div>
       </div>
     </div>
   );
 };
 
-export default HomeSection;
+export default LandingSection;

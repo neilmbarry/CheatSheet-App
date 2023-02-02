@@ -1,9 +1,8 @@
 import React from 'react';
 import classes from './Home.module.css';
-import HomeSection from './HomeSection';
+import LandingSection from './LandingSection';
 import HomeSubsection from './HomeSubsection';
-import photo from '../../assets/img/iphone.png';
-import barPhoto from '../../assets/img/bar.jpg';
+
 import { motion } from 'framer-motion';
 import { homePageVariants } from '../../config/animationVariants';
 
@@ -17,10 +16,8 @@ const Home = ({ className }) => {
       exit="exit"
       className={classesList}
     >
-      <HomeSection photo={photo} background={barPhoto} />
+      <LandingSection />
       <HomeSubsection />
-      {/* <HomeSection type="secondary" />
-      <HomeSection photo={photo} /> */}
     </motion.div>
   );
 };

@@ -11,7 +11,7 @@ const Dropdown = ({
   placeholder = '- Select -',
   selected,
   updateValue,
-  id,
+  invalid,
 }) => {
   const classesList = `${classes.main} ${className}`;
   const [isOpen, setIsOpen] = useState(false);
@@ -41,6 +41,7 @@ const Dropdown = ({
           name={(!selected && placeholder) || selected}
           icon={options[selected]}
           className={!selected && classes.placeholder}
+          invalid={invalid}
         ></Option>
         <FontAwesomeIcon
           icon={faChevronDown}

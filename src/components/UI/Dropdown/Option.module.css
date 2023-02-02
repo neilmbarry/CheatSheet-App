@@ -28,3 +28,6 @@
   /* margin: 0 1rem; */
   width: 2rem;
 }
+.invalid {
+  border: red 1px solid;
+}

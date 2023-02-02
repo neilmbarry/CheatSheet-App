@@ -13,7 +13,6 @@ import { favouritesVariants } from '../../../config/animationVariants';
 import Backdrop from '../../UI/Backdrop';
 import useFetch from '../../../hooks/useFetch';
 import LoadingSpinner from '../../UI/Spinner';
-import useBetterFetch from '../../../hooks/useBetterFetch';
 
 const Favourites = ({ className, children, onClose }) => {
   const classesList = `${classes.main} ${className}`;
@@ -27,7 +26,7 @@ const Favourites = ({ className, children, onClose }) => {
     return;
   };
 
-  const { loading, error, data, getRequest } = useBetterFetch('users/getFaves');
+  const { loading, error, data, fetchRequest } = useFetch('users/getFaves');
 
   const resultsJSX = data?.faves?.map((cocktail, i) => {
     return (
@@ -43,7 +42,7 @@ const Favourites = ({ className, children, onClose }) => {
 
   useEffect(() => {
     if (!isOpen || !token) return;
-    getRequest({ token });
+    fetchRequest({ token });
   }, [isOpen]);
 
   useEffect(() => {

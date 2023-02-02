@@ -95,13 +95,13 @@ img {
 
 label {
   font-size: 1.6rem;
-  color: #0963ac;
+  /* color: #0963ac; */
   /* margin: 1rem 0; */
 }
 
 input {
   border: none;
-  border: 1px solid rgb(190, 190, 190);
+
   padding: 1rem;
   outline: none;
   font-weight: 300;

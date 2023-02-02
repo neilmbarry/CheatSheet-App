@@ -1,67 +1,64 @@
-import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import { BASE_URL } from '../config/BASE_URL';
 
-const useFetch = ({
-  url = 'cocktails',
-  method = 'GET',
-  body = null,
-  query,
-  page,
-  limit,
-  request,
-  sort,
-}) => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+// This function takes the options as parameters and returns and options object to be passed when fetching data, typically used in POST and PATCH requests
+const constructOptions = (token, body, method) => {
+  const optionsObject = {};
+
+  optionsObject.headers = {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${token}`,
+  };
+
+  if (body) {
+    optionsObject.body = JSON.stringify(body);
+  }
+  if (method) {
+    optionsObject.method = method;
+  }
+  return optionsObject;
+};
+
+const generateQueryString = (filters) => {
+  if (!filters) return '';
+  const { query, page, limit, sort } = filters;
+  const queryStringArray = [];
+  query && queryStringArray.push(`nameSearch=${query}`);
+  page && queryStringArray.push(`page=${page}`);
+  limit && queryStringArray.push(`limit=${limit}`);
+  sort && queryStringArray.push(`sort=${sort}`);
+  const queryString = '?' + queryStringArray.join('&');
+  return queryString;
+};
+
+// This hook returns the fetchRequest method along with the loading, error and data states for the given request.
+const useFetch = (url) => {
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [data, setData] = useState({});
 
-  const token = useSelector((state) => state.config.value.token);
-
-  useEffect(() => {
-    page = 1;
-  }, [query, sort]);
-
-  useEffect(() => {
-    if (!request) return;
-
+  async function fetchRequest({ method = 'GET', body, token, filters }) {
     setLoading(true);
-
-    const headers = {
-      'Content-Type': 'application/json',
-    };
-    if (token) {
-      headers['Authorization'] = `Bearer ${token}`;
+    console.log(method, body);
+    const options = constructOptions(token, body, method);
+    const queryString = generateQueryString(filters);
+    console.log(BASE_URL + url + queryString, options);
+    try {
+      const response = await fetch(BASE_URL + url + queryString, options);
+      const data = await response.json();
+      if (data.status === 'fail' || data.status === 'error') {
+        setError(data.message);
+      }
+      setData(data);
+    } catch (err) {
+      setError(err.message);
+      console.warn(err);
+    } finally {
+      setLoading(false);
     }
+  }
 
-    const queryStringArray = [];
-    query && queryStringArray.push(`nameSearch=${query}`);
-    page && queryStringArray.push(`page=${page}`);
-    limit && queryStringArray.push(`limit=${limit}`);
-    sort && queryStringArray.push(`sort=${sort}`);
-    const queryString = '?' + queryStringArray.join('&');
-
-    const address = BASE_URL + url + queryString;
-    console.log('ADDRESS:', address);
-    fetch(address, {
-      method,
-      body,
-      headers,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log('DATA RECIEVED FROM USEFETCH: ', data);
-        setData(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setError(err);
-        setLoading(false);
-      });
-  }, [body, method, token, url, query, request, page, limit, sort]);
-
-  return { loading, data, error };
+  return { fetchRequest, loading, error, data };
 };
 
 export default useFetch;

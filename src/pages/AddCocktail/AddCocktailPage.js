@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 
 import store from '../../store/store';
 import configActions from '../../store/configSlice';
@@ -11,20 +11,20 @@ import { motion } from 'framer-motion';
 import classes from './AddCocktailPage.module.css';
 
 import { addCocktailVariants } from '../../config/animationVariants';
-import { BASE_URL } from '../../config/BASE_URL';
-import { useSelector } from 'react-redux';
-import createCocktailActions from '../../store/createCocktailSlice';
 
-const AddCocktail = ({ title, subtitle, type }) => {
+import { useSelector } from 'react-redux';
+
+const AddCocktail = ({ title, type }) => {
   const token = useSelector((state) => state.config.value.token);
-  const warningSent = useSelector((state) => state.config.value.authMessage);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (!token && !warningSent) {
-      store.dispatch(configActions.setModal('authMessage'));
-      store.dispatch(configActions.setAuthMessage(true));
+    if (!token) {
+      store.dispatch(configActions.setModal('signup'));
+      navigate('/');
     }
-  }, [token, warningSent]);
+  }, [token, navigate]);
   return (
     <>
       <motion.div
@@ -34,7 +34,7 @@ const AddCocktail = ({ title, subtitle, type }) => {
         exit="exit"
         className={classes.main}
       >
-        <AddCocktailBox title={type} subtitle={subtitle} />
+        <AddCocktailBox title={title} type={type} />
       </motion.div>
     </>
   );

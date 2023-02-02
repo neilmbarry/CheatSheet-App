@@ -7,8 +7,8 @@ import CocktailTitle from './CocktailTitle/CocktailTitle';
 import CocktailImage from './CocktailImage/CocktailImage';
 import PageBreak from '../../components/UI/PageBreak';
 import { useNavigate, useParams } from 'react-router';
+
 import useFetch from '../../hooks/useFetch';
-import useBetterFetch from '../../hooks/useBetterFetch';
 import { motion } from 'framer-motion';
 import { cocktailGridVariants } from '../../config/animationVariants';
 import store from '../../store/store';
@@ -18,22 +18,21 @@ const CocktailGrid = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
 
-  const { loading, data, error, getRequest } = useBetterFetch(
-    `cocktails/${slug}`
-  );
+  const { loading, data, error, fetchRequest } = useFetch(`cocktails/${slug}`);
   console.log(data, error, loading);
 
   const cocktail = data?.cocktail;
 
   useEffect(() => {
-    getRequest({});
+    fetchRequest({});
   }, []);
 
   useEffect(() => {
-    if (data?.success) {
+    if (data?.status === 'success') {
       store.dispatch(configActions.setCurrentCocktailId(data.cocktail.id));
+      console.log(data.cocktail.slug);
+      store.dispatch(configActions.setCurrentCocktailSlug(data.cocktail.slug));
     }
-
     if (error) {
       console.log('setting notification', error);
       store.dispatch(
@@ -44,7 +43,7 @@ const CocktailGrid = () => {
       );
       navigate('/');
     }
-  }, [data, error]);
+  }, [data, error, navigate]);
 
   return (
     <>

@@ -1,30 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import Button from '../UI/Button';
-import NavigationSearch from './NavigationSearch';
+
 import classes from './NavigationBar.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faHeart } from '@fortawesome/free-solid-svg-icons';
+
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faDice } from '@fortawesome/free-solid-svg-icons';
-// import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
 import store from '../../store/store';
 import { useSelector } from 'react-redux';
-import { BASE_URL } from '../../config/BASE_URL';
+
 import configActions from '../../store/configSlice';
+import useFetch from '../../hooks/useFetch';
 
-const NavigationBar = ({
-  onChange,
-  onClick,
-  onSearch,
-  onSearchClick,
-
-  children,
-}) => {
+const NavigationBar = ({ children }) => {
   const token = useSelector((state) => state.config.value.token);
-  const slugsList = useSelector((state) => state.config.value.slugList);
+
   const navigate = useNavigate();
 
   const [name, setName] = useState(null);
@@ -38,34 +33,36 @@ const NavigationBar = ({
     store.dispatch(configActions.toggleOpenSearch());
   };
 
+  const menuHandler = () => {
+    store.dispatch(configActions.toggleMenu());
+  };
+
+  const { loading, data, error, fetchRequest } = useFetch('users/me');
+
   useEffect(() => {
     if (!token) {
       return setName(null);
     }
-    fetch(BASE_URL + 'users/me', {
-      method: 'GET',
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.warn(data);
-        setName(data.user?.name);
-      })
-      .catch((err) => console.log(err));
+    fetchRequest({
+      token,
+    });
   }, [token]);
 
-  const randomCocktailHandler = () => {
-    const randomEntry = Math.floor(Math.random() * slugsList.length);
-    const randomCocktail = slugsList[randomEntry];
+  useEffect(() => {
+    if (data.status === 'success') {
+      setName(data.user.username);
+    }
+  }, [data]);
 
-    navigate('/cocktails/' + randomCocktail);
+  const randomCocktailHandler = () => {
+    navigate('/cocktails/random');
   };
 
   const authNavigation = () => {
     if (name) {
-      return navigate('/account');
+      return;
     }
-    navigate('/login');
+    store.dispatch(configActions.setModal('signup'));
   };
 
   return (
@@ -88,23 +85,40 @@ const NavigationBar = ({
             </h4>
           </Link>
           <div className={classes.navRight}>
-            <Button onClick={randomCocktailHandler}>
-              <FontAwesomeIcon icon={faDice}></FontAwesomeIcon>
-            </Button>
-            <Link to="/add-cocktail">
-              <Button>
-                <FontAwesomeIcon icon={faPenToSquare}></FontAwesomeIcon>
-              </Button>
-            </Link>
+            <div className={classes.menuIcon}>
+              <FontAwesomeIcon
+                icon={faBars}
+                onClick={menuHandler}
+                className={classes.magni}
+              />
+            </div>
+            {false && (
+              <>
+                <Button onClick={randomCocktailHandler}>
+                  <FontAwesomeIcon icon={faDice}></FontAwesomeIcon>
+                </Button>
+                <Link to="/add-cocktail">
+                  <Button>
+                    <FontAwesomeIcon icon={faPenToSquare}></FontAwesomeIcon>
+                  </Button>
+                </Link>
 
-            <Button onClick={toggleFavourites}>
-              <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>
-            </Button>
+                <Button onClick={toggleFavourites}>
+                  <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>
+                </Button>
 
-            <Button className={classes.yellow} onClick={authNavigation}>
-              <h4>{name ? 'my account' : 'Log in'}</h4>
-              {/* <FontAwesomeIcon icon={faUser}/> */}
-            </Button>
+                {name && (
+                  <Button className={classes.yellow} onClick={authNavigation}>
+                    <h4>{name}</h4>
+                  </Button>
+                )}
+                {!name && (
+                  <Button className={classes.yellow} onClick={authNavigation}>
+                    <h4>Sign Up</h4>
+                  </Button>
+                )}
+              </>
+            )}
           </div>
 
           {/* <Settings /> */}

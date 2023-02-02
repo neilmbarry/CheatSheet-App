@@ -7,7 +7,7 @@ const LabelDropdown = ({
   label,
   name,
   options,
-  placeholder,
+  invalid,
   defaultValue,
   updateValue,
 }) => {
@@ -21,6 +21,7 @@ const LabelDropdown = ({
         options={options}
         selected={defaultValue}
         updateValue={updateValue}
+        invalid={invalid}
       />
     </div>
   );
