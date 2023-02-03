@@ -58,7 +58,14 @@ const useFetch = (url) => {
     }
   }
 
-  return { fetchRequest, loading, error, data };
+  return {
+    fetchRequest,
+    loading,
+    response: {
+      error,
+      data,
+    },
+  };
 };
 
 export default useFetch;

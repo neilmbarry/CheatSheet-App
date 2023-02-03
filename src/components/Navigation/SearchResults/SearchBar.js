@@ -1,14 +1,37 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import classes from './SearchBar.module.css';
-// import Search from '../../Navigation/';
-import NavigationSearch from '../NavigationSearch';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+
+import configActions from '../../../store/configSlice';
+import store from '../../../store/store';
 
 const SearchBar = ({ className }) => {
-  const classesList = `${classes.main} ${className}`;
+  const query = useRef();
+
+  const searchHandler = () => {
+    console.log(query.current.value);
+    store.dispatch(configActions.setSearchQuery(query.current.value));
+    // fetch search query
+  };
+
   return (
-    <div className={classesList}>
-      <NavigationSearch />
-      {/* <input className={classes.input} type="text" /> */}
+    <div className={classes.searchContainer}>
+      <div className={classes.inputContainer}>
+        <FontAwesomeIcon
+          onClick={searchHandler}
+          className={classes.magni}
+          icon={faMagnifyingGlass}
+        ></FontAwesomeIcon>
+
+        <input
+          className={classes.input}
+          placeholder="Search over 1,000,000 cocktails..."
+          onChange={searchHandler}
+          ref={query}
+          // onClick={onClick}
+        ></input>
+      </div>
     </div>
   );
 };

@@ -1,68 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import Button from '../UI/Button';
+// Main imports
+import React from 'react';
+import { Link } from 'react-router-dom';
 
+// Styles
 import classes from './NavigationBar.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import { faDice } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-
-import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { Link, useNavigate } from 'react-router-dom';
-import store from '../../store/store';
-import { useSelector } from 'react-redux';
 
+// State management
+import store from '../../store/store';
 import configActions from '../../store/configSlice';
-import useFetch from '../../hooks/useFetch';
 
 const NavigationBar = ({ children }) => {
-  const token = useSelector((state) => state.config.value.token);
-
-  const navigate = useNavigate();
-
-  const [name, setName] = useState(null);
-
-  const toggleFavourites = () => {
-    store.dispatch(configActions.toggleOpenFavourites());
-  };
-
   const toggleSearch = () => {
-    console.log('toggling search');
     store.dispatch(configActions.toggleOpenSearch());
   };
 
-  const menuHandler = () => {
+  const toggleMenu = () => {
     store.dispatch(configActions.toggleMenu());
-  };
-
-  const { loading, data, error, fetchRequest } = useFetch('users/me');
-
-  useEffect(() => {
-    if (!token) {
-      return setName(null);
-    }
-    fetchRequest({
-      token,
-    });
-  }, [token]);
-
-  useEffect(() => {
-    if (data.status === 'success') {
-      setName(data.user.username);
-    }
-  }, [data]);
-
-  const randomCocktailHandler = () => {
-    navigate('/cocktails/random');
-  };
-
-  const authNavigation = () => {
-    if (name) {
-      return;
-    }
-    store.dispatch(configActions.setModal('signup'));
   };
 
   return (
@@ -75,7 +31,6 @@ const NavigationBar = ({ children }) => {
               icon={faMagnifyingGlass}
               onClick={toggleSearch}
             ></FontAwesomeIcon>
-            {/* <NavigationSearch onChange={onChange} /> */}
           </div>
           <Link to="/">
             <h4 className={classes.navButton}>
@@ -88,40 +43,11 @@ const NavigationBar = ({ children }) => {
             <div className={classes.menuIcon}>
               <FontAwesomeIcon
                 icon={faBars}
-                onClick={menuHandler}
+                onClick={toggleMenu}
                 className={classes.magni}
               />
             </div>
-            {false && (
-              <>
-                <Button onClick={randomCocktailHandler}>
-                  <FontAwesomeIcon icon={faDice}></FontAwesomeIcon>
-                </Button>
-                <Link to="/add-cocktail">
-                  <Button>
-                    <FontAwesomeIcon icon={faPenToSquare}></FontAwesomeIcon>
-                  </Button>
-                </Link>
-
-                <Button onClick={toggleFavourites}>
-                  <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>
-                </Button>
-
-                {name && (
-                  <Button className={classes.yellow} onClick={authNavigation}>
-                    <h4>{name}</h4>
-                  </Button>
-                )}
-                {!name && (
-                  <Button className={classes.yellow} onClick={authNavigation}>
-                    <h4>Sign Up</h4>
-                  </Button>
-                )}
-              </>
-            )}
           </div>
-
-          {/* <Settings /> */}
         </nav>
       </div>
       {children}

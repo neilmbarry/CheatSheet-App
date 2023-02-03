@@ -1,6 +1,6 @@
 // Main imports
 import React, { useEffect, useState, useCallback } from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { useSelector } from 'react-redux';
 
 // Styles
@@ -33,7 +33,7 @@ const AddCocktailBox = ({ className, title, type }) => {
   const classesList = `${classes.main} ${className}`;
   const cocktailInfo = useSelector((state) => state.create.value);
   const token = useSelector((state) => state.config.value.token);
-
+  const navigate = useNavigate();
   const [validName, setValidName] = useState(null);
 
   const { slug } = useParams();
@@ -57,7 +57,7 @@ const AddCocktailBox = ({ className, title, type }) => {
       return;
     }
     console.log('invalidcocktailItems', invalidItems);
-    return;
+
     const body = cocktailInfo;
     fetchRequest({
       method: 'POST',
@@ -98,6 +98,7 @@ const AddCocktailBox = ({ className, title, type }) => {
   }, [slug]);
 
   useEffect(() => {
+    console.log('DATA FROM ADD COCKTAIL', data);
     if (data.cocktail) {
       store.dispatch(
         configActions.setNotification({
@@ -105,7 +106,7 @@ const AddCocktailBox = ({ className, title, type }) => {
           message: data.message,
         })
       );
-      store.dispatch(createCocktailActions.updateCocktail(data.cocktail));
+      navigate(`/cocktails/${data.cocktail.slug}`);
     }
     if (data.updatedCocktail) {
       store.dispatch(
@@ -146,7 +147,7 @@ const AddCocktailBox = ({ className, title, type }) => {
             required={true}
             loading={loading}
             valid={validName}
-            invalid={cocktailInfo.invalidItems.includes('name')}
+            invalid={cocktailInfo.invalidItems?.includes('name')}
           />
           <LabelDropdown
             label="flavour"
@@ -156,7 +157,7 @@ const AddCocktailBox = ({ className, title, type }) => {
             updateValue={(flavour) => updateHandler('changeFlavour', flavour)}
             defaultValue={cocktailInfo.flavour}
             required={true}
-            invalid={cocktailInfo.invalidItems.includes('flavour')}
+            invalid={cocktailInfo.invalidItems?.includes('flavour')}
           />
           <LabelDropdown
             label="glass"
@@ -166,7 +167,7 @@ const AddCocktailBox = ({ className, title, type }) => {
             updateValue={(glass) => updateHandler('changeGlass', glass)}
             defaultValue={cocktailInfo.glass}
             required={true}
-            invalid={cocktailInfo.invalidItems.includes('glass')}
+            invalid={cocktailInfo.invalidItems?.includes('glass')}
           />
         </div>
         <div className={classes.firstGroup_right}>
@@ -190,9 +191,9 @@ const AddCocktailBox = ({ className, title, type }) => {
         />
       </div>
       <IngredientForm
-        invalid={cocktailInfo.invalidItems.includes('ingredients')}
+        invalid={cocktailInfo.invalidItems?.includes('ingredients')}
       />
-      <MethodForm invalid={cocktailInfo.invalidItems.includes('method')} />
+      <MethodForm invalid={cocktailInfo.invalidItems?.includes('method')} />
       <PageBreak />
       <div className={classes.btnContainer}>
         <Button type="main" onClick={submitFormHandler} loading={loading}>

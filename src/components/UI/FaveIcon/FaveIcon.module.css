@@ -1,0 +1,13 @@
+.icon {
+  position: absolute;
+  right: 0.5rem;
+  color: #233747;
+  font-size: 2rem;
+  padding: 1rem 1rem;
+  cursor: pointer;
+}
+
+.fav {
+  top: 0;
+  color: white;
+}

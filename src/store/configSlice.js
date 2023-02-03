@@ -2,11 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   loading: false,
-  token: null,
+  token:
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGQ2MDg0YWI1NTkxN2RjZThmMjYxNCIsImlhdCI6MTY3NTQ1MjU0OSwiZXhwIjoxNjgzMjI4NTQ5fQ.UcRlFQvaXJgN9dFrAqZ5oQFU_9-CrTIQJxBVXfeJP1M',
   id: null,
   name: null,
   notification: null,
   modal: null,
+  userFaves: [],
   openSearchResults: false,
   openFavourites: false,
   currentCocktailId: null,
@@ -79,6 +81,9 @@ export const configSlice = createSlice({
     },
     toggleMenu: (state) => {
       state.value.showMenu = !state.value.showMenu;
+    },
+    setUserFaves: (state, action) => {
+      state.value.userFaves = action.payload;
     },
   },
 });

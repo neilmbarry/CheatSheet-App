@@ -18,32 +18,35 @@ const CocktailGrid = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
 
-  const { loading, data, error, fetchRequest } = useFetch(`cocktails/${slug}`);
-  console.log(data, error, loading);
+  const { response, fetchRequest } = useFetch(`cocktails/${slug}`);
 
-  const cocktail = data?.cocktail;
+  const cocktail = response.data.cocktail;
 
   useEffect(() => {
     fetchRequest({});
   }, []);
 
   useEffect(() => {
-    if (data?.status === 'success') {
-      store.dispatch(configActions.setCurrentCocktailId(data.cocktail.id));
-      console.log(data.cocktail.slug);
-      store.dispatch(configActions.setCurrentCocktailSlug(data.cocktail.slug));
+    if (response.data.status === 'success') {
+      store.dispatch(
+        configActions.setCurrentCocktailId(response.data.cocktail.id)
+      );
+      console.log(response.data.cocktail.slug);
+      store.dispatch(
+        configActions.setCurrentCocktailSlug(response.data.cocktail.slug)
+      );
     }
-    if (error) {
-      console.log('setting notification', error);
+    if (response.error) {
+      console.log('setting notification', response.error);
       store.dispatch(
         configActions.setNotification({
           type: 'fail',
-          message: error,
+          message: response.error,
         })
       );
       navigate('/');
     }
-  }, [data, error, navigate]);
+  }, [response, navigate]);
 
   return (
     <>
@@ -58,22 +61,22 @@ const CocktailGrid = () => {
           <CocktailTitle
             className={classes.title}
             cocktail={cocktail}
-            loading={loading}
+            loading={response.loading}
           />
-          <CocktailImage cocktail={cocktail} loading={loading} />
+          <CocktailImage cocktail={cocktail} loading={response.loading} />
           <CocktailIngredients
             className={classes.ing}
             cocktail={cocktail}
-            loading={loading}
+            loading={response.loading}
           />
           <CocktailMethod
             className={classes.method}
             cocktail={cocktail}
-            loading={loading}
+            loading={response.loading}
           />
           <CocktailReviews
             className={classes.rev}
-            loading={loading}
+            loading={response.loading}
             cocktail={cocktail}
           />
           <PageBreak />

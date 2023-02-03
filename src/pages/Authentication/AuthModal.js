@@ -22,7 +22,7 @@ const AuthModal = () => {
   const password = useRef();
 
   const modal = useSelector((state) => state.config.value.modal);
-  const { loading, error, data, fetchRequest } = useFetch(`users/${modal}`);
+  const { response, fetchRequest } = useFetch(`users/${modal}`);
 
   const authHandler = () => {
     const body = {
@@ -41,26 +41,27 @@ const AuthModal = () => {
   };
 
   useEffect(() => {
-    if (error) {
-      console.log(error);
+    if (response.error) {
+      console.log(response.error);
       store.dispatch(
         configActions.setNotification({
           type: 'fail',
-          message: error,
+          message: response.error,
         })
       );
     }
-    if (data.status === 'success') {
-      store.dispatch(configActions.setToken(data.token));
+    if (response.data.status === 'success') {
+      store.dispatch(configActions.setUserFaves(response.data.user.faves));
+      store.dispatch(configActions.setToken(response.data.token));
       store.dispatch(
         configActions.setNotification({
           type: 'success',
-          message: data.message,
+          message: response.data.message,
         })
       );
       store.dispatch(configActions.setModal(null));
     }
-  }, [data, error]);
+  }, [response]);
 
   return (
     <div className={classes.main}>
@@ -81,7 +82,7 @@ const AuthModal = () => {
             />
           </div>
         </form>
-        <Button type="main" onClick={authHandler} loading={loading}>
+        <Button type="main" onClick={authHandler} loading={response.loading}>
           {modal === 'signup' ? 'Sign Up' : 'Log in'}
         </Button>
         <div className={classes.orBreak}>

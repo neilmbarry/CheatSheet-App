@@ -12,7 +12,7 @@ const Review = ({ className, review }) => {
       <div className={classes.rating}>
         <StarContainer rating={review?.rating || 0} className={classes.stars} />
         <h5>{dateFormat(review?.createdAt)}</h5>
-        <h4>{review?.user.name}</h4>
+        <h4>{review?.user?.name}</h4>
       </div>
     </div>
   );

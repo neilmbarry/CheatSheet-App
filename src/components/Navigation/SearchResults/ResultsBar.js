@@ -3,9 +3,16 @@ import { useSelector } from 'react-redux';
 import Dropdown from '../../UI/Dropdown/Dropdown';
 import classes from './ResultsBar.module.css';
 
-const ResultsBar = ({ className, results, sortBy, sortHandler }) => {
+const ResultsBar = ({
+  className,
+  results,
+  sortBy,
+  sortHandler,
+  searchTerm,
+}) => {
   const classesList = `${classes.main} ${className}`;
   const query = useSelector((state) => state.config.value.searchQuery);
+  if (!searchTerm) return <></>;
   return (
     <div className={classes.options}>
       <h6>

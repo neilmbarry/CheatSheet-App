@@ -22,7 +22,7 @@ const CocktailIngredients = ({ className, cocktail, loading }) => {
       <div key={i}>
         <p>
           {ing.quantity}
-          {ing.unit.toLowerCase()} {ing.name}{' '}
+          {ing.unit?.toLowerCase()} {ing.name}{' '}
           <span style={{ color: 'grey', fontWeight: '300' }}>{ing.brand}</span>
         </p>
       </div>

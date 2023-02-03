@@ -6,13 +6,7 @@ import {
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 
-const Pagination = ({
-  className,
-  currPage,
-  totalPages,
-  changePageHandler,
-  loading,
-}) => {
+const Pagination = ({ className, currPage, totalPages, changePageHandler }) => {
   const classesList = `${classes.main} ${className}`;
   const pageList = [];
   for (let i = 1; i <= totalPages; i++) {
@@ -29,14 +23,10 @@ const Pagination = ({
     );
   }
 
-  console.log(currPage);
+  console.log(totalPages);
 
   if (totalPages === 1) {
-    return (
-      <>
-        <h4>No pagination</h4>
-      </>
-    );
+    return <>{/* <h4>No pagination</h4> */}</>;
   }
 
   return (

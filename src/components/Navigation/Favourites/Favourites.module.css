@@ -1,8 +1,8 @@
 .main {
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 6rem;
-  bottom: 0;
+  /* bottom: 0; */
   width: 450px;
   /* border: 1px dashed red; */
   background-color: rgb(240, 240, 240);
@@ -52,4 +52,8 @@
   font-size: 1.2rem;
   text-transform: uppercase;
   outline: none;
+}
+
+.spinner {
+  padding: 2rem;
 }

@@ -14,11 +14,12 @@ import Backdrop from '../../UI/Backdrop';
 import useFetch from '../../../hooks/useFetch';
 import LoadingSpinner from '../../UI/Spinner';
 
-const Favourites = ({ className, children, onClose }) => {
+const Favourites = ({ className }) => {
   const classesList = `${classes.main} ${className}`;
-  // const [faves, setFaves] = useState([]);
+
   const token = useSelector((state) => state.config.value.token);
-  // const id = useSelector((state) => state.config.value.id);
+  const userFaves = useSelector((state) => state.config.value.userFaves);
+  const userId = useSelector((state) => state.config.value.id);
   const isOpen = useSelector((state) => state.config.value.openFavourites);
 
   const closeHandler = () => {
@@ -34,8 +35,8 @@ const Favourites = ({ className, children, onClose }) => {
         cocktail={cocktail}
         key={i}
         image={cocktail.image}
-        isAuthor={true}
-        // fave={cocktail.createdBy === id}
+        fave={userFaves?.includes(cocktail.id)}
+        isAuthor={cocktail.createdBy === userId}
       />
     );
   });
@@ -43,7 +44,7 @@ const Favourites = ({ className, children, onClose }) => {
   useEffect(() => {
     if (!isOpen || !token) return;
     fetchRequest({ token });
-  }, [isOpen]);
+  }, [isOpen, userFaves]);
 
   useEffect(() => {
     if (error) {
@@ -72,16 +73,13 @@ const Favourites = ({ className, children, onClose }) => {
               <h6>My favourites</h6>
             </div>
             <div className={classes.results}>
-              {resultsJSX}
               {loading && (
-                <>
-                  <LoadingSpinner />
-                  <LoadingSpinner />
-                  <LoadingSpinner />
-                  <LoadingSpinner />
-                  <LoadingSpinner />
-                </>
+                <div className={classes.spinner}>
+                  <LoadingSpinner type="dark" />
+                </div>
               )}
+              {resultsJSX}
+              {!resultsJSX?.length && <p>Nothing</p>}
             </div>
           </motion.div>
         </Backdrop>

@@ -1,28 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classes from './Result.module.css';
-// import img from '../../img/paper.jpg';
-// import Star from '../UI/Star';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faPenToSquare } from '@fortawesome/free-regular-svg-icons';
-import {
-  faHeart as faHeartFull,
-  faStarHalfStroke,
-  faStar,
-} from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faHeartFull } from '@fortawesome/free-solid-svg-icons';
 
 import { Link } from 'react-router-dom';
 
 import { faCocktail } from '@fortawesome/free-solid-svg-icons';
 
-import store from '../../../store/store';
-import cocktailActions from '../../../store/localCocktailsSlice';
 import { useNavigate } from 'react-router';
 import StarContainer from '../../UI/StarContainer';
 import { useSelector } from 'react-redux';
-import configActions from '../../../store/configSlice';
-import { BASE_URL } from '../../../config/BASE_URL';
+import FaveIcon from '../../UI/FaveIcon/FaveIcon';
 
-const Result = ({ onClick, isAuthor, fave, refreshFaves, cocktail }) => {
+const Result = ({ onClick, isAuthor, fave, cocktail }) => {
   const tagsHTML = [
     cocktail.ingredients[0].name,
     cocktail.flavour,
@@ -33,65 +25,13 @@ const Result = ({ onClick, isAuthor, fave, refreshFaves, cocktail }) => {
 
   const token = useSelector((state) => state.config.value.token);
 
-  const toggleFaveUI = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (!token) {
-      return store.dispatch(
-        configActions.setNotification({
-          type: 'fail',
-          message: 'You must be signed in to add a favourite!',
-        })
-      );
-    }
-    console.log(cocktail.id);
-    const body = JSON.stringify({
-      cocktailId: cocktail.id,
-    });
-
-    const url = `${BASE_URL}users/toggleFave`;
-    fetch(url, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      body,
-    })
-      .then((res) => {
-        console.log(res.ok);
-        return res.json();
-      })
-      .then((data) => {
-        console.log(data);
-
-        refreshFaves();
-        if (data.faveAdded) {
-          return store.dispatch(
-            configActions.setNotification({
-              type: 'success',
-              message: 'Added to favourites!',
-            })
-          );
-        }
-        store.dispatch(
-          configActions.setNotification({
-            type: 'info',
-            message: 'Removed from favourites!',
-          })
-        );
-        // FETCH CURRENT FAVES
-
-        // setShowSuccessModal(true);
-      })
-      .catch((err) => console.warn(err));
-  };
-
   const editHandler = (e) => {
     e.preventDefault();
     e.stopPropagation();
     navigate(`/modify-cocktail/${cocktail.slug}`);
   };
+
+  console.log('result rendered');
 
   return (
     <Link to={`/cocktails/${cocktail.slug}`}>
@@ -118,16 +58,10 @@ const Result = ({ onClick, isAuthor, fave, refreshFaves, cocktail }) => {
             <h4>({cocktail.ratingsQuantity || 0})</h4>
           </div>
         </div>
-        <div
+        <FaveIcon
           className={classes.icon + ' ' + classes.fav}
-          onClick={toggleFaveUI}
-        >
-          {fave ? (
-            <FontAwesomeIcon icon={faHeartFull} />
-          ) : (
-            <FontAwesomeIcon icon={faHeart} />
-          )}
-        </div>
+          cocktailId={cocktail.id}
+        />
 
         {isAuthor && (
           <div
