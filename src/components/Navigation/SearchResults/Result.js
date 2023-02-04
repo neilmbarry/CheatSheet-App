@@ -13,8 +13,9 @@ import { useNavigate } from 'react-router';
 import StarContainer from '../../UI/StarContainer';
 import { useSelector } from 'react-redux';
 import FaveIcon from '../../UI/FaveIcon/FaveIcon';
+import AuthorIcon from '../../UI/AuthorIcon/AuthorIcon';
 
-const Result = ({ onClick, isAuthor, fave, cocktail }) => {
+const Result = ({ onClick, isAuthor, cocktail }) => {
   const tagsHTML = [
     cocktail.ingredients[0].name,
     cocktail.flavour,
@@ -23,15 +24,13 @@ const Result = ({ onClick, isAuthor, fave, cocktail }) => {
 
   const navigate = useNavigate();
 
-  const token = useSelector((state) => state.config.value.token);
+  console.log(cocktail);
 
   const editHandler = (e) => {
     e.preventDefault();
     e.stopPropagation();
     navigate(`/modify-cocktail/${cocktail.slug}`);
   };
-
-  console.log('result rendered');
 
   return (
     <Link to={`/cocktails/${cocktail.slug}`}>
@@ -62,6 +61,7 @@ const Result = ({ onClick, isAuthor, fave, cocktail }) => {
           className={classes.icon + ' ' + classes.fav}
           cocktailId={cocktail.id}
         />
+        <AuthorIcon authorId={cocktail.createdBy} slug={cocktail.slug} />
 
         {isAuthor && (
           <div

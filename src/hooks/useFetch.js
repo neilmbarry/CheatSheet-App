@@ -60,8 +60,8 @@ const useFetch = (url) => {
 
   return {
     fetchRequest,
-    loading,
     response: {
+      loading,
       error,
       data,
     },

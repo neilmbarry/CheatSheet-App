@@ -38,7 +38,7 @@ const AddCocktailBox = ({ className, title, type }) => {
 
   const { slug } = useParams();
 
-  const { data, error, loading, fetchRequest } = useFetch(
+  const { response, fetchRequest } = useFetch(
     `cocktails${slug ? '/' + slug : ''}`
   );
 
@@ -98,28 +98,28 @@ const AddCocktailBox = ({ className, title, type }) => {
   }, [slug]);
 
   useEffect(() => {
-    console.log('DATA FROM ADD COCKTAIL', data);
-    if (data.cocktail) {
+    console.log('DATA FROM ADD COCKTAIL', response.data);
+    if (response.data.cocktail) {
       store.dispatch(
         configActions.setNotification({
           type: 'info',
-          message: data.message,
+          message: response.data.message,
         })
       );
-      navigate(`/cocktails/${data.cocktail.slug}`);
+      navigate(`/cocktails/${response.data.cocktail.slug}`);
     }
-    if (data.updatedCocktail) {
+    if (response.data.updatedCocktail) {
       store.dispatch(
         configActions.setNotification({
           type: 'info',
-          message: data.message,
+          message: response.data.message,
         })
       );
     }
-    if (error) {
-      console.warn(error);
+    if (response.error) {
+      console.warn(response.error);
     }
-  }, [data, error]);
+  }, [response.data, response.error]);
 
   const nameCheck = async (name) => {
     if (slug || !name) return;
@@ -145,7 +145,7 @@ const AddCocktailBox = ({ className, title, type }) => {
             updateValue={(name) => nameCheck(name)}
             defaultValue={cocktailInfo.name}
             required={true}
-            loading={loading}
+            loading={response.loading}
             valid={validName}
             invalid={cocktailInfo.invalidItems?.includes('name')}
           />
@@ -196,7 +196,11 @@ const AddCocktailBox = ({ className, title, type }) => {
       <MethodForm invalid={cocktailInfo.invalidItems?.includes('method')} />
       <PageBreak />
       <div className={classes.btnContainer}>
-        <Button type="main" onClick={submitFormHandler} loading={loading}>
+        <Button
+          type="main"
+          onClick={submitFormHandler}
+          loading={response.loading}
+        >
           {type === 'Modify' ? 'update' : 'submit'}
         </Button>
         <Button type="alt" onClick={() => deleteCocktailHandler()}>

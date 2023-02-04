@@ -27,18 +27,10 @@ const Favourites = ({ className }) => {
     return;
   };
 
-  const { loading, error, data, fetchRequest } = useFetch('users/getFaves');
+  const { response, fetchRequest } = useFetch('users/getFaves');
 
-  const resultsJSX = data?.faves?.map((cocktail, i) => {
-    return (
-      <Result
-        cocktail={cocktail}
-        key={i}
-        image={cocktail.image}
-        fave={userFaves?.includes(cocktail.id)}
-        isAuthor={cocktail.createdBy === userId}
-      />
-    );
+  const resultsJSX = response.data.faves?.map((cocktail, i) => {
+    return <Result cocktail={cocktail} key={i} />;
   });
 
   useEffect(() => {
@@ -47,16 +39,16 @@ const Favourites = ({ className }) => {
   }, [isOpen, userFaves]);
 
   useEffect(() => {
-    if (error) {
-      console.log('setting notification', error);
+    if (response.error) {
+      console.log('setting notification', response.error);
       store.dispatch(
         configActions.setNotification({
           type: 'fail',
-          message: error,
+          message: response.error,
         })
       );
     }
-  }, [data, error]);
+  }, [response]);
 
   return (
     <AnimatePresence>
@@ -73,12 +65,12 @@ const Favourites = ({ className }) => {
               <h6>My favourites</h6>
             </div>
             <div className={classes.results}>
-              {loading && (
+              {response.loading && (
                 <div className={classes.spinner}>
                   <LoadingSpinner type="dark" />
                 </div>
               )}
-              {resultsJSX}
+              {!response.loading && resultsJSX}
               {!resultsJSX?.length && <p>Nothing</p>}
             </div>
           </motion.div>

@@ -53,6 +53,7 @@ const AuthModal = () => {
     if (response.data.status === 'success') {
       store.dispatch(configActions.setUserFaves(response.data.user.faves));
       store.dispatch(configActions.setToken(response.data.token));
+      store.dispatch(configActions.setId(response.data.user.id));
       store.dispatch(
         configActions.setNotification({
           type: 'success',

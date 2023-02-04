@@ -31,10 +31,6 @@ const Pagination = ({ className, currPage, totalPages, changePageHandler }) => {
 
   return (
     <div className={classesList}>
-      {/* <h4>
-        current page is {currPage}, total pages is {totalPages}
-      </h4> */}
-
       <FontAwesomeIcon
         icon={faChevronLeft}
         className={`${classes.chevron} ${currPage <= 1 && classes.unavailable}`}
@@ -42,12 +38,7 @@ const Pagination = ({ className, currPage, totalPages, changePageHandler }) => {
           changePageHandler(currPage - 1);
         }}
       />
-
       {pageList}
-      {/* <h4 className={classes.number}>1</h4>
-      <h4 className={classes.number}>2</h4>
-      <h4 className={classes.number}>3</h4> */}
-
       <FontAwesomeIcon
         icon={faChevronRight}
         className={`${classes.chevron} ${

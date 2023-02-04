@@ -23,9 +23,6 @@ import store from '../../../store/store';
 import configActions from '../../../store/configSlice';
 import useFetch from '../../../hooks/useFetch';
 
-// Config
-import { BASE_URL } from '../../../config/BASE_URL';
-
 const SearchResults = ({ className }) => {
   const classesList = `${classes.main} ${className}`;
   const [currentPage, setCurrentPage] = useState(1);
@@ -36,9 +33,6 @@ const SearchResults = ({ className }) => {
 
   const query = useSelector((state) => state.config.value.searchQuery);
 
-  const token = useSelector((state) => state.config.value.token);
-  const userId = useSelector((state) => state.config.value.id);
-
   const closeHandler = () => {
     store.dispatch(configActions.setOpenSearchResults(false));
   };
@@ -47,8 +41,8 @@ const SearchResults = ({ className }) => {
 
   useEffect(() => {
     if (!response.data.status) return;
-    setTotalPages(Math.ceil(response.data.results / 3) || 1);
-    setCurrentPage(response.data.page);
+    setTotalPages(Math.ceil(response.data.results / 4) || 1);
+    // setCurrentPage(response.data.page);
   }, [response]);
 
   useEffect(() => {
@@ -87,11 +81,7 @@ const SearchResults = ({ className }) => {
   const results =
     !response.loading &&
     response.data?.cocktails?.map((cocktail) => (
-      <Result
-        cocktail={cocktail}
-        key={cocktail.id}
-        isAuthor={cocktail.createdBy === userId}
-      />
+      <Result cocktail={cocktail} key={cocktail.id} />
     ));
 
   return (

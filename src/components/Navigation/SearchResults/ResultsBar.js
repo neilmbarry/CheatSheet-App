@@ -22,7 +22,7 @@ const ResultsBar = ({
         <h6>Sort by:</h6>
         <Dropdown
           options={{
-            rating: 'faStar',
+            rating: null,
             newest: null,
             name: null,
           }}

@@ -18,15 +18,12 @@ const FaveIcon = ({ className, cocktailId }) => {
 
   const isFave = userFaves.includes(cocktailId);
 
-  let { response, loading, fetchRequest } = useFetch('users/toggleFave');
+  let { response, fetchRequest } = useFetch('users/toggleFave');
 
   const toggleFave = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    // return console.log(cocktailId);
     if (response.loading) return;
-    e.preventDefault();
-    e.stopPropagation();
     if (!token) {
       return store.dispatch(
         configActions.setNotification({
@@ -42,14 +39,11 @@ const FaveIcon = ({ className, cocktailId }) => {
     });
   };
 
-  console.log(response.data);
-
-  console.log('FAVE ICON RERENDERED', cocktailId);
-
   useEffect(() => {
-    console.log('CALLING USEEFFEECT FAVEICON', cocktailId);
+    if (!response.data.status) return;
     faveResponseHandler(response);
-  }, [response.data.status]);
+    response.data.status = null;
+  }, [response]);
   return (
     <div className={classes.icon + ' ' + classes.fav} onClick={toggleFave}>
       {isFave ? (

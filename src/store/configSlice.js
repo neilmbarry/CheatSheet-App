@@ -3,8 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   loading: false,
   token:
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGQ2MDg0YWI1NTkxN2RjZThmMjYxNCIsImlhdCI6MTY3NTQ1MjU0OSwiZXhwIjoxNjgzMjI4NTQ5fQ.UcRlFQvaXJgN9dFrAqZ5oQFU_9-CrTIQJxBVXfeJP1M',
-  id: null,
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGQzZTM4NTc0MDBjYzcwYjE5NDBhNCIsImlhdCI6MTY3NTQ2MjUxNiwiZXhwIjoxNjgzMjM4NTE2fQ.S2nMGSo9wzSCBSRVhInuv-i_UruzFhC9auW4xTlOL8I',
+  id: '63dd3e3857400cc70b1940a4',
   name: null,
   notification: null,
   modal: null,
