@@ -28,6 +28,7 @@ import { BASE_URL } from '../../../config/BASE_URL';
 import useFetch from '../../../hooks/useFetch';
 import { trimCocktailInputs } from '../../../config/trimCocktailInputs';
 import { invalidCocktailItems } from '../../../config/invalidCocktailItems';
+import { createModifyResponseHandler } from '../../../hooks/responseHandler';
 
 const AddCocktailBox = ({ className, title, type }) => {
   const classesList = `${classes.main} ${className}`;
@@ -35,29 +36,22 @@ const AddCocktailBox = ({ className, title, type }) => {
   const token = useSelector((state) => state.config.value.token);
   const navigate = useNavigate();
   const [validName, setValidName] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const { slug } = useParams();
 
-  const { response, fetchRequest } = useFetch(
+  let { response, fetchRequest } = useFetch(
     `cocktails${slug ? '/' + slug : ''}`
   );
 
   const submitFormHandler = () => {
-    // Trim Ings and Methods
-    // Validate first
-    console.log('cocktailInfo', cocktailInfo);
+    if (loading) return;
     const trimmedCocktail = trimCocktailInputs(cocktailInfo);
-    console.log('trimmedcocktailInfo', trimmedCocktail);
     const invalidItems = invalidCocktailItems(trimmedCocktail);
-    console.log('invalidcocktailItems', invalidItems);
-
     store.dispatch(createCocktailActions.setInvalidItems(invalidItems));
-
     if (invalidItems.length) {
       return;
     }
-    console.log('invalidcocktailItems', invalidItems);
-
     const body = cocktailInfo;
     fetchRequest({
       method: 'POST',
@@ -75,6 +69,13 @@ const AddCocktailBox = ({ className, title, type }) => {
   };
 
   const updateCocktailHandler = () => {
+    if (loading) return;
+    const trimmedCocktail = trimCocktailInputs(cocktailInfo);
+    const invalidItems = invalidCocktailItems(trimmedCocktail);
+    store.dispatch(createCocktailActions.setInvalidItems(invalidItems));
+    if (invalidItems.length) {
+      return;
+    }
     const body = cocktailInfo;
     fetchRequest({
       method: 'PATCH',
@@ -92,46 +93,39 @@ const AddCocktailBox = ({ className, title, type }) => {
   };
 
   useEffect(() => {
-    if (!slug) return;
-
-    fetchCocktailInfo();
-  }, [slug]);
+    if (type === 'Modify') {
+      if (!slug) {
+        return navigate('/');
+      }
+      fetchCocktailInfo();
+    }
+  }, [navigate, slug, type]);
 
   useEffect(() => {
-    console.log('DATA FROM ADD COCKTAIL', response.data);
-    if (response.data.cocktail) {
-      store.dispatch(
-        configActions.setNotification({
-          type: 'info',
-          message: response.data.message,
-        })
-      );
-      navigate(`/cocktails/${response.data.cocktail.slug}`);
+    console.log('RESPONSE', response);
+    const redirect = createModifyResponseHandler(response);
+    if (redirect) {
+      console.log(redirect);
+      navigate(`/cocktails/${redirect}`);
     }
-    if (response.data.updatedCocktail) {
-      store.dispatch(
-        configActions.setNotification({
-          type: 'info',
-          message: response.data.message,
-        })
-      );
-    }
-    if (response.error) {
-      console.warn(response.error);
-    }
-  }, [response.data, response.error]);
+    response.data.status = null;
+  }, [response, navigate]);
 
   const nameCheck = async (name) => {
-    if (slug || !name) return;
     setValidName(null);
-
+    if (!name) return setValidName('invalid');
+    if (name === cocktailInfo.originalName) {
+      setValidName('valid');
+      return updateHandler('changeName', name);
+    }
+    setLoading(true);
     const res = await fetch(BASE_URL + 'cocktails?name=' + name);
     const data = await res.json();
     console.log(data);
-
+    setLoading(false);
     if (data.results) return setValidName('invalid');
     setValidName('valid');
-    updateHandler('changeName', name);
+    return updateHandler('changeName', name);
   };
 
   return (
@@ -145,7 +139,7 @@ const AddCocktailBox = ({ className, title, type }) => {
             updateValue={(name) => nameCheck(name)}
             defaultValue={cocktailInfo.name}
             required={true}
-            loading={response.loading}
+            loading={loading}
             valid={validName}
             invalid={cocktailInfo.invalidItems?.includes('name')}
           />
@@ -198,7 +192,9 @@ const AddCocktailBox = ({ className, title, type }) => {
       <div className={classes.btnContainer}>
         <Button
           type="main"
-          onClick={submitFormHandler}
+          onClick={
+            type === 'Modify' ? updateCocktailHandler : submitFormHandler
+          }
           loading={response.loading}
         >
           {type === 'Modify' ? 'update' : 'submit'}

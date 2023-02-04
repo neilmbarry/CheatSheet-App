@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import classes from './AddReviewModal.module.css';
 import { useNavigate, useParams } from 'react-router';
 import ReviewStarContainer from '../../../components/UI/ReviewStarContainer';
@@ -10,11 +10,11 @@ import { useSelector } from 'react-redux';
 import { BASE_URL } from '../../../config/BASE_URL';
 import store from '../../../store/store';
 import configActions from '../../../store/configSlice';
+import { reviewResponseHandler } from '../../../hooks/responseHandler';
 
 const AddReviewModal = ({ className }) => {
   const classesList = `${classes.main} ${className}`;
   const [rating, setRating] = useState(0);
-  const [sendRequest, setSendRequest] = useState(false);
   const review = useRef();
   const token = useSelector((state) => state.config.value.token);
   const navigate = useNavigate();
@@ -22,8 +22,11 @@ const AddReviewModal = ({ className }) => {
   const cocktailId = useSelector(
     (state) => state.config.value.currentCocktailId
   );
+  const slug = useSelector((state) => state.config.value.currentCocktailSlug);
 
   console.log(cocktailId, 'COCKTAIL ID');
+
+  let { response, fetchRequest } = useFetch('reviews');
 
   // const { data, error, loading } = useFetch({
   //   url: 'reviews',
@@ -41,38 +44,52 @@ const AddReviewModal = ({ className }) => {
   // }
 
   const addReviewHandler = () => {
-    const body = JSON.stringify({
+    const body = {
       rating,
       summary: review?.current?.value,
       cocktailId,
-    });
+    };
     // setSendRequest(true);
-    fetch(BASE_URL + 'reviews', {
-      method: 'POST',
+    fetchRequest({
       body,
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => {
-        console.log(res.ok, 'IS IT OKAY?');
-        return res.json();
-      })
-      .then((data) => {
-        console.log(data);
-        navigate(navigate.location.pathname);
-        store.dispatch(
-          configActions.setNotification({
-            type: 'success',
-            message: 'Review Added!',
-          })
-        );
-        store.dispatch(configActions.setModal(null));
-        // setShowSuccessModal(true);
-      })
-      .catch((err) => console.warn(err));
+      method: 'POST',
+      token,
+    });
+    // fetch(BASE_URL + 'reviews', {
+    //   method: 'POST',
+    //   body,
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    // })
+    //   .then((res) => {
+    //     console.log(res.ok, 'IS IT OKAY?');
+    //     return res.json();
+    //   })
+    //   .then((data) => {
+    //     console.log(data);
+    //     navigate(navigate.location.pathname);
+    //     store.dispatch(
+    //       configActions.setNotification({
+    //         type: 'success',
+    //         message: 'Review Added!',
+    //       })
+    //     );
+    //     store.dispatch(configActions.setModal(null));
+    //     // setShowSuccessModal(true);
+    //   })
+    //   .catch((err) => console.warn(err));
   };
+
+  useEffect(() => {
+    reviewResponseHandler(response);
+    if (response.data.status === 'success') {
+      navigate('/cocktails/' + slug);
+      store.dispatch(configActions.setModal(null));
+    }
+    response.data.status = null;
+  }, [response]);
 
   return (
     <div className={classesList}>

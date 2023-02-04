@@ -2,9 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   loading: false,
-  token:
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGQzZTM4NTc0MDBjYzcwYjE5NDBhNCIsImlhdCI6MTY3NTQ2MjUxNiwiZXhwIjoxNjgzMjM4NTE2fQ.S2nMGSo9wzSCBSRVhInuv-i_UruzFhC9auW4xTlOL8I',
-  id: '63dd3e3857400cc70b1940a4',
+  token: null,
+  id: null,
   name: null,
   notification: null,
   modal: null,

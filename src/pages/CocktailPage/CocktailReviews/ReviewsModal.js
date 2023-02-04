@@ -22,15 +22,17 @@ const ReviewsModal = ({ className }) => {
     store.dispatch(configActions.setModal('addReview'));
   };
 
-  const { data, loading, error, fetchRequest } = useFetch(`cocktails/${slug}`);
+  const { response, fetchRequest } = useFetch(`cocktails/${slug}`);
 
   console.log(`cocktails/${slug}`);
 
-  const reviewsJSX =
-    data?.cocktail?.reviews.length &&
-    data.cocktail.reviews.map((review, i) => {
+  const reviewsJSX = response.data?.cocktail?.reviews.length ? (
+    response.data.cocktail.reviews.map((review, i) => {
       return <Review review={review} key={i} />;
-    });
+    })
+  ) : (
+    <h4>No reviews</h4>
+  );
 
   useState(() => {
     fetchRequest({});
@@ -39,16 +41,16 @@ const ReviewsModal = ({ className }) => {
   return (
     <div className={classesList}>
       <div className={classes.title}>
-        <h2>Reviews ({data?.cocktail?.reviews.length || 0})</h2>
-        <Dropdown
+        <h2>Reviews ({response.data?.cocktail?.reviews.length || 0})</h2>
+        {/* <Dropdown
           options={{ Recent: null, Rating: null }}
           selected={sortBy}
           updateValue={(value) => setSortBy(value)}
-        />
+        /> */}
       </div>
       <div className={classes.reviews}>
         {reviewsJSX}
-        {loading && <LoadingSpinner />}
+        {response.loading && <LoadingSpinner />}
       </div>
       <Button type="main" onClick={addReviewHandler}>
         Add review

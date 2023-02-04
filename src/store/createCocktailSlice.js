@@ -54,6 +54,9 @@ export const createCocktailSlice = createSlice({
     setInvalidItems: (state, action) => {
       state.value.invalidItems = action.payload;
     },
+    setOriginalName: (state, action) => {
+      state.value.originalName = action.payload;
+    },
   },
 });
 

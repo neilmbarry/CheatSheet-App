@@ -22,6 +22,8 @@ const CocktailGrid = () => {
 
   const cocktail = response.data.cocktail;
 
+  console.log(cocktail);
+
   useEffect(() => {
     fetchRequest({});
   }, []);

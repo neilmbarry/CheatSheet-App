@@ -17,7 +17,7 @@ const AuthorIcon = ({ className, authorId, slug }) => {
   const navToEdit = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    navigate('modify-cocktail/' + slug);
+    navigate('/modify-cocktail/' + slug);
   };
 
   if (!isAuthor) return <></>;
