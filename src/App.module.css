@@ -24,7 +24,7 @@ body {
   padding: 0;
   font-family: 'Jost', sans-serif;
   font-weight: 500;
-  color: white;
+  /* color: white; */
 }
 
 html {
@@ -51,16 +51,13 @@ h3 {
   font-size: 2.4rem;
   font-weight: 300;
   color: #233747;
-  /* color: azure;
-  text-shadow: 1px 1px 3px black;
-  text-transform: uppercase; */
 }
 h4 {
   text-transform: uppercase;
   font-weight: 500;
   letter-spacing: 0.1rem;
   font-size: 1.2rem;
-
+  color: white;
   /* color: green; */
   /* letter-spacing: 1rem; */
 }
@@ -111,7 +108,7 @@ input {
 }
 
 input:focus::placeholder {
-  color: transparent;
+  /* color: transparent; */
 }
 input:-webkit-autofill,
 textarea:-webkit-autofill,

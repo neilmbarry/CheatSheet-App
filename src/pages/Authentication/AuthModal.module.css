@@ -55,3 +55,13 @@
   gap: 1rem;
   /* background-color: green; */
 }
+@media screen and (max-width: 1024px) {
+}
+@media screen and (max-width: 768px) {
+}
+@media screen and (max-width: 480px) {
+  .main {
+    min-width: 0;
+    width: 100%;
+  }
+}

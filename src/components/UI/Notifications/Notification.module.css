@@ -30,3 +30,10 @@
 .info {
   background-color: white;
 }
+
+@media screen and (max-width: 480px) {
+  .main {
+    min-width: 0;
+    width: 100%;
+  }
+}

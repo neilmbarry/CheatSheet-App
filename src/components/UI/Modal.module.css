@@ -25,3 +25,10 @@
   z-index: 199;
   overflow: hidden;
 }
+
+@media screen and (max-width: 480px) {
+  .main {
+    min-width: 0;
+    width: 100%;
+  }
+}

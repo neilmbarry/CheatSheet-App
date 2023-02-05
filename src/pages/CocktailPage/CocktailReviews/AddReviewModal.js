@@ -7,7 +7,6 @@ import Button from '../../../components/UI/Button';
 import { useState } from 'react';
 import useFetch from '../../../hooks/useFetch';
 import { useSelector } from 'react-redux';
-import { BASE_URL } from '../../../config/BASE_URL';
 import store from '../../../store/store';
 import configActions from '../../../store/configSlice';
 import { reviewResponseHandler } from '../../../hooks/responseHandler';
@@ -28,20 +27,9 @@ const AddReviewModal = ({ className }) => {
 
   let { response, fetchRequest } = useFetch('reviews');
 
-  // const { data, error, loading } = useFetch({
-  //   url: 'reviews',
-  //   method: 'POST',
-  //   body: {
-  //     rating,
-  //     review: review?.current?.value,
-  //     cocktailId,
-  //   },
-  //   reload: sendRequest,
-  // });
-
-  // if (data && sendRequest) {
-  //   setSendRequest(false);
-  // }
+  const close = () => {
+    store.dispatch(configActions.setModal(null));
+  };
 
   const addReviewHandler = () => {
     const body = {
@@ -49,37 +37,11 @@ const AddReviewModal = ({ className }) => {
       summary: review?.current?.value,
       cocktailId,
     };
-    // setSendRequest(true);
     fetchRequest({
       body,
       method: 'POST',
       token,
     });
-    // fetch(BASE_URL + 'reviews', {
-    //   method: 'POST',
-    //   body,
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    // })
-    //   .then((res) => {
-    //     console.log(res.ok, 'IS IT OKAY?');
-    //     return res.json();
-    //   })
-    //   .then((data) => {
-    //     console.log(data);
-    //     navigate(navigate.location.pathname);
-    //     store.dispatch(
-    //       configActions.setNotification({
-    //         type: 'success',
-    //         message: 'Review Added!',
-    //       })
-    //     );
-    //     store.dispatch(configActions.setModal(null));
-    //     // setShowSuccessModal(true);
-    //   })
-    //   .catch((err) => console.warn(err));
   };
 
   useEffect(() => {
@@ -108,8 +70,8 @@ const AddReviewModal = ({ className }) => {
         <Button className={classes.btn} type="main" onClick={addReviewHandler}>
           Submit
         </Button>
-        <Button className={classes.btn} type="alt">
-          Skip
+        <Button className={classes.btn} type="alt" onClick={close}>
+          Cancel
         </Button>
       </div>
     </div>

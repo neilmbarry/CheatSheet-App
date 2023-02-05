@@ -62,7 +62,7 @@ const Favourites = ({ className }) => {
             className={classesList}
           >
             <div className={classes.options}>
-              <h6>My favourites</h6>
+              <h4>My favourites</h4>
             </div>
             <div className={classes.results}>
               {response.loading && (
@@ -71,7 +71,9 @@ const Favourites = ({ className }) => {
                 </div>
               )}
               {!response.loading && resultsJSX}
-              {!resultsJSX?.length && <p>Nothing</p>}
+              {!response.loading && !resultsJSX?.length && (
+                <p className={classes.nothing}>There's nothing here!</p>
+              )}
             </div>
           </motion.div>
         </Backdrop>

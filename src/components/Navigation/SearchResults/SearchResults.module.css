@@ -3,7 +3,8 @@
   left: 0;
   top: 6rem;
   /* bottom: 0; */
-  width: 450px;
+  max-width: 450px;
+  width: 100%;
   /* border: 3px dashed red; */
   background-color: rgb(240, 240, 240);
   /* filter: blur(3px); */

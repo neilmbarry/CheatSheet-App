@@ -3,8 +3,8 @@
   right: 0;
   top: 6rem;
   /* bottom: 0; */
-  width: 450px;
-  /* border: 1px dashed red; */
+  max-width: 450px;
+  width: 100%;
   background-color: rgb(240, 240, 240);
   /* filter: blur(3px); */
 
@@ -13,7 +13,7 @@
 }
 
 .backdrop {
-  position: absolute;
+  position: fixed;
   left: 0;
 
   top: 0;
@@ -33,6 +33,7 @@
   display: flex;
   padding: 1rem;
   /* background-color: rgb(214, 214, 214); */
+  background-color: #102b3c;
   border-bottom: 1px solid grey;
   justify-content: space-between;
 }
@@ -55,5 +56,10 @@
 }
 
 .spinner {
+  padding: 2rem;
+}
+
+.nothing {
+  text-align: center;
   padding: 2rem;
 }

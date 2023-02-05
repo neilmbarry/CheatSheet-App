@@ -5,7 +5,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import store from '../../store/store';
 import configActions from '../../store/configSlice';
 
-const NavigationSearch = () => {
+const NavigationSearch = ({ parentRef }) => {
   const query = useRef();
 
   const searchHandler = () => {
@@ -28,6 +28,8 @@ const NavigationSearch = () => {
         placeholder="Search over 1,000,000 cocktails..."
         onChange={searchHandler}
         ref={query}
+        parentRef={parentRef}
+        autoFocus={true}
         // onClick={onClick}
       ></input>
     </div>

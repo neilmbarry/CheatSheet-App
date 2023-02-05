@@ -35,3 +35,21 @@
 .icons * {
   margin: 0 1rem;
 }
+
+@media screen and (max-width: 1024px) {
+}
+@media screen and (max-width: 768px) {
+  .homeBox {
+    flex-direction: column;
+    height: auto;
+    min-width: auto;
+    text-align: center;
+    padding: 4rem 2rem;
+  }
+  .textBox {
+    width: 100%;
+    align-items: center;
+  }
+}
+@media screen and (max-width: 480px) {
+}

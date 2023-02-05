@@ -29,6 +29,7 @@ const SearchBar = ({ className }) => {
           placeholder="Search over 1,000,000 cocktails..."
           onChange={searchHandler}
           ref={query}
+          autoFocus
           // onClick={onClick}
         ></input>
       </div>

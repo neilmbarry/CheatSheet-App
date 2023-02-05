@@ -9,17 +9,17 @@
 }
 
 .main {
-  background-color: grey;
+  background-color: #102b3c;
   position: fixed;
-  right: 10rem;
-  top: 7rem;
+  right: 0;
+  top: 6rem;
   z-index: 100;
   padding: 1rem;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-
-  width: 350px;
+  max-width: 350px;
+  width: 100%;
 }
 
 .divider {

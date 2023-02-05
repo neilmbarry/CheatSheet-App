@@ -6,6 +6,7 @@
   border-radius: 5px;
   padding: 1rem;
   cursor: pointer;
+  color: #ddec52;
 }
 
 .main:hover {
@@ -15,6 +16,7 @@
 .icon {
   font-size: 1.6rem;
   width: 20px;
+  color: #ddec52;
 }
 .name {
   font-size: 1.5rem;

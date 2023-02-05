@@ -45,13 +45,20 @@ const useFetch = (url) => {
     console.log(BASE_URL + url + queryString, options);
     try {
       const response = await fetch(BASE_URL + url + queryString, options);
+      console.log(response);
+      if (response.status === 204) {
+        console.log('use Fetch deleted cocktail');
+        setLoading(false);
+        return setData({ deleted: true, status: 'success' });
+      }
       const data = await response.json();
       if (data.status === 'fail' || data.status === 'error') {
-        setError(data.message);
+        throw data.message;
       }
+      console.log(data);
       setData(data);
     } catch (err) {
-      setError(err.message);
+      setError(err);
       console.warn(err);
     } finally {
       setLoading(false);

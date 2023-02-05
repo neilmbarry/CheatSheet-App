@@ -8,14 +8,13 @@ const HomeSubsection = ({ className, photo }) => {
     <div className={classesList}>
       <div className={classes.homeBox}>
         <div className={classes.textBox}>
-          <h2>About Cheat\Sheet</h2>
+          <h2>About Cheat/Sheet</h2>
         </div>
         <div className={classes.imageBox}>
           <h3>
-            Cheat\Sheet is a sleek multiplatform recipe manager, accessible on
-            and offline, across your Apple iOS or Android devices, on your
-            tablet, laptop or desktop. Import recipes from the web and even
-            physical media using our free real-time recipe scanning (OCR).
+            With Cheat/Sheet you can search our online database for all your
+            most loved cocktail recipes. You can also save them to your
+            favourites, rate, review and create your own! So give it a go!
           </h3>
         </div>
       </div>

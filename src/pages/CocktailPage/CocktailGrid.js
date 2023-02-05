@@ -15,20 +15,24 @@ import store from '../../store/store';
 import configActions from '../../store/configSlice';
 
 const CocktailGrid = () => {
+  console.log('COCKTAIL GRID RERENDERED');
   const { slug } = useParams();
   const navigate = useNavigate();
 
-  const { response, fetchRequest } = useFetch(`cocktails/${slug}`);
+  let { response, fetchRequest } = useFetch(`cocktails/${slug}`);
 
   const cocktail = response.data.cocktail;
 
-  console.log(cocktail);
+  console.log(response);
 
   useEffect(() => {
+    // if (!slug) return navigate('/');
     fetchRequest({});
   }, []);
 
   useEffect(() => {
+    if (!slug) return;
+    console.log('USE EFFECT RAN');
     if (response.data.status === 'success') {
       store.dispatch(
         configActions.setCurrentCocktailId(response.data.cocktail.id)
@@ -46,9 +50,11 @@ const CocktailGrid = () => {
           message: response.error,
         })
       );
-      navigate('/');
+
+      return navigate('/');
     }
-  }, [response, navigate]);
+    // response = null;
+  }, [response.error, response.data]);
 
   return (
     <>

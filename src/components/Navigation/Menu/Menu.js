@@ -29,12 +29,6 @@ const Menu = ({ className }) => {
   const navToFaves = () => {
     if (!token) return showAuthModal();
     store.dispatch(configActions.setOpenFavourites(true));
-    store.dispatch(
-      configActions.setNotification({
-        message: 'showing faves',
-        type: 'success',
-      })
-    );
   };
   const navToAdd = () => {
     if (!token) return showAuthModal();

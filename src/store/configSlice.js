@@ -74,6 +74,7 @@ export const configSlice = createSlice({
       state.value.modal = null;
       state.value.openFavourites = false;
       state.value.openSearchResults = false;
+      state.value.showMenu = false;
     },
     setShowMenu: (state, action) => {
       state.value.showMenu = action.payload;

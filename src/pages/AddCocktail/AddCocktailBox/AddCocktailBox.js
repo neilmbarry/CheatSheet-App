@@ -65,6 +65,9 @@ const AddCocktailBox = ({ className, title, type }) => {
     fetchRequest({
       method: 'DELETE',
       token,
+      body: {
+        slug,
+      },
     });
   };
 
@@ -82,6 +85,10 @@ const AddCocktailBox = ({ className, title, type }) => {
       token,
       body,
     });
+  };
+
+  const navToHome = () => {
+    navigate('/');
   };
 
   const updateHandler = useCallback((action, value) => {
@@ -104,6 +111,9 @@ const AddCocktailBox = ({ className, title, type }) => {
   useEffect(() => {
     console.log('RESPONSE', response);
     const redirect = createModifyResponseHandler(response);
+    if (redirect === 'home') {
+      return navigate('/');
+    }
     if (redirect) {
       console.log(redirect);
       navigate(`/cocktails/${redirect}`);
@@ -199,7 +209,10 @@ const AddCocktailBox = ({ className, title, type }) => {
         >
           {type === 'Modify' ? 'update' : 'submit'}
         </Button>
-        <Button type="alt" onClick={() => deleteCocktailHandler()}>
+        <Button
+          type="alt"
+          onClick={type === 'Modify' ? deleteCocktailHandler : navToHome}
+        >
           {type === 'Modify' ? 'delete' : 'cancel'}
         </Button>
       </div>

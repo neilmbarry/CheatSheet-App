@@ -70,14 +70,14 @@ const AuthModal = () => {
         <form action="" className={classes.form}>
           <div className={classes.labelContainer}>
             <label name="name">Username</label>
-            <input type="text" placeholder="Enter a username" ref={username} />
+            <input type="text" placeholder="Enter username" ref={username} />
           </div>
 
           <div className={classes.labelContainer}>
             <label name="password">Password</label>
             <input
               type="password"
-              placeholder="Enter a password"
+              placeholder="Enter password"
               className={classes.password}
               ref={password}
             />

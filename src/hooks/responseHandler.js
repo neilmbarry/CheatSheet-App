@@ -89,6 +89,16 @@ export const createModifyResponseHandler = (response) => {
     // Redirect
     return data.updatedCocktail.slug;
   }
+  // Deleted
+  if (data.deleted) {
+    store.dispatch(
+      configActions.setNotification({
+        type: 'success',
+        message: 'Cocktail Deleted',
+      })
+    );
+    return 'home';
+  }
   if (error) {
     return store.dispatch(
       configActions.setNotification({
