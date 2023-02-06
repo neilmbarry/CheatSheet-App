@@ -13,12 +13,20 @@ import { useSelector } from 'react-redux';
 
 const ReviewsModal = ({ className }) => {
   const classesList = `${classes.main} ${className}`;
-  const [sortBy, setSortBy] = useState('Recent');
-  const navigate = useNavigate();
+  const token = useSelector((state) => state.config.value.token);
 
   const slug = useSelector((state) => state.config.value.currentCocktailSlug);
 
   const addReviewHandler = () => {
+    console.log('adding review?', token);
+    if (!token) {
+      return store.dispatch(
+        configActions.setNotification({
+          type: 'fail',
+          message: 'You must be signed in to leave a review!',
+        })
+      );
+    }
     store.dispatch(configActions.setModal('addReview'));
   };
 

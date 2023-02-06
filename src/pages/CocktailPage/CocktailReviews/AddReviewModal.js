@@ -32,6 +32,14 @@ const AddReviewModal = ({ className }) => {
   };
 
   const addReviewHandler = () => {
+    if (!rating) {
+      return store.dispatch(
+        configActions.setNotification({
+          type: 'fail',
+          message: 'A review must have a rating!',
+        })
+      );
+    }
     const body = {
       rating,
       summary: review?.current?.value,

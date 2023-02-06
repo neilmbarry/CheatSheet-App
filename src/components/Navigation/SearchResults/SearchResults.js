@@ -79,6 +79,7 @@ const SearchResults = ({ className }) => {
   );
 
   const results =
+    query &&
     !response.loading &&
     response.data?.cocktails?.map((cocktail) => (
       <Result cocktail={cocktail} key={cocktail.id} />
