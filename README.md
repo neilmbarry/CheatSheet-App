@@ -4,7 +4,17 @@ This is a full stack application powered by React, Node, Express and MongoDB tha
 
 > You can check out a live demo [here](https://cheat-sheet-app.vercel.app/)
 
+> The back end code can be found [here](https://github.com/neilmbarry/CheatSheet-API)
+
 ![Add Cocktail Preview](https://i.imgur.com/zFCtBpf.png)
+
+## Table of Contents
+
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Code Structure](#code-structure)
+- [Setup](#setup)
+- [Contact](#contact)
 
 ---
 
@@ -22,14 +32,34 @@ This is a full stack application powered by React, Node, Express and MongoDB tha
 
 ---
 
+## Technologies Used
+
+- React
+- Redux
+- reduxjs/toolkit
+- Framer-motion
+- CSS Modules
+
+## Code structure
+
+On the front end is a react application that implements Redux for state management, custom hooks for fetching data and CSS modules for styling. It has various routes to navigate through the application some of which are protected to allow only authenticated users access.
+
+A react component
+![Example screenshot](https://i.imgur.com/6LzFOps.png)
+A custom hook
+![Example screenshot](https://i.imgur.com/DKsAUjJ.png)
+
+---
+
 ## Setup
 
-Clone this repo to your desktop and run `npm install` to install all the dependencies.
+- Clone repository to your local device
+- Navigate to the ship-head folder
+- Run `npm install` to install all the dependencies
+- Run `npm start` to start the React project, this will open in a new browser window.
 
 ---
 
-## Usage
+## Contact
 
-Once the dependencies are installed, you can run `npm start` to start the application. You will then be able to access it at localhost:3000
-
----
+Created by [@neilbarry](https://www.neilbarry.com/) - feel free to contact me!

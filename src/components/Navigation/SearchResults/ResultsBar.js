@@ -29,11 +29,6 @@ const ResultsBar = ({
           selected={sortBy}
           updateValue={sortHandler}
         />
-        {/* <select name="" id="">
-          <option value="">rating</option>
-          <option value="">newest</option>
-          <option value="">relevant</option>
-        </select> */}
       </div>
     </div>
   );

@@ -11,14 +11,11 @@
     'footer footer footer footer footer footer ';
   overflow: hidden;
   border-radius: 10px;
-  /* border: 3px solid #ddec52; */
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.171);
   z-index: 2;
 }
 
 .cocktailPage {
-  /* height: 2000px;
-  background-color: red; */
   padding: 4rem 0;
   width: 100%;
 }
@@ -26,7 +23,6 @@
 .title {
   grid-area: title;
   min-height: 50vh;
-  /* width: 150%; */
 }
 
 .pic {
@@ -50,10 +46,6 @@
 .rev {
   grid-area: rev;
   background-color: #ebebeb;
-}
-
-.image {
-  /* margin: auto; */
 }
 
 .gridFooter {

@@ -40,17 +40,6 @@ const PlaceHolderSelection = ({ className }) => {
     <div className={classesList}>
       <h2>Choose your image</h2>
       <div className={classes.picsContainer}>{imagesJSX}</div>
-      {/* <div className={classes.buttonContainer}>
-        <Button type="main" onClick={submitHandler}>
-          Select
-        </Button>
-        <Button
-          type="alt"
-          onClick={() => store.dispatch(configActions.setModal(null))}
-        >
-          Cancel
-        </Button>
-      </div> */}
     </div>
   );
 };

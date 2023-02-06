@@ -31,7 +31,8 @@ const generateQueryString = (filters) => {
   return queryString;
 };
 
-// This hook returns the fetchRequest method along with the loading, error and data states for the given request.
+// This hook returns the fetchRequest method along with the loading,
+// error and data states for the given request.
 const useFetch = (url) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -39,13 +40,10 @@ const useFetch = (url) => {
 
   async function fetchRequest({ method = 'GET', body, token, filters }) {
     setLoading(true);
-
     const options = constructOptions(token, body, method);
     const queryString = generateQueryString(filters);
-
     try {
       const response = await fetch(BASE_URL + url + queryString, options);
-
       if (response.status === 204) {
         setLoading(false);
         return setData({ deleted: true, status: 'success' });
@@ -54,7 +52,6 @@ const useFetch = (url) => {
       if (data.status === 'fail' || data.status === 'error') {
         throw data.message;
       }
-
       setData(data);
     } catch (err) {
       setError(err);

@@ -29,7 +29,6 @@
 
 .input:focus {
   border: none;
-  /* border-bottom: solid #81ffb5 1px; */
 }
 
 .input::placeholder {
@@ -37,11 +36,9 @@
 }
 
 .magni {
-  /* background-color: #f2e9e4; */
   color: #81ffb5 !important;
   border: none;
   font-weight: 300;
   font-size: 2rem;
-
   cursor: pointer;
 }

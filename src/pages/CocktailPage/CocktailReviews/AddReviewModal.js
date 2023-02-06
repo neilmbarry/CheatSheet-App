@@ -62,7 +62,6 @@ const AddReviewModal = ({ className }) => {
   return (
     <div className={classesList}>
       <h3 className={classes.text}>How would you rate this cocktail?</h3>
-      {/* <h2>AuthCocktailReview Success</h2> */}
       <ReviewStarContainer
         onClick={(rating) => setRating(rating)}
         className={classes.stars}

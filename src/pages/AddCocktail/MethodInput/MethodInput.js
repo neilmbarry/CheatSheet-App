@@ -38,9 +38,6 @@ const MethodInput = ({
         invalid={invalid}
       />
       <DeleteButton onClick={removeMethod} />
-      {/* <div className={classes.close} onClick={}>
-        <FontAwesomeIcon icon={faCircleXmark}></FontAwesomeIcon>
-      </div> */}
     </motion.div>
   );
 };

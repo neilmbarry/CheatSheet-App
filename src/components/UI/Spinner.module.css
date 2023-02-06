@@ -1,16 +1,11 @@
 .spinner {
   display: inline-block;
-
-  /* width: 80px;
-  height: 80px;
-  margin: 5rem; */
 }
 .spinner:after {
   content: ' ';
   display: block;
   width: 85px;
   height: 85px;
-  /* margin: 8px auto; */
   border-radius: 50%;
   border: 10px solid white;
   border-color: white transparent white transparent;
@@ -22,7 +17,6 @@
   display: block;
   width: 35px;
   height: 35px;
-  /* margin: 8px auto; */
   border-radius: 50%;
   border: 2px solid black;
   border-color: black transparent black transparent;
@@ -31,7 +25,6 @@
 
 .spinnerContainer {
   width: 100%;
-  /* background-color: green; */
   display: flex;
   justify-content: center;
 }
@@ -44,7 +37,6 @@
   display: block;
   width: 15px;
   height: 15px;
-  /* margin: 8px auto; */
   border-radius: 50%;
   border: 2px solid white;
   border-color: white transparent white transparent;

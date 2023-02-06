@@ -22,7 +22,6 @@
 }
 .firstGroup_right {
   flex: 1;
-  /* background-color: orange; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -55,8 +54,6 @@
   position: absolute;
   bottom: 40px;
   margin: auto;
-  /* background-color: rgb(255, 255, 255); */
-  /* width: 80%; */
 }
 .addBtn {
   padding: 0.5rem 0;

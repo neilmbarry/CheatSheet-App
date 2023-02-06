@@ -20,11 +20,10 @@
 }
 
 .textBox {
-  /* flex: 1; */
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* gap: 3rem; */
+
   align-items: flex-start;
   color: #ffffff;
   flex: 1;
@@ -48,26 +47,17 @@
 }
 
 .imageBox {
-  /* flex: 1; */
   display: flex;
   justify-content: center;
   align-items: center;
-  /* height: 80rem; */
-  /* width: 60%'' */
   position: relative;
 }
 
 .imageBox img {
-  /* filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4)); */
-  /* transform: translateY(50px); */
-  /* padding: 1rem; */
   position: absolute;
   top: 0;
   object-fit: contain;
   transform: scale(1.4) translate(80px, 89px);
-
-  /* background-color: rgb(255, 255, 255);
-    box-shadow: 0 0 5px 10px rgb(216, 216, 216); */
 }
 .main * {
   color: white;
@@ -80,18 +70,13 @@
   }
   .homeBox {
     display: flex;
-
-    /* flex-direction: row-reverse; */
     flex-direction: column;
     width: 1100px;
     margin: auto;
     gap: 5rem;
     align-items: center;
-
     padding: 2rem;
     text-align: center;
-
-    /* width: 100%; */
   }
 
   .textBox {

@@ -1,14 +1,9 @@
 body {
   background: #f8f8f8;
 
-  /* background: radial-gradient(#ffffff, #444444); */
 }
 
 .app {
-  /* max-width: 1200px;
-  margin: 3rem auto;
-  border-radius: 4px; */
-  /* background-color: #ffffff; */
   min-height: 100vh;
   overflow: hidden;
   box-shadow: 0px 3px 10px 4px rgba(0, 0, 0, 0.109);
@@ -24,17 +19,13 @@ body {
   padding: 0;
   font-family: 'Jost', sans-serif;
   font-weight: 500;
-  /* color: white; */
+
 }
 
 html {
   font-size: 62.5%;
 }
 
-body {
-  /* min-height: 300vh; */
-  /* background-color: grey; */
-}
 
 h1 {
   font-size: 7rem;
@@ -58,16 +49,12 @@ h4 {
   letter-spacing: 0.1rem;
   font-size: 1.2rem;
   color: white;
-  /* color: green; */
-  /* letter-spacing: 1rem; */
+
 }
 h5 {
   font-size: 1.2rem;
   font-weight: 500;
   letter-spacing: 0.1rem;
-  /* color: red; */
-
-  /* color: purple; */
 }
 h6 {
   color: grey;
@@ -93,8 +80,6 @@ img {
 
 label {
   font-size: 1.6rem;
-  /* color: #0963ac; */
-  /* margin: 1rem 0; */
 }
 
 input {
@@ -107,9 +92,6 @@ input {
   font-size: 1.5rem;
 }
 
-input:focus::placeholder {
-  /* color: transparent; */
-}
 input:-webkit-autofill,
 textarea:-webkit-autofill,
 select:-webkit-autofill {
@@ -123,9 +105,6 @@ select:-webkit-autofill {
   padding-top: 17rem;
   flex: 1;
   background-color: rgba(24, 24, 24, 0.705);
-  /* z-index: 10000;
-  width: 1999px;
-  height: 1000px; */
   height: 100%;
   display: flex;
   align-items: center;

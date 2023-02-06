@@ -1,14 +1,11 @@
 .method {
   display: flex;
   width: 100%;
-  /* margin-bottom: 5px; */
 }
 
 .method button {
   background-color: rgb(255, 72, 72);
   width: 2rem;
-  /* width: 17rem;
-    height: 7rem; */
   padding: 1rem;
   border-radius: 7px;
   margin: auto 1rem;
@@ -30,16 +27,12 @@
 
 .step {
   width: 4rem;
-  /* background-color: azure; */
   border: 1px solid rgb(190, 190, 190);
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 5px;
-
-  /* border-radius: 5px 0 0 5px;
-  border-right: 1px grey solid; */
 }
 .index {
   font-weight: 500;

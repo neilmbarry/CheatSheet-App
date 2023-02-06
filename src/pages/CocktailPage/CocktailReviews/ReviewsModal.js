@@ -47,11 +47,6 @@ const ReviewsModal = ({ className }) => {
     <div className={classesList}>
       <div className={classes.title}>
         <h2>Reviews ({response.data?.cocktail?.reviews.length || 0})</h2>
-        {/* <Dropdown
-          options={{ Recent: null, Rating: null }}
-          selected={sortBy}
-          updateValue={(value) => setSortBy(value)}
-        /> */}
       </div>
       <div className={classes.reviews}>
         {reviewsJSX}

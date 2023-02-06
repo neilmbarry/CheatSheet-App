@@ -7,7 +7,6 @@
   font-weight: 400;
   color: white;
   border: none;
-  /* box-shadow: 2px 3px 7px rgba(17, 17, 17, 0.283); */
   cursor: pointer;
   transition: all ease 0.4s;
 }
@@ -51,8 +50,6 @@
   text-shadow: none;
   background-color: #ddec52;
   color: black;
-  /* color: #ffda07; */
-  /* background-color: #ffda07; */
 }
 @media screen and (max-width: 480px) {
   .large {

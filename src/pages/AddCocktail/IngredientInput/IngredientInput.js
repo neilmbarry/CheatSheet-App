@@ -77,13 +77,6 @@ const IngredientInput = ({
           className={classes.unit}
         />
       </div>
-      {/* <FormDropdown
-        options={['ml', 'oz', 'dash']}
-        selected={ing.unit}
-        changeHandler={ingredientChangeHandler}
-        id="unit"
-        loading={loading}
-      /> */}
       <DeleteButton onClick={removeIngredientHandler} />
     </motion.div>
   );

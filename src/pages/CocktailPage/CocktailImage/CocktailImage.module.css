@@ -1,13 +1,10 @@
 .main {
   grid-area: pic;
   background-color: white;
-  /* max-height: 50vh; */
-  /* width: 150%; */
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* z-index: -1; */
 }
 .favIcon {
   position: absolute;

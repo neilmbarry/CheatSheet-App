@@ -3,7 +3,6 @@
 
   background-color: #0f2c3d;
   border: solid rgb(190, 190, 190) 1px;
-  /* color: grey; */
   font-size: 1.8rem;
   padding: 0.75rem 1rem;
   display: flex;
@@ -13,8 +12,6 @@
   font-weight: 400;
   min-width: 10rem;
   color: white;
-  /* justify-content: ; */
-  /* position: relative; */
 }
 
 .main:hover {
@@ -22,10 +19,7 @@
 }
 
 .icon {
-  /* position: absolute; */
-  /* left: 0; */
   font-size: 1.5rem;
-  /* margin: 0 1rem; */
   width: 2rem;
 }
 .invalid {

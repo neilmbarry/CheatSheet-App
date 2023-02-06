@@ -4,11 +4,7 @@
   background-color: #004159;
   border-bottom: 1px solid grey;
   justify-content: space-between;
-
-  /* position: fixed; */
-  /* top: 0px; */
   align-items: center;
-  /* width: 448px; */
   z-index: 20;
 }
 

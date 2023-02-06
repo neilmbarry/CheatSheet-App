@@ -1,16 +1,10 @@
 .main {
-  /* width: 95%;
-    max-width: 750px; */
-
   background-color: #0f2c3d;
-  /* margin: 3rem; */
-  /* overflow: hidden; */
   position: relative;
   border-radius: 10px;
   box-shadow: 3px 3px 10px rgb(0, 0, 0), -3px -3px 10px rgb(0, 0, 0);
   user-select: none;
   overflow: hidden;
-  /* border: 2px solid #ddec52; */
 }
 
 .title {
@@ -27,7 +21,6 @@
   content: '';
   width: 100%;
   left: 0;
-  /* padding: 1rem; */
   border-bottom: 3px solid #ddec52;
   position: absolute;
   bottom: -0.5rem;

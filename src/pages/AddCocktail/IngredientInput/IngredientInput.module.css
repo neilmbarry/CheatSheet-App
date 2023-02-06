@@ -1,31 +1,20 @@
 .ingredient {
   display: flex;
-  /* flex-direction: row-reverse; */
-  /* flex-wrap: wrap; */
   align-items: stretch;
   width: 100%;
-  /* margin-bottom: 5px; */
 }
 
 .inputList {
   display: flex;
-  /* flex-direction: row-reverse; */
   gap: 0.5rem;
   width: 100%;
 }
 
 .ingredient input {
-  /* background-color: aquamarine; */
   border-radius: 0;
   border: 1px solid rgb(190, 190, 190);
-  /* border-right: none; */
 
   text-align: center;
-}
-
-.ingredient input:first-child {
-  /* background-color: aquamarine; */
-  /* border-radius: 5px 0 0 5px; */
 }
 
 .ingredient input:nth-child(3) {

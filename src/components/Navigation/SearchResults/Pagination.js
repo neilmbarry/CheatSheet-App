@@ -24,7 +24,7 @@ const Pagination = ({ className, currPage, totalPages, changePageHandler }) => {
   }
 
   if (totalPages === 1) {
-    return <>{/* <h4>No pagination</h4> */}</>;
+    return <></>;
   }
 
   return (

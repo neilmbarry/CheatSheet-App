@@ -30,9 +30,6 @@ const CocktailTitle = ({ className, cocktail, loading }) => {
       <h5 className={classes.date}>
         {date.toLocaleString('en-GB').split(',')[0]}
       </h5>
-      {/* <SkeletonLoading className={classes.larger} />
-      <SkeletonLoading />
-      <SkeletonLoading /> */}
       <div className={classes.ratings}>
         <h3 className={classes.rating}>
           {cocktail?.ratingsAverage?.toFixed(1) || 0}
