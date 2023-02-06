@@ -44,15 +44,29 @@ export const configSlice = createSlice({
       state.value.modal = action.payload;
     },
     setOpenSearchResults: (state, action) => {
+      state.value.modal = null;
+      state.value.openFavourites = false;
+
+      state.value.showMenu = false;
       state.value.openSearchResults = action.payload;
     },
     toggleOpenSearch: (state, action) => {
+      state.value.modal = null;
+      state.value.openFavourites = false;
+
+      state.value.showMenu = false;
       state.value.openSearchResults = !state.value.openSearchResults;
     },
     setOpenFavourites: (state, action) => {
+      state.value.modal = null;
+      state.value.openSearchResults = false;
+      state.value.showMenu = false;
       state.value.openFavourites = action.payload;
     },
     toggleOpenFavourites: (state, action) => {
+      state.value.modal = null;
+      state.value.openSearchResults = false;
+      state.value.showMenu = false;
       state.value.openFavourites = !state.value.openFavourites;
     },
     setSearchQuery: (state, action) => {
@@ -77,9 +91,16 @@ export const configSlice = createSlice({
       state.value.showMenu = false;
     },
     setShowMenu: (state, action) => {
+      // state.value.modal = null;
+      // state.value.openFavourites = false;
+      // state.value.openSearchResults = false;
+
       state.value.showMenu = action.payload;
     },
     toggleMenu: (state) => {
+      state.value.modal = null;
+      state.value.openFavourites = false;
+      state.value.openSearchResults = false;
       state.value.showMenu = !state.value.showMenu;
     },
     setUserFaves: (state, action) => {

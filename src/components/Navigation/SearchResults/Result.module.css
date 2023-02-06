@@ -20,7 +20,7 @@
 }
 
 .main:hover {
-  /* background-color: rgb(255, 255, 255); */
+  background-color: #153c53;
 }
 
 .main:hover h3:nth-child(1) {
