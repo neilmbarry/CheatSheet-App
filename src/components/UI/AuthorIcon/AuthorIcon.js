@@ -11,7 +11,6 @@ const AuthorIcon = ({ className, authorId, slug }) => {
 
   const userId = useSelector((state) => state.config.value.id);
 
-  console.log(authorId, userId, 'EQUATE');
   const isAuthor = authorId === userId;
 
   const navToEdit = (e) => {

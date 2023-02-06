@@ -15,15 +15,12 @@ import store from '../../store/store';
 import configActions from '../../store/configSlice';
 
 const CocktailGrid = () => {
-  console.log('COCKTAIL GRID RERENDERED');
   const { slug } = useParams();
   const navigate = useNavigate();
 
   let { response, fetchRequest } = useFetch(`cocktails/${slug}`);
 
   const cocktail = response.data.cocktail;
-
-  console.log(response);
 
   useEffect(() => {
     // if (!slug) return navigate('/');
@@ -32,18 +29,17 @@ const CocktailGrid = () => {
 
   useEffect(() => {
     if (!slug) return;
-    console.log('USE EFFECT RAN');
+
     if (response.data.status === 'success') {
       store.dispatch(
         configActions.setCurrentCocktailId(response.data.cocktail.id)
       );
-      console.log(response.data.cocktail.slug);
+
       store.dispatch(
         configActions.setCurrentCocktailSlug(response.data.cocktail.slug)
       );
     }
     if (response.error) {
-      console.log('setting notification', response.error);
       store.dispatch(
         configActions.setNotification({
           type: 'fail',

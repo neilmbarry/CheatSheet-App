@@ -26,7 +26,7 @@ const IngredientForm = ({ className, invalid }) => {
   }, [cocktailInfo.ingredients]);
 
   const updateIngredient = (info) => {
-    console.log(info);
+  
     const updatedIng = cocktailInfo.ingredients.map((ing, i) => {
       if (info.index === i) {
         return {

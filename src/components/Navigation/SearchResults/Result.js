@@ -24,7 +24,7 @@ const Result = ({ onClick, isAuthor, cocktail }) => {
 
   const navigate = useNavigate();
 
-  console.log(cocktail);
+
 
   const editHandler = (e) => {
     e.preventDefault();

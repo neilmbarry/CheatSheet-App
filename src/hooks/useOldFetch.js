@@ -42,7 +42,7 @@ const useFetch = ({
     const queryString = '?' + queryStringArray.join('&');
 
     const address = BASE_URL + url + queryString;
-    console.log('ADDRESS:', address);
+
     fetch(address, {
       method,
       body,
@@ -50,7 +50,6 @@ const useFetch = ({
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log('DATA RECIEVED FROM USEFETCH: ', data);
         setData(data);
         setLoading(false);
       })

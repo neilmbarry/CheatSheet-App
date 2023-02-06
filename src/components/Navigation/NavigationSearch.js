@@ -9,7 +9,6 @@ const NavigationSearch = ({ parentRef }) => {
   const query = useRef();
 
   const searchHandler = () => {
-    console.log(query.current.value);
     store.dispatch(configActions.setOpenSearchResults(true));
     store.dispatch(configActions.setSearchQuery(query.current.value));
     // fetch search query

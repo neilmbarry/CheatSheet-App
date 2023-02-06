@@ -109,13 +109,11 @@ const AddCocktailBox = ({ className, title, type }) => {
   }, [navigate, slug, type]);
 
   useEffect(() => {
-    console.log('RESPONSE', response);
     const redirect = createModifyResponseHandler(response);
     if (redirect === 'home') {
       return navigate('/');
     }
     if (redirect) {
-      console.log(redirect);
       navigate(`/cocktails/${redirect}`);
     }
     response.data.status = null;
@@ -131,7 +129,7 @@ const AddCocktailBox = ({ className, title, type }) => {
     setLoading(true);
     const res = await fetch(BASE_URL + 'cocktails?name=' + name);
     const data = await res.json();
-    console.log(data);
+
     setLoading(false);
     if (data.results) return setValidName('invalid');
     setValidName('valid');

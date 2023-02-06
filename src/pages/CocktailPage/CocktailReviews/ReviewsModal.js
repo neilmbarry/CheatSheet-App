@@ -18,7 +18,6 @@ const ReviewsModal = ({ className }) => {
   const slug = useSelector((state) => state.config.value.currentCocktailSlug);
 
   const addReviewHandler = () => {
-    console.log('adding review?', token);
     if (!token) {
       return store.dispatch(
         configActions.setNotification({
@@ -31,8 +30,6 @@ const ReviewsModal = ({ className }) => {
   };
 
   const { response, fetchRequest } = useFetch(`cocktails/${slug}`);
-
-  console.log(`cocktails/${slug}`);
 
   const reviewsJSX = response.data?.cocktail?.reviews.length ? (
     response.data.cocktail.reviews.map((review, i) => {

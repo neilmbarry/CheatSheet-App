@@ -17,7 +17,6 @@ const CocktailIngredients = ({ className, cocktail, loading }) => {
   }
 
   const ingredientsJSX = cocktail?.ingredients.map((ing, i) => {
-    // console.log(ing);
     return (
       <div key={i}>
         <p>

@@ -30,13 +30,12 @@ const MethodForm = ({ className, invalid }) => {
 
   const updateMethod = (info) => {
     const updatedMethod = method.map((step) => {
-      console.log(step._id, info.id);
       if (step.key === info.id || step._id === info.id) {
         return { ...step, value: info.value };
       }
       return step;
     });
-    console.log(updatedMethod);
+
     store.dispatch(createCocktailActions.changeMethod(updatedMethod));
   };
 

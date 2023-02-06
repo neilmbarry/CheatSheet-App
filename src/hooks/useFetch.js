@@ -39,15 +39,14 @@ const useFetch = (url) => {
 
   async function fetchRequest({ method = 'GET', body, token, filters }) {
     setLoading(true);
-    console.log(method, body);
+
     const options = constructOptions(token, body, method);
     const queryString = generateQueryString(filters);
-    console.log(BASE_URL + url + queryString, options);
+
     try {
       const response = await fetch(BASE_URL + url + queryString, options);
-      console.log(response);
+
       if (response.status === 204) {
-        console.log('use Fetch deleted cocktail');
         setLoading(false);
         return setData({ deleted: true, status: 'success' });
       }
@@ -55,7 +54,7 @@ const useFetch = (url) => {
       if (data.status === 'fail' || data.status === 'error') {
         throw data.message;
       }
-      console.log(data);
+
       setData(data);
     } catch (err) {
       setError(err);

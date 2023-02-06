@@ -42,7 +42,6 @@ const AuthModal = () => {
 
   useEffect(() => {
     if (response.error) {
-      console.log(response.error);
       store.dispatch(
         configActions.setNotification({
           type: 'fail',

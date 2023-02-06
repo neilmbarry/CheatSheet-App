@@ -10,7 +10,6 @@ const SearchBar = ({ className }) => {
   const query = useRef();
 
   const searchHandler = () => {
-    console.log(query.current.value);
     store.dispatch(configActions.setSearchQuery(query.current.value));
     // fetch search query
   };

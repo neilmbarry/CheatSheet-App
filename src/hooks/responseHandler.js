@@ -6,7 +6,6 @@ export const responseHandler = (response) => {
   const { data, error } = response;
   if (!data.status) return;
   if (data.status === 'success') {
-    console.log(data);
     store.dispatch(configActions.setUserFaves(data.user.faves));
     if (data.faveAdded) {
       return store.dispatch(
@@ -29,7 +28,7 @@ export const faveResponseHandler = (response) => {
   const { data, error } = response;
 
   if (!data.status) return;
-  console.log('In Fave response handler');
+
   if (data.status === 'success') {
     store.dispatch(configActions.setUserFaves(data.user.faves));
     if (data.faveAdded) {
@@ -79,7 +78,7 @@ export const createModifyResponseHandler = (response) => {
   }
   // Successful updated cocktail
   if (data.updatedCocktail) {
-    console.log(data);
+   
     store.dispatch(
       configActions.setNotification({
         type: 'success',
@@ -113,7 +112,6 @@ export const reviewResponseHandler = (response) => {
   const { data, error } = response;
   if (!data.status) return;
   if (data.status === 'success') {
-    console.log(data);
     return store.dispatch(
       configActions.setNotification({
         type: 'success',

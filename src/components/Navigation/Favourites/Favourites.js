@@ -40,7 +40,6 @@ const Favourites = ({ className }) => {
 
   useEffect(() => {
     if (response.error) {
-      console.log('setting notification', response.error);
       store.dispatch(
         configActions.setNotification({
           type: 'fail',

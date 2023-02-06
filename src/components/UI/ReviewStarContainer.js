@@ -11,7 +11,6 @@ const ReviewStarContainer = ({ className, onClick }) => {
   const [selected, setSelected] = useState(0);
 
   const selectedHandler = (number) => {
-    console.log('Setting selected', number);
     setSelected(number);
     onClick(number);
   };

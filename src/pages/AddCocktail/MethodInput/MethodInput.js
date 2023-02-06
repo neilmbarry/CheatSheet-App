@@ -18,7 +18,7 @@ const MethodInput = ({
 }) => {
   const methodChangeHandler = (e) => {
     const value = e.target.value;
-    console.log(value);
+
     return updateMethod({ value, id });
   };
   return (

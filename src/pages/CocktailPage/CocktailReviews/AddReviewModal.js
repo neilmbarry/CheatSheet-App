@@ -23,8 +23,6 @@ const AddReviewModal = ({ className }) => {
   );
   const slug = useSelector((state) => state.config.value.currentCocktailSlug);
 
-  console.log(cocktailId, 'COCKTAIL ID');
-
   let { response, fetchRequest } = useFetch('reviews');
 
   const close = () => {

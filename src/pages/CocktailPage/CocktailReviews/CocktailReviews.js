@@ -17,8 +17,6 @@ const CocktailReviews = ({ className, cocktail, loading }) => {
     store.dispatch(configActions.setModal('reviews'));
   };
 
-  // console.log(cocktail?.reviews, 'COCKTAIL');
-
   if (loading) {
     return (
       <div className={classesList}>
