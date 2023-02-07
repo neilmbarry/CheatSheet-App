@@ -24,9 +24,7 @@ export const cocktailSlice = createSlice({
         ...state.value,
       };
     },
-    // addFave: (state, action) => {
-    //   state.value.faves = [...state.value.faves, action.payload];
-    // },
+
     toggleFave: (state, action) => {
       if (state.value.faves.includes(action.payload)) {
         state.value.faves = [...state.value.faves].filter(

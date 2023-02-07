@@ -9,17 +9,17 @@ export const addCocktailVariants = {
 
     transition: {
       type: 'spring',
-      // delay: 0.5,
+
       duration: 0.5,
     },
   },
   exit: {
     x: -50,
     opacity: 0,
-    // scale: 0.9,
+
     transition: {
       type: 'spring',
-      // delay: 0.5,
+
       duration: 0.5,
     },
   },
@@ -36,17 +36,17 @@ export const homePageVariants = {
 
     transition: {
       type: 'spring',
-      // delay: 0.5,
+
       duration: 0.5,
     },
   },
   exit: {
     y: 50,
     opacity: 0,
-    // scale: 0.9,
+
     transition: {
       type: 'spring',
-      // delay: 0.5,
+
       duration: 0.3,
     },
   },
@@ -115,29 +115,19 @@ export const backdropVariants = {
 
 export const overlayVariants = {
   hidden: {
-    // y: -100,
     opacity: 0,
-    // scale: 0.8,
-
-    // rotate: "0deg",
   },
   visible: {
-    // y: 0,
     opacity: 1,
 
     transition: {
-      // type: 'spring',
-      // delay: 0.5,
       duration: 0.2,
     },
   },
   exit: {
-    // y: -30,
     opacity: 0,
-    // scale: 0.9,
+
     transition: {
-      // type: "spring",
-      // delay: 0.5,
       duration: 0.3,
     },
   },
@@ -148,9 +138,6 @@ export const modalVariants = {
     y: '-30%',
     x: '-50%',
     opacity: 0,
-    // scale: 0.8,
-
-    // rotate: "0deg",
   },
   visible: {
     y: '-50%',
@@ -158,17 +145,15 @@ export const modalVariants = {
 
     transition: {
       type: 'spring',
-      // delay: 0.5,
+
       duration: 0.5,
     },
   },
   exit: {
     y: -30,
     opacity: 0,
-    // scale: 0.9,
+
     transition: {
-      // type: "spring",
-      // delay: 0.5,
       duration: 0.3,
     },
   },
@@ -178,9 +163,6 @@ export const cocktailGridVariants = {
   hidden: {
     y: -100,
     opacity: 0,
-    // scale: 0.8,
-
-    // rotate: "0deg",
   },
   visible: {
     y: 0,
@@ -188,17 +170,17 @@ export const cocktailGridVariants = {
 
     transition: {
       type: 'spring',
-      // delay: 0.5,
+
       duration: 0.5,
     },
   },
   exit: {
     y: 100,
     opacity: 0,
-    // scale: 0.9,
+
     transition: {
       type: 'spring',
-      // delay: 0.5,
+
       duration: 0.3,
     },
   },
@@ -208,29 +190,20 @@ export const notificationVariants = {
     y: 50,
     x: '-50%',
     opacity: 0,
-    // scale: 0.8,
-
-    // rotate: "0deg",
   },
   visible: {
     y: 0,
     x: '-50%',
     opacity: 1,
-
-    // transition: {
-    //   type: 'spring',
-    //   // delay: 0.5,
-    //   duration: 0.5,
-    // },
   },
   exit: {
     y: 30,
     x: '-50%',
     opacity: 0,
-    // scale: 0.9,
+
     transition: {
       type: 'spring',
-      // delay: 0.5,
+
       duration: 0.6,
     },
   },
@@ -240,9 +213,6 @@ export const authVariants = {
   hidden: {
     x: 50,
     opacity: 0,
-    // scale: 0.8,
-
-    // rotate: "0deg",
   },
   visible: {
     x: 0,
@@ -250,17 +220,17 @@ export const authVariants = {
 
     transition: {
       type: 'spring',
-      // delay: 0.5,
+
       duration: 0.5,
     },
   },
   exit: {
     x: -50,
     opacity: 0,
-    // scale: 0.9,
+
     transition: {
       type: 'spring',
-      // delay: 0.5,
+
       duration: 0.5,
     },
   },

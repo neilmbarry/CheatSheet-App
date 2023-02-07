@@ -7,13 +7,12 @@ import { Provider } from 'react-redux';
 import store from './store/store';
 
 ReactDOM.render(
-  // eslint-disable-next-line
-  // <React.StrictMode>
+
   <BrowserRouter>
     <Provider store={store}>
       <App />
     </Provider>
   </BrowserRouter>,
-  // </React.StrictMode>
+
   document.getElementById('root')
 );

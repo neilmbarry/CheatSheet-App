@@ -26,7 +26,6 @@ const IngredientForm = ({ className, invalid }) => {
   }, [cocktailInfo.ingredients]);
 
   const updateIngredient = (info) => {
-  
     const updatedIng = cocktailInfo.ingredients.map((ing, i) => {
       if (info.index === i) {
         return {
@@ -38,7 +37,6 @@ const IngredientForm = ({ className, invalid }) => {
     });
 
     store.dispatch(createCocktailActions.changeIngredients(updatedIng));
-    // store.dispatch();
   };
 
   const removeIngredient = (id) => {
@@ -49,7 +47,6 @@ const IngredientForm = ({ className, invalid }) => {
       return true;
     });
     store.dispatch(createCocktailActions.changeIngredients(updatedIng));
-    // store.dispatch();
   };
 
   const ingredientsUI = cocktailInfo.ingredients.map((ing, i) => {

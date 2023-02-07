@@ -1,11 +1,7 @@
 import React from 'react';
 import classes from './StarContainer.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  // faHeart as faHeartFull,
-  faStarHalfStroke,
-  faStar,
-} from '@fortawesome/free-solid-svg-icons';
+import { faStarHalfStroke, faStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as faStarEmpty } from '@fortawesome/free-regular-svg-icons';
 
 const StarContainer = ({ rating, className }) => {

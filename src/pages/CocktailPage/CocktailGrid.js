@@ -23,7 +23,6 @@ const CocktailGrid = () => {
   const cocktail = response.data.cocktail;
 
   useEffect(() => {
-    // if (!slug) return navigate('/');
     fetchRequest({});
   }, []);
 
@@ -49,7 +48,6 @@ const CocktailGrid = () => {
 
       return navigate('/');
     }
-    // response = null;
   }, [response.error, response.data]);
 
   return (

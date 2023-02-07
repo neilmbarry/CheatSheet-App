@@ -37,7 +37,7 @@ const LabelInput = ({
           type="text"
           placeholder={placeholder}
           ref={value}
-          // defaultValue={defaultValue}
+   
           className={`${classes.input} ${invalid && classes.invalid}`}
           onBlur={() => updateValue(value.current.value)}
         />

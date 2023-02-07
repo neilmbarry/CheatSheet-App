@@ -1,10 +1,8 @@
 import React from 'react';
 import classes from './CocktailTitle.module.css';
-// import Star from '../../UI/Star';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStarHalfStroke, faStar } from '@fortawesome/free-solid-svg-icons';
+
 import StarContainer from '../../../components/UI/StarContainer';
-import LoadingSpinner from '../../../components/UI/Spinner';
+
 import SkeletonLoading from '../../../components/UI/SkeletonLoading/SkeletonLoading';
 
 const CocktailTitle = ({ className, cocktail, loading }) => {

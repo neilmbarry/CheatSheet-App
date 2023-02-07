@@ -42,7 +42,6 @@ const SearchResults = ({ className }) => {
   useEffect(() => {
     if (!response.data.status) return;
     setTotalPages(Math.ceil(response.data.results / 4) || 1);
-    // setCurrentPage(response.data.page);
   }, [response]);
 
   useEffect(() => {

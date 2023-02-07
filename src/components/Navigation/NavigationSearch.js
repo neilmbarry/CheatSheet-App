@@ -11,7 +11,6 @@ const NavigationSearch = ({ parentRef }) => {
   const searchHandler = () => {
     store.dispatch(configActions.setOpenSearchResults(true));
     store.dispatch(configActions.setSearchQuery(query.current.value));
-    // fetch search query
   };
 
   return (
@@ -29,7 +28,6 @@ const NavigationSearch = ({ parentRef }) => {
         ref={query}
         parentRef={parentRef}
         autoFocus={true}
-        // onClick={onClick}
       ></input>
     </div>
   );

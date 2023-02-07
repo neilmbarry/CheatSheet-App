@@ -17,7 +17,6 @@ const Dropdown = ({
   const [isOpen, setIsOpen] = useState(false);
 
   const selectOption = (option) => {
-    // setSelectedOption(option);
     updateValue(option);
     setIsOpen(false);
   };

@@ -11,7 +11,6 @@ const SearchBar = ({ className }) => {
 
   const searchHandler = () => {
     store.dispatch(configActions.setSearchQuery(query.current.value));
-    // fetch search query
   };
 
   return (
@@ -29,7 +28,6 @@ const SearchBar = ({ className }) => {
           onChange={searchHandler}
           ref={query}
           autoFocus
-          // onClick={onClick}
         ></input>
       </div>
     </div>

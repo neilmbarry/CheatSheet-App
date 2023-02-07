@@ -17,7 +17,6 @@ const FormInput = ({
       <input
         type={type}
         placeholder={placeholder || '-placeholder-'}
-        // onChange={changeHandler}
         onBlur={changeHandler}
         className={`${className} ${classes.input} ${
           loading ? classes.un : undefined
@@ -25,7 +24,6 @@ const FormInput = ({
         defaultValue={value}
         id={id}
         min={min}
-        // autoFocus={true}
       />
     </>
   );
