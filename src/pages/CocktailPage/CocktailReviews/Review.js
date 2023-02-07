@@ -5,7 +5,6 @@ import { dateFormat } from '../../../util/dateFormat';
 
 const Review = ({ className, review }) => {
   const classesList = `${classes.main} ${className}`;
-  // console.warn(review);
   return (
     <div className={classesList}>
       {review?.summary && <h5>"{review?.summary}"</h5>}
