@@ -11,6 +11,7 @@ This is a full stack application powered by React, Node, Express and MongoDB tha
 ## Table of Contents
 
 - [Features](#features)
+- [Screenshots](#screenshots)
 - [Technologies Used](#technologies-used)
 - [Code Structure](#code-structure)
 - [Setup](#setup)
@@ -24,7 +25,10 @@ This is a full stack application powered by React, Node, Express and MongoDB tha
 - Search database for cocktails and sort by name, rating etc.
 - Rate and review cocktails
 - Store favourites
-- Other awesome features yet to be implemented
+
+---
+
+## Screenshots
 
 ![Recipe Card](https://i.imgur.com/2YjeD1M.png)
 
